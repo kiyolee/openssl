@@ -906,6 +906,10 @@ Don't use POSIX IO capabilities.
 
 Don't build support for Pre-Shared Key based ciphersuites.
 
+### no-quic-boring
+
+Don't build support for BoringSSL's QUIC support.
+
 ### no-rdrand
 
 Don't use hardware RDRAND capabilities.

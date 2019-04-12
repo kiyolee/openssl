@@ -584,3 +584,15 @@ SSL_poll                                584	3_3_0	EXIST::FUNCTION:
 SSL_SESSION_get_time_ex                 585	3_3_0	EXIST::FUNCTION:
 SSL_SESSION_set_time_ex                 586	3_3_0	EXIST::FUNCTION:
 SSL_CTX_flush_sessions_ex               587	3_4_0	EXIST::FUNCTION:
+SSL_CIPHER_get_prf_nid                  ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_transport_params           ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_get_peer_quic_transport_params      ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_max_handshake_flight_len       ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_read_level                     ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_write_level                    ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_provide_quic_data                   ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_CTX_set_quic_method                 ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_method                     ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_process_quic_post_handshake         ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_is_quic                             ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_early_data_enabled         ?	3_4_0	EXIST::FUNCTION:QUIC_BORING
