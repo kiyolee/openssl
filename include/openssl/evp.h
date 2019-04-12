@@ -1598,6 +1598,10 @@ int EVP_PKEY_CTX_set_mac_key(EVP_PKEY_CTX *ctx, const unsigned char *key,
  */
 #define EVP_PKEY_FLAG_SIGCTX_CUSTOM 4
 
+/* Used by Chromium/QUIC */
+# define X25519_PRIVATE_KEY_LEN 32
+# define X25519_PUBLIC_VALUE_LEN 32
+
 EVP_KEYMGMT *EVP_KEYMGMT_fetch(OSSL_LIB_CTX *ctx, const char *algorithm,
     const char *properties);
 int EVP_KEYMGMT_up_ref(EVP_KEYMGMT *keymgmt);
