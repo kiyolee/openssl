@@ -606,3 +606,15 @@ SSL_CTX_set_domain_flags                ?	3_5_0	EXIST::FUNCTION:
 SSL_CTX_get_domain_flags                ?	3_5_0	EXIST::FUNCTION:
 SSL_get_domain_flags                    ?	3_5_0	EXIST::FUNCTION:
 SSL_CTX_set_new_pending_conn_cb         ?	3_5_0	EXIST::FUNCTION:
+SSL_CIPHER_get_prf_nid                  ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_transport_params           ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_get_peer_quic_transport_params      ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_max_handshake_flight_len       ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_read_level                     ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_write_level                    ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_provide_quic_data                   ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_CTX_set_quic_method                 ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_method                     ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_process_quic_post_handshake         ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_is_quic                             ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_early_data_enabled         ?	3_5_0	EXIST::FUNCTION:QUIC_BORING
