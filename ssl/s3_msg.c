@@ -126,6 +126,16 @@ int ssl3_dispatch_alert(SSL *s)
         return 1;
     }
 
+#ifndef OPENSSL_NO_QUIC_BORING
+    if (SSL_CONNECTION_IS_QUIC(sc)) {
+        if (!sc->quic_method->send_alert(s, sc->quic_write_level,
+                                         sc->s3.send_alert[1])) {
+            SSLerr(SSL_F_SSL3_DISPATCH_ALERT, SSL_R_INTERNAL_ERROR);
+            return 0;
+        }
+        i = 1;
+    } else
+#endif
     i = HANDLE_RLAYER_WRITE_RETURN(sc,
             sc->rlayer.wrlmethod->write_records(sc->rlayer.wrl, &templ, 1));
 

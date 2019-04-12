@@ -607,3 +607,15 @@ SSL_set_quic_tls_cbs                    ?	4_0_0	EXIST::FUNCTION:
 SSL_set_quic_tls_transport_params       ?	4_0_0	EXIST::FUNCTION:
 SSL_set_quic_tls_early_data_enabled     ?	4_0_0	EXIST::FUNCTION:
 SSL_CTX_is_quic                         ?	4_0_0	EXIST::FUNCTION:
+SSL_CIPHER_get_prf_nid                  ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_transport_params           ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_get_peer_quic_transport_params      ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_max_handshake_flight_len       ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_read_level                     ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_quic_write_level                    ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_provide_quic_data                   ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_CTX_set_quic_method                 ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_method                     ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_process_quic_post_handshake         ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_is_quic                             ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
+SSL_set_quic_early_data_enabled         ?	4_0_0	EXIST::FUNCTION:QUIC_BORING
