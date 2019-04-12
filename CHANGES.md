@@ -30,6 +30,10 @@ breaking changes, and mappings for the large list of deprecated functions.
 
 ### Changes between 1.1.1 and 3.0 [xx XXX xxxx]
 
+ * Implement BoringSSL's QUIC API
+
+   *Todd Short*
+
  * The ERR_GET_FUNC() function was removed.  With the loss of meaningful
    function codes, this function can only cause problems for calling
    applications.
