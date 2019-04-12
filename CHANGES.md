@@ -167,6 +167,10 @@ OpenSSL 3.3
 
 ### Changes between 3.2 and 3.3.0 [9 Apr 2024]
 
+ * Implement BoringSSL's QUIC API
+
+   *Todd Short*
+
  * Add a new random seed source RNG `JITTER` using a statically linked
    jitterentropy library.
 

@@ -73,6 +73,10 @@ static EXT_RETURN tls_construct_compress_certificate(SSL_CONNECTION *sc, WPACKET
 static int tls_parse_compress_certificate(SSL_CONNECTION *sc, PACKET *pkt,
                                           unsigned int context,
                                           X509 *x, size_t chainidx);
+#ifndef OPENSSL_NO_QUIC_BORING
+static int init_quic_transport_params(SSL_CONNECTION *s, unsigned int context);
+static int final_quic_transport_params(SSL_CONNECTION *s, unsigned int context, int sent);
+#endif
 
 /* Structure to define a built-in extension */
 typedef struct extensions_definition_st {
@@ -413,6 +417,19 @@ static const EXTENSION_DEFINITION ext_defs[] = {
         tls_construct_certificate_authorities,
         tls_construct_certificate_authorities, NULL,
     },
+#ifndef OPENSSL_NO_QUIC_BORING
+    {
+        TLSEXT_TYPE_quic_transport_parameters,
+        SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_SERVER_HELLO
+        | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
+        init_quic_transport_params,
+        tls_parse_ctos_quic_transport_params, tls_parse_stoc_quic_transport_params,
+        tls_construct_stoc_quic_transport_params, tls_construct_ctos_quic_transport_params,
+        final_quic_transport_params,
+    },
+#else
+    INVALID_EXTENSION,
+#endif
     {
         /* Must be immediately before pre_shared_key */
         TLSEXT_TYPE_padding,
@@ -1939,3 +1956,15 @@ static int init_client_cert_type(SSL_CONNECTION *sc, unsigned int context)
     }
     return 1;
 }
+
+#ifndef OPENSSL_NO_QUIC_BORING
+static int init_quic_transport_params(SSL_CONNECTION *s, unsigned int context)
+{
+    return 1;
+}
+
+static int final_quic_transport_params(SSL_CONNECTION *s, unsigned int context, int sent)
+{
+    return 1;
+}
+#endif
