@@ -299,6 +299,10 @@ breaking changes, and mappings for the large list of deprecated functions.
 
    *Dmitry Belyavskiy*
 
+ * Implement BoringSSL's QUIC API
+
+   *Todd Short*
+
  * Due to move of the implementation of cryptographic operations
    to the providers, validation of various operation parameters can
    be postponed until the actual operation is executed where previously
