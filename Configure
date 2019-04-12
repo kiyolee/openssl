@@ -509,6 +509,7 @@ my @disablables = (
     "posix-io",
     "psk",
     "quic",
+    "quic-boring",
     "unstable-qlog",
     "rc2",
     "rc4",
@@ -606,6 +607,7 @@ our %disabled = ( # "what"         => "comment"
                   "ktls"                => "default",
                   "md2"                 => "default",
                   "msan"                => "default",
+                  "quic-boring"         => "default",
                   "rc5"                 => "default",
                   "sctp"                => "default",
                   "ssl3"                => "default",
@@ -661,7 +663,7 @@ my @disable_cascades = (
     "tls"               => [ @tls ],
     sub { 0 == scalar grep { !$disabled{$_} } @tls }
                         => [ "tls" ],
-    "tls1_3"            => [ "quic" ],
+    "tls1_3"            => [ "quic", "quic-boring" ],
     "quic"              => [ "unstable-qlog" ],
 
     "crypto-mdebug"     => [ "crypto-mdebug-backtrace" ],
