@@ -1408,6 +1408,11 @@ int create_ssl_connection_ex(SSL *serverssl, SSL *clientssl, int want,
                                        cm_count, sm_count))
         return 0;
 
+#ifndef OPENSSL_NO_QUIC_BORING
+    /* QUIC does not support SSL_read_ex */
+    if (SSL_is_quic(clientssl))
+        return 1;
+#endif
     /*
      * We attempt to read some data on the client side which we expect to fail.
      * This will ensure we have received the NewSessionTicket in TLSv1.3 where
