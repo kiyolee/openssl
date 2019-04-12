@@ -505,6 +505,10 @@ OpenSSL 3.3
 
 ### Changes between 3.2 and 3.3.0 [9 Apr 2024]
 
+ * Implement BoringSSL's QUIC API
+
+   *Todd Short*
+
  * The `-verify` option to the `openssl crl` and `openssl req` will make
    the program exit with 1 on failure.
 
