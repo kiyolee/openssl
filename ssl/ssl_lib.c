@@ -4995,6 +4995,25 @@ int SSL_do_handshake(SSL *s)
         BIO_set_retry_read(SSL_get_rbio(s));
         ret = 0;
     }
+
+#ifndef OPENSSL_NO_QUIC_BORING
+    if (SSL_CONNECTION_IS_QUIC(sc) && ret == 1) {
+        if (sc->server) {
+            if (sc->early_data_state == SSL_EARLY_DATA_ACCEPTING) {
+                sc->early_data_state = SSL_EARLY_DATA_FINISHED_READING;
+                sc->rwstate = SSL_READING;
+                ret = 0;
+            }
+        } else {
+            if (sc->early_data_state == SSL_EARLY_DATA_CONNECTING) {
+                sc->early_data_state = SSL_EARLY_DATA_WRITE_RETRY;
+                sc->rwstate = SSL_READING;
+                ret = 0;
+            }
+        }
+    }
+#endif
+
     return ret;
 }
 
