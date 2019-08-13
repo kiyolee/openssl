@@ -4799,6 +4799,25 @@ int SSL_do_handshake(SSL *s)
             ret = sc->handshake_func(s);
         }
     }
+
+#ifndef OPENSSL_NO_QUIC_BORING
+    if (SSL_CONNECTION_IS_QUIC(sc) && ret == 1) {
+        if (sc->server) {
+            if (sc->early_data_state == SSL_EARLY_DATA_ACCEPTING) {
+                sc->early_data_state = SSL_EARLY_DATA_FINISHED_READING;
+                sc->rwstate = SSL_READING;
+                ret = 0;
+            }
+        } else {
+            if (sc->early_data_state == SSL_EARLY_DATA_CONNECTING) {
+                sc->early_data_state = SSL_EARLY_DATA_WRITE_RETRY;
+                sc->rwstate = SSL_READING;
+                ret = 0;
+            }
+        }
+    }
+#endif
+
     return ret;
 }
 
