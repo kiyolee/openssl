@@ -199,8 +199,8 @@ int quic_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_ENCRYPTION_LEVEL level)
         s2c_secret = sc->early_secret;
         break;
     case ssl_encryption_handshake:
-        c2s_secret = sc->client_finished_secret;
-        s2c_secret = sc->server_finished_secret;
+        c2s_secret = sc->client_hand_traffic_secret;
+        s2c_secret = sc->server_hand_traffic_secret;
         break;
     case ssl_encryption_application:
         c2s_secret = sc->client_app_traffic_secret;
