@@ -121,12 +121,7 @@ int SSL_provide_quic_data(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
         n2l3(p, l);
         l += SSL3_HM_HEADER_LENGTH;
 
-        if (l > len) {
-            SSLerr(SSL_F_SSL_PROVIDE_QUIC_DATA, SSL_R_BAD_DATA_LENGTH);
-            return 0;
-        }
-
-        qd = OPENSSL_malloc(sizeof(QUIC_DATA) + l);
+        qd = OPENSSL_zalloc(sizeof(QUIC_DATA) + l);
         if (qd == NULL) {
             SSLerr(SSL_F_SSL_PROVIDE_QUIC_DATA, SSL_R_INTERNAL_ERROR);
             return 0;
