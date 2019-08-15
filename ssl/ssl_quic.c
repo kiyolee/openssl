@@ -184,8 +184,8 @@ int SSL_set_quic_method(SSL *ssl, const SSL_QUIC_METHOD *quic_method)
 
 int quic_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_ENCRYPTION_LEVEL level)
 {
-    uint8_t *read_secret = NULL;
-    uint8_t *write_secret = NULL;
+    uint8_t *c2s_secret = NULL;
+    uint8_t *s2c_secret = NULL;
     size_t len;
     const EVP_MD *md;
     static const unsigned char zeros[EVP_MAX_MD_SIZE];
@@ -196,55 +196,54 @@ int quic_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_ENCRYPTION_LEVEL level)
     /* secrets from the POV of the client */
     switch (level) {
     case ssl_encryption_early_data:
-        write_secret = sc->early_secret;
+        s2c_secret = sc->early_secret;
         break;
     case ssl_encryption_handshake:
-        read_secret = sc->client_finished_secret;
-        write_secret = sc->server_finished_secret;
+        c2s_secret = sc->client_finished_secret;
+        s2c_secret = sc->server_finished_secret;
         break;
     case ssl_encryption_application:
-        read_secret = sc->client_app_traffic_secret;
-        write_secret = sc->server_app_traffic_secret;
+        c2s_secret = sc->client_app_traffic_secret;
+        s2c_secret = sc->server_app_traffic_secret;
         break;
     default:
         return 1;
     }
 
-    md = ssl_handshake_md(ssl);
+    md = ssl_handshake_md(sc);
     if (md == NULL) {
         /* May not have selected cipher, yet */
         const SSL_CIPHER *c = NULL;
 
-        if (ssl->session != NULL)
-            c = SSL_SESSION_get0_cipher(ssl->session);
-        else if (ssl->psksession != NULL)
-            c = SSL_SESSION_get0_cipher(ssl->psksession);
+        if (sc->session != NULL)
+            c = SSL_SESSION_get0_cipher(sc->session);
+        else if (sc->psksession != NULL)
+            c = SSL_SESSION_get0_cipher(sc->psksession);
 
         if (c != NULL)
             md = SSL_CIPHER_get_handshake_digest(c);
     }
 
     if ((len = EVP_MD_size(md)) <= 0) {
-        SSLfatal(ssl, SSL_AD_INTERNAL_ERROR, SSL_F_QUIC_SET_ENCRYPTION_SECRETS,
-                 ERR_R_INTERNAL_ERROR);
+        SSLfatal(sc, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
         return 0;
     }
 
     /* In some cases, we want to set the secret only when BOTH are non-zero */
-    if (read_secret != NULL && write_secret != NULL
-            && !memcmp(read_secret, zeros, len)
-            && !memcmp(write_secret, zeros, len))
+    if (c2s_secret != NULL && s2c_secret != NULL
+            && !memcmp(c2s_secret, zeros, len)
+            && !memcmp(s2c_secret, zeros, len))
         return 1;
 
     if (sc->server) {
-        if (!sc->quic_method->set_encryption_secrets(SSL_CONNECTION_GET_SSL(sc), level, read_secret,
-                                                     write_secret, len)) {
+        if (!sc->quic_method->set_encryption_secrets(SSL_CONNECTION_GET_SSL(sc), level, c2s_secret,
+                                                     s2c_secret, len)) {
             SSLfatal(sc, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
             return 0;
         }
     } else {
-        if (!sc->quic_method->set_encryption_secrets(SSL_CONNECTION_GET_SSL(sc), level, write_secret,
-                                                     read_secret, len)) {
+        if (!sc->quic_method->set_encryption_secrets(SSL_CONNECTION_GET_SSL(sc), level, s2c_secret,
+                                                     c2s_secret, len)) {
             SSLfatal(sc, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
             return 0;
         }
