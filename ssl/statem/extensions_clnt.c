@@ -1303,10 +1303,8 @@ EXT_RETURN tls_construct_ctos_quic_transport_params(SSL_CONNECTION *s, WPACKET *
     }
 
     if (!WPACKET_put_bytes_u16(pkt, TLSEXT_TYPE_quic_transport_parameters)
-            || !WPACKET_start_sub_packet_u16(pkt)
-            || !WPACKET_sub_memcpy_u16(pkt, s->ext.quic_transport_params,
-                                       s->ext.quic_transport_params_len)
-            || !WPACKET_close(pkt)) {
+        || !WPACKET_sub_memcpy_u16(pkt, s->ext.quic_transport_params,
+                                   s->ext.quic_transport_params_len)) {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
         return EXT_RETURN_FAIL;
     }
@@ -2295,19 +2293,11 @@ int tls_parse_stoc_server_cert_type(SSL_CONNECTION *sc, PACKET *pkt,
 int tls_parse_stoc_quic_transport_params(SSL_CONNECTION *s, PACKET *pkt, unsigned int context,
                                          X509 *x, size_t chainidx)
 {
-    PACKET trans_param;
-
-    if (!PACKET_as_length_prefixed_2(pkt, &trans_param)
-            || PACKET_remaining(&trans_param) == 0) {
-        SSLfatal(s, SSL_AD_DECODE_ERROR, SSL_R_BAD_EXTENSION);
-        return 0;
-    }
-
     OPENSSL_free(s->ext.peer_quic_transport_params);
     s->ext.peer_quic_transport_params = NULL;
     s->ext.peer_quic_transport_params_len = 0;
 
-    if (!PACKET_memdup(&trans_param,
+    if (!PACKET_memdup(pkt,
                        &s->ext.peer_quic_transport_params,
                        &s->ext.peer_quic_transport_params_len)) {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
