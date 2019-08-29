@@ -249,6 +249,7 @@ int quic_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_ENCRYPTION_LEVEL level)
 
 int SSL_process_quic_post_handshake(SSL *ssl)
 {
+    int ret;
     SSL_CONNECTION* sc = SSL_CONNECTION_FROM_SSL(ssl);
 
     if (SSL_in_init(ssl) || !SSL_CONNECTION_IS_QUIC(sc)) {
@@ -257,10 +258,11 @@ int SSL_process_quic_post_handshake(SSL *ssl)
     }
 
     ossl_statem_set_in_init(sc, 1);
+    ret = sc->handshake_func(ssl);
+    ossl_statem_set_in_init(sc, 0);
 
-    if (sc->handshake_func(sc) <= 0)
+    if (ret <= 0)
         return 0;
-
     return 1;
 }
 
