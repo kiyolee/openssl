@@ -445,24 +445,143 @@ static int derive_secret_key_and_iv(SSL_CONNECTION *s, const EVP_MD *md,
     return 1;
 }
 
+/* ASCII: "c e traffic", in hex for EBCDIC compatibility */
+static const unsigned char client_early_traffic[] = "\x63\x20\x65\x20\x74\x72\x61\x66\x66\x69\x63";
+/* ASCII: "c hs traffic", in hex for EBCDIC compatibility */
+static const unsigned char client_handshake_traffic[] = "\x63\x20\x68\x73\x20\x74\x72\x61\x66\x66\x69\x63";
+/* ASCII: "c ap traffic", in hex for EBCDIC compatibility */
+static const unsigned char client_application_traffic[] = "\x63\x20\x61\x70\x20\x74\x72\x61\x66\x66\x69\x63";
+/* ASCII: "s hs traffic", in hex for EBCDIC compatibility */
+static const unsigned char server_handshake_traffic[] = "\x73\x20\x68\x73\x20\x74\x72\x61\x66\x66\x69\x63";
+/* ASCII: "s ap traffic", in hex for EBCDIC compatibility */
+static const unsigned char server_application_traffic[] = "\x73\x20\x61\x70\x20\x74\x72\x61\x66\x66\x69\x63";
+/* ASCII: "exp master", in hex for EBCDIC compatibility */
+static const unsigned char exporter_master_secret[] = "\x65\x78\x70\x20\x6D\x61\x73\x74\x65\x72";
+/* ASCII: "res master", in hex for EBCDIC compatibility */
+static const unsigned char resumption_master_secret[] = "\x72\x65\x73\x20\x6D\x61\x73\x74\x65\x72";
+/* ASCII: "e exp master", in hex for EBCDIC compatibility */
+static const unsigned char early_exporter_master_secret[] = "\x65\x20\x65\x78\x70\x20\x6D\x61\x73\x74\x65\x72";
+
+#ifndef OPENSSL_NO_QUIC_BORING
+static int quic_change_cipher_state(SSL_CONNECTION *s, int which)
+{
+    unsigned char hash[EVP_MAX_MD_SIZE];
+    size_t hashlen = 0;
+    int hashleni;
+    int ret = 0;
+    const EVP_MD *md = NULL;
+    OSSL_ENCRYPTION_LEVEL level = ssl_encryption_initial;
+    int is_handshake = ((which & SSL3_CC_HANDSHAKE) == SSL3_CC_HANDSHAKE);
+    int is_client_read = ((which & SSL3_CHANGE_CIPHER_CLIENT_READ) == SSL3_CHANGE_CIPHER_CLIENT_READ);
+    int is_server_write = ((which & SSL3_CHANGE_CIPHER_SERVER_WRITE) == SSL3_CHANGE_CIPHER_SERVER_WRITE);
+    int is_early = (which & SSL3_CC_EARLY);
+
+    md = ssl_handshake_md(s);
+    if (!ssl3_digest_cached_records(s, 1)
+        || !ssl_handshake_hash(s, hash, sizeof(hash), &hashlen)) {
+        /* SSLfatal() already called */;
+        goto err;
+    }
+
+    /* Ensure cast to size_t is safe */
+    hashleni = EVP_MD_size(md);
+    if (!ossl_assert(hashleni >= 0)) {
+        SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_EVP_LIB);
+        goto err;
+    }
+    hashlen = (size_t)hashleni;
+
+    if (is_handshake)
+        level = ssl_encryption_handshake;
+    else
+        level = ssl_encryption_application;
+
+    if (is_client_read || is_server_write) {
+        if (is_handshake) {
+            level = ssl_encryption_handshake;
+
+            if (!tls13_hkdf_expand(s, md, s->handshake_secret, client_handshake_traffic,
+                                   sizeof(client_handshake_traffic)-1, hash, hashlen,
+                                   s->client_hand_traffic_secret, hashlen, 1)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+            if (!ssl_log_secret(s, CLIENT_HANDSHAKE_LABEL, s->client_hand_traffic_secret, hashlen)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+
+            if (!tls13_hkdf_expand(s, md, s->handshake_secret, server_handshake_traffic,
+                                   sizeof(server_handshake_traffic)-1, hash, hashlen,
+                                   s->server_hand_traffic_secret, hashlen, 1)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+            if (!ssl_log_secret(s, SERVER_HANDSHAKE_LABEL, s->server_hand_traffic_secret, hashlen)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+        } else {
+            level = ssl_encryption_application;
+
+            if (!tls13_hkdf_expand(s, md, s->master_secret, client_application_traffic,
+                                   sizeof(client_application_traffic)-1, hash, hashlen,
+                                   s->client_app_traffic_secret, hashlen, 1)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+            if (!ssl_log_secret(s, CLIENT_APPLICATION_LABEL, s->client_app_traffic_secret, hashlen)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+
+            if (!tls13_hkdf_expand(s, md, s->master_secret, server_application_traffic,
+                                   sizeof(server_application_traffic)-1, hash, hashlen,
+                                   s->server_app_traffic_secret, hashlen, 1)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+            if (!ssl_log_secret(s, SERVER_APPLICATION_LABEL, s->server_app_traffic_secret, hashlen)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+        }
+        if (s->server)
+            s->quic_write_level = level;
+        else
+            s->quic_read_level = level;
+    } else {
+        if (is_early) {
+            level = ssl_encryption_early_data;
+
+            if (!tls13_hkdf_expand(s, md, s->early_secret, client_early_traffic,
+                                   sizeof(client_early_traffic)-1, hash, hashlen,
+                                   s->client_early_traffic_secret, hashlen, 1)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+            if (!ssl_log_secret(s, CLIENT_EARLY_LABEL, s->client_early_traffic_secret, hashlen)) {
+                /* SSLfatal() already called */
+                goto err;
+            }
+        }
+        if (s->server)
+            s->quic_read_level = level;
+        else
+            s->quic_write_level = level;
+    }
+
+    if (level != ssl_encryption_initial && !quic_set_encryption_secrets(s, level))
+        goto err;
+
+    ret = 1;
+ err:
+    return ret;
+}
+#endif /* OPENSSL_NO_QUIC_BORING */
+
 int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
 {
-    /* ASCII: "c e traffic", in hex for EBCDIC compatibility */
-    static const unsigned char client_early_traffic[] = "\x63\x20\x65\x20\x74\x72\x61\x66\x66\x69\x63";
-    /* ASCII: "c hs traffic", in hex for EBCDIC compatibility */
-    static const unsigned char client_handshake_traffic[] = "\x63\x20\x68\x73\x20\x74\x72\x61\x66\x66\x69\x63";
-    /* ASCII: "c ap traffic", in hex for EBCDIC compatibility */
-    static const unsigned char client_application_traffic[] = "\x63\x20\x61\x70\x20\x74\x72\x61\x66\x66\x69\x63";
-    /* ASCII: "s hs traffic", in hex for EBCDIC compatibility */
-    static const unsigned char server_handshake_traffic[] = "\x73\x20\x68\x73\x20\x74\x72\x61\x66\x66\x69\x63";
-    /* ASCII: "s ap traffic", in hex for EBCDIC compatibility */
-    static const unsigned char server_application_traffic[] = "\x73\x20\x61\x70\x20\x74\x72\x61\x66\x66\x69\x63";
-    /* ASCII: "exp master", in hex for EBCDIC compatibility */
-    static const unsigned char exporter_master_secret[] = "\x65\x78\x70\x20\x6D\x61\x73\x74\x65\x72";
-    /* ASCII: "res master", in hex for EBCDIC compatibility */
-    static const unsigned char resumption_master_secret[] = "\x72\x65\x73\x20\x6D\x61\x73\x74\x65\x72";
-    /* ASCII: "e exp master", in hex for EBCDIC compatibility */
-    static const unsigned char early_exporter_master_secret[] = "\x65\x20\x65\x78\x70\x20\x6D\x61\x73\x74\x65\x72";
     unsigned char iv_intern[EVP_MAX_IV_LENGTH];
     unsigned char *iv = iv_intern;
     unsigned char key[EVP_MAX_KEY_LENGTH];
@@ -485,6 +604,11 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
     int direction = (which & SSL3_CC_READ) != 0 ? OSSL_RECORD_DIRECTION_READ
                                                 : OSSL_RECORD_DIRECTION_WRITE;
 
+#ifndef OPENSSL_NO_QUIC_BORING
+    if (SSL_CONNECTION_IS_QUIC(s))
+        return quic_change_cipher_state(s, which);
+#endif
+
     if (((which & SSL3_CC_CLIENT) && (which & SSL3_CC_WRITE))
             || ((which & SSL3_CC_SERVER) && (which & SSL3_CC_READ))) {
         if ((which & SSL3_CC_EARLY) != 0) {
@@ -498,9 +622,6 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
             label = client_early_traffic;
             labellen = sizeof(client_early_traffic) - 1;
             log_label = CLIENT_EARLY_LABEL;
-#ifndef OPENSSL_NO_QUIC_BORING
-            level = ssl_encryption_early_data;
-#endif
 
             handlen = BIO_get_mem_data(s->s3.handshake_buffer, &hdata);
             if (handlen <= 0) {
@@ -583,14 +704,6 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
                 /* SSLfatal() already called */
                 goto err;
             }
-#ifndef OPENSSL_NO_QUIC_BORING
-            if (SSL_IS_QUIC(s)) {
-                if (s->server)
-                    s->quic_read_level = ssl_encryption_early_data;
-                else
-                    s->quic_write_level = ssl_encryption_early_data;
-            }
-#endif
         } else if (which & SSL3_CC_HANDSHAKE) {
             insecret = s->handshake_secret;
             finsecret = s->client_finished_secret;
@@ -602,15 +715,6 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
             label = client_handshake_traffic;
             labellen = sizeof(client_handshake_traffic) - 1;
             log_label = CLIENT_HANDSHAKE_LABEL;
-#ifndef OPENSSL_NO_QUIC_BORING
-            if (SSL_IS_QUIC(s)) {
-                level = ssl_encryption_handshake;
-                if (s->server)
-                    s->quic_read_level = ssl_encryption_handshake;
-                else
-                    s->quic_write_level = ssl_encryption_handshake;
-            }
-#endif
             /*
              * The handshake hash used for the server read/client write handshake
              * traffic secret is the same as the hash for the server
@@ -633,15 +737,6 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
              * previously saved value.
              */
             hash = s->server_finished_hash;
-#ifndef OPENSSL_NO_QUIC_BORING
-            if (SSL_IS_QUIC(s)) {
-                level = ssl_encryption_application; /* ??? */
-                if (s->server)
-                    s->quic_read_level = ssl_encryption_application;
-                else
-                    s->quic_write_level = ssl_encryption_application;
-            }
-#endif
         }
     } else {
         /* Early data never applies to client-read/server-write */
@@ -656,29 +751,11 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
             label = server_handshake_traffic;
             labellen = sizeof(server_handshake_traffic) - 1;
             log_label = SERVER_HANDSHAKE_LABEL;
-#ifndef OPENSSL_NO_QUIC_BORING
-            if (SSL_IS_QUIC(s)) {
-                level = ssl_encryption_handshake;
-                if (s->server)
-                    s->quic_write_level = ssl_encryption_handshake;
-                else
-                    s->quic_read_level = ssl_encryption_handshake;
-            }
-#endif
         } else {
             insecret = s->master_secret;
             label = server_application_traffic;
             labellen = sizeof(server_application_traffic) - 1;
             log_label = SERVER_APPLICATION_LABEL;
-#ifndef OPENSSL_NO_QUIC_BORING
-            if (SSL_IS_QUIC(s)) {
-                level = ssl_encryption_application;
-                if (s->server)
-                    s->quic_write_level = ssl_encryption_application;
-                else
-                    s->quic_read_level = ssl_encryption_application;
-            }
-#endif
         }
     }
 
@@ -749,14 +826,6 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
         }
     } else if (label == client_application_traffic)
         memcpy(s->client_app_traffic_secret, secret, hashlen);
-#ifndef OPENSSL_NO_QUIC_BORING
-    else if (label == client_handshake_traffic)
-        memcpy(s->client_hand_traffic_secret, secret, hashlen);
-    else if (label == server_handshake_traffic)
-        memcpy(s->server_hand_traffic_secret, secret, hashlen);
-    else if (label == client_early_traffic)
-        memcpy(s->client_early_traffic_secret, secret, hashlen);
-#endif
 
     if (!ssl_log_secret(s, log_label, secret, hashlen)) {
         /* SSLfatal() already called */
