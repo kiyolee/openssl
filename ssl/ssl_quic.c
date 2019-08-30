@@ -183,7 +183,6 @@ int quic_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_ENCRYPTION_LEVEL level)
     uint8_t *s2c_secret = NULL;
     size_t len;
     const EVP_MD *md;
-    static const unsigned char zeros[EVP_MAX_MD_SIZE];
 
     if (!SSL_CONNECTION_IS_QUIC(sc))
         return 1;
@@ -224,21 +223,15 @@ int quic_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_ENCRYPTION_LEVEL level)
         return 0;
     }
 
-    /* In some cases, we want to set the secret only when BOTH are non-zero */
-    if (c2s_secret != NULL && s2c_secret != NULL
-            && !memcmp(c2s_secret, zeros, len)
-            && !memcmp(s2c_secret, zeros, len))
-        return 1;
-
     if (sc->server) {
         if (!sc->quic_method->set_encryption_secrets(SSL_CONNECTION_GET_SSL(sc), level, c2s_secret,
-                                                     s2c_secret, len)) {
+                                                      s2c_secret, len)) {
             SSLfatal(sc, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
             return 0;
         }
     } else {
         if (!sc->quic_method->set_encryption_secrets(SSL_CONNECTION_GET_SSL(sc), level, s2c_secret,
-                                                     c2s_secret, len)) {
+                                                      c2s_secret, len)) {
             SSLfatal(sc, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
             return 0;
         }
