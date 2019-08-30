@@ -156,7 +156,7 @@ int SSL_CTX_set_quic_method(SSL_CTX *ctx, const SSL_QUIC_METHOD *quic_method)
         break;
     }
     ctx->quic_method = quic_method;
-    ctx->options &= SSL_OP_ENABLE_MIDDLEBOX_COMPAT;
+    ctx->options &= ~SSL_OP_ENABLE_MIDDLEBOX_COMPAT;
     return 1;
 }
 
@@ -173,7 +173,7 @@ int SSL_set_quic_method(SSL *ssl, const SSL_QUIC_METHOD *quic_method)
         break;
     }
     sc->quic_method = quic_method;
-    sc->options &= SSL_OP_ENABLE_MIDDLEBOX_COMPAT;
+    sc->options &= ~SSL_OP_ENABLE_MIDDLEBOX_COMPAT;
     return 1;
 }
 
