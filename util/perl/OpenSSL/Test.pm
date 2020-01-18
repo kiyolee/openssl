@@ -20,6 +20,8 @@ $VERSION = "0.8";
                                    perlapp perltest subtest));
 @EXPORT_OK = (@Test::More::EXPORT_OK, qw(bldtop_dir bldtop_file
                                          srctop_dir srctop_file
+                                         cfgtop_dir cfgtop_file
+                                         shlib_dir shlib_file
                                          data_file data_dir
                                          pipe with cmdstr quotify
                                          openssl_versions));
@@ -569,6 +571,22 @@ sub bldtop_file {
     return __bldtop_file(@_);
 }
 
+sub cfgtop_dir {
+    return __cfgtop_dir(@_);
+}
+
+sub cfgtop_file {
+    return __cfgtop_file(@_);
+}
+
+sub shlib_dir {
+    return __shlib_dir(@_);
+}
+
+sub shlib_file {
+    return __shlib_file(@_);
+}
+
 =over 4
 
 =item B<srctop_dir LIST>
@@ -872,9 +890,11 @@ sub __env {
 
     $directories{SRCTOP}  = abs_path($ENV{SRCTOP} || $ENV{TOP});
     $directories{BLDTOP}  = abs_path($ENV{BLDTOP} || $ENV{TOP});
+    $directories{CFGTOP}  = abs_path($ENV{CFGTOP} || $ENV{BLDTOP} || $ENV{TOP});
+    $directories{BLDSHLIB} = abs_path($ENV{SHLIB_D} || $ENV{BIN_D});
     $directories{BLDAPPS} = $ENV{BIN_D}  || __bldtop_dir("apps");
     $directories{SRCAPPS} =                 __srctop_dir("apps");
-    $directories{BLDFUZZ} =                 __bldtop_dir("fuzz");
+    $directories{BLDFUZZ} = $ENV{FUZZ_D} || __bldtop_dir("fuzz");
     $directories{SRCFUZZ} =                 __srctop_dir("fuzz");
     $directories{BLDTEST} = $ENV{TEST_D} || __bldtop_dir("test");
     $directories{SRCTEST} =                 __srctop_dir("test");
@@ -885,7 +905,10 @@ sub __env {
     push @direnv, "TOP"       if $ENV{TOP};
     push @direnv, "SRCTOP"    if $ENV{SRCTOP};
     push @direnv, "BLDTOP"    if $ENV{BLDTOP};
+    push @direnv, "CFGTOP"    if $ENV{CFGTOP};
+    push @direnv, "SHLIB_D"   if $ENV{SHLIB_D};
     push @direnv, "BIN_D"     if $ENV{BIN_D};
+    push @direnv, "FUZZ_D"    if $ENV{FUZZ_D};
     push @direnv, "TEST_D"    if $ENV{TEST_D};
     push @direnv, "RESULT_D"  if $ENV{RESULT_D};
 
@@ -924,6 +947,32 @@ sub __bldtop_dir {
     BAIL_OUT("Must run setup() first") if (! $test_name);
 
     return abs2rel(catdir($directories{BLDTOP},@_), getcwd);
+}
+
+sub __cfgtop_file {
+    BAIL_OUT("Must run setup() first") if (! $test_name);
+
+    my $f = pop;
+    return catfile($directories{CFGTOP},@_,$f);
+}
+
+sub __cfgtop_dir {
+    BAIL_OUT("Must run setup() first") if (! $test_name);
+
+    return catdir($directories{CFGTOP},@_);
+}
+
+sub __shlib_file {
+    BAIL_OUT("Must run setup() first") if (! $test_name);
+
+    my $f = pop;
+    return catfile($directories{BLDSHLIB},@_,$f);
+}
+
+sub __shlib_dir {
+    BAIL_OUT("Must run setup() first") if (! $test_name);
+
+    return catdir($directories{BLDSHLIB},@_);
 }
 
 # __exeext is a function that returns the platform dependent file extension
