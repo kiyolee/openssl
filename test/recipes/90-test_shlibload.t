@@ -6,7 +6,7 @@
 # in the file LICENSE in the source distribution or at
 # https://www.openssl.org/source/license.html
 
-use OpenSSL::Test qw/:DEFAULT bldtop_dir bldtop_file/;
+use OpenSSL::Test qw/:DEFAULT cfgtop_dir shlib_file/;
 use OpenSSL::Test::Utils;
 use File::Temp qw(tempfile);
 
@@ -15,7 +15,7 @@ use File::Temp qw(tempfile);
 BEGIN {
     setup("test_shlibload");
 }
-use lib bldtop_dir('.');
+use lib cfgtop_dir('.');
 use configdata;
 
 plan skip_all => "Test only supported in a shared build" if disabled("shared");
@@ -30,8 +30,8 @@ plan tests => 10;
 # and we end up running with the wrong libraries.  This is resolved by
 # using paths to the shared objects, not just the names.
 
-my $libcrypto = bldtop_file(shlib('libcrypto'));
-my $libssl = bldtop_file(shlib('libssl'));
+my $libcrypto = shlib_file(shlib('libcrypto'));
+my $libssl = shlib_file(shlib('libssl'));
 
 (my $fh, my $filename) = tempfile();
 ok(run(test(["shlibloadtest", "-crypto_first", $libcrypto, $libssl, $filename])),
