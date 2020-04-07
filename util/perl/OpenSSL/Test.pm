@@ -953,26 +953,26 @@ sub __cfgtop_file {
     BAIL_OUT("Must run setup() first") if (! $test_name);
 
     my $f = pop;
-    return catfile($directories{CFGTOP},@_,$f);
+    return abs2rel(catfile($directories{CFGTOP},@_,$f), getcwd);
 }
 
 sub __cfgtop_dir {
     BAIL_OUT("Must run setup() first") if (! $test_name);
 
-    return catdir($directories{CFGTOP},@_);
+    return abs2rel(catdir($directories{CFGTOP},@_), getcwd);
 }
 
 sub __shlib_file {
     BAIL_OUT("Must run setup() first") if (! $test_name);
 
     my $f = pop;
-    return catfile($directories{BLDSHLIB},@_,$f);
+    return abs2rel(catfile($directories{BLDSHLIB},@_,$f), getcwd);
 }
 
 sub __shlib_dir {
     BAIL_OUT("Must run setup() first") if (! $test_name);
 
-    return catdir($directories{BLDSHLIB},@_);
+    return abs2rel(catdir($directories{BLDSHLIB},@_), getcwd);
 }
 
 # __exeext is a function that returns the platform dependent file extension
