@@ -1551,7 +1551,7 @@ struct ssl_connection_st {
     unsigned char handshake_traffic_hash[EVP_MAX_MD_SIZE];
     unsigned char client_app_traffic_secret[EVP_MAX_MD_SIZE];
     unsigned char server_app_traffic_secret[EVP_MAX_MD_SIZE];
-# ifndef OPENSSL_NO_QUIC
+# ifndef OPENSSL_NO_QUIC_BORING
     unsigned char client_hand_traffic_secret[EVP_MAX_MD_SIZE];
     unsigned char server_hand_traffic_secret[EVP_MAX_MD_SIZE];
     unsigned char client_early_traffic_secret[EVP_MAX_MD_SIZE];
@@ -1788,6 +1788,8 @@ struct ssl_connection_st {
     OSSL_ENCRYPTION_LEVEL quic_write_level;
     QUIC_DATA *quic_input_data_head;
     QUIC_DATA *quic_input_data_tail;
+    uint8_t quic_msg_hd[SSL3_HM_HEADER_LENGTH];
+    size_t quic_msg_hd_offset;
     const SSL_QUIC_METHOD *quic_method;
 #endif
     /*
