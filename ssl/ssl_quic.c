@@ -96,6 +96,7 @@ int SSL_provide_quic_data(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
                           const uint8_t *data, size_t len)
 {
     size_t l;
+    QUIC_DATA *qd;
 
     if (!SSL_IS_QUIC(ssl)) {
         SSLerr(SSL_F_SSL_PROVIDE_QUIC_DATA, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
@@ -109,28 +110,62 @@ int SSL_provide_quic_data(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
         return 0;
     }
 
+    if (len == 0) {
+      return 1;
+    }
+
+    /* Check for an incomplete block */
+    qd = ssl->quic_input_data_tail;
+    if (qd != NULL) {
+        l = qd->length - qd->offset;
+        if (l != 0) {
+            /* we still need to copy `l` bytes into the last data block */
+            if (l > len)
+                l = len;
+            memcpy((char *)(qd + 1) + qd->offset, data, l);
+            qd->offset += l;
+            len -= l;
+            data += l;
+        }
+    }
+
     /* Split the QUIC messages up, if necessary */
     while (len > 0) {
         QUIC_DATA *qd;
-        const uint8_t *p = data + 1;
+        const uint8_t *p;
+        uint8_t *dst;
 
-        /* Check for an incomplete block */
-        qd = ssl->quic_input_data_tail;
-        if (qd != NULL) {
-            l = qd->length - qd->offset;
-            if (l != 0) {
-                /* we still need to copy `l` bytes into the last data block */
-                if (l > len)
-                    l = len;
-                memcpy((char*)(qd+1) + qd->offset, data, l);
-                qd->offset += l;
-                len -= l;
-                data += l;
-                continue;
+        if (ssl->quic_msg_hd_offset != 0) {
+            /* If we have already buffered premature message header,
+               try to add new data to it to form complete message
+               header. */
+            size_t nread =
+                SSL3_HM_HEADER_LENGTH - ssl->quic_msg_hd_offset;
+            if (len < nread) {
+                nread = len;
             }
-        }
+            memcpy(ssl->quic_msg_hd + ssl->quic_msg_hd_offset, data, nread);
+            ssl->quic_msg_hd_offset += nread;
 
-        n2l3(p, l);
+            if (ssl->quic_msg_hd_offset < SSL3_HM_HEADER_LENGTH) {
+                /* We still have premature message header. */
+                break;
+            }
+            data += nread;
+            len -= nread;
+            p = ssl->quic_msg_hd + 1;
+            n2l3(p, l);
+        } else if (len < SSL3_HM_HEADER_LENGTH) {
+            /* We don't get complete message header.  Just buffer the
+               received data and wait for the next data to arrive. */
+            memcpy(ssl->quic_msg_hd, data, len);
+            ssl->quic_msg_hd_offset += len;
+            break;
+        } else {
+            /* We have complete message header in data. */
+            p = data + 1;
+            n2l3(p, l);
+        }
         l += SSL3_HM_HEADER_LENGTH;
 
         qd = OPENSSL_zalloc(sizeof(QUIC_DATA) + l);
@@ -142,12 +177,23 @@ int SSL_provide_quic_data(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
         qd->next = NULL;
         qd->length = l;
         qd->level = level;
-        /* partial data received? */
-        if (l > len)
-            l = len;
-        qd->offset = l;
 
-        memcpy((void*)(qd + 1), data, l);
+        dst = (uint8_t *)(qd + 1);
+        if (ssl->quic_msg_hd_offset) {
+            memcpy(dst, ssl->quic_msg_hd, ssl->quic_msg_hd_offset);
+            dst += ssl->quic_msg_hd_offset;
+            l -= SSL3_HM_HEADER_LENGTH;
+            if (l > len)
+                l = len;
+            qd->offset = SSL3_HM_HEADER_LENGTH + l;
+            memcpy(dst, data, l);
+        } else {
+            /* partial data received? */
+            if (l > len)
+                l = len;
+            qd->offset = l;
+            memcpy(dst, data, l);
+        }
         if (ssl->quic_input_data_tail != NULL)
             ssl->quic_input_data_tail->next = qd;
         else
@@ -156,6 +202,8 @@ int SSL_provide_quic_data(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
 
         data += l;
         len -= l;
+
+        ssl->quic_msg_hd_offset = 0;
     }
 
     return 1;
