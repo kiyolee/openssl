@@ -120,6 +120,17 @@ unless (caller) {
     if (scalar @ARGV == 0) {
         # With no arguments, re-create the build file
 
+        my ( $t_libdir, $t_modtxt );
+        BEGIN {
+            use File::Spec::Functions qw/rel2abs catdir catfile/;
+            my $t_srcdir = rel2abs($ENV{SRCTOP} || $ENV{TOP} || '{- sourcedir() -}');
+            $t_libdir = catdir($t_srcdir, 'util', 'perl');
+            $t_modtxt = catfile($t_srcdir, 'external', 'perl', 'MODULES.txt');
+            $t_modtxt =~ s/\\/\//g; # OpenSSL::fallback can only handle '/' as path separator.
+        }
+
+        use lib $t_libdir;
+        use OpenSSL::fallback $t_modtxt;
         use OpenSSL::Template;
 
         my $prepend = <<'_____';
