@@ -174,6 +174,12 @@
     <ClCompile Include="..\..\ssl\ssl_err_legacy.c">
       <Filter>Source Files\ssl</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ssl\ssl_quic.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\statem\statem_quic.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\ms\openssl3.rc">
