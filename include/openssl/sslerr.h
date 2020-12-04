@@ -245,6 +245,7 @@
 # define SSL_R_QUIC_HANDSHAKE_LAYER_ERROR                 393
 # define SSL_R_QUIC_NETWORK_ERROR                         387
 # define SSL_R_QUIC_PROTOCOL_ERROR                        382
+# define SSL_R_QUIC_KEY_UPDATE_RECEIVED                   297
 # define SSL_R_READ_BIO_NOT_SET                           211
 # define SSL_R_READ_TIMEOUT_EXPIRED                       312
 # define SSL_R_RECORDS_NOT_RELEASED                       321
