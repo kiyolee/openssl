@@ -697,7 +697,8 @@ typedef enum tlsext_index_en {
     TLSEXT_IDX_compress_certificate,
     TLSEXT_IDX_early_data,
     TLSEXT_IDX_certificate_authorities,
-    TLSEXT_IDX_quic_transport_params,
+    TLSEXT_IDX_quic_transport_params_draft,
+    TLSEXT_IDX_quic_transport_params_v1,
     TLSEXT_IDX_padding,
     TLSEXT_IDX_psk,
     /* Dummy index - must always be the last entry */
@@ -1711,8 +1712,10 @@ struct ssl_connection_st {
 #ifndef OPENSSL_NO_QUIC_BORING
         uint8_t *quic_transport_params;
         size_t quic_transport_params_len;
-        uint8_t *peer_quic_transport_params;
-        size_t peer_quic_transport_params_len;
+        uint8_t *peer_quic_transport_params_draft;
+        size_t peer_quic_transport_params_draft_len;
+        uint8_t *peer_quic_transport_params_v1;
+        size_t peer_quic_transport_params_v1_len;
 #endif
     } ext;
 
