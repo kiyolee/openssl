@@ -1968,6 +1968,9 @@ static int final_quic_transport_params_draft(SSL_CONNECTION *s, unsigned int con
 static int final_quic_transport_params_v1(SSL_CONNECTION *s, unsigned int context,
                                           int sent)
 {
+    if (!SSL_CONNECTION_IS_QUIC(s))
+        return 1;
+
     if (s->ext.peer_quic_transport_params_draft_len == 0
         && s->ext.peer_quic_transport_params_v1_len == 0) {
         SSLfatal(s, SSL_AD_MISSING_EXTENSION,
