@@ -2465,7 +2465,18 @@ EXT_RETURN tls_construct_stoc_quic_transport_params_draft(SSL_CONNECTION *s, WPA
                                                           X509 *x,
                                                           size_t chainidx)
 {
-    if (s->ext.peer_quic_transport_params_v1_len
+    const unsigned char *alpn;
+    unsigned int alpnlen;
+
+    /* Workaround quic-interop-runner which only inspects draft
+       transport parameters codepoint at the time of this writing.
+       Send draft codepoint if a negotiated ALPN is neither h3 nor
+       hq. */
+    SSL_get0_alpn_selected(SSL_CONNECTION_GET_SSL(s), &alpn, &alpnlen);
+
+    if ((alpnlen == 2
+         && (memcmp("h3", alpn, 2) == 0 || memcmp("hq", alpn, 2) == 0)
+         && s->ext.peer_quic_transport_params_v1_len)
         || s->ext.peer_quic_transport_params_draft_len == 0
         || s->ext.quic_transport_params == NULL
         || s->ext.quic_transport_params_len == 0) {
