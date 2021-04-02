@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\providers">
+      <UniqueIdentifier>{2270158c-dc56-4641-965b-60b4d47dcabd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\common">
+      <UniqueIdentifier>{66fb2e69-1716-4b73-879f-83c53f658142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\implementations">
+      <UniqueIdentifier>{9d19da26-558b-4f83-988b-9dcf763a1300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\implementations\ciphers">
+      <UniqueIdentifier>{248cab12-df3d-40d3-8141-ffd23279bf27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\implementations\kdfs">
+      <UniqueIdentifier>{63cea1cf-6b37-4d9f-bc73-4d805f79835f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\implementations\signature">
+      <UniqueIdentifier>{a0a8157b-8159-4b2c-bfd7-3b3312fa420b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\implementations\keymgmt">
+      <UniqueIdentifier>{4bfaa599-c688-4a96-ba57-ccb987176ed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\common\der">
+      <UniqueIdentifier>{1321e438-80c0-480d-beb9-dd92ed680084}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\implementations\rands">
+      <UniqueIdentifier>{c12f52f3-b260-4bd3-bbc0-489f9835d40f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\providers\implementations\rands\seeding">
+      <UniqueIdentifier>{39ad6c34-2f41-4a39-b888-cb0071b51b03}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\providers\common\provider_util.c">
+      <Filter>Source Files\providers\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_xts_fips.c">
+      <Filter>Source Files\providers\implementations\ciphers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\pbkdf2_fips.c">
+      <Filter>Source Files\providers\implementations\kdfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\signature\rsa.c">
+      <Filter>Source Files\providers\implementations\signature</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\rsa_kmgmt.c">
+      <Filter>Source Files\providers\implementations\keymgmt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_gen.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_gen.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_gen.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_digests_gen.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_sig.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_key.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_sig.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_key.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_sig.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_key.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\capabilities.c">
+      <Filter>Source Files\providers\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_hash.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_hmac.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\test_rng.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\crngt.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_ctr.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_tsc.c">
+      <Filter>Source Files\providers\implementations\rands\seeding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_unix.c">
+      <Filter>Source Files\providers\implementations\rands\seeding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_win.c">
+      <Filter>Source Files\providers\implementations\rands\seeding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_cpu_x86.c">
+      <Filter>Source Files\providers\implementations\rands\seeding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\bio_prov.c">
+      <Filter>Source Files\providers\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_wrap_gen.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\mac_legacy_kmgmt.c">
+      <Filter>Source Files\providers\implementations\keymgmt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\signature\mac_legacy.c">
+      <Filter>Source Files\providers\implementations\signature</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\prov_running.c">
+      <Filter>Source Files\providers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\securitycheck.c">
+      <Filter>Source Files\providers\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\securitycheck_default.c">
+      <Filter>Source Files\providers\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\digest_to_nid.c">
+      <Filter>Source Files\providers\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_ecx_gen.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_ecx_key.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_key.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_sig.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_gen.c">
+      <Filter>Source Files\providers\common\der</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\dh_kmgmt.c">
+      <Filter>Source Files\providers\implementations\keymgmt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\dsa_kmgmt.c">
+      <Filter>Source Files\providers\implementations\keymgmt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\common\provider_seeding.c">
+      <Filter>Source Files\providers\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\seed_src.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\ec_kmgmt.c">
+      <Filter>Source Files\providers\implementations\keymgmt</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

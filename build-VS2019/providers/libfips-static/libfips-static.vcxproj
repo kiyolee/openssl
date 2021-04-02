@@ -1,0 +1,953 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{90A17C10-412F-433D-B435-4771F899711C}</ProjectGuid>
+    <RootNamespace>libfips-static</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libfips-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libfips-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libfips-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libfips-static.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\crypto\ec\curve448;..\..\..\crypto\ec\curve448\arch_32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\crypto\ec\curve448;..\..\..\crypto\ec\curve448\arch_32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\crypto\ec\curve448;..\..\..\crypto\ec\curve448\arch_32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\crypto\ec\curve448;..\..\..\crypto\ec\curve448\arch_32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\crypto\aes\aes_ecb.c" />
+    <ClCompile Include="..\..\..\crypto\aes\aes_misc.c" />
+    <ClCompile Include="..\..\..\crypto\asn1_dsa.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_add.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_asm.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\crypto\bn\bn_blind.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_const.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_conv.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_ctx.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_dh.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_div.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_exp.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_exp2.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_gcd.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_gf2m.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_intern.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_kron.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_lib.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_mod.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_mont.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_mpi.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_mul.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_nist.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_prime.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_rand.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_recp.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_rsa_fips186_4.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_shift.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_sqr.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_sqrt.c" />
+    <ClCompile Include="..\..\..\crypto\bn\bn_word.c" />
+    <ClCompile Include="..\..\..\crypto\bn\rsaz_exp.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\crypto\bn\rsaz_exp_x2.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\crypto\bsearch.c" />
+    <ClCompile Include="..\..\..\crypto\buffer\buffer.c" />
+    <ClCompile Include="..\..\..\crypto\cmac\cmac.c" />
+    <ClCompile Include="..\..\..\crypto\context.c" />
+    <ClCompile Include="..\..\..\crypto\core_algorithm.c" />
+    <ClCompile Include="..\..\..\crypto\core_fetch.c" />
+    <ClCompile Include="..\..\..\crypto\core_namemap.c" />
+    <ClCompile Include="..\..\..\crypto\cryptlib.c" />
+    <ClCompile Include="..\..\..\crypto\ctype.c" />
+    <ClCompile Include="..\..\..\crypto\der_writer.c" />
+    <ClCompile Include="..\..\..\crypto\des\des_enc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\crypto\des\ecb3_enc.c" />
+    <ClCompile Include="..\..\..\crypto\des\fcrypt_b.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\crypto\des\set_key.c" />
+    <ClCompile Include="..\..\..\crypto\dh\dh_backend.c" />
+    <ClCompile Include="..\..\..\crypto\dh\dh_check.c" />
+    <ClCompile Include="..\..\..\crypto\dh\dh_gen.c" />
+    <ClCompile Include="..\..\..\crypto\dh\dh_group_params.c" />
+    <ClCompile Include="..\..\..\crypto\dh\dh_kdf.c" />
+    <ClCompile Include="..\..\..\crypto\dh\dh_key.c" />
+    <ClCompile Include="..\..\..\crypto\dh\dh_lib.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_backend.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_check.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_gen.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_key.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_lib.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_ossl.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_sign.c" />
+    <ClCompile Include="..\..\..\crypto\dsa\dsa_vrf.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve25519.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\arch_32\f_impl.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\curve448.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\curve448_tables.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\eddsa.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\f_generic.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\scalar.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec2_oct.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec2_smpl.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecdh_kdf.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecdh_ossl.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecdsa_ossl.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecdsa_sign.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecdsa_vrf.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecp_mont.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecp_nist.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecp_nistz256.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecp_oct.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecp_smpl.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecx_backend.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ecx_key.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_asn1.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_backend.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_check.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_curve.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_cvt.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_deprecated.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_key.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_kmeth.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_lib.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_mult.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_oct.c" />
+    <ClCompile Include="..\..\..\crypto\ec\ec_print.c" />
+    <ClCompile Include="..\..\..\crypto\evp\asymcipher.c" />
+    <ClCompile Include="..\..\..\crypto\evp\cmeth_lib.c" />
+    <ClCompile Include="..\..\..\crypto\evp\dh_support.c" />
+    <ClCompile Include="..\..\..\crypto\evp\digest.c" />
+    <ClCompile Include="..\..\..\crypto\evp\dsa_ctrl.c" />
+    <ClCompile Include="..\..\..\crypto\evp\ec_support.c" />
+    <ClCompile Include="..\..\..\crypto\evp\evp_enc.c" />
+    <ClCompile Include="..\..\..\crypto\evp\evp_fetch.c" />
+    <ClCompile Include="..\..\..\crypto\evp\evp_lib.c" />
+    <ClCompile Include="..\..\..\crypto\evp\evp_rand.c" />
+    <ClCompile Include="..\..\..\crypto\evp\evp_utils.c" />
+    <ClCompile Include="..\..\..\crypto\evp\exchange.c" />
+    <ClCompile Include="..\..\..\crypto\evp\kdf_lib.c" />
+    <ClCompile Include="..\..\..\crypto\evp\kdf_meth.c" />
+    <ClCompile Include="..\..\..\crypto\evp\kem.c" />
+    <ClCompile Include="..\..\..\crypto\evp\keymgmt_lib.c" />
+    <ClCompile Include="..\..\..\crypto\evp\keymgmt_meth.c" />
+    <ClCompile Include="..\..\..\crypto\evp\mac_lib.c" />
+    <ClCompile Include="..\..\..\crypto\evp\mac_meth.c" />
+    <ClCompile Include="..\..\..\crypto\evp\m_sigver.c" />
+    <ClCompile Include="..\..\..\crypto\evp\pmeth_check.c" />
+    <ClCompile Include="..\..\..\crypto\evp\pmeth_gn.c" />
+    <ClCompile Include="..\..\..\crypto\evp\pmeth_lib.c" />
+    <ClCompile Include="..\..\..\crypto\evp\p_lib.c" />
+    <ClCompile Include="..\..\..\crypto\evp\signature.c" />
+    <ClCompile Include="..\..\..\crypto\ex_data.c" />
+    <ClCompile Include="..\..\..\crypto\ffc\ffc_backend.c" />
+    <ClCompile Include="..\..\..\crypto\ffc\ffc_dh.c" />
+    <ClCompile Include="..\..\..\crypto\ffc\ffc_key_generate.c" />
+    <ClCompile Include="..\..\..\crypto\ffc\ffc_key_validate.c" />
+    <ClCompile Include="..\..\..\crypto\ffc\ffc_params.c" />
+    <ClCompile Include="..\..\..\crypto\ffc\ffc_params_generate.c" />
+    <ClCompile Include="..\..\..\crypto\ffc\ffc_params_validate.c" />
+    <ClCompile Include="..\..\..\crypto\hmac\hmac.c" />
+    <ClCompile Include="..\..\..\crypto\initthread.c" />
+    <ClCompile Include="..\..\..\crypto\lhash\lhash.c" />
+    <ClCompile Include="..\..\..\crypto\modes\cbc128.c" />
+    <ClCompile Include="..\..\..\crypto\modes\ccm128.c" />
+    <ClCompile Include="..\..\..\crypto\modes\cfb128.c" />
+    <ClCompile Include="..\..\..\crypto\modes\ctr128.c" />
+    <ClCompile Include="..\..\..\crypto\modes\gcm128.c" />
+    <ClCompile Include="..\..\..\crypto\modes\ofb128.c" />
+    <ClCompile Include="..\..\..\crypto\modes\wrap128.c" />
+    <ClCompile Include="..\..\..\crypto\modes\xts128.c" />
+    <ClCompile Include="..\..\..\crypto\o_str.c" />
+    <ClCompile Include="..\..\..\crypto\packet.c" />
+    <ClCompile Include="..\..\..\crypto\params.c" />
+    <ClCompile Include="..\..\..\crypto\params_from_text.c" />
+    <ClCompile Include="..\..\..\crypto\param_build.c" />
+    <ClCompile Include="..\..\..\crypto\param_build_set.c" />
+    <ClCompile Include="..\..\..\crypto\passphrase.c" />
+    <ClCompile Include="..\..\..\crypto\property\defn_cache.c" />
+    <ClCompile Include="..\..\..\crypto\property\property.c" />
+    <ClCompile Include="..\..\..\crypto\property\property_parse.c" />
+    <ClCompile Include="..\..\..\crypto\property\property_string.c" />
+    <ClCompile Include="..\..\..\crypto\provider_core.c" />
+    <ClCompile Include="..\..\..\crypto\provider_predefined.c" />
+    <ClCompile Include="..\..\..\crypto\rand\rand_lib.c" />
+    <ClCompile Include="..\..\..\crypto\rand\rand_meth.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_acvp_test_params.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_backend.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_chk.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_crpt.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_gen.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_lib.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_mp_names.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_none.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_oaep.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_ossl.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_pk1.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_pss.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_schemes.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_sign.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_sp800_56b_check.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_sp800_56b_gen.c" />
+    <ClCompile Include="..\..\..\crypto\rsa\rsa_x931.c" />
+    <ClCompile Include="..\..\..\crypto\self_test_core.c" />
+    <ClCompile Include="..\..\..\crypto\sha\keccak1600.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\crypto\sha\sha1dgst.c" />
+    <ClCompile Include="..\..\..\crypto\sha\sha256.c" />
+    <ClCompile Include="..\..\..\crypto\sha\sha3.c" />
+    <ClCompile Include="..\..\..\crypto\sha\sha512.c" />
+    <ClCompile Include="..\..\..\crypto\sparse_array.c" />
+    <ClCompile Include="..\..\..\crypto\stack\stack.c" />
+    <ClCompile Include="..\..\..\crypto\threads_lib.c" />
+    <ClCompile Include="..\..\..\crypto\threads_none.c" />
+    <ClCompile Include="..\..\..\crypto\threads_pthread.c" />
+    <ClCompile Include="..\..\..\crypto\threads_win.c" />
+    <ClCompile Include="..\..\..\providers\common\bio_prov.c" />
+    <ClCompile Include="..\..\..\providers\common\capabilities.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_digests_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ecx_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ecx_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_wrap_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\digest_to_nid.c" />
+    <ClCompile Include="..\..\..\providers\common\provider_seeding.c" />
+    <ClCompile Include="..\..\..\providers\common\provider_util.c" />
+    <ClCompile Include="..\..\..\providers\common\securitycheck.c" />
+    <ClCompile Include="..\..\..\providers\common\securitycheck_fips.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_xts_fips.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\pbkdf2_fips.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\dh_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\dsa_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\ec_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\mac_legacy_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\rsa_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\crngt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_ctr.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_hash.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_hmac.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\test_rng.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\mac_legacy.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\rsa.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\aes-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\aes-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\aesni-mb-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\aesni-sha1-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\aesni-sha256-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\aesni-x86.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\aesni-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\bsaes-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\vpaes-x86.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\aes\asm\vpaes-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bf\asm\bf-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\bn-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\co-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\rsaz-avx2.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\rsaz-avx512.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\rsaz-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\x86-gf2m.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\x86-mont.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\x86_64-gf2m.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\x86_64-mont.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\bn\asm\x86_64-mont5.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\des\asm\crypt586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\des\asm\des-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\ec\asm\ecp_nistz256-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\modes\asm\ghash-x86.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\modes\asm\ghash-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\ripemd\asm\rmd-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\sha1-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\sha1-mb-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\sha1-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\sha256-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\sha256-mb-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\sha512-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\sha512-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\sha256-x86_64.asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)sha256-x86_64.obj $(OutDir)_work\fips\sha256-x86_64.asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\sha256-x86_64.asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)sha256-x86_64.obj $(OutDir)_work\fips\sha256-x86_64.asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj;$(OutDir)_work\fips\sha256-x86_64.asm;$(IntDir)sha256-x86_64.obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj;$(OutDir)_work\fips\sha256-x86_64.asm;$(IntDir)sha256-x86_64.obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\x86cpuid.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\x86_64cpuid.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\ec\asm\ecp_nistz256-x86.pl">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\fips\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\ec\asm\x25519-x86_64.pl">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\sha\asm\keccak1600-x86_64.pl">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\fips 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\fips\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\fips\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\fips\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Target Name="AfterClean">
+    <Exec Command="if exist $(OutDir)_work\fips\ del $(OutDir)_work\fips\*.asm /F /Q 2&gt;nul" />
+    <Exec Command="if exist $(OutDir)_work\fips\ rmdir $(OutDir)_work\fips 2&gt;nul" />
+    <Exec Command="if exist $(OutDir)_work\ rmdir $(OutDir)_work 2&gt;nul" />
+  </Target>
+</Project>

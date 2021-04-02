@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{D08CA312-357D-46B9-8C4F-94C05065CC50}</ProjectGuid>
+    <RootNamespace>libimplementations-static</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libimplementations-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libimplementations-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libimplementations-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\libimplementations-static.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\crypto\md5\md5_dgst.c" />
+    <ClCompile Include="..\..\..\crypto\md5\md5_one.c" />
+    <ClCompile Include="..\..\..\crypto\md5\md5_sha1.c" />
+    <ClCompile Include="..\..\..\providers\implementations\asymciphers\rsa_enc.c" />
+    <ClCompile Include="..\..\..\providers\implementations\asymciphers\sm2_enc.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha1_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha256_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ccm.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ccm_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cts.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_gcm.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_gcm_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ocb.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ocb_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_siv.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_siv_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_wrp.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_xts.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_xts_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_ccm.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_ccm_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_gcm.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_gcm_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_camellia.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_camellia_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_chacha20.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_chacha20_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_chacha20_poly1305.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_chacha20_poly1305_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_null.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_common.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_default.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_default_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_wrap.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_wrap_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\blake2b_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\blake2s_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\blake2_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\md5_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\md5_sha1_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\sha2_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\sha3_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\digests\sm3_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\decode_msblob2key.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\decode_pvk2key.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\encode_key2any.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\encode_key2blob.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\encode_key2ms.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\encode_key2text.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\endecoder_common.c" />
+    <ClCompile Include="..\..\..\providers\implementations\exchange\dh_exch.c" />
+    <ClCompile Include="..\..\..\providers\implementations\exchange\ecdh_exch.c" />
+    <ClCompile Include="..\..\..\providers\implementations\exchange\ecx_exch.c" />
+    <ClCompile Include="..\..\..\providers\implementations\exchange\kdf_exch.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\hkdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\kbkdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\krb5kdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\pbkdf2.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\pkcs12kdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\scrypt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\sshkdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\sskdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\tls1_prf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\x942kdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kem\rsa_kem.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\ecx_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\kdf_legacy_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\blake2b_mac.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\blake2s_mac.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\cmac_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\gmac_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\hmac_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\kmac_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\poly1305_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\macs\siphash_prov.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\decode_der2key.c" />
+    <ClCompile Include="..\..\..\providers\implementations\encode_decode\decode_pem2der.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\dsa.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\ecdsa.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\eddsa.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\sm2sig.c" />
+    <ClCompile Include="..\..\..\providers\implementations\storemgmt\file_store.c" />
+    <ClCompile Include="..\..\..\providers\implementations\storemgmt\file_store_der2obj.c" />
+    <ClCompile Include="..\..\..\ssl\s3_cbc.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\crypto\md5\asm\md5-x86_64.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\implementations 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\implementations\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\implementations\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\implementations 2&gt;nul
+set ASM=ml64
+$(PERL) %(FullPath) masm $(OutDir)_work\implementations\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\implementations\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\implementations\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\implementations\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\crypto\md5\asm\md5-586.pl">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\implementations 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\implementations\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\implementations\%(Filename).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
+mkdir $(OutDir)_work\implementations 2&gt;nul
+set ASM=nasm
+$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\implementations\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\implementations\%(Filename).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\implementations\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\implementations\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Target Name="AfterClean">
+    <Exec Command="if exist $(OutDir)_work\implementations\ del $(OutDir)_work\implementations\*.asm /F /Q 2&gt;nul" />
+    <Exec Command="if exist $(OutDir)_work\implementations\ rmdir $(OutDir)_work\implementations 2&gt;nul" />
+    <Exec Command="if exist $(OutDir)_work\ rmdir $(OutDir)_work 2&gt;nul" />
+  </Target>
+</Project>

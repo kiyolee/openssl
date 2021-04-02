@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{9D0E9E97-378D-4D23-B5C7-0D77CD55EF23}</ProjectGuid>
+    <RootNamespace>libnonfips-static</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\providers-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\providers-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\providers-static.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\_props\providers-static.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\providers\common\bio_prov.c" />
+    <ClCompile Include="..\..\..\providers\common\capabilities.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_digests_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_dsa_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ecx_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ecx_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_ec_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_rsa_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_key.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_sm2_sig.c" />
+    <ClCompile Include="..\..\..\providers\common\der\der_wrap_gen.c" />
+    <ClCompile Include="..\..\..\providers\common\digest_to_nid.c" />
+    <ClCompile Include="..\..\..\providers\common\provider_seeding.c" />
+    <ClCompile Include="..\..\..\providers\common\provider_util.c" />
+    <ClCompile Include="..\..\..\providers\common\securitycheck.c" />
+    <ClCompile Include="..\..\..\providers\common\securitycheck_default.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_xts_fips.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\pbkdf2_fips.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\dh_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\dsa_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\ec_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\mac_legacy_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\keymgmt\rsa_kmgmt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\crngt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_ctr.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_hash.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\drbg_hmac.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_cpu_x86.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_tsc.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_unix.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_win.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\seed_src.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\test_rng.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\mac_legacy.c" />
+    <ClCompile Include="..\..\..\providers\implementations\signature\rsa.c" />
+    <ClCompile Include="..\..\..\providers\prov_running.c" />
+  </ItemGroup>
+</Project>
