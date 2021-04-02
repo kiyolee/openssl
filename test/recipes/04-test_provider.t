@@ -7,12 +7,13 @@
 # https://www.openssl.org/source/license.html
 
 use strict;
-use OpenSSL::Test qw(:DEFAULT bldtop_dir);
+use OpenSSL::Test qw(:DEFAULT bldtop_dir shlib_dir);
 use OpenSSL::Test::Simple;
 use OpenSSL::Test::Utils;
 
 setup("test_provider");
 
-$ENV{"OPENSSL_MODULES"} = bldtop_dir("test");
+#$ENV{"OPENSSL_MODULES"} = bldtop_dir("test");
+$ENV{OPENSSL_MODULES} = shlib_dir();
 
 simple_test("test_provider", "provider_test");

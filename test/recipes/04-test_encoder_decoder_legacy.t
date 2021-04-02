@@ -10,7 +10,7 @@ use strict;
 use warnings;
 
 use OpenSSL::Test::Simple;
-use OpenSSL::Test qw/:DEFAULT srctop_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT srctop_file bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use Cwd qw(abs_path);
 
@@ -21,7 +21,8 @@ plan skip_all => "Not available in a no-deprecated build"
 plan tests => 1;
 
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("providers"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("providers"));
+$ENV{OPENSSL_MODULES} = shlib_dir();
 $ENV{OPENSSL_CONF} = abs_path(srctop_file("test", "default.cnf"));
 
 ok(run(test(["endecoder_legacy_test"])));
