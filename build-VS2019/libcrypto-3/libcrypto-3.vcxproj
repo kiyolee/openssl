@@ -332,6 +332,7 @@
     <ClCompile Include="..\..\crypto\core_fetch.c" />
     <ClCompile Include="..\..\crypto\core_namemap.c" />
     <ClCompile Include="..\..\crypto\cpt_err.c" />
+    <ClCompile Include="..\..\crypto\cpuid.c" />
     <ClCompile Include="..\..\crypto\crmf\crmf_asn.c" />
     <ClCompile Include="..\..\crypto\crmf\crmf_err.c" />
     <ClCompile Include="..\..\crypto\crmf\crmf_lib.c" />

@@ -147,6 +147,7 @@
     <ClCompile Include="..\..\..\crypto\core_algorithm.c" />
     <ClCompile Include="..\..\..\crypto\core_fetch.c" />
     <ClCompile Include="..\..\..\crypto\core_namemap.c" />
+    <ClCompile Include="..\..\..\crypto\cpuid.c" />
     <ClCompile Include="..\..\..\crypto\cryptlib.c" />
     <ClCompile Include="..\..\..\crypto\ctype.c" />
     <ClCompile Include="..\..\..\crypto\der_writer.c" />

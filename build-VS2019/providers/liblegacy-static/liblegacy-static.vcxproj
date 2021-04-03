@@ -106,7 +106,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\crypto\cryptlib.c" />
+    <ClCompile Include="..\..\..\crypto\cpuid.c" />
     <ClCompile Include="..\..\..\crypto\ctype.c" />
     <ClCompile Include="..\..\..\crypto\des\des_enc.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

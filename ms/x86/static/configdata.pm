@@ -285,7 +285,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x2537a78)",
+    "RANLIB" => "CODE(0x2536b38)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -1575,11 +1575,14 @@ our %unified_info = (
             "AES_ASM"
         ],
         "providers\\fips" => [
-            "FIPS_MODULE",
-            "OPENSSL_CPUID_OBJ"
+            "FIPS_MODULE"
         ],
         "providers\\libcommon.a" => [
-            "OPENSSL_CPUID_OBJ"
+            "OPENSSL_BN_ASM_GF2m",
+            "OPENSSL_BN_ASM_MONT",
+            "OPENSSL_BN_ASM_PART_WORDS",
+            "OPENSSL_CPUID_OBJ",
+            "OPENSSL_IA32_SSE2"
         ],
         "providers\\libfips.a" => [
             "AES_ASM",
@@ -1621,7 +1624,6 @@ our %unified_info = (
             "OPENSSL_BN_ASM_GF2m",
             "OPENSSL_BN_ASM_MONT",
             "OPENSSL_BN_ASM_PART_WORDS",
-            "OPENSSL_CPUID_OBJ",
             "OPENSSL_IA32_SSE2"
         ],
         "test\\provider_internal_test" => [
@@ -7774,6 +7776,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-core_fetch.o",
                 "crypto\\libcrypto-lib-core_namemap.o",
                 "crypto\\libcrypto-lib-cpt_err.o",
+                "crypto\\libcrypto-lib-cpuid.o",
                 "crypto\\libcrypto-lib-cryptlib.o",
                 "crypto\\libcrypto-lib-ctype.o",
                 "crypto\\libcrypto-lib-cversion.o",
@@ -7818,6 +7821,7 @@ our %unified_info = (
                 "crypto\\libfips-lib-core_algorithm.o",
                 "crypto\\libfips-lib-core_fetch.o",
                 "crypto\\libfips-lib-core_namemap.o",
+                "crypto\\libfips-lib-cpuid.o",
                 "crypto\\libfips-lib-cryptlib.o",
                 "crypto\\libfips-lib-ctype.o",
                 "crypto\\libfips-lib-der_writer.o",
@@ -7838,17 +7842,13 @@ our %unified_info = (
                 "crypto\\libfips-lib-threads_none.o",
                 "crypto\\libfips-lib-threads_pthread.o",
                 "crypto\\libfips-lib-threads_win.o",
-                "crypto\\libfips-lib-x86cpuid.o",
-                "crypto\\liblegacy-lib-cryptlib.o",
-                "crypto\\liblegacy-lib-ctype.o",
-                "crypto\\liblegacy-lib-x86cpuid.o"
+                "crypto\\libfips-lib-x86cpuid.o"
             ],
             "products" => {
                 "lib" => [
                     "libcrypto",
                     "libssl",
-                    "providers\\libfips.a",
-                    "providers\\liblegacy.a"
+                    "providers\\libfips.a"
                 ]
             }
         },
@@ -16723,6 +16723,10 @@ our %unified_info = (
             "crypto",
             ".\\crypto"
         ],
+        "crypto\\cpuid.o" => [
+            ".",
+            "."
+        ],
         "crypto\\cversion.o" => [
             "crypto"
         ],
@@ -16949,11 +16953,19 @@ our %unified_info = (
         "crypto\\info.o" => [
             "crypto"
         ],
+        "crypto\\libcrypto-lib-cpuid.o" => [
+            ".",
+            "."
+        ],
         "crypto\\libcrypto-lib-cversion.o" => [
             "crypto"
         ],
         "crypto\\libcrypto-lib-info.o" => [
             "crypto"
+        ],
+        "crypto\\libfips-lib-cpuid.o" => [
+            ".",
+            "."
         ],
         "crypto\\md5\\md5-sparcv9.o" => [
             "crypto",
@@ -22196,6 +22208,9 @@ our %unified_info = (
         "crypto\\libcrypto-lib-cpt_err.o" => [
             ".\\crypto\\cpt_err.c"
         ],
+        "crypto\\libcrypto-lib-cpuid.o" => [
+            ".\\crypto\\cpuid.c"
+        ],
         "crypto\\libcrypto-lib-cryptlib.o" => [
             ".\\crypto\\cryptlib.c"
         ],
@@ -22325,6 +22340,9 @@ our %unified_info = (
         "crypto\\libfips-lib-core_namemap.o" => [
             ".\\crypto\\core_namemap.c"
         ],
+        "crypto\\libfips-lib-cpuid.o" => [
+            ".\\crypto\\cpuid.c"
+        ],
         "crypto\\libfips-lib-cryptlib.o" => [
             ".\\crypto\\cryptlib.c"
         ],
@@ -22386,15 +22404,6 @@ our %unified_info = (
             ".\\crypto\\threads_win.c"
         ],
         "crypto\\libfips-lib-x86cpuid.o" => [
-            "crypto\\x86cpuid.s"
-        ],
-        "crypto\\liblegacy-lib-cryptlib.o" => [
-            ".\\crypto\\cryptlib.c"
-        ],
-        "crypto\\liblegacy-lib-ctype.o" => [
-            ".\\crypto\\ctype.c"
-        ],
-        "crypto\\liblegacy-lib-x86cpuid.o" => [
             "crypto\\x86cpuid.s"
         ],
         "crypto\\libssl-lib-packet.o" => [
@@ -23904,6 +23913,7 @@ our %unified_info = (
             "crypto\\libcrypto-lib-core_fetch.o",
             "crypto\\libcrypto-lib-core_namemap.o",
             "crypto\\libcrypto-lib-cpt_err.o",
+            "crypto\\libcrypto-lib-cpuid.o",
             "crypto\\libcrypto-lib-cryptlib.o",
             "crypto\\libcrypto-lib-ctype.o",
             "crypto\\libcrypto-lib-cversion.o",
@@ -25035,6 +25045,7 @@ our %unified_info = (
             "crypto\\libfips-lib-core_algorithm.o",
             "crypto\\libfips-lib-core_fetch.o",
             "crypto\\libfips-lib-core_namemap.o",
+            "crypto\\libfips-lib-cpuid.o",
             "crypto\\libfips-lib-cryptlib.o",
             "crypto\\libfips-lib-ctype.o",
             "crypto\\libfips-lib-der_writer.o",
@@ -25239,9 +25250,6 @@ our %unified_info = (
             "crypto\\bn\\liblegacy-lib-x86-mont.o",
             "crypto\\des\\liblegacy-lib-crypt586.o",
             "crypto\\des\\liblegacy-lib-des-586.o",
-            "crypto\\liblegacy-lib-cryptlib.o",
-            "crypto\\liblegacy-lib-ctype.o",
-            "crypto\\liblegacy-lib-x86cpuid.o",
             "crypto\\md5\\liblegacy-lib-md5-586.o",
             "crypto\\md5\\liblegacy-lib-md5_dgst.o",
             "crypto\\md5\\liblegacy-lib-md5_one.o",

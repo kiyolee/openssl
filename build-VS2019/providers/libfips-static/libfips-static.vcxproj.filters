@@ -786,6 +786,9 @@
     <ClCompile Include="..\..\..\crypto\bn\rsaz_exp_x2.c">
       <Filter>Source Files\crypto\bn\x64</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\crypto\cpuid.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\crypto\aes\asm\aes-586.pl">
