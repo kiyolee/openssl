@@ -165,7 +165,7 @@ our %config = (
     ],
     "dynamic_engines" => "0",
     "ex_libs" => [],
-    "full_version" => "3.0.0-alpha14-dev",
+    "full_version" => "3.0.0-alpha15-dev",
     "includes" => [],
     "lflags" => [],
     "lib_defines" => [
@@ -261,13 +261,14 @@ our %config = (
         "__CNF_LDLIBS" => undef
     },
     "prefix" => "C:\\Program Files (x86)\\OpenSSL-3",
-    "prerelease" => "-alpha14-dev",
+    "prerelease" => "-alpha15-dev",
     "processor" => "",
     "rc4_int" => "unsigned int",
     "release_date" => "",
     "shlib_version" => "3",
     "sourcedir" => ".",
     "target" => "VC-WIN32",
+    "use_int128" => "0",
     "version" => "3.0.0"
 );
 our %target = (
@@ -283,7 +284,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x2656ca0)",
+    "RANLIB" => "CODE(0x2687860)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -4103,6 +4104,9 @@ our %unified_info = (
         "doc\\html\\man7\\provider-cipher.html" => [
             ".\\doc\\man7\\provider-cipher.pod"
         ],
+        "doc\\html\\man7\\provider-decoder.html" => [
+            ".\\doc\\man7\\provider-decoder.pod"
+        ],
         "doc\\html\\man7\\provider-digest.html" => [
             ".\\doc\\man7\\provider-digest.pod"
         ],
@@ -6532,6 +6536,9 @@ our %unified_info = (
         "doc\\man\\man7\\provider-cipher.7" => [
             ".\\doc\\man7\\provider-cipher.pod"
         ],
+        "doc\\man\\man7\\provider-decoder.7" => [
+            ".\\doc\\man7\\provider-decoder.pod"
+        ],
         "doc\\man\\man7\\provider-digest.7" => [
             ".\\doc\\man7\\provider-digest.pod"
         ],
@@ -7754,6 +7761,9 @@ our %unified_info = (
         },
         "apps\\lib" => {
             "deps" => [
+                "apps\\lib\\bio_prefix_text-bin-opt.o",
+                "apps\\lib\\bio_prefix_text-bin-win32_init.o",
+                "apps\\lib\\uitest-bin-apps_ui.o",
                 "apps\\lib\\libapps-lib-app_params.o",
                 "apps\\lib\\libapps-lib-app_provider.o",
                 "apps\\lib\\libapps-lib-app_rand.o",
@@ -7772,10 +7782,7 @@ our %unified_info = (
                 "apps\\lib\\libapps-lib-tlssrp_depr.o",
                 "apps\\lib\\libapps-lib-win32_init.o",
                 "apps\\lib\\libtestutil-lib-opt.o",
-                "apps\\lib\\libtestutil-lib-win32_init.o",
-                "apps\\lib\\bio_prefix_text-bin-opt.o",
-                "apps\\lib\\bio_prefix_text-bin-win32_init.o",
-                "apps\\lib\\uitest-bin-apps_ui.o"
+                "apps\\lib\\libtestutil-lib-win32_init.o"
             ],
             "products" => {
                 "bin" => [
@@ -7790,6 +7797,7 @@ our %unified_info = (
         },
         "crypto" => {
             "deps" => [
+                "crypto\\tls13secretstest-bin-packet.o",
                 "crypto\\libcrypto-lib-asn1_dsa.o",
                 "crypto\\libcrypto-lib-bsearch.o",
                 "crypto\\libcrypto-lib-context.o",
@@ -7913,8 +7921,7 @@ our %unified_info = (
                 "crypto\\libfips-lib-x86cpuid.o",
                 "crypto\\liblegacy-lib-cpuid.o",
                 "crypto\\liblegacy-lib-ctype.o",
-                "crypto\\liblegacy-lib-x86cpuid.o",
-                "crypto\\tls13secretstest-bin-packet.o"
+                "crypto\\liblegacy-lib-x86cpuid.o"
             ],
             "products" => {
                 "bin" => [
@@ -10162,9 +10169,9 @@ our %unified_info = (
         },
         "ms" => {
             "deps" => [
+                "ms\\openssl-bin-applink.o",
                 "ms\\libcrypto-lib-uplink.o",
-                "ms\\libcrypto-shlib-uplink.o",
-                "ms\\openssl-bin-applink.o"
+                "ms\\libcrypto-shlib-uplink.o"
             ],
             "products" => {
                 "bin" => [
@@ -10569,6 +10576,7 @@ our %unified_info = (
         },
         "ssl" => {
             "deps" => [
+                "ssl\\tls13secretstest-bin-tls13_enc.o",
                 "ssl\\libssl-lib-bio_ssl.o",
                 "ssl\\libssl-lib-d1_lib.o",
                 "ssl\\libssl-lib-d1_msg.o",
@@ -10631,8 +10639,7 @@ our %unified_info = (
                 "ssl\\libssl-shlib-tls13_enc.o",
                 "ssl\\libssl-shlib-tls_depr.o",
                 "ssl\\libssl-shlib-tls_srp.o",
-                "ssl\\libimplementations-lib-s3_cbc.o",
-                "ssl\\tls13secretstest-bin-tls13_enc.o"
+                "ssl\\libimplementations-lib-s3_cbc.o"
             ],
             "products" => {
                 "bin" => [
@@ -13508,6 +13515,9 @@ our %unified_info = (
         "doc\\html\\man7\\provider-cipher.html" => [
             ".\\doc\\man7\\provider-cipher.pod"
         ],
+        "doc\\html\\man7\\provider-decoder.html" => [
+            ".\\doc\\man7\\provider-decoder.pod"
+        ],
         "doc\\html\\man7\\provider-digest.html" => [
             ".\\doc\\man7\\provider-digest.pod"
         ],
@@ -15884,6 +15894,9 @@ our %unified_info = (
         "doc\\man\\man7\\provider-cipher.7" => [
             ".\\doc\\man7\\provider-cipher.pod"
         ],
+        "doc\\man\\man7\\provider-decoder.7" => [
+            ".\\doc\\man7\\provider-decoder.pod"
+        ],
         "doc\\man\\man7\\provider-digest.7" => [
             ".\\doc\\man7\\provider-digest.pod"
         ],
@@ -17094,6 +17107,7 @@ our %unified_info = (
             "doc\\html\\man7\\provider-asym_cipher.html",
             "doc\\html\\man7\\provider-base.html",
             "doc\\html\\man7\\provider-cipher.html",
+            "doc\\html\\man7\\provider-decoder.html",
             "doc\\html\\man7\\provider-digest.html",
             "doc\\html\\man7\\provider-encoder.html",
             "doc\\html\\man7\\provider-kdf.html",
@@ -17582,150 +17596,6 @@ our %unified_info = (
         "crypto\\des\\dest4-sparcv9.o" => [
             "crypto",
             ".\\crypto"
-        ],
-        "crypto\\ec\\curve448\\arch_32\\f_impl.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\arch_32\\libcrypto-lib-f_impl.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\arch_32\\libcrypto-shlib-f_impl.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\arch_32\\libfips-lib-f_impl.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\curve448.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\curve448_tables.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\eddsa.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\f_generic.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-lib-curve448.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-lib-curve448_tables.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-lib-eddsa.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-lib-f_generic.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-lib-scalar.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-shlib-curve448.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-shlib-curve448_tables.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-shlib-eddsa.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-shlib-f_generic.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libcrypto-shlib-scalar.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libfips-lib-curve448.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libfips-lib-curve448_tables.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libfips-lib-eddsa.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libfips-lib-f_generic.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\libfips-lib-scalar.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
-        ],
-        "crypto\\ec\\curve448\\scalar.o" => [
-            "crypto\\ec\\curve448\\arch_32",
-            "crypto\\ec\\curve448",
-            ".\\crypto\\ec\\curve448\\arch_32",
-            ".\\crypto\\ec\\curve448"
         ],
         "crypto\\ec\\ecp_nistz256-armv4.o" => [
             "crypto",
@@ -20836,6 +20706,7 @@ our %unified_info = (
             "doc\\man\\man7\\provider-asym_cipher.7",
             "doc\\man\\man7\\provider-base.7",
             "doc\\man\\man7\\provider-cipher.7",
+            "doc\\man\\man7\\provider-decoder.7",
             "doc\\man\\man7\\provider-digest.7",
             "doc\\man\\man7\\provider-encoder.7",
             "doc\\man\\man7\\provider-kdf.7",
