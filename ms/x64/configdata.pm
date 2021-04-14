@@ -288,7 +288,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x2547b30)",
+    "RANLIB" => "CODE(0x25477c0)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -2993,6 +2993,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_PARAM_allocate_from_text.html" => [
             ".\\doc\\man3\\OSSL_PARAM_allocate_from_text.pod"
         ],
+        "doc\\html\\man3\\OSSL_PARAM_dup.html" => [
+            ".\\doc\\man3\\OSSL_PARAM_dup.pod"
+        ],
         "doc\\html\\man3\\OSSL_PARAM_int.html" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
         ],
@@ -5425,6 +5428,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_PARAM_allocate_from_text.3" => [
             ".\\doc\\man3\\OSSL_PARAM_allocate_from_text.pod"
         ],
+        "doc\\man\\man3\\OSSL_PARAM_dup.3" => [
+            ".\\doc\\man3\\OSSL_PARAM_dup.pod"
+        ],
         "doc\\man\\man3\\OSSL_PARAM_int.3" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
         ],
@@ -7835,6 +7841,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-param_build.o",
                 "crypto\\libcrypto-lib-param_build_set.o",
                 "crypto\\libcrypto-lib-params.o",
+                "crypto\\libcrypto-lib-params_dup.o",
                 "crypto\\libcrypto-lib-params_from_text.o",
                 "crypto\\libcrypto-lib-passphrase.o",
                 "crypto\\libcrypto-lib-provider.o",
@@ -7882,6 +7889,7 @@ our %unified_info = (
                 "crypto\\libcrypto-shlib-param_build.o",
                 "crypto\\libcrypto-shlib-param_build_set.o",
                 "crypto\\libcrypto-shlib-params.o",
+                "crypto\\libcrypto-shlib-params_dup.o",
                 "crypto\\libcrypto-shlib-params_from_text.o",
                 "crypto\\libcrypto-shlib-passphrase.o",
                 "crypto\\libcrypto-shlib-provider.o",
@@ -7918,6 +7926,7 @@ our %unified_info = (
                 "crypto\\libfips-lib-param_build.o",
                 "crypto\\libfips-lib-param_build_set.o",
                 "crypto\\libfips-lib-params.o",
+                "crypto\\libfips-lib-params_dup.o",
                 "crypto\\libfips-lib-params_from_text.o",
                 "crypto\\libfips-lib-passphrase.o",
                 "crypto\\libfips-lib-provider_core.o",
@@ -12450,6 +12459,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_PARAM_allocate_from_text.html" => [
             ".\\doc\\man3\\OSSL_PARAM_allocate_from_text.pod"
         ],
+        "doc\\html\\man3\\OSSL_PARAM_dup.html" => [
+            ".\\doc\\man3\\OSSL_PARAM_dup.pod"
+        ],
         "doc\\html\\man3\\OSSL_PARAM_int.html" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
         ],
@@ -14829,6 +14841,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_PARAM_allocate_from_text.3" => [
             ".\\doc\\man3\\OSSL_PARAM_allocate_from_text.pod"
         ],
+        "doc\\man\\man3\\OSSL_PARAM_dup.3" => [
+            ".\\doc\\man3\\OSSL_PARAM_dup.pod"
+        ],
         "doc\\man\\man3\\OSSL_PARAM_int.3" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
         ],
@@ -16784,6 +16799,7 @@ our %unified_info = (
             "doc\\html\\man3\\OSSL_PARAM.html",
             "doc\\html\\man3\\OSSL_PARAM_BLD.html",
             "doc\\html\\man3\\OSSL_PARAM_allocate_from_text.html",
+            "doc\\html\\man3\\OSSL_PARAM_dup.html",
             "doc\\html\\man3\\OSSL_PARAM_int.html",
             "doc\\html\\man3\\OSSL_PROVIDER.html",
             "doc\\html\\man3\\OSSL_SELF_TEST_new.html",
@@ -20383,6 +20399,7 @@ our %unified_info = (
             "doc\\man\\man3\\OSSL_PARAM.3",
             "doc\\man\\man3\\OSSL_PARAM_BLD.3",
             "doc\\man\\man3\\OSSL_PARAM_allocate_from_text.3",
+            "doc\\man\\man3\\OSSL_PARAM_dup.3",
             "doc\\man\\man3\\OSSL_PARAM_int.3",
             "doc\\man\\man3\\OSSL_PROVIDER.3",
             "doc\\man\\man3\\OSSL_SELF_TEST_new.3",
@@ -21519,6 +21536,7 @@ our %unified_info = (
             "crypto\\libcrypto-shlib-param_build.o",
             "crypto\\libcrypto-shlib-param_build_set.o",
             "crypto\\libcrypto-shlib-params.o",
+            "crypto\\libcrypto-shlib-params_dup.o",
             "crypto\\libcrypto-shlib-params_from_text.o",
             "crypto\\libcrypto-shlib-passphrase.o",
             "crypto\\libcrypto-shlib-provider.o",
@@ -25443,6 +25461,9 @@ our %unified_info = (
         "crypto\\libcrypto-lib-params.o" => [
             ".\\crypto\\params.c"
         ],
+        "crypto\\libcrypto-lib-params_dup.o" => [
+            ".\\crypto\\params_dup.c"
+        ],
         "crypto\\libcrypto-lib-params_from_text.o" => [
             ".\\crypto\\params_from_text.c"
         ],
@@ -25584,6 +25605,9 @@ our %unified_info = (
         "crypto\\libcrypto-shlib-params.o" => [
             ".\\crypto\\params.c"
         ],
+        "crypto\\libcrypto-shlib-params_dup.o" => [
+            ".\\crypto\\params_dup.c"
+        ],
         "crypto\\libcrypto-shlib-params_from_text.o" => [
             ".\\crypto\\params_from_text.c"
         ],
@@ -25685,6 +25709,9 @@ our %unified_info = (
         ],
         "crypto\\libfips-lib-params.o" => [
             ".\\crypto\\params.c"
+        ],
+        "crypto\\libfips-lib-params_dup.o" => [
+            ".\\crypto\\params_dup.c"
         ],
         "crypto\\libfips-lib-params_from_text.o" => [
             ".\\crypto\\params_from_text.c"
@@ -28045,6 +28072,7 @@ our %unified_info = (
             "crypto\\libcrypto-lib-param_build.o",
             "crypto\\libcrypto-lib-param_build_set.o",
             "crypto\\libcrypto-lib-params.o",
+            "crypto\\libcrypto-lib-params_dup.o",
             "crypto\\libcrypto-lib-params_from_text.o",
             "crypto\\libcrypto-lib-passphrase.o",
             "crypto\\libcrypto-lib-provider.o",
@@ -29207,6 +29235,7 @@ our %unified_info = (
             "crypto\\libfips-lib-param_build.o",
             "crypto\\libfips-lib-param_build_set.o",
             "crypto\\libfips-lib-params.o",
+            "crypto\\libfips-lib-params_dup.o",
             "crypto\\libfips-lib-params_from_text.o",
             "crypto\\libfips-lib-passphrase.o",
             "crypto\\libfips-lib-provider_core.o",

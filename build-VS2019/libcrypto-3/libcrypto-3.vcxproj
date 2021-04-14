@@ -629,6 +629,7 @@
     <ClCompile Include="..\..\crypto\o_time.c" />
     <ClCompile Include="..\..\crypto\packet.c" />
     <ClCompile Include="..\..\crypto\params.c" />
+    <ClCompile Include="..\..\crypto\params_dup.c" />
     <ClCompile Include="..\..\crypto\params_from_text.c" />
     <ClCompile Include="..\..\crypto\param_build.c" />
     <ClCompile Include="..\..\crypto\param_build_set.c" />
