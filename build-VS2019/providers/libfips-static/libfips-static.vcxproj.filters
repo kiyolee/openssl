@@ -121,6 +121,9 @@
     <Filter Include="Source Files\providers\implementations\rands">
       <UniqueIdentifier>{8c8676e0-c0e0-4998-be44-aa444179bce8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypto\ec\curve448\arch_64">
+      <UniqueIdentifier>{d3f94dc2-94fa-442b-9b15-02daad311279}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\crypto\aes\aes_misc.c">
@@ -222,7 +225,7 @@
     <ClCompile Include="..\..\..\crypto\des\ecb3_enc.c">
       <Filter>Source Files\crypto\des</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\crypto\ec\curve448\arch_32\f_impl.c">
+    <ClCompile Include="..\..\..\crypto\ec\curve448\arch_32\f_impl32.c">
       <Filter>Source Files\crypto\ec\curve448\arch_32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\crypto\ec\curve448\curve448_tables.c">
@@ -791,6 +794,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\crypto\params_dup.c">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\crypto\ec\curve448\arch_64\f_impl64.c">
+      <Filter>Source Files\crypto\ec\curve448\arch_64</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

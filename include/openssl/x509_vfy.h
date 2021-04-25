@@ -142,6 +142,9 @@ SKM_DEFINE_STACK_OF_INTERNAL(X509_VERIFY_PARAM, X509_VERIFY_PARAM, X509_VERIFY_P
 #define sk_X509_VERIFY_PARAM_set_cmp_func(sk, cmp) ((sk_X509_VERIFY_PARAM_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_X509_VERIFY_PARAM_sk_type(sk), ossl_check_X509_VERIFY_PARAM_compfunc_type(cmp)))
 
 
+STACK_OF(X509) *X509_build_chain(X509 *target, STACK_OF(X509) *certs,
+                                 X509_STORE *store, int with_self_signed,
+                                 OSSL_LIB_CTX *libctx, const char *propq);
 int X509_verify_cert(X509_STORE_CTX *ctx);
 int X509_STORE_CTX_verify(X509_STORE_CTX *ctx);
 

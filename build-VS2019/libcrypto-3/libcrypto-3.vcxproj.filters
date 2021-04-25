@@ -259,6 +259,9 @@
     <Filter Include="Source Files\crypto\http">
       <UniqueIdentifier>{e6b97ce7-dcae-4f81-8625-919ed3db75bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypto\ec\curve448\arch_64">
+      <UniqueIdentifier>{591d339a-65f3-47ea-8f8c-c250f64496c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\crypto\aes\aes_cfb.c">
@@ -1899,7 +1902,7 @@
     <ClCompile Include="..\..\crypto\ec\curve448\curve448_tables.c">
       <Filter>Source Files\crypto\ec\curve448</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\crypto\ec\curve448\arch_32\f_impl.c">
+    <ClCompile Include="..\..\crypto\ec\curve448\arch_32\f_impl32.c">
       <Filter>Source Files\crypto\ec\curve448\arch_32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\crypto\engine\tb_eckey.c">
@@ -2459,6 +2462,9 @@
     </ClCompile>
     <ClCompile Include="..\..\crypto\params_dup.c">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\crypto\ec\curve448\arch_64\f_impl64.c">
+      <Filter>Source Files\crypto\ec\curve448\arch_64</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -177,7 +177,8 @@
     <ClCompile Include="..\..\..\crypto\dsa\dsa_sign.c" />
     <ClCompile Include="..\..\..\crypto\dsa\dsa_vrf.c" />
     <ClCompile Include="..\..\..\crypto\ec\curve25519.c" />
-    <ClCompile Include="..\..\..\crypto\ec\curve448\arch_32\f_impl.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\arch_32\f_impl32.c" />
+    <ClCompile Include="..\..\..\crypto\ec\curve448\arch_64\f_impl64.c" />
     <ClCompile Include="..\..\..\crypto\ec\curve448\curve448.c" />
     <ClCompile Include="..\..\..\crypto\ec\curve448\curve448_tables.c" />
     <ClCompile Include="..\..\..\crypto\ec\curve448\eddsa.c" />

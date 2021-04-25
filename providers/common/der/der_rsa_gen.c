@@ -163,3 +163,12 @@ const unsigned char ossl_der_oid_ripemd160WithRSAEncryption[DER_OID_SZ_ripemd160
     DER_OID_V_ripemd160WithRSAEncryption
 };
 
+/*
+ * mdc2WithRSASignature OBJECT IDENTIFIER ::= {
+ *     iso(1) identified-organization(3) oiw(14) secsig(3) algorithms(2) mdc2WithRSASignature(14)
+ * }
+ */
+const unsigned char ossl_der_oid_mdc2WithRSASignature[DER_OID_SZ_mdc2WithRSASignature] = {
+    DER_OID_V_mdc2WithRSASignature
+};
+

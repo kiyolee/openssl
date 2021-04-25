@@ -164,6 +164,15 @@ extern const unsigned char ossl_der_oid_md4WithRSAEncryption[DER_OID_SZ_md4WithR
 #define DER_OID_SZ_ripemd160WithRSAEncryption 8
 extern const unsigned char ossl_der_oid_ripemd160WithRSAEncryption[DER_OID_SZ_ripemd160WithRSAEncryption];
 
+/*
+ * mdc2WithRSASignature OBJECT IDENTIFIER ::= {
+ *     iso(1) identified-organization(3) oiw(14) secsig(3) algorithms(2) mdc2WithRSASignature(14)
+ * }
+ */
+#define DER_OID_V_mdc2WithRSASignature DER_P_OBJECT, 5, 0x2B, 0x0E, 0x03, 0x02, 0x0E
+#define DER_OID_SZ_mdc2WithRSASignature 7
+extern const unsigned char ossl_der_oid_mdc2WithRSASignature[DER_OID_SZ_mdc2WithRSASignature];
+
 
 /* PSS parameters */
 int ossl_DER_w_RSASSA_PSS_params(WPACKET *pkt, int tag,

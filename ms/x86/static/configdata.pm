@@ -23,7 +23,7 @@ our %config = (
     "CFLAGS" => [
         "/W3 /wd4090 /nologo /O2"
     ],
-    "CPP" => "\$(CC) /EP /C",
+    "CPP" => "\"\$(CC)\" /EP /C",
     "CPPDEFINES" => [],
     "CPPFLAGS" => [],
     "CPPINCLUDES" => [],
@@ -165,7 +165,7 @@ our %config = (
     ],
     "dynamic_engines" => "0",
     "ex_libs" => [],
-    "full_version" => "3.0.0-alpha15-dev",
+    "full_version" => "3.0.0-alpha16-dev",
     "includes" => [],
     "lflags" => [],
     "lib_defines" => [
@@ -263,14 +263,13 @@ our %config = (
         "__CNF_LDLIBS" => undef
     },
     "prefix" => "C:\\Program Files (x86)\\OpenSSL-3",
-    "prerelease" => "-alpha15-dev",
+    "prerelease" => "-alpha16-dev",
     "processor" => "",
     "rc4_int" => "unsigned int",
     "release_date" => "",
     "shlib_version" => "3",
     "sourcedir" => ".",
     "target" => "VC-WIN32",
-    "use_int128" => "0",
     "version" => "3.0.0"
 );
 our %target = (
@@ -280,13 +279,13 @@ our %target = (
     "ASFLAGS" => "",
     "CC" => "cl",
     "CFLAGS" => "/W3 /wd4090 /nologo /O2",
-    "CPP" => "\$(CC) /EP /C",
+    "CPP" => "\"\$(CC)\" /EP /C",
     "HASHBANGPERL" => "/usr/bin/env perl",
     "LD" => "link",
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x26369b8)",
+    "RANLIB" => "CODE(0x26669d0)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -296,12 +295,14 @@ our %target = (
         ".\\Configurations\\10-main.conf",
         ".\\Configurations\\shared-info.pl"
     ],
+    "ar_resp_delim" => "
+",
     "aroutflag" => "/out:",
     "asflags" => "-f win32",
     "asm_arch" => "x86",
     "asoutflag" => "-o ",
     "bin_cflags" => "/Zi /Fdapp.pdb /MT",
-    "bin_lflags" => "/subsystem:console /opt:ref",
+    "bin_lflags" => "setargv.obj /subsystem:console /opt:ref",
     "bn_ops" => "BN_LLONG",
     "build_file" => "makefile",
     "build_scheme" => [
@@ -312,6 +313,7 @@ our %target = (
     ],
     "cflags" => "/Gs0 /GF /Gy",
     "coutflag" => "/Fo",
+    "cpp_depend_flags" => "/Zs /showIncludes",
     "cppflags" => "",
     "defines" => [
         "OPENSSL_BUILDING_OPENSSL",
@@ -331,7 +333,13 @@ our %target = (
     "includes" => [
         "..\\zlib"
     ],
+    "ld_implib_flag" => "/implib:",
+    "ld_resp_delim" => "
+",
+    "lddefflag" => "/def:",
     "ldoutflag" => "/out:",
+    "ldpostoutflag" => "",
+    "ldresflag" => " ",
     "lflags" => "",
     "lib_cflags" => "/Zi /Fdossl_static.pdb /MT /Zl",
     "lib_cppflags" => "",
@@ -2698,6 +2706,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\EVP_PKEY_supports_digest_nid.html" => [
             ".\\doc\\man3\\EVP_PKEY_supports_digest_nid.pod"
+        ],
+        "doc\\html\\man3\\EVP_PKEY_todata.html" => [
+            ".\\doc\\man3\\EVP_PKEY_todata.pod"
         ],
         "doc\\html\\man3\\EVP_PKEY_verify.html" => [
             ".\\doc\\man3\\EVP_PKEY_verify.pod"
@@ -5133,6 +5144,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\EVP_PKEY_supports_digest_nid.3" => [
             ".\\doc\\man3\\EVP_PKEY_supports_digest_nid.pod"
+        ],
+        "doc\\man\\man3\\EVP_PKEY_todata.3" => [
+            ".\\doc\\man3\\EVP_PKEY_todata.pod"
         ],
         "doc\\man\\man3\\EVP_PKEY_verify.3" => [
             ".\\doc\\man3\\EVP_PKEY_verify.pod"
@@ -8510,8 +8524,20 @@ our %unified_info = (
         },
         "crypto\\ec\\curve448\\arch_32" => {
             "deps" => [
-                "crypto\\ec\\curve448\\arch_32\\libcrypto-lib-f_impl.o",
-                "crypto\\ec\\curve448\\arch_32\\libfips-lib-f_impl.o"
+                "crypto\\ec\\curve448\\arch_32\\libcrypto-lib-f_impl32.o",
+                "crypto\\ec\\curve448\\arch_32\\libfips-lib-f_impl32.o"
+            ],
+            "products" => {
+                "lib" => [
+                    "libcrypto",
+                    "providers\\libfips.a"
+                ]
+            }
+        },
+        "crypto\\ec\\curve448\\arch_64" => {
+            "deps" => [
+                "crypto\\ec\\curve448\\arch_64\\libcrypto-lib-f_impl64.o",
+                "crypto\\ec\\curve448\\arch_64\\libfips-lib-f_impl64.o"
             ],
             "products" => {
                 "lib" => [
@@ -11289,6 +11315,9 @@ our %unified_info = (
         "doc\\html\\man3\\EVP_PKEY_supports_digest_nid.html" => [
             ".\\doc\\man3\\EVP_PKEY_supports_digest_nid.pod"
         ],
+        "doc\\html\\man3\\EVP_PKEY_todata.html" => [
+            ".\\doc\\man3\\EVP_PKEY_todata.pod"
+        ],
         "doc\\html\\man3\\EVP_PKEY_verify.html" => [
             ".\\doc\\man3\\EVP_PKEY_verify.pod"
         ],
@@ -13671,6 +13700,9 @@ our %unified_info = (
         "doc\\man\\man3\\EVP_PKEY_supports_digest_nid.3" => [
             ".\\doc\\man3\\EVP_PKEY_supports_digest_nid.pod"
         ],
+        "doc\\man\\man3\\EVP_PKEY_todata.3" => [
+            ".\\doc\\man3\\EVP_PKEY_todata.pod"
+        ],
         "doc\\man\\man3\\EVP_PKEY_verify.3" => [
             ".\\doc\\man3\\EVP_PKEY_verify.pod"
         ],
@@ -15809,6 +15841,7 @@ our %unified_info = (
             "doc\\html\\man3\\EVP_PKEY_sign.html",
             "doc\\html\\man3\\EVP_PKEY_size.html",
             "doc\\html\\man3\\EVP_PKEY_supports_digest_nid.html",
+            "doc\\html\\man3\\EVP_PKEY_todata.html",
             "doc\\html\\man3\\EVP_PKEY_verify.html",
             "doc\\html\\man3\\EVP_PKEY_verify_recover.html",
             "doc\\html\\man3\\EVP_RAND.html",
@@ -19323,6 +19356,7 @@ our %unified_info = (
             "doc\\man\\man3\\EVP_PKEY_sign.3",
             "doc\\man\\man3\\EVP_PKEY_size.3",
             "doc\\man\\man3\\EVP_PKEY_supports_digest_nid.3",
+            "doc\\man\\man3\\EVP_PKEY_todata.3",
             "doc\\man\\man3\\EVP_PKEY_verify.3",
             "doc\\man\\man3\\EVP_PKEY_verify_recover.3",
             "doc\\man\\man3\\EVP_RAND.3",
@@ -21381,11 +21415,17 @@ our %unified_info = (
         "crypto\\dso\\libcrypto-lib-dso_win32.o" => [
             ".\\crypto\\dso\\dso_win32.c"
         ],
-        "crypto\\ec\\curve448\\arch_32\\libcrypto-lib-f_impl.o" => [
-            ".\\crypto\\ec\\curve448\\arch_32\\f_impl.c"
+        "crypto\\ec\\curve448\\arch_32\\libcrypto-lib-f_impl32.o" => [
+            ".\\crypto\\ec\\curve448\\arch_32\\f_impl32.c"
         ],
-        "crypto\\ec\\curve448\\arch_32\\libfips-lib-f_impl.o" => [
-            ".\\crypto\\ec\\curve448\\arch_32\\f_impl.c"
+        "crypto\\ec\\curve448\\arch_32\\libfips-lib-f_impl32.o" => [
+            ".\\crypto\\ec\\curve448\\arch_32\\f_impl32.c"
+        ],
+        "crypto\\ec\\curve448\\arch_64\\libcrypto-lib-f_impl64.o" => [
+            ".\\crypto\\ec\\curve448\\arch_64\\f_impl64.c"
+        ],
+        "crypto\\ec\\curve448\\arch_64\\libfips-lib-f_impl64.o" => [
+            ".\\crypto\\ec\\curve448\\arch_64\\f_impl64.c"
         ],
         "crypto\\ec\\curve448\\libcrypto-lib-curve448.o" => [
             ".\\crypto\\ec\\curve448\\curve448.c"
@@ -23659,7 +23699,8 @@ our %unified_info = (
             "crypto\\dso\\libcrypto-lib-dso_openssl.o",
             "crypto\\dso\\libcrypto-lib-dso_vms.o",
             "crypto\\dso\\libcrypto-lib-dso_win32.o",
-            "crypto\\ec\\curve448\\arch_32\\libcrypto-lib-f_impl.o",
+            "crypto\\ec\\curve448\\arch_32\\libcrypto-lib-f_impl32.o",
+            "crypto\\ec\\curve448\\arch_64\\libcrypto-lib-f_impl64.o",
             "crypto\\ec\\curve448\\libcrypto-lib-curve448.o",
             "crypto\\ec\\curve448\\libcrypto-lib-curve448_tables.o",
             "crypto\\ec\\curve448\\libcrypto-lib-eddsa.o",
@@ -24902,7 +24943,8 @@ our %unified_info = (
             "crypto\\dsa\\libfips-lib-dsa_ossl.o",
             "crypto\\dsa\\libfips-lib-dsa_sign.o",
             "crypto\\dsa\\libfips-lib-dsa_vrf.o",
-            "crypto\\ec\\curve448\\arch_32\\libfips-lib-f_impl.o",
+            "crypto\\ec\\curve448\\arch_32\\libfips-lib-f_impl32.o",
+            "crypto\\ec\\curve448\\arch_64\\libfips-lib-f_impl64.o",
             "crypto\\ec\\curve448\\libfips-lib-curve448.o",
             "crypto\\ec\\curve448\\libfips-lib-curve448_tables.o",
             "crypto\\ec\\curve448\\libfips-lib-eddsa.o",
