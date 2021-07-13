@@ -285,7 +285,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x2646e50)",
+    "RANLIB" => "CODE(0x686f90)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -7120,7 +7120,8 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\bio_prefix_text" => [
-            "libcrypto"
+            "libcrypto",
+            "test\\libtestutil.a"
         ],
         "test\\bio_readbuffer_test" => [
             "libcrypto",
@@ -8013,6 +8014,9 @@ our %unified_info = (
         },
         "apps\\lib" => {
             "deps" => [
+                "apps\\lib\\openssl-bin-cmp_mock_srv.o",
+                "apps\\lib\\cmp_client_test-bin-cmp_mock_srv.o",
+                "apps\\lib\\uitest-bin-apps_ui.o",
                 "apps\\lib\\libapps-lib-app_libctx.o",
                 "apps\\lib\\libapps-lib-app_params.o",
                 "apps\\lib\\libapps-lib-app_provider.o",
@@ -8032,17 +8036,11 @@ our %unified_info = (
                 "apps\\lib\\libapps-lib-tlssrp_depr.o",
                 "apps\\lib\\libapps-lib-win32_init.o",
                 "apps\\lib\\libtestutil-lib-opt.o",
-                "apps\\lib\\libtestutil-lib-win32_init.o",
-                "apps\\lib\\openssl-bin-cmp_mock_srv.o",
-                "apps\\lib\\bio_prefix_text-bin-opt.o",
-                "apps\\lib\\bio_prefix_text-bin-win32_init.o",
-                "apps\\lib\\cmp_client_test-bin-cmp_mock_srv.o",
-                "apps\\lib\\uitest-bin-apps_ui.o"
+                "apps\\lib\\libtestutil-lib-win32_init.o"
             ],
             "products" => {
                 "bin" => [
                     "apps\\openssl",
-                    "test\\bio_prefix_text",
                     "test\\cmp_client_test",
                     "test\\uitest"
                 ],
@@ -8054,6 +8052,7 @@ our %unified_info = (
         },
         "crypto" => {
             "deps" => [
+                "crypto\\tls13secretstest-bin-packet.o",
                 "crypto\\libcrypto-lib-asn1_dsa.o",
                 "crypto\\libcrypto-lib-bsearch.o",
                 "crypto\\libcrypto-lib-context.o",
@@ -8152,8 +8151,7 @@ our %unified_info = (
                 "crypto\\libssl-shlib-packet.o",
                 "crypto\\liblegacy-lib-cpuid.o",
                 "crypto\\liblegacy-lib-ctype.o",
-                "crypto\\liblegacy-lib-x86cpuid.o",
-                "crypto\\tls13secretstest-bin-packet.o"
+                "crypto\\liblegacy-lib-x86cpuid.o"
             ],
             "products" => {
                 "bin" => [
@@ -10220,9 +10218,9 @@ our %unified_info = (
         },
         "ms" => {
             "deps" => [
+                "ms\\openssl-bin-applink.o",
                 "ms\\libcrypto-lib-uplink.o",
-                "ms\\libcrypto-shlib-uplink.o",
-                "ms\\openssl-bin-applink.o"
+                "ms\\libcrypto-shlib-uplink.o"
             ],
             "products" => {
                 "bin" => [
@@ -10570,6 +10568,7 @@ our %unified_info = (
         },
         "ssl" => {
             "deps" => [
+                "ssl\\tls13secretstest-bin-tls13_enc.o",
                 "ssl\\libssl-lib-bio_ssl.o",
                 "ssl\\libssl-lib-d1_lib.o",
                 "ssl\\libssl-lib-d1_msg.o",
@@ -10631,8 +10630,7 @@ our %unified_info = (
                 "ssl\\libssl-shlib-tls13_enc.o",
                 "ssl\\libssl-shlib-tls_depr.o",
                 "ssl\\libssl-shlib-tls_srp.o",
-                "ssl\\libdefault-lib-s3_cbc.o",
-                "ssl\\tls13secretstest-bin-tls13_enc.o"
+                "ssl\\libdefault-lib-s3_cbc.o"
             ],
             "products" => {
                 "bin" => [
@@ -10755,7 +10753,7 @@ our %unified_info = (
         },
         "test\\testutil" => {
             "deps" => [
-                "test\\testutil\\libtestutil-lib-apps_mem.o",
+                "test\\testutil\\libtestutil-lib-apps_shims.o",
                 "test\\testutil\\libtestutil-lib-basic_output.o",
                 "test\\testutil\\libtestutil-lib-cb.o",
                 "test\\testutil\\libtestutil-lib-driver.o",
@@ -22079,12 +22077,6 @@ our %unified_info = (
         "apps\\CA.pl" => [
             ".\\apps\\CA.pl.in"
         ],
-        "apps\\lib\\bio_prefix_text-bin-opt.o" => [
-            ".\\apps\\lib\\opt.c"
-        ],
-        "apps\\lib\\bio_prefix_text-bin-win32_init.o" => [
-            ".\\apps\\lib\\win32_init.c"
-        ],
         "apps\\lib\\cmp_client_test-bin-cmp_mock_srv.o" => [
             ".\\apps\\lib\\cmp_mock_srv.c"
         ],
@@ -29015,8 +29007,6 @@ our %unified_info = (
             ".\\test\\bio_memleak_test.c"
         ],
         "test\\bio_prefix_text" => [
-            "apps\\lib\\bio_prefix_text-bin-opt.o",
-            "apps\\lib\\bio_prefix_text-bin-win32_init.o",
             "test\\bio_prefix_text-bin-bio_prefix_text.o"
         ],
         "test\\bio_prefix_text-bin-bio_prefix_text.o" => [
@@ -29939,7 +29929,7 @@ our %unified_info = (
         "test\\libtestutil.a" => [
             "apps\\lib\\libtestutil-lib-opt.o",
             "apps\\lib\\libtestutil-lib-win32_init.o",
-            "test\\testutil\\libtestutil-lib-apps_mem.o",
+            "test\\testutil\\libtestutil-lib-apps_shims.o",
             "test\\testutil\\libtestutil-lib-basic_output.o",
             "test\\testutil\\libtestutil-lib-cb.o",
             "test\\testutil\\libtestutil-lib-driver.o",
@@ -30359,8 +30349,8 @@ our %unified_info = (
         "test\\test_test-bin-test_test.o" => [
             ".\\test\\test_test.c"
         ],
-        "test\\testutil\\libtestutil-lib-apps_mem.o" => [
-            ".\\test\\testutil\\apps_mem.c"
+        "test\\testutil\\libtestutil-lib-apps_shims.o" => [
+            ".\\test\\testutil\\apps_shims.c"
         ],
         "test\\testutil\\libtestutil-lib-basic_output.o" => [
             ".\\test\\testutil\\basic_output.c"
