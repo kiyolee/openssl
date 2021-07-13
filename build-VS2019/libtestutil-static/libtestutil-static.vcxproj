@@ -96,7 +96,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\apps\lib\opt.c" />
     <ClCompile Include="..\..\apps\lib\win32_init.c" />
-    <ClCompile Include="..\..\test\testutil\apps_mem.c" />
+    <ClCompile Include="..\..\test\testutil\apps_shims.c" />
     <ClCompile Include="..\..\test\testutil\basic_output.c" />
     <ClCompile Include="..\..\test\testutil\cb.c" />
     <ClCompile Include="..\..\test\testutil\driver.c" />

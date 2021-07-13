@@ -69,7 +69,7 @@
     <ClCompile Include="..\..\test\testutil\test_options.c">
       <Filter>Source Files\test\testutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\testutil\apps_mem.c">
+    <ClCompile Include="..\..\test\testutil\apps_shims.c">
       <Filter>Source Files\test\testutil</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\testutil\options.c">
