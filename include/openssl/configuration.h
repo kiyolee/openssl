@@ -26,6 +26,7 @@ extern "C" {
  * OpenSSL was configured with the following options:
  */
 
+#if !defined(_M_ARM) && !defined(_M_ARM64)
 #ifdef _WIN64
 # ifndef OPENSSL_SYS_WIN64A
 #  define OPENSSL_SYS_WIN64A 1
@@ -34,6 +35,7 @@ extern "C" {
 # ifndef OPENSSL_SYS_WIN32
 #  define OPENSSL_SYS_WIN32 1
 # endif
+#endif
 #endif
 # define OPENSSL_CONFIGURED_API 30000
 # ifndef OPENSSL_RAND_SEED_OS
@@ -51,6 +53,11 @@ extern "C" {
 # ifndef OPENSSL_NO_ASAN
 #  define OPENSSL_NO_ASAN
 # endif
+#if defined(_M_ARM) || defined(_M_ARM64)
+# ifndef OPENSSL_NO_ASM
+#  define OPENSSL_NO_ASM
+# endif
+#endif
 # ifndef OPENSSL_NO_CRYPTO_MDEBUG
 #  define OPENSSL_NO_CRYPTO_MDEBUG
 # endif
@@ -111,7 +118,7 @@ extern "C" {
 # ifndef OPENSSL_NO_UNIT_TEST
 #  define OPENSSL_NO_UNIT_TEST
 # endif
-#ifdef OPENSSL_STATIC_LIB
+#if defined(OPENSSL_STATIC_LIB) || defined(_M_ARM) || defined(_M_ARM64)
 # ifndef OPENSSL_NO_UPLINK
 #  define OPENSSL_NO_UPLINK
 # endif
@@ -147,7 +154,11 @@ extern "C" {
 #endif
 # endif
 
+#if defined(_M_ARM) || defined(_M_ARM64)
+# define RC4_INT unsigned char
+#else
 # define RC4_INT unsigned int
+#endif
 
 # ifdef  __cplusplus
 }
