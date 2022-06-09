@@ -26,6 +26,7 @@ use lib catdir($config{sourcedir}, 'Configurations');
 use platform;
 
 my $name = undef;               # internal library/module name
+my $libname_opt = undef;        # specific library name
 my $ordinals_file = undef;      # the ordinals file to use
 my $version = undef;            # the version to use for the library
 my $OS = undef;                 # the operating system family
@@ -38,6 +39,7 @@ my $debug = 0;
 my $case_insensitive = 0;
 
 GetOptions('name=s'     => \$name,
+           'libname=s'  => \$libname_opt,
            'ordinals=s' => \$ordinals_file,
            'version=s'  => \$version,
            'OS=s'       => \$OS,
@@ -105,7 +107,7 @@ die "--type argument must be equal to 'lib' or 'dso'"
 #
 (my $SO_VARIANT = uc($target{"shlib_variant"} // '')) =~ s/\W/_/g;
 
-my $libname = $type eq 'lib' ? platform->sharedname($name) : platform->dsoname($name);
+my $libname = $libname_opt // ( $type eq 'lib' ? platform->sharedname($name) : platform->dsoname($name) );
 
 my %OS_data = (
     solaris     => { writer     => \&writer_linux,
