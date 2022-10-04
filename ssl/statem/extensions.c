@@ -377,28 +377,6 @@ static const EXTENSION_DEFINITION ext_defs[] = {
         tls_construct_certificate_authorities,
         NULL,
     },
-#ifndef OPENSSL_NO_QUIC_BORING
-    {
-        TLSEXT_TYPE_quic_transport_parameters_draft,
-        SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_ENCRYPTED_EXTENSIONS
-        | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
-        init_quic_transport_params,
-        tls_parse_ctos_quic_transport_params_draft, tls_parse_stoc_quic_transport_params_draft,
-        tls_construct_stoc_quic_transport_params_draft, tls_construct_ctos_quic_transport_params_draft,
-        final_quic_transport_params_draft,
-    },
-    {
-        TLSEXT_TYPE_quic_transport_parameters_v1,
-        SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_ENCRYPTED_EXTENSIONS
-        | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
-        init_quic_transport_params,
-        tls_parse_ctos_quic_transport_params_v1, tls_parse_stoc_quic_transport_params_v1,
-        tls_construct_stoc_quic_transport_params_v1, tls_construct_ctos_quic_transport_params_v1,
-        final_quic_transport_params_v1,
-    },
-#else
-    INVALID_EXTENSION,
-#endif
     { /* Must be immediately before pre_shared_key */
         TLSEXT_TYPE_padding,
         SSL_EXT_CLIENT_HELLO,
@@ -410,7 +388,28 @@ static const EXTENSION_DEFINITION ext_defs[] = {
         SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_SERVER_HELLO
             | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
         NULL, tls_parse_ctos_psk, tls_parse_stoc_psk, tls_construct_stoc_psk,
-        tls_construct_ctos_psk, final_psk }
+        tls_construct_ctos_psk, final_psk },
+#ifndef OPENSSL_NO_QUIC_BORING
+    {
+        TLSEXT_TYPE_quic_transport_parameters_draft,
+        SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_ENCRYPTED_EXTENSIONS
+        | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
+        init_quic_transport_params,
+        tls_parse_ctos_quic_transport_params_draft, tls_parse_stoc_quic_transport_params_draft,
+        tls_construct_stoc_quic_transport_params_draft, tls_construct_ctos_quic_transport_params_draft,
+        final_quic_transport_params_draft },
+    {
+        TLSEXT_TYPE_quic_transport_parameters_v1,
+        SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_ENCRYPTED_EXTENSIONS
+        | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
+        init_quic_transport_params,
+        tls_parse_ctos_quic_transport_params_v1, tls_parse_stoc_quic_transport_params_v1,
+        tls_construct_stoc_quic_transport_params_v1, tls_construct_ctos_quic_transport_params_v1,
+        final_quic_transport_params_v1 },
+#else
+    INVALID_EXTENSION,
+    INVALID_EXTENSION,
+#endif
 };
 
 /* Returns a TLSEXT_TYPE for the given index */
@@ -1919,7 +1918,7 @@ static int final_quic_transport_params_draft(SSL_CONNECTION *s, unsigned int con
 }
 
 static int final_quic_transport_params_v1(SSL_CONNECTION *s, unsigned int context,
-                                          int sent)
+    int sent)
 {
     if (!SSL_CONNECTION_IS_QUIC(s))
         return 1;
