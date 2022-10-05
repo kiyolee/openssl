@@ -162,6 +162,9 @@ struct servent *PASCAL getservbyname(const char *, const char *);
 #  define clear_socket_error()    WSASetLastError(0)
 #  define readsocket(s,b,n)       recv((s),(b),(n),0)
 #  define writesocket(s,b,n)      send((s),(b),(n),0)
+#  define SHUT_RD                 SD_RECEIVE
+#  define SHUT_WR                 SD_SEND
+#  define SHUT_RDWR               SD_BOTH
 # elif defined(__DJGPP__)
 #  define closesocket(s)          close_s(s)
 #  define readsocket(s,b,n)       read_s(s,b,n)
