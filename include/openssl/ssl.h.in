@@ -2521,7 +2521,7 @@ void SSL_set_allow_early_data_cb(SSL *s,
 const char *OSSL_default_cipher_list(void);
 const char *OSSL_default_ciphersuites(void);
 
-#  ifndef OPENSSL_NO_QUIC
+#  ifndef OPENSSL_NO_QUIC_BORING
 /*
  * QUIC integration - The QUIC interface matches BoringSSL
  *

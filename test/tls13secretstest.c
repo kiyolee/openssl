@@ -224,7 +224,7 @@ void ssl_evp_md_free(const EVP_MD *md)
 {
 }
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 int quic_set_encryption_secrets(SSL *ssl, OSSL_ENCRYPTION_LEVEL level)
 {
     return 1;

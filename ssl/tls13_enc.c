@@ -416,7 +416,7 @@ static const unsigned char resumption_master_secret[] = "res master";
 static const unsigned char early_exporter_master_secret[] = "e exp master";
 #endif
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 static int quic_change_cipher_state(SSL *s, int which)
 {
     unsigned char hash[EVP_MAX_MD_SIZE];
@@ -595,7 +595,7 @@ static int quic_change_cipher_state(SSL *s, int which)
  err:
     return ret;
 }
-#endif /* OPENSSL_NO_QUIC */
+#endif /* OPENSSL_NO_QUIC_BORING */
 
 int tls13_change_cipher_state(SSL *s, int which)
 {
@@ -619,7 +619,7 @@ int tls13_change_cipher_state(SSL *s, int which)
     BIO *bio;
 #endif
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
     if (SSL_IS_QUIC(s))
         return quic_change_cipher_state(s, which);
 #endif

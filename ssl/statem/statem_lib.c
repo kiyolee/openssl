@@ -44,7 +44,7 @@ int ssl3_do_write(SSL *s, int type)
 {
     int ret;
     size_t written = 0;
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
     if (SSL_IS_QUIC(s) && type == SSL3_RT_HANDSHAKE) {
         ret = s->quic_method->add_handshake_data(s, s->quic_write_level,
                                                  (const uint8_t*)&s->init_buf->data[s->init_off],
