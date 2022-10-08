@@ -75,25 +75,25 @@ mkdir dll32
 mkdir lib32
 
 pushd dll64
-perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\x64\Release\libz-static.lib VC-WIN64A-masm no-dynamic-engine zlib
+perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\x64\Release\libz-static.lib VC-WIN64A-masm no-dynamic-engine zlib enable-quic-boring
 call :genfile
 call :clndir
 popd
 
 pushd lib64
-perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\x64\Release\libz-static.lib VC-WIN64A-masm no-shared no-dynamic-engine zlib
+perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\x64\Release\libz-static.lib VC-WIN64A-masm no-shared no-dynamic-engine zlib enable-quic-boring
 call :genfile
 call :clndir
 popd
 
 pushd dll32
-perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles(x86)%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\Release\libz-static.lib VC-WIN32 no-dynamic-engine zlib
+perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles(x86)%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\Release\libz-static.lib VC-WIN32 no-dynamic-engine zlib enable-quic-boring
 call :genfile
 call :clndir
 popd
 
 pushd lib32
-perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles(x86)%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\Release\libz-static.lib VC-WIN32 no-shared no-dynamic-engine zlib
+perl %OPENSSL_DIR%\Configure --prefix="%ProgramFiles(x86)%\OpenSSL-3" --with-zlib-include=%ZLIB_DIR% --with-zlib-lib=%ZLIB_DIR%\build\Release\libz-static.lib VC-WIN32 no-shared no-dynamic-engine zlib enable-quic-boring
 call :genfile
 call :clndir
 popd
