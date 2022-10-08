@@ -374,6 +374,22 @@ static const EXTENSION_DEFINITION ext_defs[] = {
         tls_construct_certificate_authorities,
         tls_construct_certificate_authorities, NULL,
     },
+    {
+        /* Must be immediately before pre_shared_key */
+        TLSEXT_TYPE_padding,
+        SSL_EXT_CLIENT_HELLO,
+        NULL,
+        /* We send this, but don't read it */
+        NULL, NULL, NULL, tls_construct_ctos_padding, NULL
+    },
+    {
+        /* Required by the TLSv1.3 spec to always be the last extension */
+        TLSEXT_TYPE_psk,
+        SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_SERVER_HELLO
+        | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
+        NULL, tls_parse_ctos_psk, tls_parse_stoc_psk, tls_construct_stoc_psk,
+        tls_construct_ctos_psk, final_psk
+    },
 #ifndef OPENSSL_NO_QUIC_BORING
     {
         TLSEXT_TYPE_quic_transport_parameters_draft,
@@ -397,22 +413,6 @@ static const EXTENSION_DEFINITION ext_defs[] = {
     INVALID_EXTENSION,
     INVALID_EXTENSION,
 #endif
-    {
-        /* Must be immediately before pre_shared_key */
-        TLSEXT_TYPE_padding,
-        SSL_EXT_CLIENT_HELLO,
-        NULL,
-        /* We send this, but don't read it */
-        NULL, NULL, NULL, tls_construct_ctos_padding, NULL
-    },
-    {
-        /* Required by the TLSv1.3 spec to always be the last extension */
-        TLSEXT_TYPE_psk,
-        SSL_EXT_CLIENT_HELLO | SSL_EXT_TLS1_3_SERVER_HELLO
-        | SSL_EXT_TLS_IMPLEMENTATION_ONLY | SSL_EXT_TLS1_3_ONLY,
-        NULL, tls_parse_ctos_psk, tls_parse_stoc_psk, tls_construct_stoc_psk,
-        tls_construct_ctos_psk, final_psk
-    }
 };
 
 /* Check whether an extension's context matches the current context */
