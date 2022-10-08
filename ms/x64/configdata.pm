@@ -64,11 +64,11 @@ our %config = (
   openssl_sys_defines => [ "OPENSSL_SYS_WIN64A" ],
   openssl_thread_defines => [ "OPENSSL_THREADS" ],
   openssldir => "",
-  options => "--prefix=C:\\Program Files\\OpenSSL-1_1 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-afalgeng no-asan no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fuzz-afl no-fuzz-libfuzzer no-heartbeats no-md2 no-msan no-rc5 no-sctp no-ssl-trace no-ssl3 no-ssl3-method no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic",
+  options => "--prefix=C:\\Program Files\\OpenSSL-1_1 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib enable-quic-boring no-afalgeng no-asan no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fuzz-afl no-fuzz-libfuzzer no-heartbeats no-md2 no-msan no-rc5 no-sctp no-ssl-trace no-ssl3 no-ssl3-method no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic",
   perl_archname => "MSWin32-x64-multi-thread",
   perl_cmd => "C:\\Strawberry\\perl\\bin\\perl.exe",
   perl_version => "5.32.1",
-  perlargv => [ "--prefix=C:\\Program Files\\OpenSSL-1_1", "--with-zlib-include=..\\zlib", "--with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib", "VC-WIN64A-masm", "no-dynamic-engine", "zlib" ],
+  perlargv => [ "--prefix=C:\\Program Files\\OpenSSL-1_1", "--with-zlib-include=..\\zlib", "--with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib", "VC-WIN64A-masm", "no-dynamic-engine", "zlib", "enable-quic-boring" ],
   perlenv => {
       "AR" => undef,
       "ARFLAGS" => undef,
@@ -291,6 +291,7 @@ our @disablables = (
   "poly1305",
   "posix-io",
   "psk",
+  "quic-boring",
   "rc2",
   "rc4",
   "rc5",
@@ -3250,6 +3251,7 @@ our %unified_info = (
                             "ssl\\ssl_init.o",
                             "ssl\\ssl_lib.o",
                             "ssl\\ssl_mcnf.o",
+                            "ssl\\ssl_quic.o",
                             "ssl\\ssl_rsa.o",
                             "ssl\\ssl_sess.o",
                             "ssl\\ssl_stat.o",
@@ -3306,6 +3308,7 @@ our %unified_info = (
                             "ssl\\statem\\statem_clnt.o",
                             "ssl\\statem\\statem_dtls.o",
                             "ssl\\statem\\statem_lib.o",
+                            "ssl\\statem\\statem_quic.o",
                             "ssl\\statem\\statem_srvr.o",
                         ],
                     "products" =>
@@ -10305,6 +10308,13 @@ our %unified_info = (
                     ".",
                     ".\\include",
                 ],
+            "ssl\\ssl_quic.o" =>
+                [
+                    ".",
+                    "include",
+                    ".",
+                    ".\\include",
+                ],
             "ssl\\ssl_rsa.o" =>
                 [
                     ".",
@@ -10390,6 +10400,13 @@ our %unified_info = (
                     ".\\include",
                 ],
             "ssl\\statem\\statem_lib.o" =>
+                [
+                    ".",
+                    "include",
+                    ".",
+                    ".\\include",
+                ],
+            "ssl\\statem\\statem_quic.o" =>
                 [
                     ".",
                     "include",
@@ -15491,6 +15508,7 @@ our %unified_info = (
                     "ssl\\ssl_init.o",
                     "ssl\\ssl_lib.o",
                     "ssl\\ssl_mcnf.o",
+                    "ssl\\ssl_quic.o",
                     "ssl\\ssl_rsa.o",
                     "ssl\\ssl_sess.o",
                     "ssl\\ssl_stat.o",
@@ -15504,6 +15522,7 @@ our %unified_info = (
                     "ssl\\statem\\statem_clnt.o",
                     "ssl\\statem\\statem_dtls.o",
                     "ssl\\statem\\statem_lib.o",
+                    "ssl\\statem\\statem_quic.o",
                     "ssl\\statem\\statem_srvr.o",
                     "ssl\\t1_enc.o",
                     "ssl\\t1_lib.o",
@@ -15623,6 +15642,10 @@ our %unified_info = (
                 [
                     ".\\ssl\\ssl_mcnf.c",
                 ],
+            "ssl\\ssl_quic.o" =>
+                [
+                    ".\\ssl\\ssl_quic.c",
+                ],
             "ssl\\ssl_rsa.o" =>
                 [
                     ".\\ssl\\ssl_rsa.c",
@@ -15674,6 +15697,10 @@ our %unified_info = (
             "ssl\\statem\\statem_lib.o" =>
                 [
                     ".\\ssl\\statem\\statem_lib.c",
+                ],
+            "ssl\\statem\\statem_quic.o" =>
+                [
+                    ".\\ssl\\statem\\statem_quic.c",
                 ],
             "ssl\\statem\\statem_srvr.o" =>
                 [
