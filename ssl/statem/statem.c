@@ -575,7 +575,7 @@ static SUB_STATE_RETURN read_state_machine(SSL *s)
                  * In DTLS we get the whole message in one go - header and body
                  */
                 ret = dtls_get_message(s, &mt, &len);
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
             } else if (SSL_IS_QUIC(s)) {
                 ret = quic_get_message(s, &mt, &len);
 #endif
@@ -904,7 +904,7 @@ static SUB_STATE_RETURN write_state_machine(SSL *s)
 int statem_flush(SSL *s)
 {
     s->rwstate = SSL_WRITING;
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
     if (SSL_IS_QUIC(s)) {
         if (!s->quic_method->flush_flight(s)) {
             /* NOTE: BIO_flush() does not generate an error */

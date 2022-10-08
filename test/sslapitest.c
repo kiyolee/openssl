@@ -6680,7 +6680,7 @@ static int test_ssl_dup(void)
 }
 #endif
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 
 static int test_quic_set_encryption_secrets(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
                                             const uint8_t *read_secret,
@@ -7336,7 +7336,7 @@ int setup_tests(void)
     ADD_TEST(test_set_verify_cert_store_ssl_ctx);
     ADD_TEST(test_set_verify_cert_store_ssl);
     ADD_TEST(test_inherit_verify_param);
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
     ADD_TEST(test_quic_api);
 #endif
     return 1;

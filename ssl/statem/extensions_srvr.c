@@ -1303,7 +1303,7 @@ int tls_parse_ctos_post_handshake_auth(SSL *s, PACKET *pkt, unsigned int context
     return 1;
 }
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 /* SAME AS tls_parse_stoc_quic_transport_params_draft() */
 int tls_parse_ctos_quic_transport_params_draft(SSL *s, PACKET *pkt,
                                                unsigned int context, X509 *x,
@@ -1977,7 +1977,7 @@ EXT_RETURN tls_construct_stoc_early_data(SSL *s, WPACKET *pkt,
         if (max_early_data == 0)
             return EXT_RETURN_NOT_SENT;
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
         /* QUIC server must always send 0xFFFFFFFF, per draft-ietf-quic-tls-24 S4.5 */
         if (s->quic_method != NULL)
             max_early_data = 0xFFFFFFFF;
@@ -2027,7 +2027,7 @@ EXT_RETURN tls_construct_stoc_psk(SSL *s, WPACKET *pkt, unsigned int context,
     return EXT_RETURN_SENT;
 }
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 /* SAME AS tls_construct_ctos_quic_transport_params_draft() */
 EXT_RETURN tls_construct_stoc_quic_transport_params_draft(SSL *s, WPACKET *pkt,
                                                           unsigned int context,
