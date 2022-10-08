@@ -11,7 +11,7 @@
 #include "internal/cryptlib.h"
 #include "internal/refcount.h"
 
-#ifdef OPENSSL_NO_QUIC
+#ifdef OPENSSL_NO_QUIC_BORING
 NON_EMPTY_TRANSLATION_UNIT
 #else
 

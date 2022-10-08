@@ -338,7 +338,7 @@
 # define SSL3_CK_CIPHERSUITE_FLAG                0x03000000
 
 /* Check if an SSL structure is using QUIC (which uses TLSv1.3) */
-# ifndef OPENSSL_NO_QUIC
+# ifndef OPENSSL_NO_QUIC_BORING
 #  define SSL_IS_QUIC(s)  (s->quic_method != NULL)
 # else
 #  define SSL_IS_QUIC(s) 0
@@ -1215,14 +1215,14 @@ struct ssl_ctx_st {
     uint32_t disabled_mkey_mask;
     uint32_t disabled_auth_mask;
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
     const SSL_QUIC_METHOD *quic_method;
 #endif
 };
 
 typedef struct cert_pkey_st CERT_PKEY;
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 struct quic_data_st {
     struct quic_data_st *next;
     OSSL_ENCRYPTION_LEVEL level;
@@ -1492,7 +1492,7 @@ struct ssl_st {
     unsigned char handshake_traffic_hash[EVP_MAX_MD_SIZE];
     unsigned char client_app_traffic_secret[EVP_MAX_MD_SIZE];
     unsigned char server_app_traffic_secret[EVP_MAX_MD_SIZE];
-# ifndef OPENSSL_NO_QUIC
+# ifndef OPENSSL_NO_QUIC_BORING
     unsigned char client_hand_traffic_secret[EVP_MAX_MD_SIZE];
     unsigned char server_hand_traffic_secret[EVP_MAX_MD_SIZE];
     unsigned char client_early_traffic_secret[EVP_MAX_MD_SIZE];
@@ -1710,7 +1710,7 @@ struct ssl_st {
          */
         int tick_identity;
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
         uint8_t *quic_transport_params;
         size_t quic_transport_params_len;
         uint8_t *peer_quic_transport_params_draft;
@@ -1720,7 +1720,7 @@ struct ssl_st {
 #endif
     } ext;
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
     OSSL_ENCRYPTION_LEVEL quic_read_level;
     OSSL_ENCRYPTION_LEVEL quic_write_level;
     QUIC_DATA *quic_input_data_head;
