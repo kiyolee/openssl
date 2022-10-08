@@ -119,6 +119,7 @@
     <ClCompile Include="..\..\ssl\ssl_init.c" />
     <ClCompile Include="..\..\ssl\ssl_lib.c" />
     <ClCompile Include="..\..\ssl\ssl_mcnf.c" />
+    <ClCompile Include="..\..\ssl\ssl_quic.c" />
     <ClCompile Include="..\..\ssl\ssl_rsa.c" />
     <ClCompile Include="..\..\ssl\ssl_sess.c" />
     <ClCompile Include="..\..\ssl\ssl_stat.c" />
@@ -132,6 +133,7 @@
     <ClCompile Include="..\..\ssl\statem\statem_clnt.c" />
     <ClCompile Include="..\..\ssl\statem\statem_dtls.c" />
     <ClCompile Include="..\..\ssl\statem\statem_lib.c" />
+    <ClCompile Include="..\..\ssl\statem\statem_quic.c" />
     <ClCompile Include="..\..\ssl\statem\statem_srvr.c" />
     <ClCompile Include="..\..\ssl\t1_enc.c" />
     <ClCompile Include="..\..\ssl\t1_lib.c" />
