@@ -239,7 +239,7 @@ int tls_parse_ctos_psk(SSL *s, PACKET *pkt, unsigned int context, X509 *x,
                        size_t chainidx);
 int tls_parse_ctos_post_handshake_auth(SSL *, PACKET *pkt, unsigned int context,
                                        X509 *x, size_t chainidx);
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 int tls_parse_ctos_quic_transport_params_draft(SSL *s, PACKET *pkt,
                                                unsigned int context, X509 *x,
                                                size_t chainidx);
@@ -310,7 +310,7 @@ EXT_RETURN tls_construct_stoc_cryptopro_bug(SSL *s, WPACKET *pkt,
                                             size_t chainidx);
 EXT_RETURN tls_construct_stoc_psk(SSL *s, WPACKET *pkt, unsigned int context,
                                   X509 *x, size_t chainidx);
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 EXT_RETURN tls_construct_stoc_quic_transport_params_draft(SSL *s, WPACKET *pkt,
                                                           unsigned int context,
                                                           X509 *x,
@@ -391,7 +391,7 @@ EXT_RETURN tls_construct_ctos_psk(SSL *s, WPACKET *pkt, unsigned int context,
                                   X509 *x, size_t chainidx);
 EXT_RETURN tls_construct_ctos_post_handshake_auth(SSL *s, WPACKET *pkt, unsigned int context,
                                                   X509 *x, size_t chainidx);
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 EXT_RETURN tls_construct_ctos_quic_transport_params_draft(SSL *s, WPACKET *pkt,
                                                           unsigned int context,
                                                           X509 *x,
@@ -447,7 +447,7 @@ int tls_parse_stoc_cookie(SSL *s, PACKET *pkt, unsigned int context, X509 *x,
                        size_t chainidx);
 int tls_parse_stoc_psk(SSL *s, PACKET *pkt, unsigned int context, X509 *x,
                        size_t chainidx);
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 int tls_parse_stoc_quic_transport_params_draft(SSL *s, PACKET *pkt,
                                                unsigned int context, X509 *x,
                                                size_t chainidx);

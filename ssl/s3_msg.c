@@ -77,7 +77,7 @@ int ssl3_dispatch_alert(SSL *s)
 
     s->s3->alert_dispatch = 0;
     alertlen = 2;
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
     if (SSL_IS_QUIC(s)) {
         if (!s->quic_method->send_alert(s, s->quic_write_level,
                                         s->s3->send_alert[1])) {

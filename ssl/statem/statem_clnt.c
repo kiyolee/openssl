@@ -909,7 +909,7 @@ int ossl_statem_client_construct_message(SSL *s, WPACKET *pkt,
         break;
 
     case TLS_ST_CW_END_OF_EARLY_DATA:
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
         /* QUIC does not send EndOfEarlyData, draft-ietf-quic-tls-24 S8.3 */
         if (s->quic_method != NULL) {
             *confunc = NULL;
