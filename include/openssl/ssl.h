@@ -2432,7 +2432,7 @@ void SSL_set_allow_early_data_cb(SSL *s,
                                  SSL_allow_early_data_cb_fn cb,
                                  void *arg);
 
-#  ifndef OPENSSL_NO_QUIC
+#  ifndef OPENSSL_NO_QUIC_BORING
 /*
  * QUIC integration - The QUIC interface matches BoringSSL
  *

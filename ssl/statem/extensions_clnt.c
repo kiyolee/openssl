@@ -1215,7 +1215,7 @@ EXT_RETURN tls_construct_ctos_post_handshake_auth(SSL *s, WPACKET *pkt,
 #endif
 }
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 /* SAME AS tls_construct_stoc_quic_transport_params_draft() */
 EXT_RETURN tls_construct_ctos_quic_transport_params_draft(SSL *s, WPACKET *pkt,
                                                           unsigned int context,
@@ -1967,7 +1967,7 @@ int tls_parse_stoc_early_data(SSL *s, PACKET *pkt, unsigned int context,
             return 0;
         }
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
         /*
          * QUIC server must send 0xFFFFFFFF or it's a PROTOCOL_VIOLATION
          * per draft-ietf-quic-tls-24 S4.5
@@ -2066,7 +2066,7 @@ int tls_parse_stoc_psk(SSL *s, PACKET *pkt, unsigned int context, X509 *x,
 
     return 1;
 }
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 /* SAME AS tls_parse_ctos_quic_transport_params_draft() */
 int tls_parse_stoc_quic_transport_params_draft(SSL *s, PACKET *pkt,
                                                unsigned int context, X509 *x,

@@ -216,7 +216,7 @@ int ossl_statem_export_early_allowed(SSL *s)
     return 1;
 }
 
-#ifndef OPENSSL_NO_QUIC
+#ifndef OPENSSL_NO_QUIC_BORING
 int quic_set_encryption_secrets(SSL *ssl, OSSL_ENCRYPTION_LEVEL level)
 {
     return 1;
