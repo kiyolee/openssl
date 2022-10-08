@@ -156,5 +156,11 @@
     <ClCompile Include="..\..\ssl\statem\extensions_srvr.c">
       <Filter>Source Files\ssl\statem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ssl\ssl_quic.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\statem\statem_quic.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
