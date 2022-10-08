@@ -467,7 +467,7 @@ my @disablables = (
     "poly1305",
     "posix-io",
     "psk",
-    "quic",
+    "quic-boring",
     "rc2",
     "rc4",
     "rc5",
@@ -644,7 +644,7 @@ my @disable_cascades = (
 
     "deprecated-3.0"    => [ "engine", "srp" ],
 
-    "tls1_3"            => [ "quic" ],
+    "tls1_3"            => [ "quic-boring" ],
     );
 
 # Avoid protocol support holes.  Also disable all versions below N, if version
