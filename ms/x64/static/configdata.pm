@@ -302,7 +302,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x690838)",
+    "RANLIB" => "CODE(0xf41a08)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -1083,6 +1083,9 @@ our %unified_info = (
             "test\\buildtest_c_hmac" => {
                 "noinst" => "1"
             },
+            "test\\buildtest_c_hpke" => {
+                "noinst" => "1"
+            },
             "test\\buildtest_c_http" => {
                 "noinst" => "1"
             },
@@ -1390,6 +1393,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\hmactest" => {
+                "noinst" => "1"
+            },
+            "test\\hpke_test" => {
                 "noinst" => "1"
             },
             "test\\http_test" => {
@@ -3130,6 +3136,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OSSL_ESS_check_signing_certs.html" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
+        ],
+        "doc\\html\\man3\\OSSL_HPKE_CTX_new.html" => [
+            ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
         ],
         "doc\\html\\man3\\OSSL_HTTP_REQ_CTX.html" => [
             ".\\doc\\man3\\OSSL_HTTP_REQ_CTX.pod"
@@ -5737,6 +5746,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_ESS_check_signing_certs.3" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
         ],
+        "doc\\man\\man3\\OSSL_HPKE_CTX_new.3" => [
+            ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
+        ],
         "doc\\man\\man3\\OSSL_HTTP_REQ_CTX.3" => [
             ".\\doc\\man3\\OSSL_HTTP_REQ_CTX.pod"
         ],
@@ -7505,6 +7517,10 @@ our %unified_info = (
             "libcrypto",
             "libssl"
         ],
+        "test\\buildtest_c_hpke" => [
+            "libcrypto",
+            "libssl"
+        ],
         "test\\buildtest_c_http" => [
             "libcrypto",
             "libssl"
@@ -7925,6 +7941,10 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\hmactest" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\hpke_test" => [
             "libcrypto.a",
             "test\\libtestutil.a"
         ],
@@ -9279,6 +9299,7 @@ our %unified_info = (
         },
         "crypto\\hpke" => {
             "deps" => [
+                "crypto\\hpke\\libcrypto-lib-hpke.o",
                 "crypto\\hpke\\libcrypto-lib-hpke_util.o"
             ],
             "products" => {
@@ -12135,6 +12156,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_ESS_check_signing_certs.html" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
         ],
+        "doc\\html\\man3\\OSSL_HPKE_CTX_new.html" => [
+            ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
+        ],
         "doc\\html\\man3\\OSSL_HTTP_REQ_CTX.html" => [
             ".\\doc\\man3\\OSSL_HTTP_REQ_CTX.pod"
         ],
@@ -14688,6 +14712,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_ESS_check_signing_certs.3" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
         ],
+        "doc\\man\\man3\\OSSL_HPKE_CTX_new.3" => [
+            ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
+        ],
         "doc\\man\\man3\\OSSL_HTTP_REQ_CTX.3" => [
             ".\\doc\\man3\\OSSL_HTTP_REQ_CTX.pod"
         ],
@@ -16291,6 +16318,10 @@ our %unified_info = (
             ".\\test\\generate_buildtest.pl",
             "hmac"
         ],
+        "test\\buildtest_hpke.c" => [
+            ".\\test\\generate_buildtest.pl",
+            "hpke"
+        ],
         "test\\buildtest_http.c" => [
             ".\\test\\generate_buildtest.pl",
             "http"
@@ -16806,6 +16837,7 @@ our %unified_info = (
             "doc\\html\\man3\\OSSL_ENCODER_CTX_new_for_pkey.html",
             "doc\\html\\man3\\OSSL_ENCODER_to_bio.html",
             "doc\\html\\man3\\OSSL_ESS_check_signing_certs.html",
+            "doc\\html\\man3\\OSSL_HPKE_CTX_new.html",
             "doc\\html\\man3\\OSSL_HTTP_REQ_CTX.html",
             "doc\\html\\man3\\OSSL_HTTP_parse_url.html",
             "doc\\html\\man3\\OSSL_HTTP_transfer.html",
@@ -18794,6 +18826,10 @@ our %unified_info = (
             "include",
             ".\\include"
         ],
+        "test\\buildtest_c_hpke" => [
+            "include",
+            ".\\include"
+        ],
         "test\\buildtest_c_http" => [
             "include",
             ".\\include"
@@ -19581,6 +19617,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\hmactest" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\hpke_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -20640,6 +20682,7 @@ our %unified_info = (
             "doc\\man\\man3\\OSSL_ENCODER_CTX_new_for_pkey.3",
             "doc\\man\\man3\\OSSL_ENCODER_to_bio.3",
             "doc\\man\\man3\\OSSL_ESS_check_signing_certs.3",
+            "doc\\man\\man3\\OSSL_HPKE_CTX_new.3",
             "doc\\man\\man3\\OSSL_HTTP_REQ_CTX.3",
             "doc\\man\\man3\\OSSL_HTTP_parse_url.3",
             "doc\\man\\man3\\OSSL_HTTP_transfer.3",
@@ -21165,6 +21208,7 @@ our %unified_info = (
         "test\\buildtest_c_evp",
         "test\\buildtest_c_fips_names",
         "test\\buildtest_c_hmac",
+        "test\\buildtest_c_hpke",
         "test\\buildtest_c_http",
         "test\\buildtest_c_idea",
         "test\\buildtest_c_kdf",
@@ -21268,6 +21312,7 @@ our %unified_info = (
         "test\\gmdifftest",
         "test\\hexstr_test",
         "test\\hmactest",
+        "test\\hpke_test",
         "test\\http_test",
         "test\\ideatest",
         "test\\igetest",
@@ -23139,6 +23184,9 @@ our %unified_info = (
         "crypto\\hmac\\libcrypto-lib-hmac.o" => [
             ".\\crypto\\hmac\\hmac.c"
         ],
+        "crypto\\hpke\\libcrypto-lib-hpke.o" => [
+            ".\\crypto\\hpke\\hpke.c"
+        ],
         "crypto\\hpke\\libcrypto-lib-hpke_util.o" => [
             ".\\crypto\\hpke\\hpke_util.c"
         ],
@@ -24729,6 +24777,7 @@ our %unified_info = (
             "crypto\\ffc\\libcrypto-lib-ffc_params_generate.o",
             "crypto\\ffc\\libcrypto-lib-ffc_params_validate.o",
             "crypto\\hmac\\libcrypto-lib-hmac.o",
+            "crypto\\hpke\\libcrypto-lib-hpke.o",
             "crypto\\hpke\\libcrypto-lib-hpke_util.o",
             "crypto\\http\\libcrypto-lib-http_client.o",
             "crypto\\http\\libcrypto-lib-http_err.o",
@@ -26402,6 +26451,12 @@ our %unified_info = (
         "test\\buildtest_c_hmac-bin-buildtest_hmac.o" => [
             "test\\buildtest_hmac.c"
         ],
+        "test\\buildtest_c_hpke" => [
+            "test\\buildtest_c_hpke-bin-buildtest_hpke.o"
+        ],
+        "test\\buildtest_c_hpke-bin-buildtest_hpke.o" => [
+            "test\\buildtest_hpke.c"
+        ],
         "test\\buildtest_c_http" => [
             "test\\buildtest_c_http-bin-buildtest_http.o"
         ],
@@ -27130,6 +27185,12 @@ our %unified_info = (
         ],
         "test\\hmactest-bin-hmactest.o" => [
             ".\\test\\hmactest.c"
+        ],
+        "test\\hpke_test" => [
+            "test\\hpke_test-bin-hpke_test.o"
+        ],
+        "test\\hpke_test-bin-hpke_test.o" => [
+            ".\\test\\hpke_test.c"
         ],
         "test\\http_test" => [
             "test\\http_test-bin-http_test.o"
