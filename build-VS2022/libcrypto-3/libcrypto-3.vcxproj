@@ -579,6 +579,7 @@
     <ClCompile Include="..\..\crypto\ffc\ffc_params_validate.c" />
     <ClCompile Include="..\..\crypto\getenv.c" />
     <ClCompile Include="..\..\crypto\hmac\hmac.c" />
+    <ClCompile Include="..\..\crypto\hpke\hpke.c" />
     <ClCompile Include="..\..\crypto\hpke\hpke_util.c" />
     <ClCompile Include="..\..\crypto\http\http_client.c" />
     <ClCompile Include="..\..\crypto\http\http_err.c" />

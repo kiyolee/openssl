@@ -2511,6 +2511,9 @@
     <ClCompile Include="..\..\crypto\thread\arch\thread_none.c">
       <Filter>Source Files\crypto\thread\arch</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\hpke\hpke.c">
+      <Filter>Source Files\crypto\hpke</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
