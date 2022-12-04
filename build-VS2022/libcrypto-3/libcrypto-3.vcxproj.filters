@@ -2529,6 +2529,12 @@
     <ClCompile Include="..\..\crypto\hpke\hpke.c">
       <Filter>Source Files\crypto\hpke</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\deterministic_nonce.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\crypto\modes\xts128gb.c">
+      <Filter>Source Files\crypto\modes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">

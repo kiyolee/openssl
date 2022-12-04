@@ -483,5 +483,14 @@
     <ClCompile Include="..\..\..\providers\implementations\digests\ripemd_prov.c">
       <Filter>Source Files\providers\implementations\digests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_xts.c">
+      <Filter>Source Files\providers\implementations\ciphers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_xts_hw.c">
+      <Filter>Source Files\providers\implementations\ciphers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\hmacdrbg_kdf.c">
+      <Filter>Source Files\providers\implementations\kdfs</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

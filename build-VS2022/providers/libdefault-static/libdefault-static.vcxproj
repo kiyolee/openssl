@@ -150,6 +150,8 @@
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_gcm.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_gcm_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_xts.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_sm4_xts_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_common.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_tdes_default.c" />
@@ -183,6 +185,7 @@
     <ClCompile Include="..\..\..\providers\implementations\exchange\ecx_exch.c" />
     <ClCompile Include="..\..\..\providers\implementations\exchange\kdf_exch.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\hkdf.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\hmacdrbg_kdf.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\kbkdf.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\krb5kdf.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\pbkdf2.c" />
