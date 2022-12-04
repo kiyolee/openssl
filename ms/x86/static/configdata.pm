@@ -298,7 +298,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x2551bf8)",
+    "RANLIB" => "CODE(0xd914c8)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -4118,6 +4118,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_KDF-HKDF.html" => [
             ".\\doc\\man7\\EVP_KDF-HKDF.pod"
         ],
+        "doc\\html\\man7\\EVP_KDF-HMAC-DRBG.html" => [
+            ".\\doc\\man7\\EVP_KDF-HMAC-DRBG.pod"
+        ],
         "doc\\html\\man7\\EVP_KDF-KB.html" => [
             ".\\doc\\man7\\EVP_KDF-KB.pod"
         ],
@@ -6727,6 +6730,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_KDF-HKDF.7" => [
             ".\\doc\\man7\\EVP_KDF-HKDF.pod"
         ],
+        "doc\\man\\man7\\EVP_KDF-HMAC-DRBG.7" => [
+            ".\\doc\\man7\\EVP_KDF-HMAC-DRBG.pod"
+        ],
         "doc\\man\\man7\\EVP_KDF-KB.7" => [
             ".\\doc\\man7\\EVP_KDF-KB.pod"
         ],
@@ -8454,6 +8460,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-ctype.o",
                 "crypto\\libcrypto-lib-cversion.o",
                 "crypto\\libcrypto-lib-der_writer.o",
+                "crypto\\libcrypto-lib-deterministic_nonce.o",
                 "crypto\\libcrypto-lib-ebcdic.o",
                 "crypto\\libcrypto-lib-ex_data.o",
                 "crypto\\libcrypto-lib-getenv.o",
@@ -9379,7 +9386,8 @@ our %unified_info = (
                 "crypto\\modes\\libcrypto-lib-ofb128.o",
                 "crypto\\modes\\libcrypto-lib-siv128.o",
                 "crypto\\modes\\libcrypto-lib-wrap128.o",
-                "crypto\\modes\\libcrypto-lib-xts128.o"
+                "crypto\\modes\\libcrypto-lib-xts128.o",
+                "crypto\\modes\\libcrypto-lib-xts128gb.o"
             ],
             "products" => {
                 "lib" => [
@@ -10031,6 +10039,8 @@ our %unified_info = (
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_gcm.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_gcm_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_hw.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_tdes.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_tdes_common.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_tdes_default.o",
@@ -10128,6 +10138,7 @@ our %unified_info = (
         "providers\\implementations\\kdfs" => {
             "deps" => [
                 "providers\\implementations\\kdfs\\libdefault-lib-hkdf.o",
+                "providers\\implementations\\kdfs\\libdefault-lib-hmacdrbg_kdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-kbkdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-krb5kdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2.o",
@@ -13114,6 +13125,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_KDF-HKDF.html" => [
             ".\\doc\\man7\\EVP_KDF-HKDF.pod"
         ],
+        "doc\\html\\man7\\EVP_KDF-HMAC-DRBG.html" => [
+            ".\\doc\\man7\\EVP_KDF-HMAC-DRBG.pod"
+        ],
         "doc\\html\\man7\\EVP_KDF-KB.html" => [
             ".\\doc\\man7\\EVP_KDF-KB.pod"
         ],
@@ -15670,6 +15684,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_KDF-HKDF.7" => [
             ".\\doc\\man7\\EVP_KDF-HKDF.pod"
         ],
+        "doc\\man\\man7\\EVP_KDF-HMAC-DRBG.7" => [
+            ".\\doc\\man7\\EVP_KDF-HMAC-DRBG.pod"
+        ],
         "doc\\man\\man7\\EVP_KDF-KB.7" => [
             ".\\doc\\man7\\EVP_KDF-KB.pod"
         ],
@@ -17139,6 +17156,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_CIPHER-SEED.html",
             "doc\\html\\man7\\EVP_CIPHER-SM4.html",
             "doc\\html\\man7\\EVP_KDF-HKDF.html",
+            "doc\\html\\man7\\EVP_KDF-HMAC-DRBG.html",
             "doc\\html\\man7\\EVP_KDF-KB.html",
             "doc\\html\\man7\\EVP_KDF-KRB5KDF.html",
             "doc\\html\\man7\\EVP_KDF-PBKDF1.html",
@@ -20984,6 +21002,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_CIPHER-SEED.7",
             "doc\\man\\man7\\EVP_CIPHER-SM4.7",
             "doc\\man\\man7\\EVP_KDF-HKDF.7",
+            "doc\\man\\man7\\EVP_KDF-HMAC-DRBG.7",
             "doc\\man\\man7\\EVP_KDF-KB.7",
             "doc\\man\\man7\\EVP_KDF-KRB5KDF.7",
             "doc\\man\\man7\\EVP_KDF-PBKDF1.7",
@@ -23167,6 +23186,9 @@ our %unified_info = (
         "crypto\\libcrypto-lib-der_writer.o" => [
             ".\\crypto\\der_writer.c"
         ],
+        "crypto\\libcrypto-lib-deterministic_nonce.o" => [
+            ".\\crypto\\deterministic_nonce.c"
+        ],
         "crypto\\libcrypto-lib-ebcdic.o" => [
             ".\\crypto\\ebcdic.c"
         ],
@@ -23355,6 +23377,9 @@ our %unified_info = (
         ],
         "crypto\\modes\\libcrypto-lib-xts128.o" => [
             ".\\crypto\\modes\\xts128.c"
+        ],
+        "crypto\\modes\\libcrypto-lib-xts128gb.o" => [
+            ".\\crypto\\modes\\xts128gb.c"
         ],
         "crypto\\objects\\libcrypto-lib-o_names.o" => [
             ".\\crypto\\objects\\o_names.c"
@@ -24688,6 +24713,7 @@ our %unified_info = (
             "crypto\\libcrypto-lib-ctype.o",
             "crypto\\libcrypto-lib-cversion.o",
             "crypto\\libcrypto-lib-der_writer.o",
+            "crypto\\libcrypto-lib-deterministic_nonce.o",
             "crypto\\libcrypto-lib-ebcdic.o",
             "crypto\\libcrypto-lib-ex_data.o",
             "crypto\\libcrypto-lib-getenv.o",
@@ -24746,6 +24772,7 @@ our %unified_info = (
             "crypto\\modes\\libcrypto-lib-siv128.o",
             "crypto\\modes\\libcrypto-lib-wrap128.o",
             "crypto\\modes\\libcrypto-lib-xts128.o",
+            "crypto\\modes\\libcrypto-lib-xts128gb.o",
             "crypto\\objects\\libcrypto-lib-o_names.o",
             "crypto\\objects\\libcrypto-lib-obj_dat.o",
             "crypto\\objects\\libcrypto-lib-obj_err.o",
@@ -25266,6 +25293,12 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_sm4_hw.c"
         ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_sm4_xts.c"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts_hw.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_sm4_xts_hw.c"
+        ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_tdes.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_tdes.c"
         ],
@@ -25436,6 +25469,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-hkdf.o" => [
             ".\\providers\\implementations\\kdfs\\hkdf.c"
+        ],
+        "providers\\implementations\\kdfs\\libdefault-lib-hmacdrbg_kdf.o" => [
+            ".\\providers\\implementations\\kdfs\\hmacdrbg_kdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-kbkdf.o" => [
             ".\\providers\\implementations\\kdfs\\kbkdf.c"
@@ -25692,6 +25728,8 @@ our %unified_info = (
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_gcm.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_gcm_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_hw.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_tdes.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_tdes_common.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_tdes_default.o",
@@ -25725,6 +25763,7 @@ our %unified_info = (
             "providers\\implementations\\exchange\\libdefault-lib-ecx_exch.o",
             "providers\\implementations\\exchange\\libdefault-lib-kdf_exch.o",
             "providers\\implementations\\kdfs\\libdefault-lib-hkdf.o",
+            "providers\\implementations\\kdfs\\libdefault-lib-hmacdrbg_kdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-kbkdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-krb5kdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2.o",

@@ -380,6 +380,7 @@
     <ClCompile Include="..\..\crypto\des\set_key.c" />
     <ClCompile Include="..\..\crypto\des\str2key.c" />
     <ClCompile Include="..\..\crypto\des\xcbc_enc.c" />
+    <ClCompile Include="..\..\crypto\deterministic_nonce.c" />
     <ClCompile Include="..\..\crypto\dh\dh_ameth.c" />
     <ClCompile Include="..\..\crypto\dh\dh_asn1.c" />
     <ClCompile Include="..\..\crypto\dh\dh_backend.c" />
@@ -615,6 +616,7 @@
     <ClCompile Include="..\..\crypto\modes\siv128.c" />
     <ClCompile Include="..\..\crypto\modes\wrap128.c" />
     <ClCompile Include="..\..\crypto\modes\xts128.c" />
+    <ClCompile Include="..\..\crypto\modes\xts128gb.c" />
     <ClCompile Include="..\..\crypto\objects\obj_dat.c" />
     <ClCompile Include="..\..\crypto\objects\obj_err.c" />
     <ClCompile Include="..\..\crypto\objects\obj_lib.c" />
