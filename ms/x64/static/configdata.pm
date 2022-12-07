@@ -302,7 +302,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x25604f8)",
+    "RANLIB" => "CODE(0x6e03b8)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -1495,6 +1495,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\provfetchtest" => {
+                "noinst" => "1"
+            },
+            "test\\provider_default_search_path_test" => {
                 "noinst" => "1"
             },
             "test\\provider_fallback_test" => {
@@ -8086,6 +8089,10 @@ our %unified_info = (
         ],
         "test\\provfetchtest" => [
             "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\provider_default_search_path_test" => [
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\provider_fallback_test" => [
@@ -19874,6 +19881,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\provider_default_search_path_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\provider_fallback_test" => [
             "include",
             "apps\\include",
@@ -21365,6 +21378,7 @@ our %unified_info = (
         "test\\property_test",
         "test\\prov_config_test",
         "test\\provfetchtest",
+        "test\\provider_default_search_path_test",
         "test\\provider_fallback_test",
         "test\\provider_internal_test",
         "test\\provider_pkey_test",
@@ -27459,6 +27473,12 @@ our %unified_info = (
         ],
         "test\\provfetchtest-bin-provfetchtest.o" => [
             ".\\test\\provfetchtest.c"
+        ],
+        "test\\provider_default_search_path_test" => [
+            "test\\provider_default_search_path_test-bin-provider_default_search_path_test.o"
+        ],
+        "test\\provider_default_search_path_test-bin-provider_default_search_path_test.o" => [
+            ".\\test\\provider_default_search_path_test.c"
         ],
         "test\\provider_fallback_test" => [
             "test\\provider_fallback_test-bin-provider_fallback_test.o"
