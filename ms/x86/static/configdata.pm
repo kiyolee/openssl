@@ -298,7 +298,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x2661588)",
+    "RANLIB" => "CODE(0x26604c8)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -3056,6 +3056,12 @@ our %unified_info = (
         "doc\\html\\man3\\OPENSSL_strcasecmp.html" => [
             ".\\doc\\man3\\OPENSSL_strcasecmp.pod"
         ],
+        "doc\\html\\man3\\OSSL_ALGORITHM.html" => [
+            ".\\doc\\man3\\OSSL_ALGORITHM.pod"
+        ],
+        "doc\\html\\man3\\OSSL_CALLBACK.html" => [
+            ".\\doc\\man3\\OSSL_CALLBACK.pod"
+        ],
         "doc\\html\\man3\\OSSL_CMP_CTX_new.html" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -3116,6 +3122,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_DECODER_from_bio.html" => [
             ".\\doc\\man3\\OSSL_DECODER_from_bio.pod"
         ],
+        "doc\\html\\man3\\OSSL_DISPATCH.html" => [
+            ".\\doc\\man3\\OSSL_DISPATCH.pod"
+        ],
         "doc\\html\\man3\\OSSL_ENCODER.html" => [
             ".\\doc\\man3\\OSSL_ENCODER.pod"
         ],
@@ -3142,6 +3151,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OSSL_HTTP_transfer.html" => [
             ".\\doc\\man3\\OSSL_HTTP_transfer.pod"
+        ],
+        "doc\\html\\man3\\OSSL_ITEM.html" => [
+            ".\\doc\\man3\\OSSL_ITEM.pod"
         ],
         "doc\\html\\man3\\OSSL_LIB_CTX.html" => [
             ".\\doc\\man3\\OSSL_LIB_CTX.pod"
@@ -5668,6 +5680,12 @@ our %unified_info = (
         "doc\\man\\man3\\OPENSSL_strcasecmp.3" => [
             ".\\doc\\man3\\OPENSSL_strcasecmp.pod"
         ],
+        "doc\\man\\man3\\OSSL_ALGORITHM.3" => [
+            ".\\doc\\man3\\OSSL_ALGORITHM.pod"
+        ],
+        "doc\\man\\man3\\OSSL_CALLBACK.3" => [
+            ".\\doc\\man3\\OSSL_CALLBACK.pod"
+        ],
         "doc\\man\\man3\\OSSL_CMP_CTX_new.3" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -5728,6 +5746,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_DECODER_from_bio.3" => [
             ".\\doc\\man3\\OSSL_DECODER_from_bio.pod"
         ],
+        "doc\\man\\man3\\OSSL_DISPATCH.3" => [
+            ".\\doc\\man3\\OSSL_DISPATCH.pod"
+        ],
         "doc\\man\\man3\\OSSL_ENCODER.3" => [
             ".\\doc\\man3\\OSSL_ENCODER.pod"
         ],
@@ -5754,6 +5775,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\OSSL_HTTP_transfer.3" => [
             ".\\doc\\man3\\OSSL_HTTP_transfer.pod"
+        ],
+        "doc\\man\\man3\\OSSL_ITEM.3" => [
+            ".\\doc\\man3\\OSSL_ITEM.pod"
         ],
         "doc\\man\\man3\\OSSL_LIB_CTX.3" => [
             ".\\doc\\man3\\OSSL_LIB_CTX.pod"
@@ -12067,6 +12091,12 @@ our %unified_info = (
         "doc\\html\\man3\\OPENSSL_strcasecmp.html" => [
             ".\\doc\\man3\\OPENSSL_strcasecmp.pod"
         ],
+        "doc\\html\\man3\\OSSL_ALGORITHM.html" => [
+            ".\\doc\\man3\\OSSL_ALGORITHM.pod"
+        ],
+        "doc\\html\\man3\\OSSL_CALLBACK.html" => [
+            ".\\doc\\man3\\OSSL_CALLBACK.pod"
+        ],
         "doc\\html\\man3\\OSSL_CMP_CTX_new.html" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -12127,6 +12157,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_DECODER_from_bio.html" => [
             ".\\doc\\man3\\OSSL_DECODER_from_bio.pod"
         ],
+        "doc\\html\\man3\\OSSL_DISPATCH.html" => [
+            ".\\doc\\man3\\OSSL_DISPATCH.pod"
+        ],
         "doc\\html\\man3\\OSSL_ENCODER.html" => [
             ".\\doc\\man3\\OSSL_ENCODER.pod"
         ],
@@ -12153,6 +12186,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OSSL_HTTP_transfer.html" => [
             ".\\doc\\man3\\OSSL_HTTP_transfer.pod"
+        ],
+        "doc\\html\\man3\\OSSL_ITEM.html" => [
+            ".\\doc\\man3\\OSSL_ITEM.pod"
         ],
         "doc\\html\\man3\\OSSL_LIB_CTX.html" => [
             ".\\doc\\man3\\OSSL_LIB_CTX.pod"
@@ -14626,6 +14662,12 @@ our %unified_info = (
         "doc\\man\\man3\\OPENSSL_strcasecmp.3" => [
             ".\\doc\\man3\\OPENSSL_strcasecmp.pod"
         ],
+        "doc\\man\\man3\\OSSL_ALGORITHM.3" => [
+            ".\\doc\\man3\\OSSL_ALGORITHM.pod"
+        ],
+        "doc\\man\\man3\\OSSL_CALLBACK.3" => [
+            ".\\doc\\man3\\OSSL_CALLBACK.pod"
+        ],
         "doc\\man\\man3\\OSSL_CMP_CTX_new.3" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -14686,6 +14728,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_DECODER_from_bio.3" => [
             ".\\doc\\man3\\OSSL_DECODER_from_bio.pod"
         ],
+        "doc\\man\\man3\\OSSL_DISPATCH.3" => [
+            ".\\doc\\man3\\OSSL_DISPATCH.pod"
+        ],
         "doc\\man\\man3\\OSSL_ENCODER.3" => [
             ".\\doc\\man3\\OSSL_ENCODER.pod"
         ],
@@ -14712,6 +14757,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\OSSL_HTTP_transfer.3" => [
             ".\\doc\\man3\\OSSL_HTTP_transfer.pod"
+        ],
+        "doc\\man\\man3\\OSSL_ITEM.3" => [
+            ".\\doc\\man3\\OSSL_ITEM.pod"
         ],
         "doc\\man\\man3\\OSSL_LIB_CTX.3" => [
             ".\\doc\\man3\\OSSL_LIB_CTX.pod"
@@ -16804,6 +16852,8 @@ our %unified_info = (
             "doc\\html\\man3\\OPENSSL_s390xcap.html",
             "doc\\html\\man3\\OPENSSL_secure_malloc.html",
             "doc\\html\\man3\\OPENSSL_strcasecmp.html",
+            "doc\\html\\man3\\OSSL_ALGORITHM.html",
+            "doc\\html\\man3\\OSSL_CALLBACK.html",
             "doc\\html\\man3\\OSSL_CMP_CTX_new.html",
             "doc\\html\\man3\\OSSL_CMP_HDR_get0_transactionID.html",
             "doc\\html\\man3\\OSSL_CMP_ITAV_set0.html",
@@ -16824,6 +16874,7 @@ our %unified_info = (
             "doc\\html\\man3\\OSSL_DECODER_CTX.html",
             "doc\\html\\man3\\OSSL_DECODER_CTX_new_for_pkey.html",
             "doc\\html\\man3\\OSSL_DECODER_from_bio.html",
+            "doc\\html\\man3\\OSSL_DISPATCH.html",
             "doc\\html\\man3\\OSSL_ENCODER.html",
             "doc\\html\\man3\\OSSL_ENCODER_CTX.html",
             "doc\\html\\man3\\OSSL_ENCODER_CTX_new_for_pkey.html",
@@ -16833,6 +16884,7 @@ our %unified_info = (
             "doc\\html\\man3\\OSSL_HTTP_REQ_CTX.html",
             "doc\\html\\man3\\OSSL_HTTP_parse_url.html",
             "doc\\html\\man3\\OSSL_HTTP_transfer.html",
+            "doc\\html\\man3\\OSSL_ITEM.html",
             "doc\\html\\man3\\OSSL_LIB_CTX.html",
             "doc\\html\\man3\\OSSL_PARAM.html",
             "doc\\html\\man3\\OSSL_PARAM_BLD.html",
@@ -20656,6 +20708,8 @@ our %unified_info = (
             "doc\\man\\man3\\OPENSSL_s390xcap.3",
             "doc\\man\\man3\\OPENSSL_secure_malloc.3",
             "doc\\man\\man3\\OPENSSL_strcasecmp.3",
+            "doc\\man\\man3\\OSSL_ALGORITHM.3",
+            "doc\\man\\man3\\OSSL_CALLBACK.3",
             "doc\\man\\man3\\OSSL_CMP_CTX_new.3",
             "doc\\man\\man3\\OSSL_CMP_HDR_get0_transactionID.3",
             "doc\\man\\man3\\OSSL_CMP_ITAV_set0.3",
@@ -20676,6 +20730,7 @@ our %unified_info = (
             "doc\\man\\man3\\OSSL_DECODER_CTX.3",
             "doc\\man\\man3\\OSSL_DECODER_CTX_new_for_pkey.3",
             "doc\\man\\man3\\OSSL_DECODER_from_bio.3",
+            "doc\\man\\man3\\OSSL_DISPATCH.3",
             "doc\\man\\man3\\OSSL_ENCODER.3",
             "doc\\man\\man3\\OSSL_ENCODER_CTX.3",
             "doc\\man\\man3\\OSSL_ENCODER_CTX_new_for_pkey.3",
@@ -20685,6 +20740,7 @@ our %unified_info = (
             "doc\\man\\man3\\OSSL_HTTP_REQ_CTX.3",
             "doc\\man\\man3\\OSSL_HTTP_parse_url.3",
             "doc\\man\\man3\\OSSL_HTTP_transfer.3",
+            "doc\\man\\man3\\OSSL_ITEM.3",
             "doc\\man\\man3\\OSSL_LIB_CTX.3",
             "doc\\man\\man3\\OSSL_PARAM.3",
             "doc\\man\\man3\\OSSL_PARAM_BLD.3",
