@@ -300,7 +300,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x25e04e0)",
+    "RANLIB" => "CODE(0x26b1550)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -2421,6 +2421,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\BIO_s_core.html" => [
             ".\\doc\\man3\\BIO_s_core.pod"
+        ],
+        "doc\\html\\man3\\BIO_s_datagram.html" => [
+            ".\\doc\\man3\\BIO_s_datagram.pod"
         ],
         "doc\\html\\man3\\BIO_s_dgram_pair.html" => [
             ".\\doc\\man3\\BIO_s_dgram_pair.pod"
@@ -5045,6 +5048,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\BIO_s_core.3" => [
             ".\\doc\\man3\\BIO_s_core.pod"
+        ],
+        "doc\\man\\man3\\BIO_s_datagram.3" => [
+            ".\\doc\\man3\\BIO_s_datagram.pod"
         ],
         "doc\\man\\man3\\BIO_s_dgram_pair.3" => [
             ".\\doc\\man3\\BIO_s_dgram_pair.pod"
@@ -12365,6 +12371,9 @@ our %unified_info = (
         "doc\\html\\man3\\BIO_s_core.html" => [
             ".\\doc\\man3\\BIO_s_core.pod"
         ],
+        "doc\\html\\man3\\BIO_s_datagram.html" => [
+            ".\\doc\\man3\\BIO_s_datagram.pod"
+        ],
         "doc\\html\\man3\\BIO_s_dgram_pair.html" => [
             ".\\doc\\man3\\BIO_s_dgram_pair.pod"
         ],
@@ -14935,6 +14944,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\BIO_s_core.3" => [
             ".\\doc\\man3\\BIO_s_core.pod"
+        ],
+        "doc\\man\\man3\\BIO_s_datagram.3" => [
+            ".\\doc\\man3\\BIO_s_datagram.pod"
         ],
         "doc\\man\\man3\\BIO_s_dgram_pair.3" => [
             ".\\doc\\man3\\BIO_s_dgram_pair.pod"
@@ -17576,6 +17588,7 @@ our %unified_info = (
             "doc\\html\\man3\\BIO_s_bio.html",
             "doc\\html\\man3\\BIO_s_connect.html",
             "doc\\html\\man3\\BIO_s_core.html",
+            "doc\\html\\man3\\BIO_s_datagram.html",
             "doc\\html\\man3\\BIO_s_dgram_pair.html",
             "doc\\html\\man3\\BIO_s_fd.html",
             "doc\\html\\man3\\BIO_s_file.html",
@@ -21526,6 +21539,7 @@ our %unified_info = (
             "doc\\man\\man3\\BIO_s_bio.3",
             "doc\\man\\man3\\BIO_s_connect.3",
             "doc\\man\\man3\\BIO_s_core.3",
+            "doc\\man\\man3\\BIO_s_datagram.3",
             "doc\\man\\man3\\BIO_s_dgram_pair.3",
             "doc\\man\\man3\\BIO_s_fd.3",
             "doc\\man\\man3\\BIO_s_file.3",
