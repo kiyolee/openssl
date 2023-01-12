@@ -298,7 +298,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x6914c8)",
+    "RANLIB" => "CODE(0xe60908)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -2776,6 +2776,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\EVP_PKEY_CTX_get0_libctx.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_get0_libctx.pod"
+        ],
+        "doc\\html\\man3\\EVP_PKEY_CTX_get0_pkey.html" => [
+            ".\\doc\\man3\\EVP_PKEY_CTX_get0_pkey.pod"
         ],
         "doc\\html\\man3\\EVP_PKEY_CTX_new.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_new.pod"
@@ -5406,6 +5409,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\EVP_PKEY_CTX_get0_libctx.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_get0_libctx.pod"
+        ],
+        "doc\\man\\man3\\EVP_PKEY_CTX_get0_pkey.3" => [
+            ".\\doc\\man3\\EVP_PKEY_CTX_get0_pkey.pod"
         ],
         "doc\\man\\man3\\EVP_PKEY_CTX_new.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_new.pod"
@@ -11824,6 +11830,9 @@ our %unified_info = (
         "doc\\html\\man3\\EVP_PKEY_CTX_get0_libctx.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_get0_libctx.pod"
         ],
+        "doc\\html\\man3\\EVP_PKEY_CTX_get0_pkey.html" => [
+            ".\\doc\\man3\\EVP_PKEY_CTX_get0_pkey.pod"
+        ],
         "doc\\html\\man3\\EVP_PKEY_CTX_new.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_new.pod"
         ],
@@ -14401,6 +14410,9 @@ our %unified_info = (
         "doc\\man\\man3\\EVP_PKEY_CTX_get0_libctx.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_get0_libctx.pod"
         ],
+        "doc\\man\\man3\\EVP_PKEY_CTX_get0_pkey.3" => [
+            ".\\doc\\man3\\EVP_PKEY_CTX_get0_pkey.pod"
+        ],
         "doc\\man\\man3\\EVP_PKEY_CTX_new.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_new.pod"
         ],
@@ -16783,6 +16795,7 @@ our %unified_info = (
             "doc\\html\\man3\\EVP_PKEY_ASN1_METHOD.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_ctrl.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_get0_libctx.html",
+            "doc\\html\\man3\\EVP_PKEY_CTX_get0_pkey.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_new.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_set1_pbe_pass.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_set_hkdf_md.html",
@@ -20641,6 +20654,7 @@ our %unified_info = (
             "doc\\man\\man3\\EVP_PKEY_ASN1_METHOD.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_ctrl.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_get0_libctx.3",
+            "doc\\man\\man3\\EVP_PKEY_CTX_get0_pkey.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_new.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_set1_pbe_pass.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_set_hkdf_md.3",
