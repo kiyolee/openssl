@@ -300,7 +300,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0xd8fb58)",
+    "RANLIB" => "CODE(0x25eff68)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -8718,7 +8718,6 @@ our %unified_info = (
                 "crypto\\libcrypto-shlib-uid.o",
                 "crypto\\libcrypto-shlib-uplink-x86_64.o",
                 "crypto\\libcrypto-shlib-x86_64cpuid.o",
-                "crypto\\libssl-lib-sparse_array.o",
                 "crypto\\libssl-shlib-packet.o",
                 "crypto\\libssl-shlib-quic_vlint.o",
                 "crypto\\libssl-shlib-sparse_array.o",
@@ -27068,9 +27067,6 @@ our %unified_info = (
         "crypto\\libcrypto-shlib-x86_64cpuid.o" => [
             "crypto\\x86_64cpuid.s"
         ],
-        "crypto\\libssl-lib-sparse_array.o" => [
-            ".\\crypto\\sparse_array.c"
-        ],
         "crypto\\libssl-shlib-packet.o" => [
             ".\\crypto\\packet.c"
         ],
@@ -29614,7 +29610,6 @@ our %unified_info = (
             "libcrypto.rc"
         ],
         "libssl" => [
-            "crypto\\libssl-lib-sparse_array.o",
             "ssl\\libssl-lib-bio_ssl.o",
             "ssl\\libssl-lib-d1_lib.o",
             "ssl\\libssl-lib-d1_msg.o",
