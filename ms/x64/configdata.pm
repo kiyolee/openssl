@@ -300,7 +300,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x25eff68)",
+    "RANLIB" => "CODE(0x6a0808)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -1434,6 +1434,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\namemap_internal_test" => {
+                "noinst" => "1"
+            },
+            "test\\nodefltctxtest" => {
                 "noinst" => "1"
             },
             "test\\ocspapitest" => {
@@ -8135,6 +8138,10 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\namemap_internal_test" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\nodefltctxtest" => [
             "libcrypto.a",
             "test\\libtestutil.a"
         ],
@@ -20954,6 +20961,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\nodefltctxtest" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\ocspapitest" => [
             "include",
             "apps\\include",
@@ -22610,6 +22623,7 @@ our %unified_info = (
         "test\\modes_internal_test",
         "test\\moduleloadtest",
         "test\\namemap_internal_test",
+        "test\\nodefltctxtest",
         "test\\ocspapitest",
         "test\\ossl_store_test",
         "test\\packettest",
@@ -31998,6 +32012,12 @@ our %unified_info = (
         ],
         "test\\namemap_internal_test-bin-namemap_internal_test.o" => [
             ".\\test\\namemap_internal_test.c"
+        ],
+        "test\\nodefltctxtest" => [
+            "test\\nodefltctxtest-bin-nodefltctxtest.o"
+        ],
+        "test\\nodefltctxtest-bin-nodefltctxtest.o" => [
+            ".\\test\\nodefltctxtest.c"
         ],
         "test\\ocspapitest" => [
             "test\\ocspapitest-bin-ocspapitest.o"
