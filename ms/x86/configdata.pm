@@ -296,7 +296,7 @@ our %target = (
     "LDFLAGS" => "/nologo /debug",
     "MT" => "mt",
     "MTFLAGS" => "-nologo",
-    "RANLIB" => "CODE(0x2600998)",
+    "RANLIB" => "CODE(0x25ef7a8)",
     "RC" => "rc",
     "_conf_fname_int" => [
         ".\\Configurations\\00-base-templates.conf",
@@ -893,6 +893,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "fuzz\\server-test" => {
+                "noinst" => "1"
+            },
+            "fuzz\\smime-test" => {
                 "noinst" => "1"
             },
             "fuzz\\x509-test" => {
@@ -4182,6 +4185,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_CIPHER-IDEA.html" => [
             ".\\doc\\man7\\EVP_CIPHER-IDEA.pod"
         ],
+        "doc\\html\\man7\\EVP_CIPHER-NULL.html" => [
+            ".\\doc\\man7\\EVP_CIPHER-NULL.pod"
+        ],
         "doc\\html\\man7\\EVP_CIPHER-RC2.html" => [
             ".\\doc\\man7\\EVP_CIPHER-RC2.pod"
         ],
@@ -4304,6 +4310,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\EVP_MD-MDC2.html" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
+        ],
+        "doc\\html\\man7\\EVP_MD-NULL.html" => [
+            ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
         "doc\\html\\man7\\EVP_MD-RIPEMD160.html" => [
             ".\\doc\\man7\\EVP_MD-RIPEMD160.pod"
@@ -6842,6 +6851,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_CIPHER-IDEA.7" => [
             ".\\doc\\man7\\EVP_CIPHER-IDEA.pod"
         ],
+        "doc\\man\\man7\\EVP_CIPHER-NULL.7" => [
+            ".\\doc\\man7\\EVP_CIPHER-NULL.pod"
+        ],
         "doc\\man\\man7\\EVP_CIPHER-RC2.7" => [
             ".\\doc\\man7\\EVP_CIPHER-RC2.pod"
         ],
@@ -6964,6 +6976,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\EVP_MD-MDC2.7" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
+        ],
+        "doc\\man\\man7\\EVP_MD-NULL.7" => [
+            ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
         "doc\\man\\man7\\EVP_MD-RIPEMD160.7" => [
             ".\\doc\\man7\\EVP_MD-RIPEMD160.pod"
@@ -7235,6 +7250,10 @@ our %unified_info = (
             "libcrypto.a"
         ],
         "fuzz\\server-test" => [
+            "libcrypto",
+            "libssl"
+        ],
+        "fuzz\\smime-test" => [
             "libcrypto",
             "libssl"
         ],
@@ -10837,6 +10856,7 @@ our %unified_info = (
                     "fuzz\\ct-test",
                     "fuzz\\punycode-test",
                     "fuzz\\server-test",
+                    "fuzz\\smime-test",
                     "fuzz\\x509-test"
                 ]
             }
@@ -14168,6 +14188,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_CIPHER-IDEA.html" => [
             ".\\doc\\man7\\EVP_CIPHER-IDEA.pod"
         ],
+        "doc\\html\\man7\\EVP_CIPHER-NULL.html" => [
+            ".\\doc\\man7\\EVP_CIPHER-NULL.pod"
+        ],
         "doc\\html\\man7\\EVP_CIPHER-RC2.html" => [
             ".\\doc\\man7\\EVP_CIPHER-RC2.pod"
         ],
@@ -14290,6 +14313,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\EVP_MD-MDC2.html" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
+        ],
+        "doc\\html\\man7\\EVP_MD-NULL.html" => [
+            ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
         "doc\\html\\man7\\EVP_MD-RIPEMD160.html" => [
             ".\\doc\\man7\\EVP_MD-RIPEMD160.pod"
@@ -16775,6 +16801,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_CIPHER-IDEA.7" => [
             ".\\doc\\man7\\EVP_CIPHER-IDEA.pod"
         ],
+        "doc\\man\\man7\\EVP_CIPHER-NULL.7" => [
+            ".\\doc\\man7\\EVP_CIPHER-NULL.pod"
+        ],
         "doc\\man\\man7\\EVP_CIPHER-RC2.7" => [
             ".\\doc\\man7\\EVP_CIPHER-RC2.pod"
         ],
@@ -16897,6 +16926,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\EVP_MD-MDC2.7" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
+        ],
+        "doc\\man\\man7\\EVP_MD-NULL.7" => [
+            ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
         "doc\\man\\man7\\EVP_MD-RIPEMD160.7" => [
             ".\\doc\\man7\\EVP_MD-RIPEMD160.pod"
@@ -18275,6 +18307,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_CIPHER-CHACHA.html",
             "doc\\html\\man7\\EVP_CIPHER-DES.html",
             "doc\\html\\man7\\EVP_CIPHER-IDEA.html",
+            "doc\\html\\man7\\EVP_CIPHER-NULL.html",
             "doc\\html\\man7\\EVP_CIPHER-RC2.html",
             "doc\\html\\man7\\EVP_CIPHER-RC4.html",
             "doc\\html\\man7\\EVP_CIPHER-RC5.html",
@@ -18316,6 +18349,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_MD-MD5-SHA1.html",
             "doc\\html\\man7\\EVP_MD-MD5.html",
             "doc\\html\\man7\\EVP_MD-MDC2.html",
+            "doc\\html\\man7\\EVP_MD-NULL.html",
             "doc\\html\\man7\\EVP_MD-RIPEMD160.html",
             "doc\\html\\man7\\EVP_MD-SHA1.html",
             "doc\\html\\man7\\EVP_MD-SHA2.html",
@@ -19436,6 +19470,10 @@ our %unified_info = (
             ".\\include"
         ],
         "fuzz\\server-test" => [
+            "include",
+            ".\\include"
+        ],
+        "fuzz\\smime-test" => [
             "include",
             ".\\include"
         ],
@@ -22259,6 +22297,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_CIPHER-CHACHA.7",
             "doc\\man\\man7\\EVP_CIPHER-DES.7",
             "doc\\man\\man7\\EVP_CIPHER-IDEA.7",
+            "doc\\man\\man7\\EVP_CIPHER-NULL.7",
             "doc\\man\\man7\\EVP_CIPHER-RC2.7",
             "doc\\man\\man7\\EVP_CIPHER-RC4.7",
             "doc\\man\\man7\\EVP_CIPHER-RC5.7",
@@ -22300,6 +22339,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_MD-MD5-SHA1.7",
             "doc\\man\\man7\\EVP_MD-MD5.7",
             "doc\\man\\man7\\EVP_MD-MDC2.7",
+            "doc\\man\\man7\\EVP_MD-NULL.7",
             "doc\\man\\man7\\EVP_MD-RIPEMD160.7",
             "doc\\man\\man7\\EVP_MD-SHA1.7",
             "doc\\man\\man7\\EVP_MD-SHA2.7",
@@ -22398,6 +22438,7 @@ our %unified_info = (
         "fuzz\\ct-test",
         "fuzz\\punycode-test",
         "fuzz\\server-test",
+        "fuzz\\smime-test",
         "fuzz\\x509-test",
         "test\\aborttest",
         "test\\aesgcmtest",
@@ -28649,6 +28690,16 @@ our %unified_info = (
             ".\\fuzz\\server.c"
         ],
         "fuzz\\server-test-bin-test-corpus.o" => [
+            ".\\fuzz\\test-corpus.c"
+        ],
+        "fuzz\\smime-test" => [
+            "fuzz\\smime-test-bin-smime.o",
+            "fuzz\\smime-test-bin-test-corpus.o"
+        ],
+        "fuzz\\smime-test-bin-smime.o" => [
+            ".\\fuzz\\smime.c"
+        ],
+        "fuzz\\smime-test-bin-test-corpus.o" => [
             ".\\fuzz\\test-corpus.c"
         ],
         "fuzz\\x509-test" => [
