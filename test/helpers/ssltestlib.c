@@ -29,6 +29,10 @@
 # include <openssl/bio.h>
 #endif
 
+#if defined(OPENSSL_SYS_WINDOWS) && defined(_MSC_VER)
+#pragma comment(lib, "ws2_32.lib")
+#endif
+
 static int tls_dump_new(BIO *bi);
 static int tls_dump_free(BIO *a);
 static int tls_dump_read(BIO *b, char *out, int outl);
