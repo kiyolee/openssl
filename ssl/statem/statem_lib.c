@@ -91,14 +91,14 @@ int ssl3_do_write(SSL_CONNECTION *s, uint8_t type)
     }
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    if (SSL_CONNECTION_IS_QUIC(s) && type == SSL3_RT_HANDSHAKE) {
-        ret = s->quic_method->add_handshake_data(SSL_CONNECTION_GET_SSL(s), s->quic_write_level,
-                                                 (const uint8_t*)&s->init_buf->data[s->init_off],
-                                          s->init_num);
+    if (SSL_CONNECTION_IS_QUIC_BORING(s) && type == SSL3_RT_HANDSHAKE) {
+        ret = s->quic_boring_method->add_handshake_data(SSL_CONNECTION_GET_SSL(s), s->quic_boring_write_level,
+                                                        (const uint8_t*)&s->init_buf->data[s->init_off],
+                                                        s->init_num);
         if (!ret) {
             ret = -1;
             /* QUIC can't sent anything out sice the above failed */
-            SSLerr(SSL_F_SSL3_DO_WRITE, SSL_R_INTERNAL_ERROR);
+            SSLerr(SSL_F_SSL3_DO_WRITE, SSL_R_QUIC_BORING_INTERNAL_ERROR);
         } else {
             written = s->init_num;
         }
