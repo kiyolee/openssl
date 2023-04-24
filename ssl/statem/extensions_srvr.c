@@ -1551,35 +1551,35 @@ int tls_parse_ctos_post_handshake_auth(SSL_CONNECTION *s, PACKET *pkt,
 }
 
 #ifndef OPENSSL_NO_QUIC_BORING
-/* SAME AS tls_parse_stoc_quic_transport_params_draft() */
-int tls_parse_ctos_quic_transport_params_draft(SSL_CONNECTION *s, PACKET *pkt,
-                                               unsigned int context, X509 *x,
-                                               size_t chainidx)
+/* SAME AS tls_parse_stoc_quic_boring_transport_params_draft() */
+int tls_parse_ctos_quic_boring_transport_params_draft(SSL_CONNECTION *s, PACKET *pkt,
+                                                      unsigned int context, X509 *x,
+                                                      size_t chainidx)
 {
-    OPENSSL_free(s->ext.peer_quic_transport_params_draft);
-    s->ext.peer_quic_transport_params_draft = NULL;
-    s->ext.peer_quic_transport_params_draft_len = 0;
+    OPENSSL_free(s->ext.peer_quic_boring_transport_params_draft);
+    s->ext.peer_quic_boring_transport_params_draft = NULL;
+    s->ext.peer_quic_boring_transport_params_draft_len = 0;
 
     if (!PACKET_memdup(pkt,
-                       &s->ext.peer_quic_transport_params_draft,
-                       &s->ext.peer_quic_transport_params_draft_len)) {
+                       &s->ext.peer_quic_boring_transport_params_draft,
+                       &s->ext.peer_quic_boring_transport_params_draft_len)) {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
         return 0;
     }
     return 1;
 }
 
-int tls_parse_ctos_quic_transport_params_v1(SSL_CONNECTION *s, PACKET *pkt,
-                                            unsigned int context, X509 *x,
-                                            size_t chainidx)
+int tls_parse_ctos_quic_boring_transport_params_v1(SSL_CONNECTION *s, PACKET *pkt,
+                                                   unsigned int context, X509 *x,
+                                                   size_t chainidx)
 {
-    OPENSSL_free(s->ext.peer_quic_transport_params_v1);
-    s->ext.peer_quic_transport_params_v1 = NULL;
-    s->ext.peer_quic_transport_params_v1_len = 0;
+    OPENSSL_free(s->ext.peer_quic_boring_transport_params_v1);
+    s->ext.peer_quic_boring_transport_params_v1 = NULL;
+    s->ext.peer_quic_boring_transport_params_v1_len = 0;
 
     if (!PACKET_memdup(pkt,
-                       &s->ext.peer_quic_transport_params_v1,
-                       &s->ext.peer_quic_transport_params_v1_len)) {
+                       &s->ext.peer_quic_boring_transport_params_v1,
+                       &s->ext.peer_quic_boring_transport_params_v1_len)) {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
         return 0;
     }
@@ -2447,11 +2447,11 @@ int tls_parse_ctos_server_cert_type(SSL_CONNECTION *sc, PACKET *pkt,
 }
 
 #ifndef OPENSSL_NO_QUIC_BORING
-/* SAME AS tls_construct_ctos_quic_transport_params_draft() */
-EXT_RETURN tls_construct_stoc_quic_transport_params_draft(SSL_CONNECTION *s, WPACKET *pkt,
-                                                          unsigned int context,
-                                                          X509 *x,
-                                                          size_t chainidx)
+/* SAME AS tls_construct_ctos_quic_boring_transport_params_draft() */
+EXT_RETURN tls_construct_stoc_quic_boring_transport_params_draft(SSL_CONNECTION *s, WPACKET *pkt,
+                                                                 unsigned int context,
+                                                                 X509 *x,
+                                                                 size_t chainidx)
 {
     const unsigned char *alpn;
     unsigned int alpnlen;
@@ -2464,16 +2464,16 @@ EXT_RETURN tls_construct_stoc_quic_transport_params_draft(SSL_CONNECTION *s, WPA
 
     if ((alpnlen == 2
          && (memcmp("h3", alpn, 2) == 0 || memcmp("hq", alpn, 2) == 0)
-         && s->ext.peer_quic_transport_params_v1_len)
-        || s->ext.peer_quic_transport_params_draft_len == 0
-        || s->ext.quic_transport_params == NULL
-        || s->ext.quic_transport_params_len == 0) {
+         && s->ext.peer_quic_boring_transport_params_v1_len)
+        || s->ext.peer_quic_boring_transport_params_draft_len == 0
+        || s->ext.quic_boring_transport_params == NULL
+        || s->ext.quic_boring_transport_params_len == 0) {
         return EXT_RETURN_NOT_SENT;
     }
 
-    if (!WPACKET_put_bytes_u16(pkt, TLSEXT_TYPE_quic_transport_parameters_draft)
-        || !WPACKET_sub_memcpy_u16(pkt, s->ext.quic_transport_params,
-                                   s->ext.quic_transport_params_len)) {
+    if (!WPACKET_put_bytes_u16(pkt, TLSEXT_TYPE_quic_boring_transport_parameters_draft)
+        || !WPACKET_sub_memcpy_u16(pkt, s->ext.quic_boring_transport_params,
+                                   s->ext.quic_boring_transport_params_len)) {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
         return EXT_RETURN_FAIL;
     }
@@ -2481,19 +2481,19 @@ EXT_RETURN tls_construct_stoc_quic_transport_params_draft(SSL_CONNECTION *s, WPA
     return EXT_RETURN_SENT;
 }
 
-EXT_RETURN tls_construct_stoc_quic_transport_params_v1(SSL_CONNECTION *s, WPACKET *pkt,
-                                                       unsigned int context,
-                                                       X509 *x, size_t chainidx)
+EXT_RETURN tls_construct_stoc_quic_boring_transport_params_v1(SSL_CONNECTION *s, WPACKET *pkt,
+                                                              unsigned int context,
+                                                              X509 *x, size_t chainidx)
 {
-    if (s->ext.peer_quic_transport_params_v1_len == 0
-        || s->ext.quic_transport_params == NULL
-        || s->ext.quic_transport_params_len == 0) {
+    if (s->ext.peer_quic_boring_transport_params_v1_len == 0
+        || s->ext.quic_boring_transport_params == NULL
+        || s->ext.quic_boring_transport_params_len == 0) {
         return EXT_RETURN_NOT_SENT;
     }
 
-    if (!WPACKET_put_bytes_u16(pkt, TLSEXT_TYPE_quic_transport_parameters_v1)
-        || !WPACKET_sub_memcpy_u16(pkt, s->ext.quic_transport_params,
-                                   s->ext.quic_transport_params_len)) {
+    if (!WPACKET_put_bytes_u16(pkt, TLSEXT_TYPE_quic_boring_transport_parameters_v1)
+        || !WPACKET_sub_memcpy_u16(pkt, s->ext.quic_boring_transport_params,
+                                   s->ext.quic_boring_transport_params_len)) {
         SSLfatal(s, SSL_AD_INTERNAL_ERROR, ERR_R_INTERNAL_ERROR);
         return EXT_RETURN_FAIL;
     }
