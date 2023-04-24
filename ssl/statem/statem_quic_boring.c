@@ -15,10 +15,10 @@
 NON_EMPTY_TRANSLATION_UNIT
 #else
 
-int quic_get_message(SSL_CONNECTION *s, int *mt, size_t *len)
+int quic_boring_get_message(SSL_CONNECTION *s, int *mt, size_t *len)
 {
     size_t l;
-    QUIC_DATA *qd = s->quic_input_data_head;
+    QUIC_BORING_DATA *qd = s->quic_boring_input_data_head;
     uint8_t *p;
 
     if (qd == NULL || (qd->length - qd->offset) != 0) {
@@ -28,8 +28,8 @@ int quic_get_message(SSL_CONNECTION *s, int *mt, size_t *len)
     }
 
     /* This is where we check for the proper level, not when data is given */
-    if (qd->level != s->quic_read_level) {
-        SSLfatal(s, SSL_AD_INTERNAL_ERROR, SSL_R_WRONG_ENCRYPTION_LEVEL_RECEIVED);
+    if (qd->level != s->quic_boring_read_level) {
+        SSLfatal(s, SSL_AD_INTERNAL_ERROR, SSL_R_QUIC_BORING_WRONG_ENCRYPTION_LEVEL_RECEIVED);
         *len = 0;
         return 0;
     }
@@ -43,9 +43,9 @@ int quic_get_message(SSL_CONNECTION *s, int *mt, size_t *len)
     /* Copy buffered data */
     memcpy(s->init_buf->data, (void*)(qd + 1), qd->length);
     s->init_buf->length = qd->length;
-    s->quic_input_data_head = qd->next;
-    if (s->quic_input_data_head == NULL)
-        s->quic_input_data_tail = NULL;
+    s->quic_boring_input_data_head = qd->next;
+    if (s->quic_boring_input_data_head == NULL)
+        s->quic_boring_input_data_tail = NULL;
     OPENSSL_free(qd);
 
     s->s3.tmp.message_type = *mt = *(s->init_buf->data);
@@ -60,7 +60,7 @@ int quic_get_message(SSL_CONNECTION *s, int *mt, size_t *len)
         *len = 0;
         return 0;
     case SSL3_MT_KEY_UPDATE:
-        SSLfatal(s, SSL_AD_UNEXPECTED_MESSAGE, SSL_R_QUIC_KEY_UPDATE_RECEIVED);
+        SSLfatal(s, SSL_AD_UNEXPECTED_MESSAGE, SSL_R_QUIC_BORING_KEY_UPDATE_RECEIVED);
         *len = 0;
         return 0;
     }
