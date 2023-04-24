@@ -238,7 +238,7 @@ int ssl_set_new_record_layer(SSL_CONNECTION *s, int version, int direction,
 }
 
 #ifndef OPENSSL_NO_QUIC_BORING
-int quic_set_encryption_secrets(SSL_CONNECTION *s, OSSL_ENCRYPTION_LEVEL level)
+int quic_boring_set_encryption_secrets(SSL_CONNECTION *s, OSSL_QUIC_BORING_ENCRYPTION_LEVEL level)
 {
     return 1;
 }
