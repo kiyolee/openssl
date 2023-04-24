@@ -1391,7 +1391,7 @@ int create_ssl_connection(SSL *serverssl, SSL *clientssl, int want)
 
 #ifndef OPENSSL_NO_QUIC_BORING
     /* QUIC does not support SSL_read_ex */
-    if (SSL_is_quic(clientssl))
+    if (SSL_is_quic_boring(clientssl))
         return 1;
 #endif
     /*
