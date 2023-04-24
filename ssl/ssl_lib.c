@@ -937,7 +937,7 @@ SSL *ossl_ssl_connection_new_int(SSL_CTX *ctx, SSL *user_ssl,
         s->server_cert_type_len = ctx->server_cert_type_len;
     }
 #ifndef OPENSSL_NO_QUIC_BORING
-    s->quic_method = ctx->quic_method;
+    s->quic_boring_method = ctx->quic_boring_method;
 #endif
 
 #ifndef OPENSSL_NO_CT
@@ -1489,14 +1489,14 @@ void ossl_ssl_connection_free(SSL *ssl)
     EVP_MD_CTX_free(s->pha_dgst);
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    OPENSSL_free(s->ext.quic_transport_params);
-    OPENSSL_free(s->ext.peer_quic_transport_params_draft);
-    OPENSSL_free(s->ext.peer_quic_transport_params_v1);
-    while (s->quic_input_data_head != NULL) {
-        QUIC_DATA *qd;
+    OPENSSL_free(s->ext.quic_boring_transport_params);
+    OPENSSL_free(s->ext.peer_quic_boring_transport_params_draft);
+    OPENSSL_free(s->ext.peer_quic_boring_transport_params_v1);
+    while (s->quic_boring_input_data_head != NULL) {
+        QUIC_BORING_DATA *qd;
 
-        qd = s->quic_input_data_head;
-        s->quic_input_data_head = qd->next;
+        qd = s->quic_boring_input_data_head;
+        s->quic_boring_input_data_head = qd->next;
         OPENSSL_free(qd);
     }
 #endif
@@ -2329,7 +2329,7 @@ int ssl_read_internal(SSL *s, void *buf, size_t num, size_t *readbytes)
         return -1;
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    if (SSL_CONNECTION_IS_QUIC(sc)) {
+    if (SSL_CONNECTION_IS_QUIC_BORING(sc)) {
         SSLerr(SSL_F_SSL_READ_INTERNAL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
         return -1;
     }
@@ -2485,7 +2485,7 @@ static int ssl_peek_internal(SSL *s, void *buf, size_t num, size_t *readbytes)
         return 0;
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    if (SSL_CONNECTION_IS_QUIC(sc)) {
+    if (SSL_CONNECTION_IS_QUIC_BORING(sc)) {
         SSLerr(SSL_F_SSL_PEEK_INTERNAL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
         return -1;
     }
@@ -2562,7 +2562,7 @@ int ssl_write_internal(SSL *s, const void *buf, size_t num,
         return 0;
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    if (SSL_CONNECTION_IS_QUIC(sc)) {
+    if (SSL_CONNECTION_IS_QUIC_BORING(sc)) {
         SSLerr(SSL_F_SSL_WRITE_INTERNAL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
         return -1;
     }
@@ -4873,7 +4873,7 @@ int ossl_ssl_get_error(const SSL *s, int i, int check_err)
     {
         if (SSL_want_read(s)) {
 #ifndef OPENSSL_NO_QUIC_BORING
-            if (SSL_CONNECTION_IS_QUIC(sc)) {
+            if (SSL_CONNECTION_IS_QUIC_BORING(sc)) {
                 return SSL_ERROR_WANT_READ;
             }
 #endif
@@ -4998,7 +4998,7 @@ int SSL_do_handshake(SSL *s)
     }
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    if (SSL_CONNECTION_IS_QUIC(sc) && ret == 1) {
+    if (SSL_CONNECTION_IS_QUIC_BORING(sc) && ret == 1) {
         if (sc->server) {
             if (sc->early_data_state == SSL_EARLY_DATA_ACCEPTING) {
                 sc->early_data_state = SSL_EARLY_DATA_FINISHED_READING;

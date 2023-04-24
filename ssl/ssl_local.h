@@ -255,9 +255,9 @@
 
 /* Check if an SSL structure is using QUIC (which uses TLSv1.3) */
 # ifndef OPENSSL_NO_QUIC_BORING
-#  define SSL_CONNECTION_IS_QUIC(s) (s->quic_method != NULL)
+#  define SSL_CONNECTION_IS_QUIC_BORING(s) (s->quic_boring_method != NULL)
 # else
-#  define SSL_CONNECTION_IS_QUIC(s) (0)
+#  define SSL_CONNECTION_IS_QUIC_BORING(s) (0)
 # endif
 
 /* Check if an SSL structure is using DTLS */
@@ -705,8 +705,8 @@ typedef enum tlsext_index_en {
     TLSEXT_IDX_certificate_authorities,
     TLSEXT_IDX_padding,
     TLSEXT_IDX_psk,
-    TLSEXT_IDX_quic_transport_parameters_draft,
-    TLSEXT_IDX_quic_transport_parameters_v1,
+    TLSEXT_IDX_quic_boring_transport_parameters_draft,
+    TLSEXT_IDX_quic_boring_transport_parameters_v1,
     /* Dummy index - must always be the last entry */
     TLSEXT_IDX_num_builtins
 } TLSEXT_INDEX;
@@ -1220,7 +1220,7 @@ struct ssl_ctx_st {
     char *qlog_title; /* Session title for qlog */
 # endif
 #ifndef OPENSSL_NO_QUIC_BORING
-    const SSL_QUIC_METHOD *quic_method;
+    const SSL_QUIC_BORING_METHOD *quic_boring_method;
 #endif
 };
 
@@ -1250,14 +1250,14 @@ typedef struct cert_pkey_st CERT_PKEY;
 #define SSL_TYPE_IS_QUIC(x)         (((x) & 0x80) != 0)
 
 #ifndef OPENSSL_NO_QUIC_BORING
-struct quic_data_st {
-    struct quic_data_st *next;
-    OSSL_ENCRYPTION_LEVEL level;
+struct quic_boring_data_st {
+    struct quic_boring_data_st *next;
+    OSSL_QUIC_BORING_ENCRYPTION_LEVEL level;
     size_t offset;
     size_t length;
 };
-typedef struct quic_data_st QUIC_DATA;
-int quic_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_ENCRYPTION_LEVEL level);
+typedef struct quic_boring_data_st QUIC_BORING_DATA;
+int quic_boring_set_encryption_secrets(SSL_CONNECTION *sc, OSSL_QUIC_BORING_ENCRYPTION_LEVEL level);
 #endif
 
 struct ssl_st {
@@ -1548,9 +1548,9 @@ struct ssl_connection_st {
     unsigned char client_app_traffic_secret[EVP_MAX_MD_SIZE];
     unsigned char server_app_traffic_secret[EVP_MAX_MD_SIZE];
 # ifndef OPENSSL_NO_QUIC_BORING
-    unsigned char client_hand_traffic_secret[EVP_MAX_MD_SIZE];
-    unsigned char server_hand_traffic_secret[EVP_MAX_MD_SIZE];
-    unsigned char client_early_traffic_secret[EVP_MAX_MD_SIZE];
+    unsigned char quic_boring_client_hand_traffic_secret[EVP_MAX_MD_SIZE];
+    unsigned char quic_boring_server_hand_traffic_secret[EVP_MAX_MD_SIZE];
+    unsigned char quic_boring_client_early_traffic_secret[EVP_MAX_MD_SIZE];
 # endif
     unsigned char exporter_master_secret[EVP_MAX_MD_SIZE];
     unsigned char early_exporter_master_secret[EVP_MAX_MD_SIZE];
@@ -1772,23 +1772,23 @@ struct ssl_connection_st {
         uint8_t server_cert_type_ctos;
 
 #ifndef OPENSSL_NO_QUIC_BORING
-        uint8_t *quic_transport_params;
-        size_t quic_transport_params_len;
-        uint8_t *peer_quic_transport_params_draft;
-        size_t peer_quic_transport_params_draft_len;
-        uint8_t *peer_quic_transport_params_v1;
-        size_t peer_quic_transport_params_v1_len;
+        uint8_t *quic_boring_transport_params;
+        size_t quic_boring_transport_params_len;
+        uint8_t *peer_quic_boring_transport_params_draft;
+        size_t peer_quic_boring_transport_params_draft_len;
+        uint8_t *peer_quic_boring_transport_params_v1;
+        size_t peer_quic_boring_transport_params_v1_len;
 #endif
     } ext;
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    OSSL_ENCRYPTION_LEVEL quic_read_level;
-    OSSL_ENCRYPTION_LEVEL quic_write_level;
-    QUIC_DATA *quic_input_data_head;
-    QUIC_DATA *quic_input_data_tail;
-    uint8_t quic_msg_hd[SSL3_HM_HEADER_LENGTH];
-    size_t quic_msg_hd_offset;
-    const SSL_QUIC_METHOD *quic_method;
+    OSSL_QUIC_BORING_ENCRYPTION_LEVEL quic_boring_read_level;
+    OSSL_QUIC_BORING_ENCRYPTION_LEVEL quic_boring_write_level;
+    QUIC_BORING_DATA *quic_boring_input_data_head;
+    QUIC_BORING_DATA *quic_boring_input_data_tail;
+    uint8_t quic_boring_msg_hd[SSL3_HM_HEADER_LENGTH];
+    size_t quic_boring_msg_hd_offset;
+    const SSL_QUIC_BORING_METHOD *quic_boring_method;
 #endif
     /*
      * Parsed form of the ClientHello, kept around across client_hello_cb
