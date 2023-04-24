@@ -85,7 +85,7 @@ static int ossl_statem_server13_read_transition(SSL_CONNECTION *s, int mt)
                 return 1;
             }
             break;
-        } else if (!SSL_CONNECTION_IS_QUIC(s)
+        } else if (!SSL_CONNECTION_IS_QUIC_BORING(s)
                    && s->ext.early_data == SSL_EARLY_DATA_ACCEPTED
                    && !SSL_NO_EOED(s)) {
             if (mt == SSL3_MT_END_OF_EARLY_DATA) {
@@ -1031,7 +1031,7 @@ WORK_STATE ossl_statem_server_post_work(SSL_CONNECTION *s, WORK_STATE wst)
             /* SSLfatal() already called */
             return WORK_ERROR;
 
-            if (SSL_CONNECTION_IS_QUIC(s)
+            if (SSL_CONNECTION_IS_QUIC_BORING(s)
                 && s->ext.early_data == SSL_EARLY_DATA_ACCEPTED) {
                 s->early_data_state = SSL_EARLY_DATA_FINISHED_READING;
                 if (!ssl->method->ssl3_enc->change_cipher_state(
