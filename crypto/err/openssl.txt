@@ -1333,7 +1333,7 @@ SSL_R_BAD_CHANGE_CIPHER_SPEC:103:bad change cipher spec
 SSL_R_BAD_CIPHER:186:bad cipher
 SSL_R_BAD_COMPRESSION_ALGORITHM:326:bad compression algorithm
 SSL_R_BAD_DATA:390:bad data
-SSL_R_BAD_DATA_LENGTH:294:bad data length
+SSL_R_QUIC_BORING_BAD_DATA_LENGTH:294:quic boring bad data length
 SSL_R_BAD_DATA_RETURNED_BY_CALLBACK:106:bad data returned by callback
 SSL_R_BAD_DECOMPRESSION:107:bad decompression
 SSL_R_BAD_DH_VALUE:102:bad dh value
@@ -1447,7 +1447,7 @@ SSL_R_INCONSISTENT_EARLY_DATA_ALPN:222:inconsistent early data alpn
 SSL_R_INCONSISTENT_EARLY_DATA_SNI:231:inconsistent early data sni
 SSL_R_INCONSISTENT_EXTMS:104:inconsistent extms
 SSL_R_INSUFFICIENT_SECURITY:241:insufficient security
-SSL_R_INTERNAL_ERROR:295:internal error
+SSL_R_QUIC_BORING_INTERNAL_ERROR:295:quic boring internal error
 SSL_R_INVALID_ALERT:205:invalid alert
 SSL_R_INVALID_CCS_MESSAGE:260:invalid ccs message
 SSL_R_INVALID_CERTIFICATE_OR_ALG:238:invalid certificate or alg
@@ -1481,8 +1481,8 @@ SSL_R_MISSING_ECDSA_SIGNING_CERT:381:missing ecdsa signing cert
 SSL_R_MISSING_FATAL:256:missing fatal
 SSL_R_MISSING_PARAMETERS:290:missing parameters
 SSL_R_MISSING_PSK_KEX_MODES_EXTENSION:310:missing psk kex modes extension
-SSL_R_MISSING_QUIC_TRANSPORT_PARAMETERS_EXTENSION:296:\
-	missing quic_transport_parameters extension
+SSL_R_QUIC_BORING_MISSING_TRANSPORT_PARAMETERS_EXTENSION:296:\
+	quic boring missing transport parameters extension
 SSL_R_MISSING_RSA_CERTIFICATE:168:missing rsa certificate
 SSL_R_MISSING_RSA_ENCRYPTING_CERT:169:missing rsa encrypting cert
 SSL_R_MISSING_RSA_SIGNING_CERT:170:missing rsa signing cert
@@ -1554,7 +1554,7 @@ SSL_R_PSK_NO_SERVER_CB:225:psk no server cb
 SSL_R_QUIC_HANDSHAKE_LAYER_ERROR:393:quic handshake layer error
 SSL_R_QUIC_NETWORK_ERROR:387:quic network error
 SSL_R_QUIC_PROTOCOL_ERROR:382:quic protocol error
-SSL_R_QUIC_KEY_UPDATE_RECEIVED:297:KeyUpdate message received
+SSL_R_QUIC_BORING_KEY_UPDATE_RECEIVED:297:quic boring key update message received
 SSL_R_READ_BIO_NOT_SET:211:read bio not set
 SSL_R_READ_TIMEOUT_EXPIRED:312:read timeout expired
 SSL_R_RECORDS_NOT_RELEASED:321:records not released
@@ -1693,7 +1693,7 @@ SSL_R_WRONG_CERTIFICATE_TYPE:383:wrong certificate type
 SSL_R_WRONG_CIPHER_RETURNED:261:wrong cipher returned
 SSL_R_WRONG_CURVE:378:wrong curve
 SSL_R_WRONG_RPK_TYPE:351:wrong rpk type
-SSL_R_WRONG_ENCRYPTION_LEVEL_RECEIVED:296:wrong encryption level received
+SSL_R_QUIC_BORING_WRONG_ENCRYPTION_LEVEL_RECEIVED:296:quic boring wrong encryption level received
 SSL_R_WRONG_SIGNATURE_LENGTH:264:wrong signature length
 SSL_R_WRONG_SIGNATURE_SIZE:265:wrong signature size
 SSL_R_WRONG_SIGNATURE_TYPE:370:wrong signature type
