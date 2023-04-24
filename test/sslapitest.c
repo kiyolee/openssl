@@ -13299,50 +13299,50 @@ static int test_no_renegotiation(int idx)
 
 #ifndef OPENSSL_NO_QUIC_BORING
 
-static int test_quic_set_encryption_secrets(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
-                                            const uint8_t *read_secret,
-                                            const uint8_t *write_secret, size_t secret_len)
+static int test_quic_boring_set_encryption_secrets(SSL *ssl, OSSL_QUIC_BORING_ENCRYPTION_LEVEL level,
+                                                   const uint8_t *read_secret,
+                                                   const uint8_t *write_secret, size_t secret_len)
 {
-    test_printf_stderr("quic_set_encryption_secrets() %s, lvl=%d, len=%zd\n",
+    test_printf_stderr("quic_boring_set_encryption_secrets() %s, lvl=%d, len=%zd\n",
                        SSL_CONNECTION_FROM_SSL(ssl)->server ? "server" : "client", level, secret_len);
     return 1;
 }
-static int test_quic_add_handshake_data(SSL *ssl, OSSL_ENCRYPTION_LEVEL level,
-                                        const uint8_t *data, size_t len)
+static int test_quic_boring_add_handshake_data(SSL *ssl, OSSL_QUIC_BORING_ENCRYPTION_LEVEL level,
+                                               const uint8_t *data, size_t len)
 {
     SSL *peer = (SSL*)SSL_get_app_data(ssl);
 
-    test_printf_stderr("quic_add_handshake_data() %s, lvl=%d, *data=0x%02X, len=%zd\n",
+    test_printf_stderr("quic_boring_add_handshake_data() %s, lvl=%d, *data=0x%02X, len=%zd\n",
                        SSL_CONNECTION_FROM_SSL(ssl)->server ? "server" : "client", level, (int)*data, len);
     if (!TEST_ptr(peer))
         return 0;
 
-    if (!TEST_true(SSL_provide_quic_data(peer, level, data, len))) {
+    if (!TEST_true(SSL_provide_quic_boring_data(peer, level, data, len))) {
         ERR_print_errors_fp(stderr);
         return 0;
     }
 
     return 1;
 }
-static int test_quic_flush_flight(SSL *ssl)
+static int test_quic_boring_flush_flight(SSL *ssl)
 {
-    test_printf_stderr("quic_flush_flight() %s\n", SSL_CONNECTION_FROM_SSL(ssl)->server ? "server" : "client");
+    test_printf_stderr("quic_boring_flush_flight() %s\n", SSL_CONNECTION_FROM_SSL(ssl)->server ? "server" : "client");
     return 1;
 }
-static int test_quic_send_alert(SSL *ssl, enum ssl_encryption_level_t level, uint8_t alert)
+static int test_quic_boring_send_alert(SSL *ssl, enum ssl_quic_boring_encryption_level_t level, uint8_t alert)
 {
-    test_printf_stderr("quic_send_alert() %s, lvl=%d, alert=%d\n",
+    test_printf_stderr("quic_boring_send_alert() %s, lvl=%d, alert=%d\n",
                        SSL_CONNECTION_FROM_SSL(ssl)->server ? "server" : "client", level, alert);
     return 1;
 }
 
-static SSL_QUIC_METHOD quic_method = {
-    test_quic_set_encryption_secrets,
-    test_quic_add_handshake_data,
-    test_quic_flush_flight,
-    test_quic_send_alert,
+static SSL_QUIC_BORING_METHOD quic_boring_method = {
+    test_quic_boring_set_encryption_secrets,
+    test_quic_boring_add_handshake_data,
+    test_quic_boring_flush_flight,
+    test_quic_boring_send_alert,
 };
-static int test_quic_api(void)
+static int test_quic_boring_api(void)
 {
     SSL_CTX *cctx = NULL, *sctx = NULL;
     SSL *clientssl = NULL, *serverssl = NULL;
@@ -13361,14 +13361,14 @@ static int test_quic_api(void)
 
 
     if (!TEST_ptr(sctx = SSL_CTX_new_ex(libctx, NULL, TLS_server_method()))
-            || !TEST_true(SSL_CTX_set_quic_method(sctx, &quic_method))
-            || !TEST_ptr(sctx->quic_method)
+            || !TEST_true(SSL_CTX_set_quic_boring_method(sctx, &quic_boring_method))
+            || !TEST_ptr(sctx->quic_boring_method)
             || !TEST_ptr(serverssl = SSL_new(sctx))
-            || !TEST_true(SSL_CONNECTION_IS_QUIC(SSL_CONNECTION_FROM_SSL(serverssl)))
-            || !TEST_true(SSL_set_quic_method(serverssl, NULL))
-            || !TEST_false(SSL_CONNECTION_IS_QUIC(SSL_CONNECTION_FROM_SSL(serverssl)))
-            || !TEST_true(SSL_set_quic_method(serverssl, &quic_method))
-            || !TEST_true(SSL_CONNECTION_IS_QUIC(SSL_CONNECTION_FROM_SSL(serverssl))))
+            || !TEST_true(SSL_CONNECTION_IS_QUIC_BORING(SSL_CONNECTION_FROM_SSL(serverssl)))
+            || !TEST_true(SSL_set_quic_boring_method(serverssl, NULL))
+            || !TEST_false(SSL_CONNECTION_IS_QUIC_BORING(SSL_CONNECTION_FROM_SSL(serverssl)))
+            || !TEST_true(SSL_set_quic_boring_method(serverssl, &quic_boring_method))
+            || !TEST_true(SSL_CONNECTION_IS_QUIC_BORING(SSL_CONNECTION_FROM_SSL(serverssl))))
         goto end;
 
     SSL_CTX_free(sctx);
@@ -13380,38 +13380,38 @@ static int test_quic_api(void)
                                        TLS_client_method(),
                                        TLS1_3_VERSION, 0,
                                        &sctx, &cctx, cert, privkey))
-            || !TEST_true(SSL_CTX_set_quic_method(sctx, &quic_method))
-            || !TEST_true(SSL_CTX_set_quic_method(cctx, &quic_method))
+            || !TEST_true(SSL_CTX_set_quic_boring_method(sctx, &quic_boring_method))
+            || !TEST_true(SSL_CTX_set_quic_boring_method(cctx, &quic_boring_method))
             || !TEST_true(create_ssl_objects(sctx, cctx, &serverssl,
                                              &clientssl, NULL, NULL))
-            || !TEST_true(SSL_set_quic_transport_params(serverssl,
-                                                        (unsigned char*)server_str,
-                                                        sizeof(server_str)))
-            || !TEST_true(SSL_set_quic_transport_params(clientssl,
-                                                        (unsigned char*)client_str,
-                                                        sizeof(client_str)))
+            || !TEST_true(SSL_set_quic_boring_transport_params(serverssl,
+                                                               (unsigned char*)server_str,
+                                                               sizeof(server_str)))
+            || !TEST_true(SSL_set_quic_boring_transport_params(clientssl,
+                                                               (unsigned char*)client_str,
+                                                               sizeof(client_str)))
             || !TEST_true(SSL_set_app_data(serverssl, clientssl))
             || !TEST_true(SSL_set_app_data(clientssl, serverssl))
             || !TEST_true(create_ssl_connection(serverssl, clientssl,
                                                 SSL_ERROR_NONE))
             || !TEST_true(SSL_version(serverssl) == TLS1_3_VERSION)
             || !TEST_true(SSL_version(clientssl) == TLS1_3_VERSION)
-            || !(TEST_int_eq(SSL_quic_read_level(clientssl), ssl_encryption_application))
-            || !(TEST_int_eq(SSL_quic_read_level(serverssl), ssl_encryption_application))
-            || !(TEST_int_eq(SSL_quic_write_level(clientssl), ssl_encryption_application))
-            || !(TEST_int_eq(SSL_quic_write_level(serverssl), ssl_encryption_application)))
+            || !(TEST_int_eq(SSL_quic_boring_read_level(clientssl), ssl_quic_boring_encryption_application))
+            || !(TEST_int_eq(SSL_quic_boring_read_level(serverssl), ssl_quic_boring_encryption_application))
+            || !(TEST_int_eq(SSL_quic_boring_write_level(clientssl), ssl_quic_boring_encryption_application))
+            || !(TEST_int_eq(SSL_quic_boring_write_level(serverssl), ssl_quic_boring_encryption_application)))
         goto end;
 
-    SSL_get_peer_quic_transport_params(serverssl, &peer_str, &peer_str_len);
+    SSL_get_peer_quic_boring_transport_params(serverssl, &peer_str, &peer_str_len);
     if (!TEST_mem_eq(peer_str, peer_str_len, client_str, sizeof(client_str)))
         goto end;
-    SSL_get_peer_quic_transport_params(clientssl, &peer_str, &peer_str_len);
+    SSL_get_peer_quic_boring_transport_params(clientssl, &peer_str, &peer_str_len);
     if (!TEST_mem_eq(peer_str, peer_str_len, server_str, sizeof(server_str)))
         goto end;
 
     /* Deal with two NewSessionTickets */
-    if (!TEST_true(SSL_process_quic_post_handshake(clientssl))
-            || !TEST_true(SSL_process_quic_post_handshake(clientssl)))
+    if (!TEST_true(SSL_process_quic_boring_post_handshake(clientssl))
+            || !TEST_true(SSL_process_quic_boring_post_handshake(clientssl)))
         goto end;
 
     testresult = 1;
@@ -13760,7 +13760,7 @@ int setup_tests(void)
 #endif
     ADD_ALL_TESTS(test_no_renegotiation, 2);
 #ifndef OPENSSL_NO_QUIC_BORING
-    ADD_TEST(test_quic_api);
+    ADD_TEST(test_quic_boring_api);
 #endif
     return 1;
 
