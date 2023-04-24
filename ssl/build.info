@@ -20,8 +20,7 @@ SOURCE[../libssl]=\
         bio_ssl.c ssl_err.c ssl_err_legacy.c tls_srp.c t1_trce.c ssl_utst.c \
         statem/statem.c \
         ssl_cert_comp.c \
-        tls_depr.c \
-        ssl_quic.c statem/statem_quic.c
+        tls_depr.c
 
 # For shared builds we need to include the libcrypto packet.c and quic_vlint.c
 # in libssl as well.
@@ -34,4 +33,8 @@ ENDIF
 
 IF[{- !$disabled{quic} -}]
   SOURCE[../libssl]=priority_queue.c
+ENDIF
+
+IF[{- !$disabled{quic-boring} -}]
+  SOURCE[../libssl]=ssl_quic_boring.c statem/statem_quic_boring.c
 ENDIF
