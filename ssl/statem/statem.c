@@ -624,8 +624,8 @@ static SUB_STATE_RETURN read_state_machine(SSL_CONNECTION *s)
                  */
                 ret = dtls_get_message(s, &mt);
 #ifndef OPENSSL_NO_QUIC_BORING
-            } else if (SSL_CONNECTION_IS_QUIC(s)) {
-                ret = quic_get_message(s, &mt, &len);
+            } else if (SSL_CONNECTION_IS_QUIC_BORING(s)) {
+                ret = quic_boring_get_message(s, &mt, &len);
 #endif
             } else {
                 ret = tls_get_message_header(s, &mt);
@@ -656,8 +656,8 @@ static SUB_STATE_RETURN read_state_machine(SSL_CONNECTION *s)
                 return SUB_STATE_ERROR;
             }
 
-            /* dtls_get_message/quic_get_message already did this */
-            if (!SSL_CONNECTION_IS_DTLS(s) && !SSL_CONNECTION_IS_QUIC(s)
+            /* dtls_get_message/quic_boring_get_message already did this */
+            if (!SSL_CONNECTION_IS_DTLS(s) && !SSL_CONNECTION_IS_QUIC_BORING(s)
                     && s->s3.tmp.message_size > 0
                     && !grow_init_buf(s, s->s3.tmp.message_size
                                          + SSL3_HM_HEADER_LENGTH)) {
@@ -675,7 +675,7 @@ static SUB_STATE_RETURN read_state_machine(SSL_CONNECTION *s)
                  * opportunity to do any further processing.
                  */
                 ret = dtls_get_message_body(s, &len);
-            } else if (!SSL_CONNECTION_IS_QUIC(s)) {
+            } else if (!SSL_CONNECTION_IS_QUIC_BORING(s)) {
                 /* We already got this above for QUIC */
                 ret = tls_get_message_body(s, &len);
             }
@@ -969,8 +969,8 @@ int statem_flush(SSL_CONNECTION *s)
 {
     s->rwstate = SSL_WRITING;
 #ifndef OPENSSL_NO_QUIC_BORING
-    if (SSL_CONNECTION_IS_QUIC(s)) {
-        if (!s->quic_method->flush_flight(SSL_CONNECTION_GET_SSL(s))) {
+    if (SSL_CONNECTION_IS_QUIC_BORING(s)) {
+        if (!s->quic_boring_method->flush_flight(SSL_CONNECTION_GET_SSL(s))) {
             /* NOTE: BIO_flush() does not generate an error */
             SSLerr(SSL_F_STATEM_FLUSH, ERR_R_INTERNAL_ERROR);
             return 0;
