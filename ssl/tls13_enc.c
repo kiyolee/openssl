@@ -464,14 +464,14 @@ static const unsigned char resumption_master_secret[] = "\x72\x65\x73\x20\x6D\x6
 static const unsigned char early_exporter_master_secret[] = "\x65\x20\x65\x78\x70\x20\x6D\x61\x73\x74\x65\x72";
 
 #ifndef OPENSSL_NO_QUIC_BORING
-static int quic_change_cipher_state(SSL_CONNECTION *s, int which)
+static int quic_boring_change_cipher_state(SSL_CONNECTION *s, int which)
 {
     unsigned char hash[EVP_MAX_MD_SIZE];
     size_t hashlen = 0;
     int hashleni;
     int ret = 0;
     const EVP_MD *md = NULL;
-    OSSL_ENCRYPTION_LEVEL level = ssl_encryption_initial;
+    OSSL_QUIC_BORING_ENCRYPTION_LEVEL level = ssl_quic_boring_encryption_initial;
     int is_handshake = ((which & SSL3_CC_HANDSHAKE) == SSL3_CC_HANDSHAKE);
     int is_client_read = ((which & SSL3_CHANGE_CIPHER_CLIENT_READ) == SSL3_CHANGE_CIPHER_CLIENT_READ);
     int is_server_write = ((which & SSL3_CHANGE_CIPHER_SERVER_WRITE) == SSL3_CHANGE_CIPHER_SERVER_WRITE);
@@ -549,21 +549,21 @@ static int quic_change_cipher_state(SSL_CONNECTION *s, int which)
 
     if (is_client_read || is_server_write) {
         if (is_handshake) {
-            level = ssl_encryption_handshake;
+            level = ssl_quic_boring_encryption_handshake;
 
             if (!tls13_hkdf_expand(s, md, s->handshake_secret, client_handshake_traffic,
                                    sizeof(client_handshake_traffic)-1, hash, hashlen,
-                                   s->client_hand_traffic_secret, hashlen, 1)
-                || !ssl_log_secret(s, CLIENT_HANDSHAKE_LABEL, s->client_hand_traffic_secret, hashlen)
+                                   s->quic_boring_client_hand_traffic_secret, hashlen, 1)
+                || !ssl_log_secret(s, CLIENT_HANDSHAKE_LABEL, s->quic_boring_client_hand_traffic_secret, hashlen)
                 || !tls13_hkdf_expand(s, md, s->handshake_secret, server_handshake_traffic,
                                       sizeof(server_handshake_traffic)-1, hash, hashlen,
-                                      s->server_hand_traffic_secret, hashlen, 1)
-                || !ssl_log_secret(s, SERVER_HANDSHAKE_LABEL, s->server_hand_traffic_secret, hashlen)) {
+                                      s->quic_boring_server_hand_traffic_secret, hashlen, 1)
+                || !ssl_log_secret(s, SERVER_HANDSHAKE_LABEL, s->quic_boring_server_hand_traffic_secret, hashlen)) {
                 /* SSLfatal() already called */
                 goto err;
             }
         } else {
-            level = ssl_encryption_application;
+            level = ssl_quic_boring_encryption_application;
 
             if (!tls13_hkdf_expand(s, md, s->master_secret, client_application_traffic,
                                    sizeof(client_application_traffic)-1, hash, hashlen,
@@ -577,37 +577,37 @@ static int quic_change_cipher_state(SSL_CONNECTION *s, int which)
                 goto err;
             }
         }
-        if (!quic_set_encryption_secrets(s, level)) {
+        if (!quic_boring_set_encryption_secrets(s, level)) {
             /* SSLfatal() already called */
             goto err;
         }
         if (s->server)
-            s->quic_write_level = level;
+            s->quic_boring_write_level = level;
         else
-            s->quic_read_level = level;
+            s->quic_boring_read_level = level;
     } else {
         if (is_early) {
-            level = ssl_encryption_early_data;
+            level = ssl_quic_boring_encryption_early_data;
 
             if (!tls13_hkdf_expand(s, md, s->early_secret, client_early_traffic,
                                    sizeof(client_early_traffic)-1, hash, hashlen,
-                                   s->client_early_traffic_secret, hashlen, 1)
-                || !ssl_log_secret(s, CLIENT_EARLY_LABEL, s->client_early_traffic_secret, hashlen)
-                || !quic_set_encryption_secrets(s, level)) {
+                                   s->quic_boring_client_early_traffic_secret, hashlen, 1)
+                || !ssl_log_secret(s, CLIENT_EARLY_LABEL, s->quic_boring_client_early_traffic_secret, hashlen)
+                || !quic_boring_set_encryption_secrets(s, level)) {
                 /* SSLfatal() already called */
                 goto err;
             }
         } else if (is_handshake) {
-            level = ssl_encryption_handshake;
+            level = ssl_quic_boring_encryption_handshake;
         } else {
-            level = ssl_encryption_application;
+            level = ssl_quic_boring_encryption_application;
         }
 
-        if (level != ssl_encryption_early_data) {
+        if (level != ssl_quic_boring_encryption_early_data) {
             if (s->server)
-                s->quic_read_level = level;
+                s->quic_boring_read_level = level;
             else {
-                s->quic_write_level = level;
+                s->quic_boring_write_level = level;
             }
         }
     }
@@ -617,7 +617,7 @@ static int quic_change_cipher_state(SSL_CONNECTION *s, int which)
         if (!(which & SSL3_CC_EARLY)) {
             if (which & SSL3_CC_HANDSHAKE) {
                 if (!tls13_derive_finishedkey(
-                        s, md, s->client_hand_traffic_secret,
+                        s, md, s->quic_boring_client_hand_traffic_secret,
                         s->client_finished_secret, hashlen)) {
                     /* SSLfatal() already called */
                     goto err;
@@ -631,7 +631,7 @@ static int quic_change_cipher_state(SSL_CONNECTION *s, int which)
             }
         }
     } else if (which & SSL3_CC_HANDSHAKE) {
-        if (!tls13_derive_finishedkey(s, md, s->server_hand_traffic_secret,
+        if (!tls13_derive_finishedkey(s, md, s->quic_boring_server_hand_traffic_secret,
                                       s->server_finished_secret, hashlen)) {
             /* SSLfatal() already called */
             goto err;
@@ -669,8 +669,8 @@ int tls13_change_cipher_state(SSL_CONNECTION *s, int which)
                                                 : OSSL_RECORD_DIRECTION_WRITE;
 
 #ifndef OPENSSL_NO_QUIC_BORING
-    if (SSL_CONNECTION_IS_QUIC(s))
-        return quic_change_cipher_state(s, which);
+    if (SSL_CONNECTION_IS_QUIC_BORING(s))
+        return quic_boring_change_cipher_state(s, which);
 #endif
 
     if (((which & SSL3_CC_CLIENT) && (which & SSL3_CC_WRITE))
