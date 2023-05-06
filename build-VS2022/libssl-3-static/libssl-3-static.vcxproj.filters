@@ -309,5 +309,11 @@
     <ClCompile Include="..\..\ssl\quic\qlog.c">
       <Filter>Source Files\ssl\quic</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ssl\ssl_quic_boring.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\statem\statem_quic_boring.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
