@@ -237,7 +237,7 @@ our %config = (
         "OPENSSL_SYS_WIN32"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-sslkeylog no-static-engine no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib enable-quic-boring no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-sslkeylog no-static-engine no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -249,7 +249,8 @@ our %config = (
         "VC-WIN32",
         "no-shared",
         "no-dynamic-engine",
-        "zlib"
+        "zlib",
+        "enable-quic-boring"
     ],
     "perlenv" => {
         "AR" => undef,
@@ -484,6 +485,7 @@ our @disablables = (
     "psk",
     "pvkkdf",
     "quic",
+    "quic-boring",
     "unstable-qlog",
     "rc2",
     "rc4",
@@ -4085,6 +4087,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_CTX_set_psk_client_callback.html" => [
             ".\\doc\\man3\\SSL_CTX_set_psk_client_callback.pod"
         ],
+        "doc\\html\\man3\\SSL_CTX_set_quic_boring_method.html" => [
+            ".\\doc\\man3\\SSL_CTX_set_quic_boring_method.pod"
+        ],
         "doc\\html\\man3\\SSL_CTX_set_quiet_shutdown.html" => [
             ".\\doc\\man3\\SSL_CTX_set_quiet_shutdown.pod"
         ],
@@ -7000,6 +7005,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_CTX_set_psk_client_callback.3" => [
             ".\\doc\\man3\\SSL_CTX_set_psk_client_callback.pod"
+        ],
+        "doc\\man\\man3\\SSL_CTX_set_quic_boring_method.3" => [
+            ".\\doc\\man3\\SSL_CTX_set_quic_boring_method.pod"
         ],
         "doc\\man\\man3\\SSL_CTX_set_quiet_shutdown.3" => [
             ".\\doc\\man3\\SSL_CTX_set_quiet_shutdown.pod"
@@ -12016,6 +12024,7 @@ our %unified_info = (
                 "ssl\\libssl-lib-ssl_init.o",
                 "ssl\\libssl-lib-ssl_lib.o",
                 "ssl\\libssl-lib-ssl_mcnf.o",
+                "ssl\\libssl-lib-ssl_quic_boring.o",
                 "ssl\\libssl-lib-ssl_rsa.o",
                 "ssl\\libssl-lib-ssl_rsa_legacy.o",
                 "ssl\\libssl-lib-ssl_sess.o",
@@ -12138,6 +12147,7 @@ our %unified_info = (
                 "ssl\\statem\\libssl-lib-statem_clnt.o",
                 "ssl\\statem\\libssl-lib-statem_dtls.o",
                 "ssl\\statem\\libssl-lib-statem_lib.o",
+                "ssl\\statem\\libssl-lib-statem_quic_boring.o",
                 "ssl\\statem\\libssl-lib-statem_srvr.o"
             ],
             "products" => {
@@ -14676,6 +14686,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_CTX_set_psk_client_callback.html" => [
             ".\\doc\\man3\\SSL_CTX_set_psk_client_callback.pod"
+        ],
+        "doc\\html\\man3\\SSL_CTX_set_quic_boring_method.html" => [
+            ".\\doc\\man3\\SSL_CTX_set_quic_boring_method.pod"
         ],
         "doc\\html\\man3\\SSL_CTX_set_quiet_shutdown.html" => [
             ".\\doc\\man3\\SSL_CTX_set_quiet_shutdown.pod"
@@ -17539,6 +17552,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_CTX_set_psk_client_callback.3" => [
             ".\\doc\\man3\\SSL_CTX_set_psk_client_callback.pod"
         ],
+        "doc\\man\\man3\\SSL_CTX_set_quic_boring_method.3" => [
+            ".\\doc\\man3\\SSL_CTX_set_quic_boring_method.pod"
+        ],
         "doc\\man\\man3\\SSL_CTX_set_quiet_shutdown.3" => [
             ".\\doc\\man3\\SSL_CTX_set_quiet_shutdown.pod"
         ],
@@ -19942,6 +19958,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_CTX_set_num_tickets.html",
             "doc\\html\\man3\\SSL_CTX_set_options.html",
             "doc\\html\\man3\\SSL_CTX_set_psk_client_callback.html",
+            "doc\\html\\man3\\SSL_CTX_set_quic_boring_method.html",
             "doc\\html\\man3\\SSL_CTX_set_quiet_shutdown.html",
             "doc\\html\\man3\\SSL_CTX_set_read_ahead.html",
             "doc\\html\\man3\\SSL_CTX_set_record_padding_callback.html",
@@ -24905,6 +24922,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_CTX_set_num_tickets.3",
             "doc\\man\\man3\\SSL_CTX_set_options.3",
             "doc\\man\\man3\\SSL_CTX_set_psk_client_callback.3",
+            "doc\\man\\man3\\SSL_CTX_set_quic_boring_method.3",
             "doc\\man\\man3\\SSL_CTX_set_quiet_shutdown.3",
             "doc\\man\\man3\\SSL_CTX_set_read_ahead.3",
             "doc\\man\\man3\\SSL_CTX_set_record_padding_callback.3",
@@ -29572,6 +29590,7 @@ our %unified_info = (
             "ssl\\libssl-lib-ssl_init.o",
             "ssl\\libssl-lib-ssl_lib.o",
             "ssl\\libssl-lib-ssl_mcnf.o",
+            "ssl\\libssl-lib-ssl_quic_boring.o",
             "ssl\\libssl-lib-ssl_rsa.o",
             "ssl\\libssl-lib-ssl_rsa_legacy.o",
             "ssl\\libssl-lib-ssl_sess.o",
@@ -29645,6 +29664,7 @@ our %unified_info = (
             "ssl\\statem\\libssl-lib-statem_clnt.o",
             "ssl\\statem\\libssl-lib-statem_dtls.o",
             "ssl\\statem\\libssl-lib-statem_lib.o",
+            "ssl\\statem\\libssl-lib-statem_quic_boring.o",
             "ssl\\statem\\libssl-lib-statem_srvr.o"
         ],
         "providers\\common\\der\\libcommon-lib-der_digests_gen.o" => [
@@ -30610,6 +30630,9 @@ our %unified_info = (
         "ssl\\libssl-lib-ssl_mcnf.o" => [
             ".\\ssl\\ssl_mcnf.c"
         ],
+        "ssl\\libssl-lib-ssl_quic_boring.o" => [
+            ".\\ssl\\ssl_quic_boring.c"
+        ],
         "ssl\\libssl-lib-ssl_rsa.o" => [
             ".\\ssl\\ssl_rsa.c"
         ],
@@ -30834,6 +30857,9 @@ our %unified_info = (
         ],
         "ssl\\statem\\libssl-lib-statem_lib.o" => [
             ".\\ssl\\statem\\statem_lib.c"
+        ],
+        "ssl\\statem\\libssl-lib-statem_quic_boring.o" => [
+            ".\\ssl\\statem\\statem_quic_boring.c"
         ],
         "ssl\\statem\\libssl-lib-statem_srvr.o" => [
             ".\\ssl\\statem\\statem_srvr.c"
