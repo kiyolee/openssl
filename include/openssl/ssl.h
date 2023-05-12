@@ -2338,6 +2338,34 @@ __owur int SSL_net_write_desired(SSL *s);
 __owur int SSL_set_blocking_mode(SSL *s, int blocking);
 __owur int SSL_get_blocking_mode(SSL *s);
 __owur int SSL_set_initial_peer_addr(SSL *s, const BIO_ADDR *peer_addr);
+__owur SSL *SSL_get0_connection(SSL *s);
+__owur int SSL_is_connection(SSL *s);
+
+#define SSL_STREAM_TYPE_NONE        0
+#define SSL_STREAM_TYPE_READ        (1U << 0)
+#define SSL_STREAM_TYPE_WRITE       (1U << 1)
+#define SSL_STREAM_TYPE_BIDI        (SSL_STREAM_TYPE_READ | SSL_STREAM_TYPE_WRITE)
+__owur int SSL_get_stream_type(SSL *s);
+
+__owur uint64_t SSL_get_stream_id(SSL *s);
+
+#define SSL_DEFAULT_STREAM_MODE_NONE        0
+#define SSL_DEFAULT_STREAM_MODE_AUTO_BIDI   1
+#define SSL_DEFAULT_STREAM_MODE_AUTO_UNI    2
+__owur int SSL_set_default_stream_mode(SSL *s, uint32_t mode);
+
+#define SSL_STREAM_FLAG_UNI     (1U << 0)
+__owur SSL *SSL_new_stream(SSL *s, uint64_t flags);
+
+#define SSL_INCOMING_STREAM_POLICY_AUTO      0
+#define SSL_INCOMING_STREAM_POLICY_ACCEPT    1
+#define SSL_INCOMING_STREAM_POLICY_REJECT    2
+__owur int SSL_set_incoming_stream_policy(SSL *s, int policy, uint64_t aec);
+
+#define SSL_ACCEPT_STREAM_NO_BLOCK      (1U << 0)
+__owur SSL *SSL_accept_stream(SSL *s, uint64_t flags);
+__owur size_t SSL_get_accept_stream_queue_len(SSL *s);
+
 # ifndef OPENSSL_NO_QUIC
 __owur int SSL_inject_net_dgram(SSL *s, const unsigned char *buf,
                                 size_t buf_len,
@@ -2358,6 +2386,38 @@ __owur int SSL_shutdown_ex(SSL *ssl, uint64_t flags,
                            size_t args_len);
 
 __owur int SSL_stream_conclude(SSL *ssl, uint64_t flags);
+
+typedef struct ssl_stream_reset_args_st {
+    uint64_t quic_error_code;
+} SSL_STREAM_RESET_ARGS;
+
+__owur int SSL_stream_reset(SSL *ssl,
+                            const SSL_STREAM_RESET_ARGS *args,
+                            size_t args_len);
+
+#define SSL_STREAM_STATE_NONE           0
+#define SSL_STREAM_STATE_OK             1
+#define SSL_STREAM_STATE_WRONG_DIR      2
+#define SSL_STREAM_STATE_FINISHED       3
+#define SSL_STREAM_STATE_RESET_LOCAL    4
+#define SSL_STREAM_STATE_RESET_REMOTE   5
+#define SSL_STREAM_STATE_CONN_CLOSED    6
+__owur int SSL_get_stream_read_state(SSL *ssl);
+__owur int SSL_get_stream_write_state(SSL *ssl);
+
+__owur int SSL_get_stream_read_error_code(SSL *ssl, uint64_t *app_error_code);
+__owur int SSL_get_stream_write_error_code(SSL *ssl, uint64_t *app_error_code);
+
+typedef struct ssl_conn_close_info_st {
+    uint64_t error_code;
+    char     *reason;
+    size_t    reason_len;
+    int       is_local, is_transport;
+} SSL_CONN_CLOSE_INFO;
+
+__owur int SSL_get_conn_close_info(SSL *ssl,
+                                   SSL_CONN_CLOSE_INFO *info,
+                                   size_t info_len);
 
 # ifndef OPENSSL_NO_DEPRECATED_1_1_0
 #  define SSL_cache_hit(s) SSL_session_reused(s)

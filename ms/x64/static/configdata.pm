@@ -3752,6 +3752,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_accept.html" => [
             ".\\doc\\man3\\SSL_accept.pod"
         ],
+        "doc\\html\\man3\\SSL_accept_stream.html" => [
+            ".\\doc\\man3\\SSL_accept_stream.pod"
+        ],
         "doc\\html\\man3\\SSL_alert_type_string.html" => [
             ".\\doc\\man3\\SSL_alert_type_string.pod"
         ],
@@ -3779,6 +3782,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_free.html" => [
             ".\\doc\\man3\\SSL_free.pod"
         ],
+        "doc\\html\\man3\\SSL_get0_connection.html" => [
+            ".\\doc\\man3\\SSL_get0_connection.pod"
+        ],
         "doc\\html\\man3\\SSL_get0_peer_rpk.html" => [
             ".\\doc\\man3\\SSL_get0_peer_rpk.pod"
         ],
@@ -3799,6 +3805,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_get_client_random.html" => [
             ".\\doc\\man3\\SSL_get_client_random.pod"
+        ],
+        "doc\\html\\man3\\SSL_get_conn_close_info.html" => [
+            ".\\doc\\man3\\SSL_get_conn_close_info.pod"
         ],
         "doc\\html\\man3\\SSL_get_current_cipher.html" => [
             ".\\doc\\man3\\SSL_get_current_cipher.pod"
@@ -3842,6 +3851,12 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_get_shared_sigalgs.html" => [
             ".\\doc\\man3\\SSL_get_shared_sigalgs.pod"
         ],
+        "doc\\html\\man3\\SSL_get_stream_id.html" => [
+            ".\\doc\\man3\\SSL_get_stream_id.pod"
+        ],
+        "doc\\html\\man3\\SSL_get_stream_read_state.html" => [
+            ".\\doc\\man3\\SSL_get_stream_read_state.pod"
+        ],
         "doc\\html\\man3\\SSL_get_tick_timeout.html" => [
             ".\\doc\\man3\\SSL_get_tick_timeout.pod"
         ],
@@ -3871,6 +3886,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_new.html" => [
             ".\\doc\\man3\\SSL_new.pod"
+        ],
+        "doc\\html\\man3\\SSL_new_stream.html" => [
+            ".\\doc\\man3\\SSL_new_stream.pod"
         ],
         "doc\\html\\man3\\SSL_pending.html" => [
             ".\\doc\\man3\\SSL_pending.pod"
@@ -3905,8 +3923,14 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_set_connect_state.html" => [
             ".\\doc\\man3\\SSL_set_connect_state.pod"
         ],
+        "doc\\html\\man3\\SSL_set_default_stream_mode.html" => [
+            ".\\doc\\man3\\SSL_set_default_stream_mode.pod"
+        ],
         "doc\\html\\man3\\SSL_set_fd.html" => [
             ".\\doc\\man3\\SSL_set_fd.pod"
+        ],
+        "doc\\html\\man3\\SSL_set_incoming_stream_policy.html" => [
+            ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
         ],
         "doc\\html\\man3\\SSL_set_initial_peer_addr.html" => [
             ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
@@ -3931,6 +3955,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_stream_conclude.html" => [
             ".\\doc\\man3\\SSL_stream_conclude.pod"
+        ],
+        "doc\\html\\man3\\SSL_stream_reset.html" => [
+            ".\\doc\\man3\\SSL_stream_reset.pod"
         ],
         "doc\\html\\man3\\SSL_tick.html" => [
             ".\\doc\\man3\\SSL_tick.pod"
@@ -6430,6 +6457,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_accept.3" => [
             ".\\doc\\man3\\SSL_accept.pod"
         ],
+        "doc\\man\\man3\\SSL_accept_stream.3" => [
+            ".\\doc\\man3\\SSL_accept_stream.pod"
+        ],
         "doc\\man\\man3\\SSL_alert_type_string.3" => [
             ".\\doc\\man3\\SSL_alert_type_string.pod"
         ],
@@ -6457,6 +6487,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_free.3" => [
             ".\\doc\\man3\\SSL_free.pod"
         ],
+        "doc\\man\\man3\\SSL_get0_connection.3" => [
+            ".\\doc\\man3\\SSL_get0_connection.pod"
+        ],
         "doc\\man\\man3\\SSL_get0_peer_rpk.3" => [
             ".\\doc\\man3\\SSL_get0_peer_rpk.pod"
         ],
@@ -6477,6 +6510,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_get_client_random.3" => [
             ".\\doc\\man3\\SSL_get_client_random.pod"
+        ],
+        "doc\\man\\man3\\SSL_get_conn_close_info.3" => [
+            ".\\doc\\man3\\SSL_get_conn_close_info.pod"
         ],
         "doc\\man\\man3\\SSL_get_current_cipher.3" => [
             ".\\doc\\man3\\SSL_get_current_cipher.pod"
@@ -6520,6 +6556,12 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_get_shared_sigalgs.3" => [
             ".\\doc\\man3\\SSL_get_shared_sigalgs.pod"
         ],
+        "doc\\man\\man3\\SSL_get_stream_id.3" => [
+            ".\\doc\\man3\\SSL_get_stream_id.pod"
+        ],
+        "doc\\man\\man3\\SSL_get_stream_read_state.3" => [
+            ".\\doc\\man3\\SSL_get_stream_read_state.pod"
+        ],
         "doc\\man\\man3\\SSL_get_tick_timeout.3" => [
             ".\\doc\\man3\\SSL_get_tick_timeout.pod"
         ],
@@ -6549,6 +6591,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_new.3" => [
             ".\\doc\\man3\\SSL_new.pod"
+        ],
+        "doc\\man\\man3\\SSL_new_stream.3" => [
+            ".\\doc\\man3\\SSL_new_stream.pod"
         ],
         "doc\\man\\man3\\SSL_pending.3" => [
             ".\\doc\\man3\\SSL_pending.pod"
@@ -6583,8 +6628,14 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_set_connect_state.3" => [
             ".\\doc\\man3\\SSL_set_connect_state.pod"
         ],
+        "doc\\man\\man3\\SSL_set_default_stream_mode.3" => [
+            ".\\doc\\man3\\SSL_set_default_stream_mode.pod"
+        ],
         "doc\\man\\man3\\SSL_set_fd.3" => [
             ".\\doc\\man3\\SSL_set_fd.pod"
+        ],
+        "doc\\man\\man3\\SSL_set_incoming_stream_policy.3" => [
+            ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
         ],
         "doc\\man\\man3\\SSL_set_initial_peer_addr.3" => [
             ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
@@ -6609,6 +6660,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_stream_conclude.3" => [
             ".\\doc\\man3\\SSL_stream_conclude.pod"
+        ],
+        "doc\\man\\man3\\SSL_stream_reset.3" => [
+            ".\\doc\\man3\\SSL_stream_reset.pod"
         ],
         "doc\\man\\man3\\SSL_tick.3" => [
             ".\\doc\\man3\\SSL_tick.pod"
@@ -8307,6 +8361,11 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\quic_fifd_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\quic_multistream_test" => [
             "libcrypto.a",
             "libssl.a",
             "test\\libtestutil.a"
@@ -12938,6 +12997,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_accept.html" => [
             ".\\doc\\man3\\SSL_accept.pod"
         ],
+        "doc\\html\\man3\\SSL_accept_stream.html" => [
+            ".\\doc\\man3\\SSL_accept_stream.pod"
+        ],
         "doc\\html\\man3\\SSL_alert_type_string.html" => [
             ".\\doc\\man3\\SSL_alert_type_string.pod"
         ],
@@ -12965,6 +13027,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_free.html" => [
             ".\\doc\\man3\\SSL_free.pod"
         ],
+        "doc\\html\\man3\\SSL_get0_connection.html" => [
+            ".\\doc\\man3\\SSL_get0_connection.pod"
+        ],
         "doc\\html\\man3\\SSL_get0_peer_rpk.html" => [
             ".\\doc\\man3\\SSL_get0_peer_rpk.pod"
         ],
@@ -12985,6 +13050,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_get_client_random.html" => [
             ".\\doc\\man3\\SSL_get_client_random.pod"
+        ],
+        "doc\\html\\man3\\SSL_get_conn_close_info.html" => [
+            ".\\doc\\man3\\SSL_get_conn_close_info.pod"
         ],
         "doc\\html\\man3\\SSL_get_current_cipher.html" => [
             ".\\doc\\man3\\SSL_get_current_cipher.pod"
@@ -13028,6 +13096,12 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_get_shared_sigalgs.html" => [
             ".\\doc\\man3\\SSL_get_shared_sigalgs.pod"
         ],
+        "doc\\html\\man3\\SSL_get_stream_id.html" => [
+            ".\\doc\\man3\\SSL_get_stream_id.pod"
+        ],
+        "doc\\html\\man3\\SSL_get_stream_read_state.html" => [
+            ".\\doc\\man3\\SSL_get_stream_read_state.pod"
+        ],
         "doc\\html\\man3\\SSL_get_tick_timeout.html" => [
             ".\\doc\\man3\\SSL_get_tick_timeout.pod"
         ],
@@ -13057,6 +13131,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_new.html" => [
             ".\\doc\\man3\\SSL_new.pod"
+        ],
+        "doc\\html\\man3\\SSL_new_stream.html" => [
+            ".\\doc\\man3\\SSL_new_stream.pod"
         ],
         "doc\\html\\man3\\SSL_pending.html" => [
             ".\\doc\\man3\\SSL_pending.pod"
@@ -13091,8 +13168,14 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_set_connect_state.html" => [
             ".\\doc\\man3\\SSL_set_connect_state.pod"
         ],
+        "doc\\html\\man3\\SSL_set_default_stream_mode.html" => [
+            ".\\doc\\man3\\SSL_set_default_stream_mode.pod"
+        ],
         "doc\\html\\man3\\SSL_set_fd.html" => [
             ".\\doc\\man3\\SSL_set_fd.pod"
+        ],
+        "doc\\html\\man3\\SSL_set_incoming_stream_policy.html" => [
+            ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
         ],
         "doc\\html\\man3\\SSL_set_initial_peer_addr.html" => [
             ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
@@ -13117,6 +13200,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_stream_conclude.html" => [
             ".\\doc\\man3\\SSL_stream_conclude.pod"
+        ],
+        "doc\\html\\man3\\SSL_stream_reset.html" => [
+            ".\\doc\\man3\\SSL_stream_reset.pod"
         ],
         "doc\\html\\man3\\SSL_tick.html" => [
             ".\\doc\\man3\\SSL_tick.pod"
@@ -15563,6 +15649,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_accept.3" => [
             ".\\doc\\man3\\SSL_accept.pod"
         ],
+        "doc\\man\\man3\\SSL_accept_stream.3" => [
+            ".\\doc\\man3\\SSL_accept_stream.pod"
+        ],
         "doc\\man\\man3\\SSL_alert_type_string.3" => [
             ".\\doc\\man3\\SSL_alert_type_string.pod"
         ],
@@ -15590,6 +15679,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_free.3" => [
             ".\\doc\\man3\\SSL_free.pod"
         ],
+        "doc\\man\\man3\\SSL_get0_connection.3" => [
+            ".\\doc\\man3\\SSL_get0_connection.pod"
+        ],
         "doc\\man\\man3\\SSL_get0_peer_rpk.3" => [
             ".\\doc\\man3\\SSL_get0_peer_rpk.pod"
         ],
@@ -15610,6 +15702,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_get_client_random.3" => [
             ".\\doc\\man3\\SSL_get_client_random.pod"
+        ],
+        "doc\\man\\man3\\SSL_get_conn_close_info.3" => [
+            ".\\doc\\man3\\SSL_get_conn_close_info.pod"
         ],
         "doc\\man\\man3\\SSL_get_current_cipher.3" => [
             ".\\doc\\man3\\SSL_get_current_cipher.pod"
@@ -15653,6 +15748,12 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_get_shared_sigalgs.3" => [
             ".\\doc\\man3\\SSL_get_shared_sigalgs.pod"
         ],
+        "doc\\man\\man3\\SSL_get_stream_id.3" => [
+            ".\\doc\\man3\\SSL_get_stream_id.pod"
+        ],
+        "doc\\man\\man3\\SSL_get_stream_read_state.3" => [
+            ".\\doc\\man3\\SSL_get_stream_read_state.pod"
+        ],
         "doc\\man\\man3\\SSL_get_tick_timeout.3" => [
             ".\\doc\\man3\\SSL_get_tick_timeout.pod"
         ],
@@ -15682,6 +15783,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_new.3" => [
             ".\\doc\\man3\\SSL_new.pod"
+        ],
+        "doc\\man\\man3\\SSL_new_stream.3" => [
+            ".\\doc\\man3\\SSL_new_stream.pod"
         ],
         "doc\\man\\man3\\SSL_pending.3" => [
             ".\\doc\\man3\\SSL_pending.pod"
@@ -15716,8 +15820,14 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_set_connect_state.3" => [
             ".\\doc\\man3\\SSL_set_connect_state.pod"
         ],
+        "doc\\man\\man3\\SSL_set_default_stream_mode.3" => [
+            ".\\doc\\man3\\SSL_set_default_stream_mode.pod"
+        ],
         "doc\\man\\man3\\SSL_set_fd.3" => [
             ".\\doc\\man3\\SSL_set_fd.pod"
+        ],
+        "doc\\man\\man3\\SSL_set_incoming_stream_policy.3" => [
+            ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
         ],
         "doc\\man\\man3\\SSL_set_initial_peer_addr.3" => [
             ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
@@ -15742,6 +15852,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_stream_conclude.3" => [
             ".\\doc\\man3\\SSL_stream_conclude.pod"
+        ],
+        "doc\\man\\man3\\SSL_stream_reset.3" => [
+            ".\\doc\\man3\\SSL_stream_reset.pod"
         ],
         "doc\\man\\man3\\SSL_tick.3" => [
             ".\\doc\\man3\\SSL_tick.pod"
@@ -17359,6 +17472,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_SESSION_print.html",
             "doc\\html\\man3\\SSL_SESSION_set1_id.html",
             "doc\\html\\man3\\SSL_accept.html",
+            "doc\\html\\man3\\SSL_accept_stream.html",
             "doc\\html\\man3\\SSL_alert_type_string.html",
             "doc\\html\\man3\\SSL_alloc_buffers.html",
             "doc\\html\\man3\\SSL_check_chain.html",
@@ -17368,6 +17482,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_export_keying_material.html",
             "doc\\html\\man3\\SSL_extension_supported.html",
             "doc\\html\\man3\\SSL_free.html",
+            "doc\\html\\man3\\SSL_get0_connection.html",
             "doc\\html\\man3\\SSL_get0_peer_rpk.html",
             "doc\\html\\man3\\SSL_get0_peer_scts.html",
             "doc\\html\\man3\\SSL_get_SSL_CTX.html",
@@ -17375,6 +17490,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_get_certificate.html",
             "doc\\html\\man3\\SSL_get_ciphers.html",
             "doc\\html\\man3\\SSL_get_client_random.html",
+            "doc\\html\\man3\\SSL_get_conn_close_info.html",
             "doc\\html\\man3\\SSL_get_current_cipher.html",
             "doc\\html\\man3\\SSL_get_default_timeout.html",
             "doc\\html\\man3\\SSL_get_error.html",
@@ -17389,6 +17505,8 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_get_rpoll_descriptor.html",
             "doc\\html\\man3\\SSL_get_session.html",
             "doc\\html\\man3\\SSL_get_shared_sigalgs.html",
+            "doc\\html\\man3\\SSL_get_stream_id.html",
+            "doc\\html\\man3\\SSL_get_stream_read_state.html",
             "doc\\html\\man3\\SSL_get_tick_timeout.html",
             "doc\\html\\man3\\SSL_get_verify_result.html",
             "doc\\html\\man3\\SSL_get_version.html",
@@ -17399,6 +17517,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_library_init.html",
             "doc\\html\\man3\\SSL_load_client_CA_file.html",
             "doc\\html\\man3\\SSL_new.html",
+            "doc\\html\\man3\\SSL_new_stream.html",
             "doc\\html\\man3\\SSL_pending.html",
             "doc\\html\\man3\\SSL_read.html",
             "doc\\html\\man3\\SSL_read_early_data.html",
@@ -17410,7 +17529,9 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_set_bio.html",
             "doc\\html\\man3\\SSL_set_blocking_mode.html",
             "doc\\html\\man3\\SSL_set_connect_state.html",
+            "doc\\html\\man3\\SSL_set_default_stream_mode.html",
             "doc\\html\\man3\\SSL_set_fd.html",
+            "doc\\html\\man3\\SSL_set_incoming_stream_policy.html",
             "doc\\html\\man3\\SSL_set_initial_peer_addr.html",
             "doc\\html\\man3\\SSL_set_retry_verify.html",
             "doc\\html\\man3\\SSL_set_session.html",
@@ -17419,6 +17540,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_shutdown.html",
             "doc\\html\\man3\\SSL_state_string.html",
             "doc\\html\\man3\\SSL_stream_conclude.html",
+            "doc\\html\\man3\\SSL_stream_reset.html",
             "doc\\html\\man3\\SSL_tick.html",
             "doc\\html\\man3\\SSL_want.html",
             "doc\\html\\man3\\SSL_write.html",
@@ -20318,6 +20440,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\quic_multistream_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\quic_record_test" => [
             "include",
             "apps\\include",
@@ -21295,6 +21423,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_SESSION_print.3",
             "doc\\man\\man3\\SSL_SESSION_set1_id.3",
             "doc\\man\\man3\\SSL_accept.3",
+            "doc\\man\\man3\\SSL_accept_stream.3",
             "doc\\man\\man3\\SSL_alert_type_string.3",
             "doc\\man\\man3\\SSL_alloc_buffers.3",
             "doc\\man\\man3\\SSL_check_chain.3",
@@ -21304,6 +21433,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_export_keying_material.3",
             "doc\\man\\man3\\SSL_extension_supported.3",
             "doc\\man\\man3\\SSL_free.3",
+            "doc\\man\\man3\\SSL_get0_connection.3",
             "doc\\man\\man3\\SSL_get0_peer_rpk.3",
             "doc\\man\\man3\\SSL_get0_peer_scts.3",
             "doc\\man\\man3\\SSL_get_SSL_CTX.3",
@@ -21311,6 +21441,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_get_certificate.3",
             "doc\\man\\man3\\SSL_get_ciphers.3",
             "doc\\man\\man3\\SSL_get_client_random.3",
+            "doc\\man\\man3\\SSL_get_conn_close_info.3",
             "doc\\man\\man3\\SSL_get_current_cipher.3",
             "doc\\man\\man3\\SSL_get_default_timeout.3",
             "doc\\man\\man3\\SSL_get_error.3",
@@ -21325,6 +21456,8 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_get_rpoll_descriptor.3",
             "doc\\man\\man3\\SSL_get_session.3",
             "doc\\man\\man3\\SSL_get_shared_sigalgs.3",
+            "doc\\man\\man3\\SSL_get_stream_id.3",
+            "doc\\man\\man3\\SSL_get_stream_read_state.3",
             "doc\\man\\man3\\SSL_get_tick_timeout.3",
             "doc\\man\\man3\\SSL_get_verify_result.3",
             "doc\\man\\man3\\SSL_get_version.3",
@@ -21335,6 +21468,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_library_init.3",
             "doc\\man\\man3\\SSL_load_client_CA_file.3",
             "doc\\man\\man3\\SSL_new.3",
+            "doc\\man\\man3\\SSL_new_stream.3",
             "doc\\man\\man3\\SSL_pending.3",
             "doc\\man\\man3\\SSL_read.3",
             "doc\\man\\man3\\SSL_read_early_data.3",
@@ -21346,7 +21480,9 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_set_bio.3",
             "doc\\man\\man3\\SSL_set_blocking_mode.3",
             "doc\\man\\man3\\SSL_set_connect_state.3",
+            "doc\\man\\man3\\SSL_set_default_stream_mode.3",
             "doc\\man\\man3\\SSL_set_fd.3",
+            "doc\\man\\man3\\SSL_set_incoming_stream_policy.3",
             "doc\\man\\man3\\SSL_set_initial_peer_addr.3",
             "doc\\man\\man3\\SSL_set_retry_verify.3",
             "doc\\man\\man3\\SSL_set_session.3",
@@ -21355,6 +21491,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_shutdown.3",
             "doc\\man\\man3\\SSL_state_string.3",
             "doc\\man\\man3\\SSL_stream_conclude.3",
+            "doc\\man\\man3\\SSL_stream_reset.3",
             "doc\\man\\man3\\SSL_tick.3",
             "doc\\man\\man3\\SSL_want.3",
             "doc\\man\\man3\\SSL_write.3",
