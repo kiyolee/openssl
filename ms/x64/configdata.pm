@@ -4534,6 +4534,9 @@ our %unified_info = (
         "doc\\html\\man7\\openssl-glossary.html" => [
             ".\\doc\\man7\\openssl-glossary.pod"
         ],
+        "doc\\html\\man7\\openssl-quic.html" => [
+            ".\\doc\\man7\\openssl-quic.pod"
+        ],
         "doc\\html\\man7\\openssl-threads.html" => [
             ".\\doc\\man7\\openssl-threads.pod"
         ],
@@ -7238,6 +7241,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\openssl-glossary.7" => [
             ".\\doc\\man7\\openssl-glossary.pod"
+        ],
+        "doc\\man\\man7\\openssl-quic.7" => [
+            ".\\doc\\man7\\openssl-quic.pod"
         ],
         "doc\\man\\man7\\openssl-threads.7" => [
             ".\\doc\\man7\\openssl-threads.pod"
@@ -14673,6 +14679,9 @@ our %unified_info = (
         "doc\\html\\man7\\openssl-glossary.html" => [
             ".\\doc\\man7\\openssl-glossary.pod"
         ],
+        "doc\\html\\man7\\openssl-quic.html" => [
+            ".\\doc\\man7\\openssl-quic.pod"
+        ],
         "doc\\html\\man7\\openssl-threads.html" => [
             ".\\doc\\man7\\openssl-threads.pod"
         ],
@@ -17325,6 +17334,9 @@ our %unified_info = (
         "doc\\man\\man7\\openssl-glossary.7" => [
             ".\\doc\\man7\\openssl-glossary.pod"
         ],
+        "doc\\man\\man7\\openssl-quic.7" => [
+            ".\\doc\\man7\\openssl-quic.pod"
+        ],
         "doc\\man\\man7\\openssl-threads.7" => [
             ".\\doc\\man7\\openssl-threads.pod"
         ],
@@ -18652,6 +18664,7 @@ our %unified_info = (
             "doc\\html\\man7\\openssl-core_names.h.html",
             "doc\\html\\man7\\openssl-env.html",
             "doc\\html\\man7\\openssl-glossary.html",
+            "doc\\html\\man7\\openssl-quic.html",
             "doc\\html\\man7\\openssl-threads.html",
             "doc\\html\\man7\\openssl_user_macros.html",
             "doc\\html\\man7\\ossl_store-file.html",
@@ -22697,6 +22710,7 @@ our %unified_info = (
             "doc\\man\\man7\\openssl-core_names.h.7",
             "doc\\man\\man7\\openssl-env.7",
             "doc\\man\\man7\\openssl-glossary.7",
+            "doc\\man\\man7\\openssl-quic.7",
             "doc\\man\\man7\\openssl-threads.7",
             "doc\\man\\man7\\openssl_user_macros.7",
             "doc\\man\\man7\\ossl_store-file.7",
