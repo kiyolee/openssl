@@ -895,6 +895,9 @@ our %unified_info = (
             "fuzz\\ct-test" => {
                 "noinst" => "1"
             },
+            "fuzz\\pem-test" => {
+                "noinst" => "1"
+            },
             "fuzz\\punycode-test" => {
                 "noinst" => "1"
             },
@@ -1031,9 +1034,6 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\buildtest_c_core_dispatch" => {
-                "noinst" => "1"
-            },
-            "test\\buildtest_c_core_names" => {
                 "noinst" => "1"
             },
             "test\\buildtest_c_core_object" => {
@@ -1606,6 +1606,9 @@ our %unified_info = (
             "test\\ssl_ctx_test" => {
                 "noinst" => "1"
             },
+            "test\\ssl_handshake_rtt_test" => {
+                "noinst" => "1"
+            },
             "test\\ssl_old_test" => {
                 "noinst" => "1"
             },
@@ -1796,14 +1799,17 @@ our %unified_info = (
     },
     "depends" => {
         "" => [
+            "crypto\\params_idx.c",
             "include\\crypto\\bn_conf.h",
             "include\\crypto\\dso_conf.h",
+            "include\\internal\\param_names.h",
             "include\\openssl\\asn1.h",
             "include\\openssl\\asn1t.h",
             "include\\openssl\\bio.h",
             "include\\openssl\\cmp.h",
             "include\\openssl\\cms.h",
             "include\\openssl\\conf.h",
+            "include\\openssl\\core_names.h",
             "include\\openssl\\crmf.h",
             "include\\openssl\\crypto.h",
             "include\\openssl\\ct.h",
@@ -3101,6 +3107,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_CMP_HDR_get0_transactionID.html" => [
             ".\\doc\\man3\\OSSL_CMP_HDR_get0_transactionID.pod"
         ],
+        "doc\\html\\man3\\OSSL_CMP_ITAV_new_caCerts.html" => [
+            ".\\doc\\man3\\OSSL_CMP_ITAV_new_caCerts.pod"
+        ],
         "doc\\html\\man3\\OSSL_CMP_ITAV_set0.html" => [
             ".\\doc\\man3\\OSSL_CMP_ITAV_set0.pod"
         ],
@@ -3817,6 +3826,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_get_fd.html" => [
             ".\\doc\\man3\\SSL_get_fd.pod"
+        ],
+        "doc\\html\\man3\\SSL_get_handshake_rtt.html" => [
+            ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
         ],
         "doc\\html\\man3\\SSL_get_peer_cert_chain.html" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
@@ -5809,6 +5821,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_CMP_HDR_get0_transactionID.3" => [
             ".\\doc\\man3\\OSSL_CMP_HDR_get0_transactionID.pod"
         ],
+        "doc\\man\\man3\\OSSL_CMP_ITAV_new_caCerts.3" => [
+            ".\\doc\\man3\\OSSL_CMP_ITAV_new_caCerts.pod"
+        ],
         "doc\\man\\man3\\OSSL_CMP_ITAV_set0.3" => [
             ".\\doc\\man3\\OSSL_CMP_ITAV_set0.pod"
         ],
@@ -6525,6 +6540,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_get_fd.3" => [
             ".\\doc\\man3\\SSL_get_fd.pod"
+        ],
+        "doc\\man\\man3\\SSL_get_handshake_rtt.3" => [
+            ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
         ],
         "doc\\man\\man3\\SSL_get_peer_cert_chain.3" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
@@ -7311,6 +7329,9 @@ our %unified_info = (
         "fuzz\\ct-test" => [
             "libcrypto"
         ],
+        "fuzz\\pem-test" => [
+            "libcrypto.a"
+        ],
         "fuzz\\punycode-test" => [
             "libcrypto.a"
         ],
@@ -7656,10 +7677,6 @@ our %unified_info = (
             "libssl"
         ],
         "test\\buildtest_c_core_dispatch" => [
-            "libcrypto",
-            "libssl"
-        ],
-        "test\\buildtest_c_core_names" => [
             "libcrypto",
             "libssl"
         ],
@@ -8501,6 +8518,11 @@ our %unified_info = (
             "libssl",
             "test\\libtestutil.a"
         ],
+        "test\\ssl_handshake_rtt_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
         "test\\ssl_old_test" => [
             "libcrypto.a",
             "libssl.a",
@@ -8733,6 +8755,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-params.o",
                 "crypto\\libcrypto-lib-params_dup.o",
                 "crypto\\libcrypto-lib-params_from_text.o",
+                "crypto\\libcrypto-lib-params_idx.o",
                 "crypto\\libcrypto-lib-passphrase.o",
                 "crypto\\libcrypto-lib-provider.o",
                 "crypto\\libcrypto-lib-provider_child.o",
@@ -9056,6 +9079,7 @@ our %unified_info = (
                 "crypto\\cmp\\libcrypto-lib-cmp_client.o",
                 "crypto\\cmp\\libcrypto-lib-cmp_ctx.o",
                 "crypto\\cmp\\libcrypto-lib-cmp_err.o",
+                "crypto\\cmp\\libcrypto-lib-cmp_genm.o",
                 "crypto\\cmp\\libcrypto-lib-cmp_hdr.o",
                 "crypto\\cmp\\libcrypto-lib-cmp_http.o",
                 "crypto\\cmp\\libcrypto-lib-cmp_msg.o",
@@ -10144,6 +10168,7 @@ our %unified_info = (
                     "fuzz\\conf-test",
                     "fuzz\\crl-test",
                     "fuzz\\ct-test",
+                    "fuzz\\pem-test",
                     "fuzz\\punycode-test",
                     "fuzz\\server-test",
                     "fuzz\\smime-test",
@@ -10613,6 +10638,7 @@ our %unified_info = (
                 "test\\helpers\\recordlentest-bin-ssltestlib.o",
                 "test\\helpers\\rpktest-bin-ssltestlib.o",
                 "test\\helpers\\servername_test-bin-ssltestlib.o",
+                "test\\helpers\\ssl_handshake_rtt_test-bin-ssltestlib.o",
                 "test\\helpers\\ssl_old_test-bin-predefined_dhparams.o",
                 "test\\helpers\\ssl_test-bin-handshake.o",
                 "test\\helpers\\ssl_test-bin-handshake_srp.o",
@@ -10645,6 +10671,7 @@ our %unified_info = (
                     "test\\recordlentest",
                     "test\\rpktest",
                     "test\\servername_test",
+                    "test\\ssl_handshake_rtt_test",
                     "test\\ssl_old_test",
                     "test\\ssl_test",
                     "test\\ssl_test_ctx_test",
@@ -11057,6 +11084,9 @@ our %unified_info = (
         ],
         "crypto\\modes\\ghashv8-armx.S" => [
             ".\\crypto\\modes\\asm\\ghashv8-armx.pl"
+        ],
+        "crypto\\params_idx.c" => [
+            ".\\crypto\\params_idx.c.in"
         ],
         "crypto\\pariscid.s" => [
             ".\\crypto\\pariscid.pl"
@@ -12336,6 +12366,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_CMP_HDR_get0_transactionID.html" => [
             ".\\doc\\man3\\OSSL_CMP_HDR_get0_transactionID.pod"
         ],
+        "doc\\html\\man3\\OSSL_CMP_ITAV_new_caCerts.html" => [
+            ".\\doc\\man3\\OSSL_CMP_ITAV_new_caCerts.pod"
+        ],
         "doc\\html\\man3\\OSSL_CMP_ITAV_set0.html" => [
             ".\\doc\\man3\\OSSL_CMP_ITAV_set0.pod"
         ],
@@ -13052,6 +13085,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_get_fd.html" => [
             ".\\doc\\man3\\SSL_get_fd.pod"
+        ],
+        "doc\\html\\man3\\SSL_get_handshake_rtt.html" => [
+            ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
         ],
         "doc\\html\\man3\\SSL_get_peer_cert_chain.html" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
@@ -14991,6 +15027,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_CMP_HDR_get0_transactionID.3" => [
             ".\\doc\\man3\\OSSL_CMP_HDR_get0_transactionID.pod"
         ],
+        "doc\\man\\man3\\OSSL_CMP_ITAV_new_caCerts.3" => [
+            ".\\doc\\man3\\OSSL_CMP_ITAV_new_caCerts.pod"
+        ],
         "doc\\man\\man3\\OSSL_CMP_ITAV_set0.3" => [
             ".\\doc\\man3\\OSSL_CMP_ITAV_set0.pod"
         ],
@@ -15707,6 +15746,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_get_fd.3" => [
             ".\\doc\\man3\\SSL_get_fd.pod"
+        ],
+        "doc\\man\\man3\\SSL_get_handshake_rtt.3" => [
+            ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
         ],
         "doc\\man\\man3\\SSL_get_peer_cert_chain.3" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
@@ -16473,6 +16515,9 @@ our %unified_info = (
         "include\\crypto\\dso_conf.h" => [
             ".\\include\\crypto\\dso_conf.h.in"
         ],
+        "include\\internal\\param_names.h" => [
+            ".\\include\\internal\\param_names.h.in"
+        ],
         "include\\openssl\\asn1.h" => [
             ".\\include\\openssl\\asn1.h.in"
         ],
@@ -16493,6 +16538,9 @@ our %unified_info = (
         ],
         "include\\openssl\\configuration.h" => [
             ".\\include\\openssl\\configuration.h.in"
+        ],
+        "include\\openssl\\core_names.h" => [
+            ".\\include\\openssl\\core_names.h.in"
         ],
         "include\\openssl\\crmf.h" => [
             ".\\include\\openssl\\crmf.h.in"
@@ -16668,10 +16716,6 @@ our %unified_info = (
         "test\\buildtest_core_dispatch.c" => [
             ".\\test\\generate_buildtest.pl",
             "core_dispatch"
-        ],
-        "test\\buildtest_core_names.c" => [
-            ".\\test\\generate_buildtest.pl",
-            "core_names"
         ],
         "test\\buildtest_core_object.c" => [
             ".\\test\\generate_buildtest.pl",
@@ -17245,6 +17289,7 @@ our %unified_info = (
             "doc\\html\\man3\\OSSL_CALLBACK.html",
             "doc\\html\\man3\\OSSL_CMP_CTX_new.html",
             "doc\\html\\man3\\OSSL_CMP_HDR_get0_transactionID.html",
+            "doc\\html\\man3\\OSSL_CMP_ITAV_new_caCerts.html",
             "doc\\html\\man3\\OSSL_CMP_ITAV_set0.html",
             "doc\\html\\man3\\OSSL_CMP_MSG_get0_header.html",
             "doc\\html\\man3\\OSSL_CMP_MSG_http_perform.html",
@@ -17484,6 +17529,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_get_event_timeout.html",
             "doc\\html\\man3\\SSL_get_extms_support.html",
             "doc\\html\\man3\\SSL_get_fd.html",
+            "doc\\html\\man3\\SSL_get_handshake_rtt.html",
             "doc\\html\\man3\\SSL_get_peer_cert_chain.html",
             "doc\\html\\man3\\SSL_get_peer_certificate.html",
             "doc\\html\\man3\\SSL_get_peer_signature_nid.html",
@@ -18710,6 +18756,10 @@ our %unified_info = (
             "include",
             ".\\include"
         ],
+        "fuzz\\pem-test" => [
+            "include",
+            ".\\include"
+        ],
         "fuzz\\punycode-test" => [
             "include",
             ".\\include"
@@ -19223,10 +19273,6 @@ our %unified_info = (
             ".\\include"
         ],
         "test\\buildtest_c_core_dispatch" => [
-            "include",
-            ".\\include"
-        ],
-        "test\\buildtest_c_core_names" => [
             "include",
             ".\\include"
         ],
@@ -20038,6 +20084,12 @@ our %unified_info = (
             ".",
             ".\\include"
         ],
+        "test\\helpers\\ssl_handshake_rtt_test-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
         "test\\helpers\\ssl_test-bin-handshake.o" => [
             ".",
             "include",
@@ -20642,6 +20694,14 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\ssl_handshake_rtt_test" => [
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include",
+            "."
+        ],
         "test\\ssl_old_test" => [
             ".",
             "include",
@@ -21197,6 +21257,7 @@ our %unified_info = (
             "doc\\man\\man3\\OSSL_CALLBACK.3",
             "doc\\man\\man3\\OSSL_CMP_CTX_new.3",
             "doc\\man\\man3\\OSSL_CMP_HDR_get0_transactionID.3",
+            "doc\\man\\man3\\OSSL_CMP_ITAV_new_caCerts.3",
             "doc\\man\\man3\\OSSL_CMP_ITAV_set0.3",
             "doc\\man\\man3\\OSSL_CMP_MSG_get0_header.3",
             "doc\\man\\man3\\OSSL_CMP_MSG_http_perform.3",
@@ -21436,6 +21497,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_get_event_timeout.3",
             "doc\\man\\man3\\SSL_get_extms_support.3",
             "doc\\man\\man3\\SSL_get_fd.3",
+            "doc\\man\\man3\\SSL_get_handshake_rtt.3",
             "doc\\man\\man3\\SSL_get_peer_cert_chain.3",
             "doc\\man\\man3\\SSL_get_peer_certificate.3",
             "doc\\man\\man3\\SSL_get_peer_signature_nid.3",
@@ -21709,6 +21771,7 @@ our %unified_info = (
         "fuzz\\conf-test",
         "fuzz\\crl-test",
         "fuzz\\ct-test",
+        "fuzz\\pem-test",
         "fuzz\\punycode-test",
         "fuzz\\server-test",
         "fuzz\\smime-test",
@@ -21755,7 +21818,6 @@ our %unified_info = (
         "test\\buildtest_c_conftypes",
         "test\\buildtest_c_core",
         "test\\buildtest_c_core_dispatch",
-        "test\\buildtest_c_core_names",
         "test\\buildtest_c_core_object",
         "test\\buildtest_c_cryptoerr_legacy",
         "test\\buildtest_c_decoder",
@@ -21946,6 +22008,7 @@ our %unified_info = (
         "test\\srptest",
         "test\\ssl_cert_table_internal_test",
         "test\\ssl_ctx_test",
+        "test\\ssl_handshake_rtt_test",
         "test\\ssl_old_test",
         "test\\ssl_test",
         "test\\ssl_test_ctx_test",
@@ -22850,6 +22913,9 @@ our %unified_info = (
         ],
         "crypto\\cmp\\libcrypto-lib-cmp_err.o" => [
             ".\\crypto\\cmp\\cmp_err.c"
+        ],
+        "crypto\\cmp\\libcrypto-lib-cmp_genm.o" => [
+            ".\\crypto\\cmp\\cmp_genm.c"
         ],
         "crypto\\cmp\\libcrypto-lib-cmp_hdr.o" => [
             ".\\crypto\\cmp\\cmp_hdr.c"
@@ -23811,6 +23877,9 @@ our %unified_info = (
         "crypto\\libcrypto-lib-params_from_text.o" => [
             ".\\crypto\\params_from_text.c"
         ],
+        "crypto\\libcrypto-lib-params_idx.o" => [
+            "crypto\\params_idx.c"
+        ],
         "crypto\\libcrypto-lib-passphrase.o" => [
             ".\\crypto\\passphrase.c"
         ],
@@ -24757,6 +24826,16 @@ our %unified_info = (
         "fuzz\\ct-test-bin-test-corpus.o" => [
             ".\\fuzz\\test-corpus.c"
         ],
+        "fuzz\\pem-test" => [
+            "fuzz\\pem-test-bin-pem.o",
+            "fuzz\\pem-test-bin-test-corpus.o"
+        ],
+        "fuzz\\pem-test-bin-pem.o" => [
+            ".\\fuzz\\pem.c"
+        ],
+        "fuzz\\pem-test-bin-test-corpus.o" => [
+            ".\\fuzz\\test-corpus.c"
+        ],
         "fuzz\\punycode-test" => [
             "fuzz\\punycode-test-bin-punycode.o",
             "fuzz\\punycode-test-bin-test-corpus.o"
@@ -24983,6 +25062,7 @@ our %unified_info = (
             "crypto\\cmp\\libcrypto-lib-cmp_client.o",
             "crypto\\cmp\\libcrypto-lib-cmp_ctx.o",
             "crypto\\cmp\\libcrypto-lib-cmp_err.o",
+            "crypto\\cmp\\libcrypto-lib-cmp_genm.o",
             "crypto\\cmp\\libcrypto-lib-cmp_hdr.o",
             "crypto\\cmp\\libcrypto-lib-cmp_http.o",
             "crypto\\cmp\\libcrypto-lib-cmp_msg.o",
@@ -25303,6 +25383,7 @@ our %unified_info = (
             "crypto\\libcrypto-lib-params.o",
             "crypto\\libcrypto-lib-params_dup.o",
             "crypto\\libcrypto-lib-params_from_text.o",
+            "crypto\\libcrypto-lib-params_idx.o",
             "crypto\\libcrypto-lib-passphrase.o",
             "crypto\\libcrypto-lib-provider.o",
             "crypto\\libcrypto-lib-provider_child.o",
@@ -26821,12 +26902,6 @@ our %unified_info = (
         "test\\buildtest_c_core_dispatch-bin-buildtest_core_dispatch.o" => [
             "test\\buildtest_core_dispatch.c"
         ],
-        "test\\buildtest_c_core_names" => [
-            "test\\buildtest_c_core_names-bin-buildtest_core_names.o"
-        ],
-        "test\\buildtest_c_core_names-bin-buildtest_core_names.o" => [
-            "test\\buildtest_core_names.c"
-        ],
         "test\\buildtest_c_core_object" => [
             "test\\buildtest_c_core_object-bin-buildtest_core_object.o"
         ],
@@ -27632,6 +27707,9 @@ our %unified_info = (
         "test\\helpers\\servername_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
+        "test\\helpers\\ssl_handshake_rtt_test-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
         "test\\helpers\\ssl_old_test-bin-predefined_dhparams.o" => [
             ".\\test\\helpers\\predefined_dhparams.c"
         ],
@@ -28130,6 +28208,13 @@ our %unified_info = (
         ],
         "test\\ssl_ctx_test-bin-ssl_ctx_test.o" => [
             ".\\test\\ssl_ctx_test.c"
+        ],
+        "test\\ssl_handshake_rtt_test" => [
+            "test\\helpers\\ssl_handshake_rtt_test-bin-ssltestlib.o",
+            "test\\ssl_handshake_rtt_test-bin-ssl_handshake_rtt_test.o"
+        ],
+        "test\\ssl_handshake_rtt_test-bin-ssl_handshake_rtt_test.o" => [
+            ".\\test\\ssl_handshake_rtt_test.c"
         ],
         "test\\ssl_old_test" => [
             "test\\helpers\\ssl_old_test-bin-predefined_dhparams.o",

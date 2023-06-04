@@ -273,6 +273,7 @@
     <ClCompile Include="..\..\crypto\cmp\cmp_client.c" />
     <ClCompile Include="..\..\crypto\cmp\cmp_ctx.c" />
     <ClCompile Include="..\..\crypto\cmp\cmp_err.c" />
+    <ClCompile Include="..\..\crypto\cmp\cmp_genm.c" />
     <ClCompile Include="..\..\crypto\cmp\cmp_hdr.c" />
     <ClCompile Include="..\..\crypto\cmp\cmp_http.c" />
     <ClCompile Include="..\..\crypto\cmp\cmp_msg.c" />
@@ -620,6 +621,7 @@
     <ClCompile Include="..\..\crypto\params.c" />
     <ClCompile Include="..\..\crypto\params_dup.c" />
     <ClCompile Include="..\..\crypto\params_from_text.c" />
+    <ClCompile Include="..\..\crypto\params_idx.c" />
     <ClCompile Include="..\..\crypto\param_build.c" />
     <ClCompile Include="..\..\crypto\param_build_set.c" />
     <ClCompile Include="..\..\crypto\passphrase.c" />
