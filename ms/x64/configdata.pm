@@ -437,6 +437,7 @@ our @disablables = (
     "fuzz-afl",
     "fuzz-libfuzzer",
     "gost",
+    "http",
     "idea",
     "ktls",
     "legacy",
