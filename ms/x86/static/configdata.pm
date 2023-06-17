@@ -426,6 +426,7 @@ our @disablables = (
     "ec_nistp_64_gcc_128",
     "ecdh",
     "ecdsa",
+    "ecx",
     "egd",
     "engine",
     "err",
@@ -1742,6 +1743,7 @@ our %unified_info = (
             "OPENSSL_IA32_SSE2",
             "PADLOCK_ASM",
             "POLY1305_ASM",
+            "RC4_ASM",
             "RMD160_ASM",
             "SHA1_ASM",
             "SHA256_ASM",
@@ -1786,7 +1788,8 @@ our %unified_info = (
             "VPAES_ASM"
         ],
         "providers\\liblegacy.a" => [
-            "MD5_ASM"
+            "MD5_ASM",
+            "RC4_ASM"
         ],
         "test\\endecode_test" => [
             "STATIC_LEGACY"
@@ -4521,6 +4524,12 @@ our %unified_info = (
         "doc\\html\\man7\\openssl_user_macros.html" => [
             "doc\\man7\\openssl_user_macros.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -7237,6 +7246,12 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\openssl_user_macros.7" => [
             "doc\\man7\\openssl_user_macros.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
         ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
@@ -13792,6 +13807,12 @@ our %unified_info = (
         "doc\\html\\man7\\openssl_user_macros.html" => [
             "doc\\man7\\openssl_user_macros.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -16456,6 +16477,12 @@ our %unified_info = (
         "doc\\man\\man7\\openssl_user_macros.7" => [
             "doc\\man7\\openssl_user_macros.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
+        ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -17785,6 +17812,8 @@ our %unified_info = (
             "doc\\html\\man7\\openssl-quic.html",
             "doc\\html\\man7\\openssl-threads.html",
             "doc\\html\\man7\\openssl_user_macros.html",
+            "doc\\html\\man7\\ossl-guide-tls-client-block.html",
+            "doc\\html\\man7\\ossl-guide-tls-introduction.html",
             "doc\\html\\man7\\ossl_store-file.html",
             "doc\\html\\man7\\ossl_store.html",
             "doc\\html\\man7\\passphrase-encoding.html",
@@ -21763,6 +21792,8 @@ our %unified_info = (
             "doc\\man\\man7\\openssl-quic.7",
             "doc\\man\\man7\\openssl-threads.7",
             "doc\\man\\man7\\openssl_user_macros.7",
+            "doc\\man\\man7\\ossl-guide-tls-client-block.7",
+            "doc\\man\\man7\\ossl-guide-tls-introduction.7",
             "doc\\man\\man7\\ossl_store-file.7",
             "doc\\man\\man7\\ossl_store.7",
             "doc\\man\\man7\\passphrase-encoding.7",

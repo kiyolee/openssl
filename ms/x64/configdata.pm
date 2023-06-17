@@ -427,6 +427,7 @@ our @disablables = (
     "ec_nistp_64_gcc_128",
     "ecdh",
     "ecdsa",
+    "ecx",
     "egd",
     "engine",
     "err",
@@ -1766,6 +1767,7 @@ our %unified_info = (
             "OPENSSL_USE_APPLINK",
             "PADLOCK_ASM",
             "POLY1305_ASM",
+            "RC4_ASM",
             "SHA1_ASM",
             "SHA256_ASM",
             "SHA512_ASM",
@@ -1818,7 +1820,8 @@ our %unified_info = (
             "X25519_ASM"
         ],
         "providers\\liblegacy.a" => [
-            "MD5_ASM"
+            "MD5_ASM",
+            "RC4_ASM"
         ],
         "test\\endecode_test" => [
             "STATIC_LEGACY"
@@ -4562,6 +4565,12 @@ our %unified_info = (
         "doc\\html\\man7\\openssl_user_macros.html" => [
             "doc\\man7\\openssl_user_macros.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -7278,6 +7287,12 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\openssl_user_macros.7" => [
             "doc\\man7\\openssl_user_macros.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
         ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
@@ -10532,11 +10547,14 @@ our %unified_info = (
                 "crypto\\rc4\\libcrypto-lib-rc4-md5-x86_64.o",
                 "crypto\\rc4\\libcrypto-lib-rc4-x86_64.o",
                 "crypto\\rc4\\libcrypto-shlib-rc4-md5-x86_64.o",
-                "crypto\\rc4\\libcrypto-shlib-rc4-x86_64.o"
+                "crypto\\rc4\\libcrypto-shlib-rc4-x86_64.o",
+                "crypto\\rc4\\liblegacy-lib-rc4-md5-x86_64.o",
+                "crypto\\rc4\\liblegacy-lib-rc4-x86_64.o"
             ],
             "products" => {
                 "lib" => [
-                    "libcrypto"
+                    "libcrypto",
+                    "providers\\liblegacy.a"
                 ]
             }
         },
@@ -14745,6 +14763,12 @@ our %unified_info = (
         "doc\\html\\man7\\openssl_user_macros.html" => [
             "doc\\man7\\openssl_user_macros.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -17409,6 +17433,12 @@ our %unified_info = (
         "doc\\man\\man7\\openssl_user_macros.7" => [
             "doc\\man7\\openssl_user_macros.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
+        ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -18738,6 +18768,8 @@ our %unified_info = (
             "doc\\html\\man7\\openssl-quic.html",
             "doc\\html\\man7\\openssl-threads.html",
             "doc\\html\\man7\\openssl_user_macros.html",
+            "doc\\html\\man7\\ossl-guide-tls-client-block.html",
+            "doc\\html\\man7\\ossl-guide-tls-introduction.html",
             "doc\\html\\man7\\ossl_store-file.html",
             "doc\\html\\man7\\ossl_store.html",
             "doc\\html\\man7\\passphrase-encoding.html",
@@ -22810,6 +22842,8 @@ our %unified_info = (
             "doc\\man\\man7\\openssl-quic.7",
             "doc\\man\\man7\\openssl-threads.7",
             "doc\\man\\man7\\openssl_user_macros.7",
+            "doc\\man\\man7\\ossl-guide-tls-client-block.7",
+            "doc\\man\\man7\\ossl-guide-tls-introduction.7",
             "doc\\man\\man7\\ossl_store-file.7",
             "doc\\man\\man7\\ossl_store.7",
             "doc\\man\\man7\\passphrase-encoding.7",
@@ -28099,6 +28133,12 @@ our %unified_info = (
         "crypto\\rc4\\libcrypto-shlib-rc4-x86_64.o" => [
             "crypto\\rc4\\rc4-x86_64.s"
         ],
+        "crypto\\rc4\\liblegacy-lib-rc4-md5-x86_64.o" => [
+            "crypto\\rc4\\rc4-md5-x86_64.s"
+        ],
+        "crypto\\rc4\\liblegacy-lib-rc4-x86_64.o" => [
+            "crypto\\rc4\\rc4-x86_64.s"
+        ],
         "crypto\\ripemd\\libcrypto-lib-rmd_dgst.o" => [
             ".\\crypto\\ripemd\\rmd_dgst.c"
         ],
@@ -30923,6 +30963,8 @@ our %unified_info = (
             "crypto\\md5\\liblegacy-lib-md5_dgst.o",
             "crypto\\md5\\liblegacy-lib-md5_one.o",
             "crypto\\md5\\liblegacy-lib-md5_sha1.o",
+            "crypto\\rc4\\liblegacy-lib-rc4-md5-x86_64.o",
+            "crypto\\rc4\\liblegacy-lib-rc4-x86_64.o",
             "providers\\common\\liblegacy-lib-provider_util.o",
             "providers\\implementations\\ciphers\\liblegacy-lib-cipher_blowfish.o",
             "providers\\implementations\\ciphers\\liblegacy-lib-cipher_blowfish_hw.o",
