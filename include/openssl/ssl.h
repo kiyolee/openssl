@@ -2339,7 +2339,7 @@ __owur int SSL_net_read_desired(SSL *s);
 __owur int SSL_net_write_desired(SSL *s);
 __owur int SSL_set_blocking_mode(SSL *s, int blocking);
 __owur int SSL_get_blocking_mode(SSL *s);
-__owur int SSL_set_initial_peer_addr(SSL *s, const BIO_ADDR *peer_addr);
+__owur int SSL_set1_initial_peer_addr(SSL *s, const BIO_ADDR *peer_addr);
 __owur SSL *SSL_get0_connection(SSL *s);
 __owur int SSL_is_connection(SSL *s);
 
@@ -2356,7 +2356,9 @@ __owur uint64_t SSL_get_stream_id(SSL *s);
 #define SSL_DEFAULT_STREAM_MODE_AUTO_UNI    2
 __owur int SSL_set_default_stream_mode(SSL *s, uint32_t mode);
 
-#define SSL_STREAM_FLAG_UNI     (1U << 0)
+#define SSL_STREAM_FLAG_UNI         (1U << 0)
+#define SSL_STREAM_FLAG_NO_BLOCK    (1U << 1)
+#define SSL_STREAM_FLAG_ADVANCE     (1U << 2)
 __owur SSL *SSL_new_stream(SSL *s, uint64_t flags);
 
 #define SSL_INCOMING_STREAM_POLICY_AUTO      0
