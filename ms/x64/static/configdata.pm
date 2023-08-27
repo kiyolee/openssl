@@ -478,6 +478,7 @@ our @disablables = (
     "siphash",
     "siv",
     "sm2",
+    "sm2-precomp",
     "sm3",
     "sm4",
     "sock",
@@ -4003,6 +4004,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_set1_host.html" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
+        "doc\\html\\man3\\SSL_set1_initial_peer_addr.html" => [
+            ".\\doc\\man3\\SSL_set1_initial_peer_addr.pod"
+        ],
         "doc\\html\\man3\\SSL_set1_server_cert_type.html" => [
             ".\\doc\\man3\\SSL_set1_server_cert_type.pod"
         ],
@@ -4026,9 +4030,6 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_set_incoming_stream_policy.html" => [
             ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
-        ],
-        "doc\\html\\man3\\SSL_set_initial_peer_addr.html" => [
-            ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
         ],
         "doc\\html\\man3\\SSL_set_retry_verify.html" => [
             ".\\doc\\man3\\SSL_set_retry_verify.pod"
@@ -4573,9 +4574,6 @@ our %unified_info = (
         "doc\\html\\man7\\life_cycle-rand.html" => [
             ".\\doc\\man7\\life_cycle-rand.pod"
         ],
-        "doc\\html\\man7\\migration_guide.html" => [
-            ".\\doc\\man7\\migration_guide.pod"
-        ],
         "doc\\html\\man7\\openssl-core.h.html" => [
             ".\\doc\\man7\\openssl-core.h.pod"
         ],
@@ -4612,11 +4610,17 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-libssl-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-libssl-introduction.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-migration.html" => [
+            ".\\doc\\man7\\ossl-guide-migration.pod"
+        ],
         "doc\\html\\man7\\ossl-guide-quic-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
         "doc\\html\\man7\\ossl-guide-quic-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-quic-multi-stream.html" => [
+            ".\\doc\\man7\\ossl-guide-quic-multi-stream.pod"
         ],
         "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
@@ -6741,6 +6745,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_set1_host.3" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
+        "doc\\man\\man3\\SSL_set1_initial_peer_addr.3" => [
+            ".\\doc\\man3\\SSL_set1_initial_peer_addr.pod"
+        ],
         "doc\\man\\man3\\SSL_set1_server_cert_type.3" => [
             ".\\doc\\man3\\SSL_set1_server_cert_type.pod"
         ],
@@ -6764,9 +6771,6 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_set_incoming_stream_policy.3" => [
             ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
-        ],
-        "doc\\man\\man3\\SSL_set_initial_peer_addr.3" => [
-            ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
         ],
         "doc\\man\\man3\\SSL_set_retry_verify.3" => [
             ".\\doc\\man3\\SSL_set_retry_verify.pod"
@@ -7311,9 +7315,6 @@ our %unified_info = (
         "doc\\man\\man7\\life_cycle-rand.7" => [
             ".\\doc\\man7\\life_cycle-rand.pod"
         ],
-        "doc\\man\\man7\\migration_guide.7" => [
-            ".\\doc\\man7\\migration_guide.pod"
-        ],
         "doc\\man\\man7\\openssl-core.h.7" => [
             ".\\doc\\man7\\openssl-core.h.pod"
         ],
@@ -7350,11 +7351,17 @@ our %unified_info = (
         "doc\\man\\man7\\ossl-guide-libssl-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-libssl-introduction.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-migration.7" => [
+            ".\\doc\\man7\\ossl-guide-migration.pod"
+        ],
         "doc\\man\\man7\\ossl-guide-quic-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
         "doc\\man\\man7\\ossl-guide-quic-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-quic-multi-stream.7" => [
+            ".\\doc\\man7\\ossl-guide-quic-multi-stream.pod"
         ],
         "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
@@ -11267,6 +11274,9 @@ our %unified_info = (
         "crypto\\ec\\ecp_nistz256-x86_64.s" => [
             ".\\crypto\\ec\\asm\\ecp_nistz256-x86_64.pl"
         ],
+        "crypto\\ec\\ecp_sm2p256-armv8.S" => [
+            ".\\crypto\\ec\\asm\\ecp_sm2p256-armv8.pl"
+        ],
         "crypto\\ec\\x25519-ppc64.s" => [
             ".\\crypto\\ec\\asm\\x25519-ppc64.pl"
         ],
@@ -13436,6 +13446,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_set1_host.html" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
+        "doc\\html\\man3\\SSL_set1_initial_peer_addr.html" => [
+            ".\\doc\\man3\\SSL_set1_initial_peer_addr.pod"
+        ],
         "doc\\html\\man3\\SSL_set1_server_cert_type.html" => [
             ".\\doc\\man3\\SSL_set1_server_cert_type.pod"
         ],
@@ -13459,9 +13472,6 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_set_incoming_stream_policy.html" => [
             ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
-        ],
-        "doc\\html\\man3\\SSL_set_initial_peer_addr.html" => [
-            ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
         ],
         "doc\\html\\man3\\SSL_set_retry_verify.html" => [
             ".\\doc\\man3\\SSL_set_retry_verify.pod"
@@ -14006,9 +14016,6 @@ our %unified_info = (
         "doc\\html\\man7\\life_cycle-rand.html" => [
             ".\\doc\\man7\\life_cycle-rand.pod"
         ],
-        "doc\\html\\man7\\migration_guide.html" => [
-            ".\\doc\\man7\\migration_guide.pod"
-        ],
         "doc\\html\\man7\\openssl-core.h.html" => [
             ".\\doc\\man7\\openssl-core.h.pod"
         ],
@@ -14045,11 +14052,17 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-libssl-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-libssl-introduction.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-migration.html" => [
+            ".\\doc\\man7\\ossl-guide-migration.pod"
+        ],
         "doc\\html\\man7\\ossl-guide-quic-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
         "doc\\html\\man7\\ossl-guide-quic-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-quic-multi-stream.html" => [
+            ".\\doc\\man7\\ossl-guide-quic-multi-stream.pod"
         ],
         "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
@@ -16121,6 +16134,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_set1_host.3" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
+        "doc\\man\\man3\\SSL_set1_initial_peer_addr.3" => [
+            ".\\doc\\man3\\SSL_set1_initial_peer_addr.pod"
+        ],
         "doc\\man\\man3\\SSL_set1_server_cert_type.3" => [
             ".\\doc\\man3\\SSL_set1_server_cert_type.pod"
         ],
@@ -16144,9 +16160,6 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_set_incoming_stream_policy.3" => [
             ".\\doc\\man3\\SSL_set_incoming_stream_policy.pod"
-        ],
-        "doc\\man\\man3\\SSL_set_initial_peer_addr.3" => [
-            ".\\doc\\man3\\SSL_set_initial_peer_addr.pod"
         ],
         "doc\\man\\man3\\SSL_set_retry_verify.3" => [
             ".\\doc\\man3\\SSL_set_retry_verify.pod"
@@ -16691,9 +16704,6 @@ our %unified_info = (
         "doc\\man\\man7\\life_cycle-rand.7" => [
             ".\\doc\\man7\\life_cycle-rand.pod"
         ],
-        "doc\\man\\man7\\migration_guide.7" => [
-            ".\\doc\\man7\\migration_guide.pod"
-        ],
         "doc\\man\\man7\\openssl-core.h.7" => [
             ".\\doc\\man7\\openssl-core.h.pod"
         ],
@@ -16730,11 +16740,17 @@ our %unified_info = (
         "doc\\man\\man7\\ossl-guide-libssl-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-libssl-introduction.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-migration.7" => [
+            ".\\doc\\man7\\ossl-guide-migration.pod"
+        ],
         "doc\\man\\man7\\ossl-guide-quic-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
         "doc\\man\\man7\\ossl-guide-quic-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-quic-multi-stream.7" => [
+            ".\\doc\\man7\\ossl-guide-quic-multi-stream.pod"
         ],
         "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
@@ -17869,6 +17885,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_rstate_string.html",
             "doc\\html\\man3\\SSL_session_reused.html",
             "doc\\html\\man3\\SSL_set1_host.html",
+            "doc\\html\\man3\\SSL_set1_initial_peer_addr.html",
             "doc\\html\\man3\\SSL_set1_server_cert_type.html",
             "doc\\html\\man3\\SSL_set_async_callback.html",
             "doc\\html\\man3\\SSL_set_bio.html",
@@ -17877,7 +17894,6 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_set_default_stream_mode.html",
             "doc\\html\\man3\\SSL_set_fd.html",
             "doc\\html\\man3\\SSL_set_incoming_stream_policy.html",
-            "doc\\html\\man3\\SSL_set_initial_peer_addr.html",
             "doc\\html\\man3\\SSL_set_retry_verify.html",
             "doc\\html\\man3\\SSL_set_session.html",
             "doc\\html\\man3\\SSL_set_shutdown.html",
@@ -18063,7 +18079,6 @@ our %unified_info = (
             "doc\\html\\man7\\life_cycle-mac.html",
             "doc\\html\\man7\\life_cycle-pkey.html",
             "doc\\html\\man7\\life_cycle-rand.html",
-            "doc\\html\\man7\\migration_guide.html",
             "doc\\html\\man7\\openssl-core.h.html",
             "doc\\html\\man7\\openssl-core_dispatch.h.html",
             "doc\\html\\man7\\openssl-core_names.h.html",
@@ -18076,8 +18091,10 @@ our %unified_info = (
             "doc\\html\\man7\\ossl-guide-libcrypto-introduction.html",
             "doc\\html\\man7\\ossl-guide-libraries-introduction.html",
             "doc\\html\\man7\\ossl-guide-libssl-introduction.html",
+            "doc\\html\\man7\\ossl-guide-migration.html",
             "doc\\html\\man7\\ossl-guide-quic-client-block.html",
             "doc\\html\\man7\\ossl-guide-quic-introduction.html",
+            "doc\\html\\man7\\ossl-guide-quic-multi-stream.html",
             "doc\\html\\man7\\ossl-guide-tls-client-block.html",
             "doc\\html\\man7\\ossl-guide-tls-introduction.html",
             "doc\\html\\man7\\ossl_store-file.html",
@@ -18610,6 +18627,10 @@ our %unified_info = (
             ".\\crypto"
         ],
         "crypto\\ec\\ecp_s390x_nistp.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\ec\\ecp_sm2p256-armv8.o" => [
             "crypto",
             ".\\crypto"
         ],
@@ -21934,6 +21955,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_rstate_string.3",
             "doc\\man\\man3\\SSL_session_reused.3",
             "doc\\man\\man3\\SSL_set1_host.3",
+            "doc\\man\\man3\\SSL_set1_initial_peer_addr.3",
             "doc\\man\\man3\\SSL_set1_server_cert_type.3",
             "doc\\man\\man3\\SSL_set_async_callback.3",
             "doc\\man\\man3\\SSL_set_bio.3",
@@ -21942,7 +21964,6 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_set_default_stream_mode.3",
             "doc\\man\\man3\\SSL_set_fd.3",
             "doc\\man\\man3\\SSL_set_incoming_stream_policy.3",
-            "doc\\man\\man3\\SSL_set_initial_peer_addr.3",
             "doc\\man\\man3\\SSL_set_retry_verify.3",
             "doc\\man\\man3\\SSL_set_session.3",
             "doc\\man\\man3\\SSL_set_shutdown.3",
@@ -22128,7 +22149,6 @@ our %unified_info = (
             "doc\\man\\man7\\life_cycle-mac.7",
             "doc\\man\\man7\\life_cycle-pkey.7",
             "doc\\man\\man7\\life_cycle-rand.7",
-            "doc\\man\\man7\\migration_guide.7",
             "doc\\man\\man7\\openssl-core.h.7",
             "doc\\man\\man7\\openssl-core_dispatch.h.7",
             "doc\\man\\man7\\openssl-core_names.h.7",
@@ -22141,8 +22161,10 @@ our %unified_info = (
             "doc\\man\\man7\\ossl-guide-libcrypto-introduction.7",
             "doc\\man\\man7\\ossl-guide-libraries-introduction.7",
             "doc\\man\\man7\\ossl-guide-libssl-introduction.7",
+            "doc\\man\\man7\\ossl-guide-migration.7",
             "doc\\man\\man7\\ossl-guide-quic-client-block.7",
             "doc\\man\\man7\\ossl-guide-quic-introduction.7",
+            "doc\\man\\man7\\ossl-guide-quic-multi-stream.7",
             "doc\\man\\man7\\ossl-guide-tls-client-block.7",
             "doc\\man\\man7\\ossl-guide-tls-introduction.7",
             "doc\\man\\man7\\ossl_store-file.7",
