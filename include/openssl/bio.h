@@ -187,8 +187,9 @@ extern "C" {
  * # define BIO_CTRL_SET_KTLS_TX_ZEROCOPY_SENDFILE 90
  */
 
-# define BIO_CTRL_GET_RPOLL_DESCRIPTOR          90
-# define BIO_CTRL_GET_WPOLL_DESCRIPTOR          91
+# define BIO_CTRL_GET_RPOLL_DESCRIPTOR          91
+# define BIO_CTRL_GET_WPOLL_DESCRIPTOR          92
+# define BIO_CTRL_DGRAM_DETECT_PEER_ADDR        93
 
 # define BIO_DGRAM_CAP_NONE                 0U
 # define BIO_DGRAM_CAP_HANDLES_SRC_ADDR     (1U << 0)
@@ -409,10 +410,11 @@ typedef struct bio_mmsg_cb_args_st {
 #define BIO_POLL_DESCRIPTOR_CUSTOM_START    8192
 
 typedef struct bio_poll_descriptor_st {
-    int type;
+    uint32_t type;
     union {
-        int     fd;
-        void    *custom;
+        int         fd;
+        void        *custom;
+        uintptr_t   custom_ui;
     } value;
 } BIO_POLL_DESCRIPTOR;
 
@@ -484,6 +486,10 @@ typedef struct bio_poll_descriptor_st {
 
 # define BIO_C_SET_TFO                           156 /* like BIO_C_SET_NBIO */
 
+# define BIO_C_SET_SOCK_TYPE                     157
+# define BIO_C_GET_SOCK_TYPE                     158
+# define BIO_C_GET_DGRAM_BIO                     159
+
 # define BIO_set_app_data(s,arg)         BIO_set_ex_data(s,0,arg)
 # define BIO_get_app_data(s)             BIO_get_ex_data(s,0)
 
@@ -511,6 +517,9 @@ typedef struct bio_poll_descriptor_st {
 #  define BIO_get_conn_ip_family(b)     BIO_ctrl(b,BIO_C_GET_CONNECT,3,NULL)
 #  define BIO_get_conn_mode(b)          BIO_ctrl(b,BIO_C_GET_CONNECT,4,NULL)
 #  define BIO_set_conn_mode(b,n)        BIO_ctrl(b,BIO_C_SET_CONNECT_MODE,(n),NULL)
+#  define BIO_set_sock_type(b,t)        BIO_ctrl(b,BIO_C_SET_SOCK_TYPE,(t),NULL)
+#  define BIO_get_sock_type(b)          BIO_ctrl(b,BIO_C_GET_SOCK_TYPE,0,NULL)
+#  define BIO_get0_dgram_bio(b, p)      BIO_ctrl(b,BIO_C_GET_DGRAM_BIO,0,(void *)(BIO **)(p))
 
 /* BIO_s_accept() */
 #  define BIO_set_accept_name(b,name)   BIO_ctrl(b,BIO_C_SET_ACCEPT,0, \
@@ -655,6 +664,8 @@ int BIO_ctrl_reset_read_request(BIO *b);
          (int)BIO_ctrl(b, BIO_CTRL_DGRAM_GET_PEER, 0, (char *)(peer))
 # define BIO_dgram_set_peer(b,peer) \
          (int)BIO_ctrl(b, BIO_CTRL_DGRAM_SET_PEER, 0, (char *)(peer))
+# define BIO_dgram_detect_peer_addr(b,peer) \
+         (int)BIO_ctrl(b, BIO_CTRL_DGRAM_DETECT_PEER_ADDR, 0, (char *)(peer))
 # define BIO_dgram_get_mtu_overhead(b) \
          (unsigned int)BIO_ctrl((b), BIO_CTRL_DGRAM_GET_MTU_OVERHEAD, 0, NULL)
 # define BIO_dgram_get_local_addr_cap(b) \
