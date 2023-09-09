@@ -169,7 +169,7 @@ our %config = (
     ],
     "dynamic_engines" => "0",
     "ex_libs" => [],
-    "full_version" => "3.2.0-dev",
+    "full_version" => "3.2.0-alpha2-dev",
     "includes" => [],
     "lflags" => [],
     "lib_defines" => [
@@ -275,7 +275,7 @@ our %config = (
         "__CNF_LDLIBS" => undef
     },
     "prefix" => "C:\\Program Files (x86)\\OpenSSL-3",
-    "prerelease" => "-dev",
+    "prerelease" => "-alpha2-dev",
     "processor" => "",
     "rc4_int" => "unsigned int",
     "release_date" => "",
@@ -4637,6 +4637,9 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-quic-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-quic-client-non-block.html" => [
+            ".\\doc\\man7\\ossl-guide-quic-client-non-block.pod"
+        ],
         "doc\\html\\man7\\ossl-guide-quic-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
         ],
@@ -4645,6 +4648,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-tls-client-non-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-non-block.pod"
         ],
         "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
@@ -7378,6 +7384,9 @@ our %unified_info = (
         "doc\\man\\man7\\ossl-guide-quic-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-quic-client-non-block.7" => [
+            ".\\doc\\man7\\ossl-guide-quic-client-non-block.pod"
+        ],
         "doc\\man\\man7\\ossl-guide-quic-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
         ],
@@ -7386,6 +7395,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-client-non-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-non-block.pod"
         ],
         "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
@@ -14981,6 +14993,9 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-quic-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-quic-client-non-block.html" => [
+            ".\\doc\\man7\\ossl-guide-quic-client-non-block.pod"
+        ],
         "doc\\html\\man7\\ossl-guide-quic-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
         ],
@@ -14989,6 +15004,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\ossl-guide-tls-client-block.html" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-tls-client-non-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-non-block.pod"
         ],
         "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
@@ -17669,6 +17687,9 @@ our %unified_info = (
         "doc\\man\\man7\\ossl-guide-quic-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-quic-client-block.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-quic-client-non-block.7" => [
+            ".\\doc\\man7\\ossl-guide-quic-client-non-block.pod"
+        ],
         "doc\\man\\man7\\ossl-guide-quic-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-quic-introduction.pod"
         ],
@@ -17677,6 +17698,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\ossl-guide-tls-client-block.7" => [
             ".\\doc\\man7\\ossl-guide-tls-client-block.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-client-non-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-client-non-block.pod"
         ],
         "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
@@ -19016,9 +19040,11 @@ our %unified_info = (
             "doc\\html\\man7\\ossl-guide-libssl-introduction.html",
             "doc\\html\\man7\\ossl-guide-migration.html",
             "doc\\html\\man7\\ossl-guide-quic-client-block.html",
+            "doc\\html\\man7\\ossl-guide-quic-client-non-block.html",
             "doc\\html\\man7\\ossl-guide-quic-introduction.html",
             "doc\\html\\man7\\ossl-guide-quic-multi-stream.html",
             "doc\\html\\man7\\ossl-guide-tls-client-block.html",
+            "doc\\html\\man7\\ossl-guide-tls-client-non-block.html",
             "doc\\html\\man7\\ossl-guide-tls-introduction.html",
             "doc\\html\\man7\\ossl_store-file.html",
             "doc\\html\\man7\\ossl_store.html",
@@ -23180,9 +23206,11 @@ our %unified_info = (
             "doc\\man\\man7\\ossl-guide-libssl-introduction.7",
             "doc\\man\\man7\\ossl-guide-migration.7",
             "doc\\man\\man7\\ossl-guide-quic-client-block.7",
+            "doc\\man\\man7\\ossl-guide-quic-client-non-block.7",
             "doc\\man\\man7\\ossl-guide-quic-introduction.7",
             "doc\\man\\man7\\ossl-guide-quic-multi-stream.7",
             "doc\\man\\man7\\ossl-guide-tls-client-block.7",
+            "doc\\man\\man7\\ossl-guide-tls-client-non-block.7",
             "doc\\man\\man7\\ossl-guide-tls-introduction.7",
             "doc\\man\\man7\\ossl_store-file.7",
             "doc\\man\\man7\\ossl_store.7",
