@@ -12201,6 +12201,9 @@ our %unified_info = (
         "crypto\\chacha\\chacha-ia64.s" => [
             "crypto\\chacha\\chacha-ia64.S"
         ],
+        "crypto\\chacha\\chacha-loongarch64.S" => [
+            ".\\crypto\\chacha\\asm\\chacha-loongarch64.pl"
+        ],
         "crypto\\chacha\\chacha-ppc.s" => [
             ".\\crypto\\chacha\\asm\\chacha-ppc.pl"
         ],
@@ -19595,6 +19598,10 @@ our %unified_info = (
             ".\\crypto"
         ],
         "crypto\\chacha\\chacha-armv8.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\chacha\\chacha-loongarch64.o" => [
             "crypto",
             ".\\crypto"
         ],
