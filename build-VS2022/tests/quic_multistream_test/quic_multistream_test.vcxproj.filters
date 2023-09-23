@@ -27,5 +27,11 @@
     <ClCompile Include="..\..\..\test\helpers\ssltestlib.c">
       <Filter>Source Files\helpers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\helpers\noisydgrambio.c">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\helpers\pktsplitbio.c">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

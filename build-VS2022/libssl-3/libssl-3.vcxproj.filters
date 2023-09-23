@@ -171,9 +171,6 @@
     <ClCompile Include="..\..\crypto\quic_vlint.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\crypto\sparse_array.c">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\ssl\record\methods\dtls_meth.c">
       <Filter>Source Files\ssl\record\methods</Filter>
     </ClCompile>

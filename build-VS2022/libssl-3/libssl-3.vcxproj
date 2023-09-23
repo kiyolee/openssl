@@ -116,7 +116,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\crypto\packet.c" />
     <ClCompile Include="..\..\crypto\quic_vlint.c" />
-    <ClCompile Include="..\..\crypto\sparse_array.c" />
     <ClCompile Include="..\..\crypto\thread\arch.c" />
     <ClCompile Include="..\..\crypto\thread\arch\thread_none.c" />
     <ClCompile Include="..\..\crypto\thread\arch\thread_posix.c" />

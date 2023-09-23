@@ -94,6 +94,8 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\test\helpers\noisydgrambio.c" />
+    <ClCompile Include="..\..\..\test\helpers\pktsplitbio.c" />
     <ClCompile Include="..\..\..\test\helpers\quictestlib.c" />
     <ClCompile Include="..\..\..\test\helpers\ssltestlib.c" />
     <ClCompile Include="..\..\..\test\quicfaultstest.c" />

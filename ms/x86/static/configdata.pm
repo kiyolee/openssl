@@ -10864,12 +10864,20 @@ our %unified_info = (
                 "test\\helpers\\fatalerrtest-bin-ssltestlib.o",
                 "test\\helpers\\pkcs12_api_test-bin-pkcs12.o",
                 "test\\helpers\\pkcs12_format_test-bin-pkcs12.o",
+                "test\\helpers\\quic_multistream_test-bin-noisydgrambio.o",
+                "test\\helpers\\quic_multistream_test-bin-pktsplitbio.o",
                 "test\\helpers\\quic_multistream_test-bin-quictestlib.o",
                 "test\\helpers\\quic_multistream_test-bin-ssltestlib.o",
+                "test\\helpers\\quic_newcid_test-bin-noisydgrambio.o",
+                "test\\helpers\\quic_newcid_test-bin-pktsplitbio.o",
                 "test\\helpers\\quic_newcid_test-bin-quictestlib.o",
                 "test\\helpers\\quic_newcid_test-bin-ssltestlib.o",
+                "test\\helpers\\quicapitest-bin-noisydgrambio.o",
+                "test\\helpers\\quicapitest-bin-pktsplitbio.o",
                 "test\\helpers\\quicapitest-bin-quictestlib.o",
                 "test\\helpers\\quicapitest-bin-ssltestlib.o",
+                "test\\helpers\\quicfaultstest-bin-noisydgrambio.o",
+                "test\\helpers\\quicfaultstest-bin-pktsplitbio.o",
                 "test\\helpers\\quicfaultstest-bin-quictestlib.o",
                 "test\\helpers\\quicfaultstest-bin-ssltestlib.o",
                 "test\\helpers\\recordlentest-bin-ssltestlib.o",
@@ -28326,11 +28334,23 @@ our %unified_info = (
         "test\\helpers\\pkcs12_format_test-bin-pkcs12.o" => [
             ".\\test\\helpers\\pkcs12.c"
         ],
+        "test\\helpers\\quic_multistream_test-bin-noisydgrambio.o" => [
+            ".\\test\\helpers\\noisydgrambio.c"
+        ],
+        "test\\helpers\\quic_multistream_test-bin-pktsplitbio.o" => [
+            ".\\test\\helpers\\pktsplitbio.c"
+        ],
         "test\\helpers\\quic_multistream_test-bin-quictestlib.o" => [
             ".\\test\\helpers\\quictestlib.c"
         ],
         "test\\helpers\\quic_multistream_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
+        ],
+        "test\\helpers\\quic_newcid_test-bin-noisydgrambio.o" => [
+            ".\\test\\helpers\\noisydgrambio.c"
+        ],
+        "test\\helpers\\quic_newcid_test-bin-pktsplitbio.o" => [
+            ".\\test\\helpers\\pktsplitbio.c"
         ],
         "test\\helpers\\quic_newcid_test-bin-quictestlib.o" => [
             ".\\test\\helpers\\quictestlib.c"
@@ -28338,11 +28358,23 @@ our %unified_info = (
         "test\\helpers\\quic_newcid_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
+        "test\\helpers\\quicapitest-bin-noisydgrambio.o" => [
+            ".\\test\\helpers\\noisydgrambio.c"
+        ],
+        "test\\helpers\\quicapitest-bin-pktsplitbio.o" => [
+            ".\\test\\helpers\\pktsplitbio.c"
+        ],
         "test\\helpers\\quicapitest-bin-quictestlib.o" => [
             ".\\test\\helpers\\quictestlib.c"
         ],
         "test\\helpers\\quicapitest-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
+        ],
+        "test\\helpers\\quicfaultstest-bin-noisydgrambio.o" => [
+            ".\\test\\helpers\\noisydgrambio.c"
+        ],
+        "test\\helpers\\quicfaultstest-bin-pktsplitbio.o" => [
+            ".\\test\\helpers\\pktsplitbio.c"
         ],
         "test\\helpers\\quicfaultstest-bin-quictestlib.o" => [
             ".\\test\\helpers\\quictestlib.c"
@@ -28753,6 +28785,8 @@ our %unified_info = (
             ".\\test\\quic_fifd_test.c"
         ],
         "test\\quic_multistream_test" => [
+            "test\\helpers\\quic_multistream_test-bin-noisydgrambio.o",
+            "test\\helpers\\quic_multistream_test-bin-pktsplitbio.o",
             "test\\helpers\\quic_multistream_test-bin-quictestlib.o",
             "test\\helpers\\quic_multistream_test-bin-ssltestlib.o",
             "test\\quic_multistream_test-bin-quic_multistream_test.o"
@@ -28761,6 +28795,8 @@ our %unified_info = (
             ".\\test\\quic_multistream_test.c"
         ],
         "test\\quic_newcid_test" => [
+            "test\\helpers\\quic_newcid_test-bin-noisydgrambio.o",
+            "test\\helpers\\quic_newcid_test-bin-pktsplitbio.o",
             "test\\helpers\\quic_newcid_test-bin-quictestlib.o",
             "test\\helpers\\quic_newcid_test-bin-ssltestlib.o",
             "test\\quic_newcid_test-bin-quic_newcid_test.o"
@@ -28809,6 +28845,8 @@ our %unified_info = (
             ".\\test\\quic_wire_test.c"
         ],
         "test\\quicapitest" => [
+            "test\\helpers\\quicapitest-bin-noisydgrambio.o",
+            "test\\helpers\\quicapitest-bin-pktsplitbio.o",
             "test\\helpers\\quicapitest-bin-quictestlib.o",
             "test\\helpers\\quicapitest-bin-ssltestlib.o",
             "test\\quicapitest-bin-quicapitest.o"
@@ -28817,6 +28855,8 @@ our %unified_info = (
             ".\\test\\quicapitest.c"
         ],
         "test\\quicfaultstest" => [
+            "test\\helpers\\quicfaultstest-bin-noisydgrambio.o",
+            "test\\helpers\\quicfaultstest-bin-pktsplitbio.o",
             "test\\helpers\\quicfaultstest-bin-quictestlib.o",
             "test\\helpers\\quicfaultstest-bin-ssltestlib.o",
             "test\\quicfaultstest-bin-quicfaultstest.o"
