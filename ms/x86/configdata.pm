@@ -8656,7 +8656,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\rand_test" => [
-            "libcrypto",
+            "libcrypto.a",
             "test\\libtestutil.a"
         ],
         "test\\rc2test" => [
@@ -10650,6 +10650,7 @@ our %unified_info = (
                 "crypto\\rand\\libcrypto-lib-rand_lib.o",
                 "crypto\\rand\\libcrypto-lib-rand_meth.o",
                 "crypto\\rand\\libcrypto-lib-rand_pool.o",
+                "crypto\\rand\\libcrypto-lib-rand_uniform.o",
                 "crypto\\rand\\libcrypto-lib-randfile.o",
                 "crypto\\rand\\libcrypto-shlib-prov_seed.o",
                 "crypto\\rand\\libcrypto-shlib-rand_deprecated.o",
@@ -10657,6 +10658,7 @@ our %unified_info = (
                 "crypto\\rand\\libcrypto-shlib-rand_lib.o",
                 "crypto\\rand\\libcrypto-shlib-rand_meth.o",
                 "crypto\\rand\\libcrypto-shlib-rand_pool.o",
+                "crypto\\rand\\libcrypto-shlib-rand_uniform.o",
                 "crypto\\rand\\libcrypto-shlib-randfile.o"
             ],
             "products" => {
@@ -24266,6 +24268,7 @@ our %unified_info = (
             "crypto\\rand\\libcrypto-shlib-rand_lib.o",
             "crypto\\rand\\libcrypto-shlib-rand_meth.o",
             "crypto\\rand\\libcrypto-shlib-rand_pool.o",
+            "crypto\\rand\\libcrypto-shlib-rand_uniform.o",
             "crypto\\rand\\libcrypto-shlib-randfile.o",
             "crypto\\rc2\\libcrypto-shlib-rc2_cbc.o",
             "crypto\\rc2\\libcrypto-shlib-rc2_ecb.o",
@@ -28503,6 +28506,9 @@ our %unified_info = (
         "crypto\\rand\\libcrypto-lib-rand_pool.o" => [
             ".\\crypto\\rand\\rand_pool.c"
         ],
+        "crypto\\rand\\libcrypto-lib-rand_uniform.o" => [
+            ".\\crypto\\rand\\rand_uniform.c"
+        ],
         "crypto\\rand\\libcrypto-lib-randfile.o" => [
             ".\\crypto\\rand\\randfile.c"
         ],
@@ -28523,6 +28529,9 @@ our %unified_info = (
         ],
         "crypto\\rand\\libcrypto-shlib-rand_pool.o" => [
             ".\\crypto\\rand\\rand_pool.c"
+        ],
+        "crypto\\rand\\libcrypto-shlib-rand_uniform.o" => [
+            ".\\crypto\\rand\\rand_uniform.c"
         ],
         "crypto\\rand\\libcrypto-shlib-randfile.o" => [
             ".\\crypto\\rand\\randfile.c"
@@ -30419,6 +30428,7 @@ our %unified_info = (
             "crypto\\rand\\libcrypto-lib-rand_lib.o",
             "crypto\\rand\\libcrypto-lib-rand_meth.o",
             "crypto\\rand\\libcrypto-lib-rand_pool.o",
+            "crypto\\rand\\libcrypto-lib-rand_uniform.o",
             "crypto\\rand\\libcrypto-lib-randfile.o",
             "crypto\\rc2\\libcrypto-lib-rc2_cbc.o",
             "crypto\\rc2\\libcrypto-lib-rc2_ecb.o",
