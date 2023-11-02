@@ -2547,6 +2547,9 @@
     <ClCompile Include="..\..\crypto\x509\v3_soa_id.c">
       <Filter>Source Files\crypto\x509</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\rand\rand_uniform.c">
+      <Filter>Source Files\crypto\rand</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
