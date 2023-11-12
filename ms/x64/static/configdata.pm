@@ -1400,6 +1400,9 @@ our %unified_info = (
             "test\\evp_test" => {
                 "noinst" => "1"
             },
+            "test\\evp_xof_test" => {
+                "noinst" => "1"
+            },
             "test\\exdatatest" => {
                 "noinst" => "1"
             },
@@ -8330,6 +8333,10 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\evp_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
+        "test\\evp_xof_test" => [
             "libcrypto",
             "test\\libtestutil.a"
         ],
@@ -20383,6 +20390,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\evp_xof_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\exdatatest" => [
             "include",
             "apps\\include",
@@ -22509,6 +22522,7 @@ our %unified_info = (
         "test\\evp_pkey_dparams_test",
         "test\\evp_pkey_provided_test",
         "test\\evp_test",
+        "test\\evp_xof_test",
         "test\\exdatatest",
         "test\\exptest",
         "test\\ext_internal_test",
@@ -28479,6 +28493,12 @@ our %unified_info = (
         ],
         "test\\evp_test-bin-evp_test.o" => [
             ".\\test\\evp_test.c"
+        ],
+        "test\\evp_xof_test" => [
+            "test\\evp_xof_test-bin-evp_xof_test.o"
+        ],
+        "test\\evp_xof_test-bin-evp_xof_test.o" => [
+            ".\\test\\evp_xof_test.c"
         ],
         "test\\exdatatest" => [
             "test\\exdatatest-bin-exdatatest.o"
