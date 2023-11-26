@@ -68,6 +68,7 @@ our %config = (
         ".\\doc\\build.info",
         ".\\test\\build.info",
         ".\\engines\\build.info",
+        ".\\exporters\\build.info",
         ".\\crypto\\objects\\build.info",
         ".\\crypto\\buffer\\build.info",
         ".\\crypto\\bio\\build.info",
@@ -840,6 +841,21 @@ our %unified_info = (
             }
         },
         "generate" => {
+            "exporters\\OpenSSLConfig.cmake" => {
+                "exporter" => "cmake"
+            },
+            "exporters\\OpenSSLConfigVersion.cmake" => {
+                "exporter" => "cmake"
+            },
+            "exporters\\libcrypto.pc" => {
+                "exporter" => "pkg-config"
+            },
+            "exporters\\libssl.pc" => {
+                "exporter" => "pkg-config"
+            },
+            "exporters\\openssl.pc" => {
+                "exporter" => "pkg-config"
+            },
             "include\\openssl\\configuration.h" => {
                 "skip" => "1"
             }
@@ -908,6 +924,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "fuzz\\quic-client-test" => {
+                "noinst" => "1"
+            },
+            "fuzz\\quic-srtm-test" => {
                 "noinst" => "1"
             },
             "fuzz\\server-test" => {
@@ -1588,6 +1607,12 @@ our %unified_info = (
             "test\\quic_record_test" => {
                 "noinst" => "1"
             },
+            "test\\quic_srt_gen_test" => {
+                "noinst" => "1"
+            },
+            "test\\quic_srtm_test" => {
+                "noinst" => "1"
+            },
             "test\\quic_stream_test" => {
                 "noinst" => "1"
             },
@@ -1921,7 +1946,10 @@ our %unified_info = (
     },
     "depends" => {
         "" => [
+            "OpenSSLConfigVersion.cmake",
             "crypto\\params_idx.c",
+            "exporters\\OpenSSLConfigVersion.cmake",
+            "exporters\\openssl.pc",
             "include\\crypto\\bn_conf.h",
             "include\\crypto\\dso_conf.h",
             "include\\internal\\param_names.h",
@@ -1950,7 +1978,15 @@ our %unified_info = (
             "include\\openssl\\x509.h",
             "include\\openssl\\x509_vfy.h",
             "include\\openssl\\x509v3.h",
+            "openssl.pc",
             "test\\provider_internal_test.cnf"
+        ],
+        "OpenSSLConfig.cmake" => [
+            "builddata.pm"
+        ],
+        "OpenSSLConfigVersion.cmake" => [
+            "OpenSSLConfig.cmake",
+            "builddata.pm"
         ],
         "apps\\ca_internals_test-bin-ca.o" => [
             "apps\\progs.h"
@@ -7494,6 +7530,24 @@ our %unified_info = (
         "doc\\man\\man7\\x509.7" => [
             ".\\doc\\man7\\x509.pod"
         ],
+        "exporters\\OpenSSLConfig.cmake" => [
+            "installdata.pm"
+        ],
+        "exporters\\OpenSSLConfigVersion.cmake" => [
+            "exporters\\OpenSSLConfig.cmake",
+            "installdata.pm"
+        ],
+        "exporters\\libcrypto.pc" => [
+            "installdata.pm"
+        ],
+        "exporters\\libssl.pc" => [
+            "installdata.pm"
+        ],
+        "exporters\\openssl.pc" => [
+            "exporters\\libcrypto.pc",
+            "exporters\\libssl.pc",
+            "installdata.pm"
+        ],
         "fuzz\\asn1-test" => [
             "libcrypto",
             "libssl"
@@ -7539,6 +7593,10 @@ our %unified_info = (
             "libcrypto.a",
             "libssl.a"
         ],
+        "fuzz\\quic-srtm-test" => [
+            "libcrypto.a",
+            "libssl.a"
+        ],
         "fuzz\\server-test" => [
             "libcrypto",
             "libssl"
@@ -7563,6 +7621,9 @@ our %unified_info = (
             ".\\util\\perl\\OpenSSL\\Ordinals.pm",
             "configdata.pm"
         ],
+        "libcrypto.pc" => [
+            "builddata.pm"
+        ],
         "libcrypto.rc" => [
             "configdata.pm"
         ],
@@ -7573,8 +7634,16 @@ our %unified_info = (
             ".\\util\\perl\\OpenSSL\\Ordinals.pm",
             "configdata.pm"
         ],
+        "libssl.pc" => [
+            "builddata.pm"
+        ],
         "libssl.rc" => [
             "configdata.pm"
+        ],
+        "openssl.pc" => [
+            "builddata.pm",
+            "libcrypto.pc",
+            "libssl.pc"
         ],
         "providers\\common\\der\\der_digests_gen.c" => [
             ".\\providers\\common\\der\\DIGESTS.asn1",
@@ -8630,6 +8699,16 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\quic_record_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\quic_srt_gen_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\quic_srtm_test" => [
             "libcrypto.a",
             "libssl.a",
             "test\\libtestutil.a"
@@ -11290,6 +11369,7 @@ our %unified_info = (
                     "fuzz\\pem-test",
                     "fuzz\\punycode-test",
                     "fuzz\\quic-client-test",
+                    "fuzz\\quic-srtm-test",
                     "fuzz\\server-test",
                     "fuzz\\smime-test",
                     "fuzz\\v3name-test",
@@ -11771,6 +11851,8 @@ our %unified_info = (
                 "ssl\\quic\\libssl-lib-quic_rstream.o",
                 "ssl\\quic\\libssl-lib-quic_rx_depack.o",
                 "ssl\\quic\\libssl-lib-quic_sf_list.o",
+                "ssl\\quic\\libssl-lib-quic_srt_gen.o",
+                "ssl\\quic\\libssl-lib-quic_srtm.o",
                 "ssl\\quic\\libssl-lib-quic_sstream.o",
                 "ssl\\quic\\libssl-lib-quic_statm.o",
                 "ssl\\quic\\libssl-lib-quic_stream_map.o",
@@ -11800,6 +11882,8 @@ our %unified_info = (
                 "ssl\\quic\\libssl-shlib-quic_rstream.o",
                 "ssl\\quic\\libssl-shlib-quic_rx_depack.o",
                 "ssl\\quic\\libssl-shlib-quic_sf_list.o",
+                "ssl\\quic\\libssl-shlib-quic_srt_gen.o",
+                "ssl\\quic\\libssl-shlib-quic_srtm.o",
                 "ssl\\quic\\libssl-shlib-quic_sstream.o",
                 "ssl\\quic\\libssl-shlib-quic_statm.o",
                 "ssl\\quic\\libssl-shlib-quic_stream_map.o",
@@ -11915,6 +11999,10 @@ our %unified_info = (
                 "test\\helpers\\quic_newcid_test-bin-pktsplitbio.o",
                 "test\\helpers\\quic_newcid_test-bin-quictestlib.o",
                 "test\\helpers\\quic_newcid_test-bin-ssltestlib.o",
+                "test\\helpers\\quic_srt_gen_test-bin-noisydgrambio.o",
+                "test\\helpers\\quic_srt_gen_test-bin-pktsplitbio.o",
+                "test\\helpers\\quic_srt_gen_test-bin-quictestlib.o",
+                "test\\helpers\\quic_srt_gen_test-bin-ssltestlib.o",
                 "test\\helpers\\quicapitest-bin-noisydgrambio.o",
                 "test\\helpers\\quicapitest-bin-pktsplitbio.o",
                 "test\\helpers\\quicapitest-bin-quictestlib.o",
@@ -11958,6 +12046,7 @@ our %unified_info = (
                     "test\\pkcs12_format_test",
                     "test\\quic_multistream_test",
                     "test\\quic_newcid_test",
+                    "test\\quic_srt_gen_test",
                     "test\\quicapitest",
                     "test\\quicfaultstest",
                     "test\\recordlentest",
@@ -12009,6 +12098,12 @@ our %unified_info = (
         }
     },
     "generate" => {
+        "OpenSSLConfig.cmake" => [
+            ".\\exporters\\cmake\\OpenSSLConfig.cmake.in"
+        ],
+        "OpenSSLConfigVersion.cmake" => [
+            ".\\exporters\\cmake\\OpenSSLConfigVersion.cmake.in"
+        ],
         "apps\\openssl.rc" => [
             ".\\util\\mkrc.pl",
             "openssl"
@@ -12022,6 +12117,18 @@ our %unified_info = (
             ".\\apps\\progs.pl",
             "\"-H\"",
             "\$(APPS_OPENSSL)"
+        ],
+        "builddata.pm" => [
+            ".\\util\\mkinstallvars.pl",
+            "PREFIX=.",
+            "BINDIR=apps",
+            "LIBDIR=",
+            "INCLUDEDIR=include",
+            "APPLINKDIR=ms",
+            "ENGINESDIR=engines",
+            "MODULESDIR=providers",
+            "\"VERSION=\$(VERSION)\"",
+            "\"LDLIBS=\$(LIB_EX_LIBS)\""
         ],
         "crypto\\aes\\aes-586.S" => [
             ".\\crypto\\aes\\asm\\aes-586.pl"
@@ -17916,6 +18023,21 @@ our %unified_info = (
         "engines\\e_padlock-x86_64.s" => [
             ".\\engines\\asm\\e_padlock-x86_64.pl"
         ],
+        "exporters\\OpenSSLConfig.cmake" => [
+            ".\\exporters\\cmake\\OpenSSLConfig.cmake.in"
+        ],
+        "exporters\\OpenSSLConfigVersion.cmake" => [
+            ".\\exporters\\cmake\\OpenSSLConfigVersion.cmake.in"
+        ],
+        "exporters\\libcrypto.pc" => [
+            ".\\exporters\\pkg-config\\libcrypto.pc.in"
+        ],
+        "exporters\\libssl.pc" => [
+            ".\\exporters\\pkg-config\\libssl.pc.in"
+        ],
+        "exporters\\openssl.pc" => [
+            ".\\exporters\\pkg-config\\openssl.pc.in"
+        ],
         "include\\crypto\\bn_conf.h" => [
             ".\\include\\crypto\\bn_conf.h.in"
         ],
@@ -18003,9 +18125,26 @@ our %unified_info = (
         "include\\openssl\\x509v3.h" => [
             ".\\include\\openssl\\x509v3.h.in"
         ],
+        "installdata.pm" => [
+            ".\\util\\mkinstallvars.pl",
+            "\"PREFIX=\$(INSTALLTOP)\"",
+            "BINDIR=bin",
+            "\"LIBDIR=\$(LIBDIR)\"",
+            "INCLUDEDIR=include",
+            "APPLINKDIR=include/openssl",
+            "\"ENGINESDIR=\$(ENGINESDIR)\"",
+            "\"MODULESDIR=\$(MODULESDIR)\"",
+            "\"PKGCONFIGDIR=\$(PKGCONFIGDIR)\"",
+            "\"CMAKECONFIGDIR=\$(CMAKECONFIGDIR)\"",
+            "\"LDLIBS=\$(LIB_EX_LIBS)\"",
+            "\"VERSION=\$(VERSION)\""
+        ],
         "libcrypto.ld" => [
             ".\\util\\libcrypto.num",
             "libcrypto"
+        ],
+        "libcrypto.pc" => [
+            ".\\exporters\\pkg-config\\libcrypto.pc.in"
         ],
         "libcrypto.rc" => [
             ".\\util\\mkrc.pl",
@@ -18015,9 +18154,15 @@ our %unified_info = (
             ".\\util\\libssl.num",
             "libssl"
         ],
+        "libssl.pc" => [
+            ".\\exporters\\pkg-config\\libssl.pc.in"
+        ],
         "libssl.rc" => [
             ".\\util\\mkrc.pl",
             "libssl"
+        ],
+        "openssl.pc" => [
+            ".\\exporters\\pkg-config\\openssl.pc.in"
         ],
         "providers\\common\\der\\der_digests_gen.c" => [
             ".\\providers\\common\\der\\der_digests_gen.c.in"
@@ -19224,6 +19369,12 @@ our %unified_info = (
         ]
     },
     "includes" => {
+        "OpenSSLConfig.cmake" => [
+            "."
+        ],
+        "OpenSSLConfigVersion.cmake" => [
+            "."
+        ],
         "apps\\asn1parse.o" => [
             "apps"
         ],
@@ -20223,6 +20374,21 @@ our %unified_info = (
         "doc\\man1\\openssl-x509.pod" => [
             ".\\doc"
         ],
+        "exporters\\OpenSSLConfig.cmake" => [
+            "."
+        ],
+        "exporters\\OpenSSLConfigVersion.cmake" => [
+            "."
+        ],
+        "exporters\\libcrypto.pc" => [
+            "."
+        ],
+        "exporters\\libssl.pc" => [
+            "."
+        ],
+        "exporters\\openssl.pc" => [
+            "."
+        ],
         "fuzz\\asn1-test" => [
             "include",
             ".\\include"
@@ -20279,6 +20445,10 @@ our %unified_info = (
             "include",
             ".\\include"
         ],
+        "fuzz\\quic-srtm-test" => [
+            "include",
+            ".\\include"
+        ],
         "fuzz\\server-test" => [
             "include",
             ".\\include"
@@ -20315,6 +20485,9 @@ our %unified_info = (
             ".",
             ".\\util\\perl\\OpenSSL"
         ],
+        "libcrypto.pc" => [
+            "."
+        ],
         "libcrypto.rc" => [
             "."
         ],
@@ -20328,7 +20501,13 @@ our %unified_info = (
             ".",
             ".\\util\\perl\\OpenSSL"
         ],
+        "libssl.pc" => [
+            "."
+        ],
         "libssl.rc" => [
+            "."
+        ],
+        "openssl.pc" => [
             "."
         ],
         "providers\\common\\der\\der_digests_gen.c" => [
@@ -21633,6 +21812,12 @@ our %unified_info = (
             ".",
             ".\\include"
         ],
+        "test\\helpers\\quic_srt_gen_test-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
         "test\\helpers\\quicapitest-bin-ssltestlib.o" => [
             ".",
             "include",
@@ -22086,6 +22271,20 @@ our %unified_info = (
             "."
         ],
         "test\\quic_record_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\quic_srt_gen_test" => [
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include",
+            "."
+        ],
+        "test\\quic_srtm_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -23429,6 +23628,7 @@ our %unified_info = (
         "fuzz\\pem-test",
         "fuzz\\punycode-test",
         "fuzz\\quic-client-test",
+        "fuzz\\quic-srtm-test",
         "fuzz\\server-test",
         "fuzz\\smime-test",
         "fuzz\\v3name-test",
@@ -23655,6 +23855,8 @@ our %unified_info = (
         "test\\quic_multistream_test",
         "test\\quic_newcid_test",
         "test\\quic_record_test",
+        "test\\quic_srt_gen_test",
+        "test\\quic_srtm_test",
         "test\\quic_stream_test",
         "test\\quic_tserver_test",
         "test\\quic_txp_test",
@@ -24594,6 +24796,8 @@ our %unified_info = (
             "ssl\\quic\\libssl-shlib-quic_rstream.o",
             "ssl\\quic\\libssl-shlib-quic_rx_depack.o",
             "ssl\\quic\\libssl-shlib-quic_sf_list.o",
+            "ssl\\quic\\libssl-shlib-quic_srt_gen.o",
+            "ssl\\quic\\libssl-shlib-quic_srtm.o",
             "ssl\\quic\\libssl-shlib-quic_sstream.o",
             "ssl\\quic\\libssl-shlib-quic_statm.o",
             "ssl\\quic\\libssl-shlib-quic_stream_map.o",
@@ -29967,6 +30171,20 @@ our %unified_info = (
         "fuzz\\quic-client-test-bin-test-corpus.o" => [
             ".\\fuzz\\test-corpus.c"
         ],
+        "fuzz\\quic-srtm-test" => [
+            "fuzz\\quic-srtm-test-bin-fuzz_rand.o",
+            "fuzz\\quic-srtm-test-bin-quic-srtm.o",
+            "fuzz\\quic-srtm-test-bin-test-corpus.o"
+        ],
+        "fuzz\\quic-srtm-test-bin-fuzz_rand.o" => [
+            ".\\fuzz\\fuzz_rand.c"
+        ],
+        "fuzz\\quic-srtm-test-bin-quic-srtm.o" => [
+            ".\\fuzz\\quic-srtm.c"
+        ],
+        "fuzz\\quic-srtm-test-bin-test-corpus.o" => [
+            ".\\fuzz\\test-corpus.c"
+        ],
         "fuzz\\server-test" => [
             "fuzz\\server-test-bin-fuzz_rand.o",
             "fuzz\\server-test-bin-server.o",
@@ -30868,6 +31086,8 @@ our %unified_info = (
             "ssl\\quic\\libssl-lib-quic_rstream.o",
             "ssl\\quic\\libssl-lib-quic_rx_depack.o",
             "ssl\\quic\\libssl-lib-quic_sf_list.o",
+            "ssl\\quic\\libssl-lib-quic_srt_gen.o",
+            "ssl\\quic\\libssl-lib-quic_srtm.o",
             "ssl\\quic\\libssl-lib-quic_sstream.o",
             "ssl\\quic\\libssl-lib-quic_statm.o",
             "ssl\\quic\\libssl-lib-quic_stream_map.o",
@@ -31975,6 +32195,12 @@ our %unified_info = (
         "ssl\\quic\\libssl-lib-quic_sf_list.o" => [
             ".\\ssl\\quic\\quic_sf_list.c"
         ],
+        "ssl\\quic\\libssl-lib-quic_srt_gen.o" => [
+            ".\\ssl\\quic\\quic_srt_gen.c"
+        ],
+        "ssl\\quic\\libssl-lib-quic_srtm.o" => [
+            ".\\ssl\\quic\\quic_srtm.c"
+        ],
         "ssl\\quic\\libssl-lib-quic_sstream.o" => [
             ".\\ssl\\quic\\quic_sstream.c"
         ],
@@ -32061,6 +32287,12 @@ our %unified_info = (
         ],
         "ssl\\quic\\libssl-shlib-quic_sf_list.o" => [
             ".\\ssl\\quic\\quic_sf_list.c"
+        ],
+        "ssl\\quic\\libssl-shlib-quic_srt_gen.o" => [
+            ".\\ssl\\quic\\quic_srt_gen.c"
+        ],
+        "ssl\\quic\\libssl-shlib-quic_srtm.o" => [
+            ".\\ssl\\quic\\quic_srtm.c"
         ],
         "ssl\\quic\\libssl-shlib-quic_sstream.o" => [
             ".\\ssl\\quic\\quic_sstream.c"
@@ -33328,6 +33560,18 @@ our %unified_info = (
         "test\\helpers\\quic_newcid_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
+        "test\\helpers\\quic_srt_gen_test-bin-noisydgrambio.o" => [
+            ".\\test\\helpers\\noisydgrambio.c"
+        ],
+        "test\\helpers\\quic_srt_gen_test-bin-pktsplitbio.o" => [
+            ".\\test\\helpers\\pktsplitbio.c"
+        ],
+        "test\\helpers\\quic_srt_gen_test-bin-quictestlib.o" => [
+            ".\\test\\helpers\\quictestlib.c"
+        ],
+        "test\\helpers\\quic_srt_gen_test-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
         "test\\helpers\\quicapitest-bin-noisydgrambio.o" => [
             ".\\test\\helpers\\noisydgrambio.c"
         ],
@@ -33789,6 +34033,22 @@ our %unified_info = (
         ],
         "test\\quic_record_test-bin-quic_record_test.o" => [
             ".\\test\\quic_record_test.c"
+        ],
+        "test\\quic_srt_gen_test" => [
+            "test\\helpers\\quic_srt_gen_test-bin-noisydgrambio.o",
+            "test\\helpers\\quic_srt_gen_test-bin-pktsplitbio.o",
+            "test\\helpers\\quic_srt_gen_test-bin-quictestlib.o",
+            "test\\helpers\\quic_srt_gen_test-bin-ssltestlib.o",
+            "test\\quic_srt_gen_test-bin-quic_srt_gen_test.o"
+        ],
+        "test\\quic_srt_gen_test-bin-quic_srt_gen_test.o" => [
+            ".\\test\\quic_srt_gen_test.c"
+        ],
+        "test\\quic_srtm_test" => [
+            "test\\quic_srtm_test-bin-quic_srtm_test.o"
+        ],
+        "test\\quic_srtm_test-bin-quic_srtm_test.o" => [
+            ".\\test\\quic_srtm_test.c"
         ],
         "test\\quic_stream_test" => [
             "test\\quic_stream_test-bin-quic_stream_test.o"
