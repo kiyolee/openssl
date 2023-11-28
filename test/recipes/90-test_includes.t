@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use OpenSSL::Test qw/:DEFAULT bldtop_dir data_file/;
+use OpenSSL::Test qw/:DEFAULT bldtop_dir data_file shlib_dir/;
 use OpenSSL::Test::Utils;
 use Cwd qw(abs_path);
 
@@ -17,7 +17,8 @@ plan tests =>                   # The number of tests being performed
     7
     + ($^O eq "VMS" ? 2 : 0);
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("providers"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("providers"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 ok(run(test(["conf_include_test", data_file("includes.cnf")])), "test directory includes");
 ok(run(test(["conf_include_test", data_file("includes-file.cnf")])), "test file includes");
