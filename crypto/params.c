@@ -1302,11 +1302,18 @@ OSSL_PARAM OSSL_PARAM_construct_double(const char *key, double *buf)
 }
 #endif
 
+#if defined(_MSC_VER) && (1910 <= _MSC_VER && _MSC_VER < 1920) && defined(_M_X64) && defined(NDEBUG)
+#define VS2017_WORKAROUND
+#endif
+
 static int get_string_internal(const OSSL_PARAM *p, void **val,
                                size_t *max_len, size_t *used_len,
                                unsigned int type)
 {
     size_t sz, alloc_sz;
+#ifdef VS2017_WORKAROUND
+    void* sp;
+#endif
 
     if ((val == NULL && used_len == NULL) || p == NULL) {
         err_null_argument;
@@ -1335,12 +1342,18 @@ static int get_string_internal(const OSSL_PARAM *p, void **val,
     if (val == NULL)
         return 1;
 
+#ifdef VS2017_WORKAROUND
+    sp = *val;
+#endif
     if (*val == NULL) {
         char *const q = OPENSSL_malloc(alloc_sz);
 
         if (q == NULL)
             return 0;
         *val = q;
+#ifdef VS2017_WORKAROUND
+        sp = q;
+#endif
         *max_len = alloc_sz;
     }
 
@@ -1348,7 +1361,11 @@ static int get_string_internal(const OSSL_PARAM *p, void **val,
         err_too_small;
         return 0;
     }
+#ifdef VS2017_WORKAROUND
+    memcpy(sp, p->data, sz);
+#else
     memcpy(*val, p->data, sz);
+#endif
     return 1;
 }
 
