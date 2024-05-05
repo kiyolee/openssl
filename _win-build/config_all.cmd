@@ -37,6 +37,7 @@ set _GEN_LIST_INCL=^
   include\openssl\ssl.h ^
   include\openssl\ui.h ^
   include\openssl\x509.h ^
+  include\openssl\x509_acert.h ^
   include\openssl\x509_vfy.h ^
   include\openssl\x509v3.h
 

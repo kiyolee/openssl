@@ -201,6 +201,8 @@ typedef struct ACCESS_DESCRIPTION_st {
     GENERAL_NAME *location;
 } ACCESS_DESCRIPTION;
 
+int GENERAL_NAME_set1_X509_NAME(GENERAL_NAME **tgt, const X509_NAME *src);
+
 SKM_DEFINE_STACK_OF_INTERNAL(ACCESS_DESCRIPTION, ACCESS_DESCRIPTION, ACCESS_DESCRIPTION)
 #define sk_ACCESS_DESCRIPTION_num(sk) OPENSSL_sk_num(ossl_check_const_ACCESS_DESCRIPTION_sk_type(sk))
 #define sk_ACCESS_DESCRIPTION_value(sk, idx) ((ACCESS_DESCRIPTION *)OPENSSL_sk_value(ossl_check_const_ACCESS_DESCRIPTION_sk_type(sk), (idx)))
@@ -297,6 +299,7 @@ typedef struct DIST_POINT_NAME_st {
 /* If relativename then this contains the full distribution point name */
     X509_NAME *dpname;
 } DIST_POINT_NAME;
+DECLARE_ASN1_DUP_FUNCTION(DIST_POINT_NAME)
 /* All existing reasons */
 # define CRLDP_ALL_REASONS       0x807f
 
