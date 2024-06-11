@@ -12,7 +12,7 @@ use warnings;
 use File::Spec::Functions qw(:DEFAULT abs2rel);
 use File::Copy;
 use OpenSSL::Glob;
-use OpenSSL::Test qw/:DEFAULT srctop_dir srctop_file bldtop_dir bldtop_file/;
+use OpenSSL::Test qw/:DEFAULT srctop_dir srctop_file bldtop_dir bldtop_file shlib_file/;
 use OpenSSL::Test::Utils;
 
 BEGIN {
@@ -34,7 +34,8 @@ my @pedantic_fail =
 
 plan tests => 35 + (scalar @pedantic_okay) + (scalar @pedantic_fail);
 
-my $infile = bldtop_file('providers', platform->dso('fips'));
+#my $infile = bldtop_file('providers', platform->dso('fips'));
+my $infile = shlib_file(platform->dso('fips'));
 my $fipskey = $ENV{FIPSKEY} // config('FIPSKEY') // '00';
 my $provconf = srctop_file("test", "fips-and-base.cnf");
 
