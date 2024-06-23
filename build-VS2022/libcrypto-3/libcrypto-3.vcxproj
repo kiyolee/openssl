@@ -826,6 +826,7 @@
     <ClCompile Include="..\..\crypto\x509\pcy_tree.c" />
     <ClCompile Include="..\..\crypto\x509\t_acert.c" />
     <ClCompile Include="..\..\crypto\x509\v3err.c" />
+    <ClCompile Include="..\..\crypto\x509\v3_ac_tgt.c" />
     <ClCompile Include="..\..\crypto\x509\v3_addr.c" />
     <ClCompile Include="..\..\crypto\x509\v3_admis.c" />
     <ClCompile Include="..\..\crypto\x509\v3_akeya.c" />

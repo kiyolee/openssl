@@ -1859,6 +1859,9 @@ our %unified_info = (
             "test\\x509_load_cert_file_test" => {
                 "noinst" => "1"
             },
+            "test\\x509_req_test" => {
+                "noinst" => "1"
+            },
             "test\\x509_test" => {
                 "noinst" => "1"
             },
@@ -3312,6 +3315,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_CALLBACK.html" => [
             ".\\doc\\man3\\OSSL_CALLBACK.pod"
         ],
+        "doc\\html\\man3\\OSSL_CMP_ATAV_set0.html" => [
+            ".\\doc\\man3\\OSSL_CMP_ATAV_set0.pod"
+        ],
         "doc\\html\\man3\\OSSL_CMP_CTX_new.html" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -3395,6 +3401,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OSSL_ESS_check_signing_certs.html" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
+        ],
+        "doc\\html\\man3\\OSSL_GENERAL_NAMES_print.html" => [
+            ".\\doc\\man3\\OSSL_GENERAL_NAMES_print.pod"
         ],
         "doc\\html\\man3\\OSSL_HPKE_CTX_new.html" => [
             ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
@@ -4806,6 +4815,9 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-tls-server-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -6116,6 +6128,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_CALLBACK.3" => [
             ".\\doc\\man3\\OSSL_CALLBACK.pod"
         ],
+        "doc\\man\\man3\\OSSL_CMP_ATAV_set0.3" => [
+            ".\\doc\\man3\\OSSL_CMP_ATAV_set0.pod"
+        ],
         "doc\\man\\man3\\OSSL_CMP_CTX_new.3" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -6199,6 +6214,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\OSSL_ESS_check_signing_certs.3" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
+        ],
+        "doc\\man\\man3\\OSSL_GENERAL_NAMES_print.3" => [
+            ".\\doc\\man3\\OSSL_GENERAL_NAMES_print.pod"
         ],
         "doc\\man\\man3\\OSSL_HPKE_CTX_new.3" => [
             ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
@@ -7609,6 +7627,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-tls-server-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
         ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
@@ -9184,6 +9205,10 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\x509_req_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
         "test\\x509_test" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -10649,6 +10674,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-lib-t_crl.o",
                 "crypto\\x509\\libcrypto-lib-t_req.o",
                 "crypto\\x509\\libcrypto-lib-t_x509.o",
+                "crypto\\x509\\libcrypto-lib-v3_ac_tgt.o",
                 "crypto\\x509\\libcrypto-lib-v3_addr.o",
                 "crypto\\x509\\libcrypto-lib-v3_admis.o",
                 "crypto\\x509\\libcrypto-lib-v3_akeya.o",
@@ -13135,6 +13161,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_CALLBACK.html" => [
             ".\\doc\\man3\\OSSL_CALLBACK.pod"
         ],
+        "doc\\html\\man3\\OSSL_CMP_ATAV_set0.html" => [
+            ".\\doc\\man3\\OSSL_CMP_ATAV_set0.pod"
+        ],
         "doc\\html\\man3\\OSSL_CMP_CTX_new.html" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -13218,6 +13247,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OSSL_ESS_check_signing_certs.html" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
+        ],
+        "doc\\html\\man3\\OSSL_GENERAL_NAMES_print.html" => [
+            ".\\doc\\man3\\OSSL_GENERAL_NAMES_print.pod"
         ],
         "doc\\html\\man3\\OSSL_HPKE_CTX_new.html" => [
             ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
@@ -14629,6 +14661,9 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-tls-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
         ],
+        "doc\\html\\man7\\ossl-guide-tls-server-block.html" => [
+            ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -15886,6 +15921,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_CALLBACK.3" => [
             ".\\doc\\man3\\OSSL_CALLBACK.pod"
         ],
+        "doc\\man\\man3\\OSSL_CMP_ATAV_set0.3" => [
+            ".\\doc\\man3\\OSSL_CMP_ATAV_set0.pod"
+        ],
         "doc\\man\\man3\\OSSL_CMP_CTX_new.3" => [
             ".\\doc\\man3\\OSSL_CMP_CTX_new.pod"
         ],
@@ -15969,6 +16007,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\OSSL_ESS_check_signing_certs.3" => [
             ".\\doc\\man3\\OSSL_ESS_check_signing_certs.pod"
+        ],
+        "doc\\man\\man3\\OSSL_GENERAL_NAMES_print.3" => [
+            ".\\doc\\man3\\OSSL_GENERAL_NAMES_print.pod"
         ],
         "doc\\man\\man3\\OSSL_HPKE_CTX_new.3" => [
             ".\\doc\\man3\\OSSL_HPKE_CTX_new.pod"
@@ -17380,6 +17421,9 @@ our %unified_info = (
         "doc\\man\\man7\\ossl-guide-tls-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-tls-introduction.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-tls-server-block.7" => [
+            ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
+        ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -18285,6 +18329,7 @@ our %unified_info = (
             "doc\\html\\man3\\OPENSSL_strcasecmp.html",
             "doc\\html\\man3\\OSSL_ALGORITHM.html",
             "doc\\html\\man3\\OSSL_CALLBACK.html",
+            "doc\\html\\man3\\OSSL_CMP_ATAV_set0.html",
             "doc\\html\\man3\\OSSL_CMP_CTX_new.html",
             "doc\\html\\man3\\OSSL_CMP_HDR_get0_transactionID.html",
             "doc\\html\\man3\\OSSL_CMP_ITAV_new_caCerts.html",
@@ -18313,6 +18358,7 @@ our %unified_info = (
             "doc\\html\\man3\\OSSL_ENCODER_to_bio.html",
             "doc\\html\\man3\\OSSL_ERR_STATE_save.html",
             "doc\\html\\man3\\OSSL_ESS_check_signing_certs.html",
+            "doc\\html\\man3\\OSSL_GENERAL_NAMES_print.html",
             "doc\\html\\man3\\OSSL_HPKE_CTX_new.html",
             "doc\\html\\man3\\OSSL_HTTP_REQ_CTX.html",
             "doc\\html\\man3\\OSSL_HTTP_parse_url.html",
@@ -18787,6 +18833,7 @@ our %unified_info = (
             "doc\\html\\man7\\ossl-guide-tls-client-block.html",
             "doc\\html\\man7\\ossl-guide-tls-client-non-block.html",
             "doc\\html\\man7\\ossl-guide-tls-introduction.html",
+            "doc\\html\\man7\\ossl-guide-tls-server-block.html",
             "doc\\html\\man7\\ossl_store-file.html",
             "doc\\html\\man7\\ossl_store.html",
             "doc\\html\\man7\\passphrase-encoding.html",
@@ -22167,6 +22214,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\x509_req_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\x509_test" => [
             "include",
             "apps\\include",
@@ -22552,6 +22605,7 @@ our %unified_info = (
             "doc\\man\\man3\\OPENSSL_strcasecmp.3",
             "doc\\man\\man3\\OSSL_ALGORITHM.3",
             "doc\\man\\man3\\OSSL_CALLBACK.3",
+            "doc\\man\\man3\\OSSL_CMP_ATAV_set0.3",
             "doc\\man\\man3\\OSSL_CMP_CTX_new.3",
             "doc\\man\\man3\\OSSL_CMP_HDR_get0_transactionID.3",
             "doc\\man\\man3\\OSSL_CMP_ITAV_new_caCerts.3",
@@ -22580,6 +22634,7 @@ our %unified_info = (
             "doc\\man\\man3\\OSSL_ENCODER_to_bio.3",
             "doc\\man\\man3\\OSSL_ERR_STATE_save.3",
             "doc\\man\\man3\\OSSL_ESS_check_signing_certs.3",
+            "doc\\man\\man3\\OSSL_GENERAL_NAMES_print.3",
             "doc\\man\\man3\\OSSL_HPKE_CTX_new.3",
             "doc\\man\\man3\\OSSL_HTTP_REQ_CTX.3",
             "doc\\man\\man3\\OSSL_HTTP_parse_url.3",
@@ -23054,6 +23109,7 @@ our %unified_info = (
             "doc\\man\\man7\\ossl-guide-tls-client-block.7",
             "doc\\man\\man7\\ossl-guide-tls-client-non-block.7",
             "doc\\man\\man7\\ossl-guide-tls-introduction.7",
+            "doc\\man\\man7\\ossl-guide-tls-server-block.7",
             "doc\\man\\man7\\ossl_store-file.7",
             "doc\\man\\man7\\ossl_store.7",
             "doc\\man\\man7\\passphrase-encoding.7",
@@ -23403,6 +23459,7 @@ our %unified_info = (
         "test\\x509_dup_cert_test",
         "test\\x509_internal_test",
         "test\\x509_load_cert_file_test",
+        "test\\x509_req_test",
         "test\\x509_test",
         "test\\x509_time_test",
         "test\\x509aux",
@@ -25944,6 +26001,9 @@ our %unified_info = (
         "crypto\\x509\\libcrypto-lib-t_x509.o" => [
             ".\\crypto\\x509\\t_x509.c"
         ],
+        "crypto\\x509\\libcrypto-lib-v3_ac_tgt.o" => [
+            ".\\crypto\\x509\\v3_ac_tgt.c"
+        ],
         "crypto\\x509\\libcrypto-lib-v3_addr.o" => [
             ".\\crypto\\x509\\v3_addr.c"
         ],
@@ -27205,6 +27265,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-lib-t_crl.o",
             "crypto\\x509\\libcrypto-lib-t_req.o",
             "crypto\\x509\\libcrypto-lib-t_x509.o",
+            "crypto\\x509\\libcrypto-lib-v3_ac_tgt.o",
             "crypto\\x509\\libcrypto-lib-v3_addr.o",
             "crypto\\x509\\libcrypto-lib-v3_admis.o",
             "crypto\\x509\\libcrypto-lib-v3_akeya.o",
@@ -30555,6 +30616,12 @@ our %unified_info = (
         ],
         "test\\x509_load_cert_file_test-bin-x509_load_cert_file_test.o" => [
             ".\\test\\x509_load_cert_file_test.c"
+        ],
+        "test\\x509_req_test" => [
+            "test\\x509_req_test-bin-x509_req_test.o"
+        ],
+        "test\\x509_req_test-bin-x509_req_test.o" => [
+            ".\\test\\x509_req_test.c"
         ],
         "test\\x509_test" => [
             "test\\x509_test-bin-x509_test.o"
