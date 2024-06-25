@@ -10706,6 +10706,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-lib-v3_prn.o",
                 "crypto\\x509\\libcrypto-lib-v3_purp.o",
                 "crypto\\x509\\libcrypto-lib-v3_san.o",
+                "crypto\\x509\\libcrypto-lib-v3_sda.o",
                 "crypto\\x509\\libcrypto-lib-v3_single_use.o",
                 "crypto\\x509\\libcrypto-lib-v3_skid.o",
                 "crypto\\x509\\libcrypto-lib-v3_soa_id.o",
@@ -26097,6 +26098,9 @@ our %unified_info = (
         "crypto\\x509\\libcrypto-lib-v3_san.o" => [
             ".\\crypto\\x509\\v3_san.c"
         ],
+        "crypto\\x509\\libcrypto-lib-v3_sda.o" => [
+            ".\\crypto\\x509\\v3_sda.c"
+        ],
         "crypto\\x509\\libcrypto-lib-v3_single_use.o" => [
             ".\\crypto\\x509\\v3_single_use.c"
         ],
@@ -27297,6 +27301,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-lib-v3_prn.o",
             "crypto\\x509\\libcrypto-lib-v3_purp.o",
             "crypto\\x509\\libcrypto-lib-v3_san.o",
+            "crypto\\x509\\libcrypto-lib-v3_sda.o",
             "crypto\\x509\\libcrypto-lib-v3_single_use.o",
             "crypto\\x509\\libcrypto-lib-v3_skid.o",
             "crypto\\x509\\libcrypto-lib-v3_soa_id.o",

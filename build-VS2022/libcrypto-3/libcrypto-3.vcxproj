@@ -858,6 +858,7 @@
     <ClCompile Include="..\..\crypto\x509\v3_prn.c" />
     <ClCompile Include="..\..\crypto\x509\v3_purp.c" />
     <ClCompile Include="..\..\crypto\x509\v3_san.c" />
+    <ClCompile Include="..\..\crypto\x509\v3_sda.c" />
     <ClCompile Include="..\..\crypto\x509\v3_single_use.c" />
     <ClCompile Include="..\..\crypto\x509\v3_skid.c" />
     <ClCompile Include="..\..\crypto\x509\v3_soa_id.c" />
