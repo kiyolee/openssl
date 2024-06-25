@@ -2574,6 +2574,9 @@
     <ClCompile Include="..\..\crypto\x509\v3_ac_tgt.c">
       <Filter>Source Files\crypto\x509</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\x509\v3_sda.c">
+      <Filter>Source Files\crypto\x509</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
