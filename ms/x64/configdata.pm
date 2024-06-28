@@ -18604,6 +18604,7 @@ our %unified_info = (
             "\"PREFIX=\$(INSTALLTOP)\"",
             "BINDIR=bin",
             "\"LIBDIR=\$(LIBDIR)\"",
+            "\"libdir=\$(libdir)\"",
             "INCLUDEDIR=include",
             "APPLINKDIR=include/openssl",
             "\"ENGINESDIR=\$(ENGINESDIR)\"",
