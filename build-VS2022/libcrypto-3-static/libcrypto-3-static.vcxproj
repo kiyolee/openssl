@@ -843,6 +843,7 @@
     <ClCompile Include="..\..\crypto\x509\v3_soa_id.c" />
     <ClCompile Include="..\..\crypto\x509\v3_sxnet.c" />
     <ClCompile Include="..\..\crypto\x509\v3_tlsf.c" />
+    <ClCompile Include="..\..\crypto\x509\v3_usernotice.c" />
     <ClCompile Include="..\..\crypto\x509\v3_utf8.c" />
     <ClCompile Include="..\..\crypto\x509\v3_utl.c" />
     <ClCompile Include="..\..\crypto\x509\by_dir.c" />

@@ -1454,8 +1454,39 @@ void PROFESSION_INFO_set0_registrationNumber(
 
 int OSSL_GENERAL_NAMES_print(BIO *out, GENERAL_NAMES *gens, int indent);
 
-typedef STACK_OF(X509_ATTRIBUTE) ATTRIBUTES_SYNTAX;
-DECLARE_ASN1_FUNCTIONS(ATTRIBUTES_SYNTAX)
+typedef STACK_OF(X509_ATTRIBUTE) OSSL_ATTRIBUTES_SYNTAX;
+DECLARE_ASN1_FUNCTIONS(OSSL_ATTRIBUTES_SYNTAX)
+
+typedef STACK_OF(USERNOTICE) OSSL_USER_NOTICE_SYNTAX;
+DECLARE_ASN1_FUNCTIONS(OSSL_USER_NOTICE_SYNTAX)
+
+SKM_DEFINE_STACK_OF_INTERNAL(USERNOTICE, USERNOTICE, USERNOTICE)
+#define sk_USERNOTICE_num(sk) OPENSSL_sk_num(ossl_check_const_USERNOTICE_sk_type(sk))
+#define sk_USERNOTICE_value(sk, idx) ((USERNOTICE *)OPENSSL_sk_value(ossl_check_const_USERNOTICE_sk_type(sk), (idx)))
+#define sk_USERNOTICE_new(cmp) ((STACK_OF(USERNOTICE) *)OPENSSL_sk_new(ossl_check_USERNOTICE_compfunc_type(cmp)))
+#define sk_USERNOTICE_new_null() ((STACK_OF(USERNOTICE) *)OPENSSL_sk_new_null())
+#define sk_USERNOTICE_new_reserve(cmp, n) ((STACK_OF(USERNOTICE) *)OPENSSL_sk_new_reserve(ossl_check_USERNOTICE_compfunc_type(cmp), (n)))
+#define sk_USERNOTICE_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_USERNOTICE_sk_type(sk), (n))
+#define sk_USERNOTICE_free(sk) OPENSSL_sk_free(ossl_check_USERNOTICE_sk_type(sk))
+#define sk_USERNOTICE_zero(sk) OPENSSL_sk_zero(ossl_check_USERNOTICE_sk_type(sk))
+#define sk_USERNOTICE_delete(sk, i) ((USERNOTICE *)OPENSSL_sk_delete(ossl_check_USERNOTICE_sk_type(sk), (i)))
+#define sk_USERNOTICE_delete_ptr(sk, ptr) ((USERNOTICE *)OPENSSL_sk_delete_ptr(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_type(ptr)))
+#define sk_USERNOTICE_push(sk, ptr) OPENSSL_sk_push(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_type(ptr))
+#define sk_USERNOTICE_unshift(sk, ptr) OPENSSL_sk_unshift(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_type(ptr))
+#define sk_USERNOTICE_pop(sk) ((USERNOTICE *)OPENSSL_sk_pop(ossl_check_USERNOTICE_sk_type(sk)))
+#define sk_USERNOTICE_shift(sk) ((USERNOTICE *)OPENSSL_sk_shift(ossl_check_USERNOTICE_sk_type(sk)))
+#define sk_USERNOTICE_pop_free(sk, freefunc) OPENSSL_sk_pop_free(ossl_check_USERNOTICE_sk_type(sk),ossl_check_USERNOTICE_freefunc_type(freefunc))
+#define sk_USERNOTICE_insert(sk, ptr, idx) OPENSSL_sk_insert(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_type(ptr), (idx))
+#define sk_USERNOTICE_set(sk, idx, ptr) ((USERNOTICE *)OPENSSL_sk_set(ossl_check_USERNOTICE_sk_type(sk), (idx), ossl_check_USERNOTICE_type(ptr)))
+#define sk_USERNOTICE_find(sk, ptr) OPENSSL_sk_find(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_type(ptr))
+#define sk_USERNOTICE_find_ex(sk, ptr) OPENSSL_sk_find_ex(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_type(ptr))
+#define sk_USERNOTICE_find_all(sk, ptr, pnum) OPENSSL_sk_find_all(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_type(ptr), pnum)
+#define sk_USERNOTICE_sort(sk) OPENSSL_sk_sort(ossl_check_USERNOTICE_sk_type(sk))
+#define sk_USERNOTICE_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_USERNOTICE_sk_type(sk))
+#define sk_USERNOTICE_dup(sk) ((STACK_OF(USERNOTICE) *)OPENSSL_sk_dup(ossl_check_const_USERNOTICE_sk_type(sk)))
+#define sk_USERNOTICE_deep_copy(sk, copyfunc, freefunc) ((STACK_OF(USERNOTICE) *)OPENSSL_sk_deep_copy(ossl_check_const_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_copyfunc_type(copyfunc), ossl_check_USERNOTICE_freefunc_type(freefunc)))
+#define sk_USERNOTICE_set_cmp_func(sk, cmp) ((sk_USERNOTICE_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_USERNOTICE_sk_type(sk), ossl_check_USERNOTICE_compfunc_type(cmp)))
+
 
 # ifdef  __cplusplus
 }

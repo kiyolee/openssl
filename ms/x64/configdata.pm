@@ -11492,6 +11492,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-lib-v3_soa_id.o",
                 "crypto\\x509\\libcrypto-lib-v3_sxnet.o",
                 "crypto\\x509\\libcrypto-lib-v3_tlsf.o",
+                "crypto\\x509\\libcrypto-lib-v3_usernotice.o",
                 "crypto\\x509\\libcrypto-lib-v3_utf8.o",
                 "crypto\\x509\\libcrypto-lib-v3_utl.o",
                 "crypto\\x509\\libcrypto-lib-v3err.o",
@@ -11580,6 +11581,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-shlib-v3_soa_id.o",
                 "crypto\\x509\\libcrypto-shlib-v3_sxnet.o",
                 "crypto\\x509\\libcrypto-shlib-v3_tlsf.o",
+                "crypto\\x509\\libcrypto-shlib-v3_usernotice.o",
                 "crypto\\x509\\libcrypto-shlib-v3_utf8.o",
                 "crypto\\x509\\libcrypto-shlib-v3_utl.o",
                 "crypto\\x509\\libcrypto-shlib-v3err.o",
@@ -25327,6 +25329,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-shlib-v3_soa_id.o",
             "crypto\\x509\\libcrypto-shlib-v3_sxnet.o",
             "crypto\\x509\\libcrypto-shlib-v3_tlsf.o",
+            "crypto\\x509\\libcrypto-shlib-v3_usernotice.o",
             "crypto\\x509\\libcrypto-shlib-v3_utf8.o",
             "crypto\\x509\\libcrypto-shlib-v3_utl.o",
             "crypto\\x509\\libcrypto-shlib-v3err.o",
@@ -30323,6 +30326,9 @@ our %unified_info = (
         "crypto\\x509\\libcrypto-lib-v3_tlsf.o" => [
             ".\\crypto\\x509\\v3_tlsf.c"
         ],
+        "crypto\\x509\\libcrypto-lib-v3_usernotice.o" => [
+            ".\\crypto\\x509\\v3_usernotice.c"
+        ],
         "crypto\\x509\\libcrypto-lib-v3_utf8.o" => [
             ".\\crypto\\x509\\v3_utf8.c"
         ],
@@ -30586,6 +30592,9 @@ our %unified_info = (
         ],
         "crypto\\x509\\libcrypto-shlib-v3_tlsf.o" => [
             ".\\crypto\\x509\\v3_tlsf.c"
+        ],
+        "crypto\\x509\\libcrypto-shlib-v3_usernotice.o" => [
+            ".\\crypto\\x509\\v3_usernotice.c"
         ],
         "crypto\\x509\\libcrypto-shlib-v3_utf8.o" => [
             ".\\crypto\\x509\\v3_utf8.c"
@@ -31788,6 +31797,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-lib-v3_soa_id.o",
             "crypto\\x509\\libcrypto-lib-v3_sxnet.o",
             "crypto\\x509\\libcrypto-lib-v3_tlsf.o",
+            "crypto\\x509\\libcrypto-lib-v3_usernotice.o",
             "crypto\\x509\\libcrypto-lib-v3_utf8.o",
             "crypto\\x509\\libcrypto-lib-v3_utl.o",
             "crypto\\x509\\libcrypto-lib-v3err.o",
