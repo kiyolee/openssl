@@ -332,6 +332,10 @@ int ossl_param_find_pidx(const char *s)
             if (strcmp("bg-no-trunc-md", s + 2) == 0)
                 return PIDX_PROV_PARAM_DRBG_TRUNC_DIGEST;
             break;
+        case 's':
+            if (strcmp("a-sign-disabled", s + 2) == 0)
+                return PIDX_PROV_PARAM_DSA_SIGN_DISABLED;
+            break;
         case '\0':
             return PIDX_PKEY_PARAM_RSA_D;
         }
@@ -379,8 +383,37 @@ int ossl_param_find_pidx(const char *s)
                     }
                     break;
                 case 'r':
-                    if (strcmp("ypt-level", s + 4) == 0)
-                        return PIDX_ENCODER_PARAM_ENCRYPT_LEVEL;
+                    switch(s[4]) {
+                    default:
+                        break;
+                    case 'y':
+                        switch(s[5]) {
+                        default:
+                            break;
+                        case 'p':
+                            switch(s[6]) {
+                            default:
+                                break;
+                            case 't':
+                                switch(s[7]) {
+                                default:
+                                    break;
+                                case '-':
+                                    switch(s[8]) {
+                                    default:
+                                        break;
+                                    case 'c':
+                                        if (strcmp("heck", s + 9) == 0)
+                                            return PIDX_CIPHER_PARAM_FIPS_ENCRYPT_CHECK;
+                                        break;
+                                    case 'l':
+                                        if (strcmp("evel", s + 9) == 0)
+                                            return PIDX_ENCODER_PARAM_ENCRYPT_LEVEL;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 break;
             case 'g':
@@ -963,6 +996,10 @@ int ossl_param_find_pidx(const char *s)
         case 'o':
             switch(s[2]) {
             default:
+                break;
+            case '-':
+                if (strcmp("short-mac", s + 3) == 0)
+                    return PIDX_PROV_PARAM_NO_SHORT_MAC;
                 break;
             case 'n':
                 switch(s[3]) {
@@ -1847,8 +1884,17 @@ int ossl_param_find_pidx(const char *s)
             }
             break;
         case 'i':
-            if (strcmp("ze", s + 2) == 0)
-                return PIDX_MAC_PARAM_SIZE;
+            switch(s[2]) {
+            default:
+                break;
+            case 'g':
+                if (strcmp("n-check", s + 3) == 0)
+                    return PIDX_SIGNATURE_PARAM_FIPS_SIGN_CHECK;
+                break;
+            case 'z':
+                if (strcmp("e", s + 3) == 0)
+                    return PIDX_MAC_PARAM_SIZE;
+            }
             break;
         case 'p':
             if (strcmp("eed", s + 2) == 0)
@@ -1991,6 +2037,10 @@ int ossl_param_find_pidx(const char *s)
                     return PIDX_CIPHER_PARAM_AEAD_TAG;
                 }
             }
+            break;
+        case 'd':
+            if (strcmp("es-encrypt-disabled", s + 2) == 0)
+                return PIDX_PROV_PARAM_TDES_ENCRYPT_DISABLED;
             break;
         case 'e':
             switch(s[2]) {
