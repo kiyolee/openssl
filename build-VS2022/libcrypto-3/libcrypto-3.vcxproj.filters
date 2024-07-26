@@ -2601,6 +2601,9 @@
     <ClCompile Include="..\..\crypto\indicator_core.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\x509\v3_battcons.c">
+      <Filter>Source Files\crypto\x509</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">

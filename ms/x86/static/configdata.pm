@@ -10683,6 +10683,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-lib-v3_akeya.o",
                 "crypto\\x509\\libcrypto-lib-v3_akid.o",
                 "crypto\\x509\\libcrypto-lib-v3_asid.o",
+                "crypto\\x509\\libcrypto-lib-v3_battcons.o",
                 "crypto\\x509\\libcrypto-lib-v3_bcons.o",
                 "crypto\\x509\\libcrypto-lib-v3_bitst.o",
                 "crypto\\x509\\libcrypto-lib-v3_conf.o",
@@ -26015,6 +26016,9 @@ our %unified_info = (
         "crypto\\x509\\libcrypto-lib-v3_asid.o" => [
             ".\\crypto\\x509\\v3_asid.c"
         ],
+        "crypto\\x509\\libcrypto-lib-v3_battcons.o" => [
+            ".\\crypto\\x509\\v3_battcons.c"
+        ],
         "crypto\\x509\\libcrypto-lib-v3_bcons.o" => [
             ".\\crypto\\x509\\v3_bcons.c"
         ],
@@ -27259,6 +27263,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-lib-v3_akeya.o",
             "crypto\\x509\\libcrypto-lib-v3_akid.o",
             "crypto\\x509\\libcrypto-lib-v3_asid.o",
+            "crypto\\x509\\libcrypto-lib-v3_battcons.o",
             "crypto\\x509\\libcrypto-lib-v3_bcons.o",
             "crypto\\x509\\libcrypto-lib-v3_bitst.o",
             "crypto\\x509\\libcrypto-lib-v3_conf.o",

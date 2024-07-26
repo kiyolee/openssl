@@ -543,6 +543,10 @@ int ossl_param_find_pidx(const char *s)
             if (strcmp("ndex", s + 2) == 0)
                 return PIDX_PKEY_PARAM_FFC_H;
             break;
+        case 'k':
+            if (strcmp("df-digest-check", s + 2) == 0)
+                return PIDX_PROV_PARAM_HKDF_DIGEST_CHECK;
+            break;
         case 's':
             if (strcmp("_padding", s + 2) == 0)
                 return PIDX_LIBSSL_RECORD_LAYER_PARAM_HS_PADDING;
@@ -1851,8 +1855,21 @@ int ossl_param_find_pidx(const char *s)
                 return PIDX_CIPHER_PARAM_SPEED;
             break;
         case 's':
-            if (strcmp("l3-ms", s + 2) == 0)
-                return PIDX_DIGEST_PARAM_SSL3_MS;
+            switch(s[2]) {
+            default:
+                break;
+            case 'h':
+                if (strcmp("kdf-digest-check", s + 3) == 0)
+                    return PIDX_PROV_PARAM_SSHKDF_DIGEST_CHECK;
+                break;
+            case 'k':
+                if (strcmp("df-digest-check", s + 3) == 0)
+                    return PIDX_PROV_PARAM_SSKDF_DIGEST_CHECK;
+                break;
+            case 'l':
+                if (strcmp("3-ms", s + 3) == 0)
+                    return PIDX_DIGEST_PARAM_SSL3_MS;
+            }
             break;
         case 't':
             switch(s[2]) {
@@ -2348,8 +2365,41 @@ int ossl_param_find_pidx(const char *s)
                     default:
                         break;
                     case '-':
-                        if (strcmp("prf-ems-check", s + 5) == 0)
-                            return PIDX_PROV_PARAM_TLS1_PRF_EMS_CHECK;
+                        switch(s[5]) {
+                        default:
+                            break;
+                        case 'p':
+                            switch(s[6]) {
+                            default:
+                                break;
+                            case 'r':
+                                switch(s[7]) {
+                                default:
+                                    break;
+                                case 'f':
+                                    switch(s[8]) {
+                                    default:
+                                        break;
+                                    case '-':
+                                        switch(s[9]) {
+                                        default:
+                                            break;
+                                        case 'd':
+                                            if (strcmp("igest-check", s + 10) == 0)
+                                                return PIDX_PROV_PARAM_TLS1_PRF_DIGEST_CHECK;
+                                            break;
+                                        case 'e':
+                                            if (strcmp("ms-check", s + 10) == 0)
+                                                return PIDX_PROV_PARAM_TLS1_PRF_EMS_CHECK;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case '3':
+                        if (strcmp("-kdf-digest-check", s + 5) == 0)
+                            return PIDX_PROV_PARAM_TLS13_KDF_DIGEST_CHECK;
                         break;
                     case 'm':
                         switch(s[5]) {
@@ -2653,6 +2703,10 @@ int ossl_param_find_pidx(const char *s)
     case 'x':
         switch(s[1]) {
         default:
+            break;
+        case '9':
+            if (strcmp("63kdf-digest-check", s + 2) == 0)
+                return PIDX_PROV_PARAM_X963KDF_DIGEST_CHECK;
             break;
         case 'c':
             if (strcmp("ghash", s + 2) == 0)
