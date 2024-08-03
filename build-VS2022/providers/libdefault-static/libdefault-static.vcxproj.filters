@@ -495,5 +495,8 @@
     <ClCompile Include="..\..\..\providers\implementations\kdfs\argon2.c">
       <Filter>Source Files\providers\implementations\kdfs</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\rands\seed_src_jitter.c">
+      <Filter>Source Files\providers\implementations\rands</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
