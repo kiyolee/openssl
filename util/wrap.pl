@@ -27,6 +27,14 @@ if ($ARGV[0] eq '-fips') {
     $std_openssl_conf_include = catdir($there, 'providers');
 }
 
+if ($ARGV[0] eq '-jitter') {
+    $std_openssl_conf = 'E:/build/kiyolee/openssl/_win-build/openssl-3.4.0-dev/test/default-and-jitter.cnf';
+    shift;
+
+    $std_openssl_conf_include = catdir($there, 'providers');
+}
+
+
 local $ENV{OPENSSL_CONF_INCLUDE} = $std_openssl_conf_include
     if defined $std_openssl_conf_include
        &&($ENV{OPENSSL_CONF_INCLUDE} // '') eq ''

@@ -208,6 +208,7 @@ our %config = (
         "OPENSSL_NO_FUZZ_AFL",
         "OPENSSL_NO_FUZZ_LIBFUZZER",
         "OPENSSL_NO_H3DEMO",
+        "OPENSSL_NO_JITTER",
         "OPENSSL_NO_KTLS",
         "OPENSSL_NO_LOADERENG",
         "OPENSSL_NO_MD2",
@@ -235,7 +236,7 @@ our %config = (
         "OPENSSL_SYS_WIN64A"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-afalgeng no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fips no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-ktls no-loadereng no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-ssl3 no-ssl3-method no-tfo no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-afalgeng no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fips no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-jitter no-ktls no-loadereng no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-ssl3 no-ssl3-method no-tfo no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -453,6 +454,7 @@ our @disablables = (
     "gost",
     "http",
     "idea",
+    "jitter",
     "ktls",
     "legacy",
     "loadereng",
@@ -555,6 +557,7 @@ our %disabled = (
     "fuzz-afl" => "default",
     "fuzz-libfuzzer" => "default",
     "h3demo" => "default",
+    "jitter" => "default",
     "ktls" => "default",
     "loadereng" => "cascade",
     "md2" => "default",
@@ -1431,6 +1434,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\event_queue_test" => {
+                "noinst" => "1"
+            },
+            "test\\evp_byname_test" => {
                 "noinst" => "1"
             },
             "test\\evp_extra_test" => {
@@ -4680,6 +4686,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_RAND-HMAC-DRBG.html" => [
             ".\\doc\\man7\\EVP_RAND-HMAC-DRBG.pod"
         ],
+        "doc\\html\\man7\\EVP_RAND-JITTER.html" => [
+            ".\\doc\\man7\\EVP_RAND-JITTER.pod"
+        ],
         "doc\\html\\man7\\EVP_RAND-SEED-SRC.html" => [
             ".\\doc\\man7\\EVP_RAND-SEED-SRC.pod"
         ],
@@ -7499,6 +7508,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_RAND-HMAC-DRBG.7" => [
             ".\\doc\\man7\\EVP_RAND-HMAC-DRBG.pod"
         ],
+        "doc\\man\\man7\\EVP_RAND-JITTER.7" => [
+            ".\\doc\\man7\\EVP_RAND-JITTER.pod"
+        ],
         "doc\\man\\man7\\EVP_RAND-SEED-SRC.7" => [
             ".\\doc\\man7\\EVP_RAND-SEED-SRC.pod"
         ],
@@ -8614,6 +8626,10 @@ our %unified_info = (
         "test\\event_queue_test" => [
             "libcrypto",
             "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\evp_byname_test" => [
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\evp_extra_test" => [
@@ -11134,6 +11150,7 @@ our %unified_info = (
                 "providers\\implementations\\rands\\libdefault-lib-drbg_hash.o",
                 "providers\\implementations\\rands\\libdefault-lib-drbg_hmac.o",
                 "providers\\implementations\\rands\\libdefault-lib-seed_src.o",
+                "providers\\implementations\\rands\\libdefault-lib-seed_src_jitter.o",
                 "providers\\implementations\\rands\\libdefault-lib-test_rng.o"
             ],
             "products" => {
@@ -14551,6 +14568,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_RAND-HMAC-DRBG.html" => [
             ".\\doc\\man7\\EVP_RAND-HMAC-DRBG.pod"
         ],
+        "doc\\html\\man7\\EVP_RAND-JITTER.html" => [
+            ".\\doc\\man7\\EVP_RAND-JITTER.pod"
+        ],
         "doc\\html\\man7\\EVP_RAND-SEED-SRC.html" => [
             ".\\doc\\man7\\EVP_RAND-SEED-SRC.pod"
         ],
@@ -17317,6 +17337,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_RAND-HMAC-DRBG.7" => [
             ".\\doc\\man7\\EVP_RAND-HMAC-DRBG.pod"
         ],
+        "doc\\man\\man7\\EVP_RAND-JITTER.7" => [
+            ".\\doc\\man7\\EVP_RAND-JITTER.pod"
+        ],
         "doc\\man\\man7\\EVP_RAND-SEED-SRC.7" => [
             ".\\doc\\man7\\EVP_RAND-SEED-SRC.pod"
         ],
@@ -18834,6 +18857,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_RAND-CTR-DRBG.html",
             "doc\\html\\man7\\EVP_RAND-HASH-DRBG.html",
             "doc\\html\\man7\\EVP_RAND-HMAC-DRBG.html",
+            "doc\\html\\man7\\EVP_RAND-JITTER.html",
             "doc\\html\\man7\\EVP_RAND-SEED-SRC.html",
             "doc\\html\\man7\\EVP_RAND-TEST-RAND.html",
             "doc\\html\\man7\\EVP_RAND.html",
@@ -21078,6 +21102,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\evp_byname_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\evp_extra_test" => [
             "include",
             "apps\\include",
@@ -23122,6 +23152,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_RAND-CTR-DRBG.7",
             "doc\\man\\man7\\EVP_RAND-HASH-DRBG.7",
             "doc\\man\\man7\\EVP_RAND-HMAC-DRBG.7",
+            "doc\\man\\man7\\EVP_RAND-JITTER.7",
             "doc\\man\\man7\\EVP_RAND-SEED-SRC.7",
             "doc\\man\\man7\\EVP_RAND-TEST-RAND.7",
             "doc\\man\\man7\\EVP_RAND.7",
@@ -23379,6 +23410,7 @@ our %unified_info = (
         "test\\enginetest",
         "test\\errtest",
         "test\\event_queue_test",
+        "test\\evp_byname_test",
         "test\\evp_extra_test",
         "test\\evp_extra_test2",
         "test\\evp_fetch_prov_test",
@@ -28047,6 +28079,9 @@ our %unified_info = (
         "providers\\implementations\\rands\\libdefault-lib-seed_src.o" => [
             ".\\providers\\implementations\\rands\\seed_src.c"
         ],
+        "providers\\implementations\\rands\\libdefault-lib-seed_src_jitter.o" => [
+            ".\\providers\\implementations\\rands\\seed_src_jitter.c"
+        ],
         "providers\\implementations\\rands\\libdefault-lib-test_rng.o" => [
             ".\\providers\\implementations\\rands\\test_rng.c"
         ],
@@ -28263,6 +28298,7 @@ our %unified_info = (
             "providers\\implementations\\rands\\libdefault-lib-drbg_hash.o",
             "providers\\implementations\\rands\\libdefault-lib-drbg_hmac.o",
             "providers\\implementations\\rands\\libdefault-lib-seed_src.o",
+            "providers\\implementations\\rands\\libdefault-lib-seed_src_jitter.o",
             "providers\\implementations\\rands\\libdefault-lib-test_rng.o",
             "providers\\implementations\\rands\\seeding\\libdefault-lib-rand_cpu_x86.o",
             "providers\\implementations\\rands\\seeding\\libdefault-lib-rand_tsc.o",
@@ -29517,6 +29553,12 @@ our %unified_info = (
         ],
         "test\\event_queue_test-bin-event_queue_test.o" => [
             ".\\test\\event_queue_test.c"
+        ],
+        "test\\evp_byname_test" => [
+            "test\\evp_byname_test-bin-evp_byname_test.o"
+        ],
+        "test\\evp_byname_test-bin-evp_byname_test.o" => [
+            ".\\test\\evp_byname_test.c"
         ],
         "test\\evp_extra_test" => [
             "providers\\evp_extra_test-bin-legacyprov.o",
@@ -30843,6 +30885,9 @@ my %disabled_info = (
     },
     "h3demo" => {
         "macro" => "OPENSSL_NO_H3DEMO"
+    },
+    "jitter" => {
+        "macro" => "OPENSSL_NO_JITTER"
     },
     "ktls" => {
         "macro" => "OPENSSL_NO_KTLS"

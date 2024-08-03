@@ -226,6 +226,7 @@
     <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_unix.c" />
     <ClCompile Include="..\..\..\providers\implementations\rands\seeding\rand_win.c" />
     <ClCompile Include="..\..\..\providers\implementations\rands\seed_src.c" />
+    <ClCompile Include="..\..\..\providers\implementations\rands\seed_src_jitter.c" />
     <ClCompile Include="..\..\..\providers\implementations\rands\test_rng.c" />
     <ClCompile Include="..\..\..\providers\implementations\signature\dsa_sig.c" />
     <ClCompile Include="..\..\..\providers\implementations\signature\ecdsa_sig.c" />
