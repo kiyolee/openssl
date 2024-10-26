@@ -221,6 +221,7 @@ our %config = (
         "OPENSSL_NO_SCTP",
         "OPENSSL_NO_SSL3",
         "OPENSSL_NO_SSL3_METHOD",
+        "OPENSSL_NO_SSLKEYLOG",
         "OPENSSL_NO_TFO",
         "OPENSSL_NO_TRACE",
         "OPENSSL_NO_UBSAN",
@@ -238,7 +239,7 @@ our %config = (
         "OPENSSL_SYS_WIN64A"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-afalgeng no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-jitter no-ktls no-loadereng no-md2 no-msan no-pie no-rc5 no-sctp no-ssl3 no-ssl3-method no-tfo no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-afalgeng no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-jitter no-ktls no-loadereng no-md2 no-msan no-pie no-rc5 no-sctp no-ssl3 no-ssl3-method no-sslkeylog no-tfo no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -506,6 +507,7 @@ our @disablables = (
     "ssl-trace",
     "static-engine",
     "stdio",
+    "sslkeylog",
     "tests",
     "tfo",
     "thread-pool",
@@ -573,6 +575,7 @@ our %disabled = (
     "sctp" => "default",
     "ssl3" => "default",
     "ssl3-method" => "default",
+    "sslkeylog" => "default",
     "tfo" => "default",
     "trace" => "default",
     "ubsan" => "default",
@@ -896,6 +899,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "providers\\liblegacy.a" => {
+                "noinst" => "1"
+            },
+            "providers\\libtemplate.a" => {
                 "noinst" => "1"
             },
             "test\\libtestutil.a" => {
@@ -12048,11 +12054,13 @@ our %unified_info = (
                 "providers\\implementations\\kem\\libdefault-lib-ec_kem.o",
                 "providers\\implementations\\kem\\libdefault-lib-ecx_kem.o",
                 "providers\\implementations\\kem\\libdefault-lib-kem_util.o",
-                "providers\\implementations\\kem\\libdefault-lib-rsa_kem.o"
+                "providers\\implementations\\kem\\libdefault-lib-rsa_kem.o",
+                "providers\\implementations\\kem\\libtemplate-lib-template_kem.o"
             ],
             "products" => {
                 "lib" => [
-                    "providers\\libdefault.a"
+                    "providers\\libdefault.a",
+                    "providers\\libtemplate.a"
                 ]
             }
         },
@@ -12064,11 +12072,13 @@ our %unified_info = (
                 "providers\\implementations\\keymgmt\\libdefault-lib-ecx_kmgmt.o",
                 "providers\\implementations\\keymgmt\\libdefault-lib-kdf_legacy_kmgmt.o",
                 "providers\\implementations\\keymgmt\\libdefault-lib-mac_legacy_kmgmt.o",
-                "providers\\implementations\\keymgmt\\libdefault-lib-rsa_kmgmt.o"
+                "providers\\implementations\\keymgmt\\libdefault-lib-rsa_kmgmt.o",
+                "providers\\implementations\\keymgmt\\libtemplate-lib-template_kmgmt.o"
             ],
             "products" => {
                 "lib" => [
-                    "providers\\libdefault.a"
+                    "providers\\libdefault.a",
+                    "providers\\libtemplate.a"
                 ]
             }
         },
@@ -21428,6 +21438,18 @@ our %unified_info = (
             ".\\providers\\common\\include",
             ".\\providers\\fips\\include"
         ],
+        "providers\\libtemplate.a" => [
+            "crypto",
+            "include",
+            "providers\\implementations\\include",
+            "providers\\common\\include",
+            "providers\\fips\\include",
+            ".\\crypto",
+            ".\\include",
+            ".\\providers\\implementations\\include",
+            ".\\providers\\common\\include",
+            ".\\providers\\fips\\include"
+        ],
         "test\\aborttest" => [
             "include",
             "apps\\include",
@@ -23526,6 +23548,7 @@ our %unified_info = (
         "providers\\libcommon.a",
         "providers\\libdefault.a",
         "providers\\liblegacy.a",
+        "providers\\libtemplate.a",
         "test\\libtestutil.a"
     ],
     "mandocs" => {
@@ -32664,6 +32687,9 @@ our %unified_info = (
         "providers\\implementations\\kem\\libdefault-lib-rsa_kem.o" => [
             ".\\providers\\implementations\\kem\\rsa_kem.c"
         ],
+        "providers\\implementations\\kem\\libtemplate-lib-template_kem.o" => [
+            ".\\providers\\implementations\\kem\\template_kem.c"
+        ],
         "providers\\implementations\\keymgmt\\libdefault-lib-dh_kmgmt.o" => [
             ".\\providers\\implementations\\keymgmt\\dh_kmgmt.c"
         ],
@@ -32684,6 +32710,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-rsa_kmgmt.o" => [
             ".\\providers\\implementations\\keymgmt\\rsa_kmgmt.c"
+        ],
+        "providers\\implementations\\keymgmt\\libtemplate-lib-template_kmgmt.o" => [
+            ".\\providers\\implementations\\keymgmt\\template_kmgmt.c"
         ],
         "providers\\implementations\\macs\\libdefault-lib-blake2b_mac.o" => [
             ".\\providers\\implementations\\macs\\blake2b_mac.c"
@@ -33013,6 +33042,10 @@ our %unified_info = (
             "providers\\implementations\\kdfs\\liblegacy-lib-pbkdf1.o",
             "providers\\implementations\\kdfs\\liblegacy-lib-pvkkdf.o",
             "providers\\liblegacy-lib-prov_running.o"
+        ],
+        "providers\\libtemplate.a" => [
+            "providers\\implementations\\kem\\libtemplate-lib-template_kem.o",
+            "providers\\implementations\\keymgmt\\libtemplate-lib-template_kmgmt.o"
         ],
         "ssl\\libssl-lib-bio_ssl.o" => [
             ".\\ssl\\bio_ssl.c"
@@ -35915,6 +35948,9 @@ my %disabled_info = (
     },
     "ssl3-method" => {
         "macro" => "OPENSSL_NO_SSL3_METHOD"
+    },
+    "sslkeylog" => {
+        "macro" => "OPENSSL_NO_SSLKEYLOG"
     },
     "tfo" => {
         "macro" => "OPENSSL_NO_TFO"
