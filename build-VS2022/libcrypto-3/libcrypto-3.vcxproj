@@ -834,6 +834,7 @@
     <ClCompile Include="..\..\crypto\x509\v3_akeya.c" />
     <ClCompile Include="..\..\crypto\x509\v3_akid.c" />
     <ClCompile Include="..\..\crypto\x509\v3_asid.c" />
+    <ClCompile Include="..\..\crypto\x509\v3_attrdesc.c" />
     <ClCompile Include="..\..\crypto\x509\v3_audit_id.c" />
     <ClCompile Include="..\..\crypto\x509\v3_authattid.c" />
     <ClCompile Include="..\..\crypto\x509\v3_battcons.c" />
