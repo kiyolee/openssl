@@ -3476,6 +3476,9 @@ our %unified_info = (
         "doc\\html\\man3\\OSSL_PARAM_int.html" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
         ],
+        "doc\\html\\man3\\OSSL_PARAM_print_to_bio.html" => [
+            ".\\doc\\man3\\OSSL_PARAM_print_to_bio.pod"
+        ],
         "doc\\html\\man3\\OSSL_PROVIDER.html" => [
             ".\\doc\\man3\\OSSL_PROVIDER.pod"
         ],
@@ -6309,6 +6312,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\OSSL_PARAM_int.3" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
+        ],
+        "doc\\man\\man3\\OSSL_PARAM_print_to_bio.3" => [
+            ".\\doc\\man3\\OSSL_PARAM_print_to_bio.pod"
         ],
         "doc\\man\\man3\\OSSL_PROVIDER.3" => [
             ".\\doc\\man3\\OSSL_PROVIDER.pod"
@@ -10780,6 +10786,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-lib-v3_skid.o",
                 "crypto\\x509\\libcrypto-lib-v3_soa_id.o",
                 "crypto\\x509\\libcrypto-lib-v3_sxnet.o",
+                "crypto\\x509\\libcrypto-lib-v3_timespec.o",
                 "crypto\\x509\\libcrypto-lib-v3_tlsf.o",
                 "crypto\\x509\\libcrypto-lib-v3_usernotice.o",
                 "crypto\\x509\\libcrypto-lib-v3_utf8.o",
@@ -13376,6 +13383,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OSSL_PARAM_int.html" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
+        ],
+        "doc\\html\\man3\\OSSL_PARAM_print_to_bio.html" => [
+            ".\\doc\\man3\\OSSL_PARAM_print_to_bio.pod"
         ],
         "doc\\html\\man3\\OSSL_PROVIDER.html" => [
             ".\\doc\\man3\\OSSL_PROVIDER.pod"
@@ -16158,6 +16168,9 @@ our %unified_info = (
         "doc\\man\\man3\\OSSL_PARAM_int.3" => [
             ".\\doc\\man3\\OSSL_PARAM_int.pod"
         ],
+        "doc\\man\\man3\\OSSL_PARAM_print_to_bio.3" => [
+            ".\\doc\\man3\\OSSL_PARAM_print_to_bio.pod"
+        ],
         "doc\\man\\man3\\OSSL_PROVIDER.3" => [
             ".\\doc\\man3\\OSSL_PROVIDER.pod"
         ],
@@ -18498,6 +18511,7 @@ our %unified_info = (
             "doc\\html\\man3\\OSSL_PARAM_allocate_from_text.html",
             "doc\\html\\man3\\OSSL_PARAM_dup.html",
             "doc\\html\\man3\\OSSL_PARAM_int.html",
+            "doc\\html\\man3\\OSSL_PARAM_print_to_bio.html",
             "doc\\html\\man3\\OSSL_PROVIDER.html",
             "doc\\html\\man3\\OSSL_QUIC_client_method.html",
             "doc\\html\\man3\\OSSL_SELF_TEST_new.html",
@@ -22826,6 +22840,7 @@ our %unified_info = (
             "doc\\man\\man3\\OSSL_PARAM_allocate_from_text.3",
             "doc\\man\\man3\\OSSL_PARAM_dup.3",
             "doc\\man\\man3\\OSSL_PARAM_int.3",
+            "doc\\man\\man3\\OSSL_PARAM_print_to_bio.3",
             "doc\\man\\man3\\OSSL_PROVIDER.3",
             "doc\\man\\man3\\OSSL_QUIC_client_method.3",
             "doc\\man\\man3\\OSSL_SELF_TEST_new.3",
@@ -26273,6 +26288,9 @@ our %unified_info = (
         "crypto\\x509\\libcrypto-lib-v3_sxnet.o" => [
             ".\\crypto\\x509\\v3_sxnet.c"
         ],
+        "crypto\\x509\\libcrypto-lib-v3_timespec.o" => [
+            ".\\crypto\\x509\\v3_timespec.c"
+        ],
         "crypto\\x509\\libcrypto-lib-v3_tlsf.o" => [
             ".\\crypto\\x509\\v3_tlsf.c"
         ],
@@ -27461,6 +27479,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-lib-v3_skid.o",
             "crypto\\x509\\libcrypto-lib-v3_soa_id.o",
             "crypto\\x509\\libcrypto-lib-v3_sxnet.o",
+            "crypto\\x509\\libcrypto-lib-v3_timespec.o",
             "crypto\\x509\\libcrypto-lib-v3_tlsf.o",
             "crypto\\x509\\libcrypto-lib-v3_usernotice.o",
             "crypto\\x509\\libcrypto-lib-v3_utf8.o",
@@ -29625,10 +29644,14 @@ our %unified_info = (
             ".\\test\\fake_rsaprov.c"
         ],
         "test\\evp_extra_test2" => [
-            "test\\evp_extra_test2-bin-evp_extra_test2.o"
+            "test\\evp_extra_test2-bin-evp_extra_test2.o",
+            "test\\evp_extra_test2-bin-tls-provider.o"
         ],
         "test\\evp_extra_test2-bin-evp_extra_test2.o" => [
             ".\\test\\evp_extra_test2.c"
+        ],
+        "test\\evp_extra_test2-bin-tls-provider.o" => [
+            ".\\test\\tls-provider.c"
         ],
         "test\\evp_fetch_prov_test" => [
             "test\\evp_fetch_prov_test-bin-evp_fetch_prov_test.o"
@@ -31101,7 +31124,7 @@ _____
                        # defined in one template stick around for the
                        # next, making them combinable
                        PACKAGE => 'OpenSSL::safe')
-            or die $Text::Template::ERROR;
+            or die $OpenSSL::Template::ERROR;
         close BUILDFILE;
         rename("$buildfile.new", $buildfile)
             or die "Trying to rename $buildfile.new to $buildfile: $!";
@@ -31123,7 +31146,7 @@ _____
                        # defined in one template stick around for the
                        # next, making them combinable
                        PACKAGE => 'OpenSSL::safe')
-            or die $Text::Template::ERROR;
+            or die $OpenSSL::Template::ERROR;
         close CONFIGURATION_H;
 
         # When using stat() on Windows, we can get it to perform better by
