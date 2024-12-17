@@ -1502,6 +1502,7 @@ typedef struct OSSL_ROLE_SPEC_CERT_ID_st {
 } OSSL_ROLE_SPEC_CERT_ID;
 
 DECLARE_ASN1_FUNCTIONS(OSSL_ROLE_SPEC_CERT_ID)
+
 SKM_DEFINE_STACK_OF_INTERNAL(OSSL_ROLE_SPEC_CERT_ID, OSSL_ROLE_SPEC_CERT_ID, OSSL_ROLE_SPEC_CERT_ID)
 #define sk_OSSL_ROLE_SPEC_CERT_ID_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_ROLE_SPEC_CERT_ID_sk_type(sk))
 #define sk_OSSL_ROLE_SPEC_CERT_ID_value(sk, idx) ((OSSL_ROLE_SPEC_CERT_ID *)OPENSSL_sk_value(ossl_check_const_OSSL_ROLE_SPEC_CERT_ID_sk_type(sk), (idx)))
@@ -1572,6 +1573,239 @@ DECLARE_ASN1_FUNCTIONS(OSSL_INFO_SYNTAX)
 DECLARE_ASN1_FUNCTIONS(OSSL_INFO_SYNTAX_POINTER)
 DECLARE_ASN1_FUNCTIONS(OSSL_PRIVILEGE_POLICY_ID)
 DECLARE_ASN1_FUNCTIONS(OSSL_ATTRIBUTE_DESCRIPTOR)
+
+typedef struct OSSL_TIME_SPEC_ABSOLUTE_st {
+    ASN1_GENERALIZEDTIME *startTime;
+    ASN1_GENERALIZEDTIME *endTime;
+} OSSL_TIME_SPEC_ABSOLUTE;
+
+typedef struct OSSL_DAY_TIME_st {
+    ASN1_INTEGER *hour;
+    ASN1_INTEGER *minute;
+    ASN1_INTEGER *second;
+} OSSL_DAY_TIME;
+
+typedef struct OSSL_DAY_TIME_BAND_st {
+    OSSL_DAY_TIME *startDayTime;
+    OSSL_DAY_TIME *endDayTime;
+} OSSL_DAY_TIME_BAND;
+
+# define OSSL_NAMED_DAY_TYPE_INT 0
+# define OSSL_NAMED_DAY_TYPE_BIT 1
+# define OSSL_NAMED_DAY_INT_SUN 1
+# define OSSL_NAMED_DAY_INT_MON 2
+# define OSSL_NAMED_DAY_INT_TUE 3
+# define OSSL_NAMED_DAY_INT_WED 4
+# define OSSL_NAMED_DAY_INT_THU 5
+# define OSSL_NAMED_DAY_INT_FRI 6
+# define OSSL_NAMED_DAY_INT_SAT 7
+# define OSSL_NAMED_DAY_BIT_SUN 0
+# define OSSL_NAMED_DAY_BIT_MON 1
+# define OSSL_NAMED_DAY_BIT_TUE 2
+# define OSSL_NAMED_DAY_BIT_WED 3
+# define OSSL_NAMED_DAY_BIT_THU 4
+# define OSSL_NAMED_DAY_BIT_FRI 5
+# define OSSL_NAMED_DAY_BIT_SAT 6
+
+typedef struct OSSL_NAMED_DAY_st {
+    int type;
+    union {
+        ASN1_INTEGER *intNamedDays;
+        ASN1_BIT_STRING *bitNamedDays;
+    } choice;
+} OSSL_NAMED_DAY;
+
+# define OSSL_TIME_SPEC_X_DAY_OF_FIRST 0
+# define OSSL_TIME_SPEC_X_DAY_OF_SECOND 1
+# define OSSL_TIME_SPEC_X_DAY_OF_THIRD 2
+# define OSSL_TIME_SPEC_X_DAY_OF_FOURTH 3
+# define OSSL_TIME_SPEC_X_DAY_OF_FIFTH 4
+
+typedef struct OSSL_TIME_SPEC_X_DAY_OF_st {
+    int type;
+    union {
+        OSSL_NAMED_DAY *first;
+        OSSL_NAMED_DAY *second;
+        OSSL_NAMED_DAY *third;
+        OSSL_NAMED_DAY *fourth;
+        OSSL_NAMED_DAY *fifth;
+    } choice;
+} OSSL_TIME_SPEC_X_DAY_OF;
+
+# define OSSL_TIME_SPEC_DAY_TYPE_INT 0
+# define OSSL_TIME_SPEC_DAY_TYPE_BIT 1
+# define OSSL_TIME_SPEC_DAY_TYPE_DAY_OF 2
+# define OSSL_TIME_SPEC_DAY_BIT_SUN 0
+# define OSSL_TIME_SPEC_DAY_BIT_MON 1
+# define OSSL_TIME_SPEC_DAY_BIT_TUE 2
+# define OSSL_TIME_SPEC_DAY_BIT_WED 3
+# define OSSL_TIME_SPEC_DAY_BIT_THU 4
+# define OSSL_TIME_SPEC_DAY_BIT_FRI 5
+# define OSSL_TIME_SPEC_DAY_BIT_SAT 6
+# define OSSL_TIME_SPEC_DAY_INT_SUN 1
+# define OSSL_TIME_SPEC_DAY_INT_MON 2
+# define OSSL_TIME_SPEC_DAY_INT_TUE 3
+# define OSSL_TIME_SPEC_DAY_INT_WED 4
+# define OSSL_TIME_SPEC_DAY_INT_THU 5
+# define OSSL_TIME_SPEC_DAY_INT_FRI 6
+# define OSSL_TIME_SPEC_DAY_INT_SAT 7
+
+typedef struct OSSL_TIME_SPEC_DAY_st {
+    int type;
+    union {
+        STACK_OF(ASN1_INTEGER) *intDay;
+        ASN1_BIT_STRING *bitDay;
+        OSSL_TIME_SPEC_X_DAY_OF *dayOf;
+    } choice;
+} OSSL_TIME_SPEC_DAY;
+
+# define OSSL_TIME_SPEC_WEEKS_TYPE_ALL 0
+# define OSSL_TIME_SPEC_WEEKS_TYPE_INT 1
+# define OSSL_TIME_SPEC_WEEKS_TYPE_BIT 2
+# define OSSL_TIME_SPEC_BIT_WEEKS_1 0
+# define OSSL_TIME_SPEC_BIT_WEEKS_2 1
+# define OSSL_TIME_SPEC_BIT_WEEKS_3 2
+# define OSSL_TIME_SPEC_BIT_WEEKS_4 3
+# define OSSL_TIME_SPEC_BIT_WEEKS_5 4
+
+typedef struct OSSL_TIME_SPEC_WEEKS_st {
+    int type;
+    union {
+        ASN1_NULL *allWeeks;
+        STACK_OF(ASN1_INTEGER) *intWeek;
+        ASN1_BIT_STRING *bitWeek;
+    } choice;
+} OSSL_TIME_SPEC_WEEKS;
+
+# define OSSL_TIME_SPEC_MONTH_TYPE_ALL 0
+# define OSSL_TIME_SPEC_MONTH_TYPE_INT 1
+# define OSSL_TIME_SPEC_MONTH_TYPE_BIT 2
+# define OSSL_TIME_SPEC_INT_MONTH_JAN 1
+# define OSSL_TIME_SPEC_INT_MONTH_FEB 2
+# define OSSL_TIME_SPEC_INT_MONTH_MAR 3
+# define OSSL_TIME_SPEC_INT_MONTH_APR 4
+# define OSSL_TIME_SPEC_INT_MONTH_MAY 5
+# define OSSL_TIME_SPEC_INT_MONTH_JUN 6
+# define OSSL_TIME_SPEC_INT_MONTH_JUL 7
+# define OSSL_TIME_SPEC_INT_MONTH_AUG 8
+# define OSSL_TIME_SPEC_INT_MONTH_SEP 9
+# define OSSL_TIME_SPEC_INT_MONTH_OCT 10
+# define OSSL_TIME_SPEC_INT_MONTH_NOV 11
+# define OSSL_TIME_SPEC_INT_MONTH_DEC 12
+# define OSSL_TIME_SPEC_BIT_MONTH_JAN 0
+# define OSSL_TIME_SPEC_BIT_MONTH_FEB 1
+# define OSSL_TIME_SPEC_BIT_MONTH_MAR 2
+# define OSSL_TIME_SPEC_BIT_MONTH_APR 3
+# define OSSL_TIME_SPEC_BIT_MONTH_MAY 4
+# define OSSL_TIME_SPEC_BIT_MONTH_JUN 5
+# define OSSL_TIME_SPEC_BIT_MONTH_JUL 6
+# define OSSL_TIME_SPEC_BIT_MONTH_AUG 7
+# define OSSL_TIME_SPEC_BIT_MONTH_SEP 8
+# define OSSL_TIME_SPEC_BIT_MONTH_OCT 9
+# define OSSL_TIME_SPEC_BIT_MONTH_NOV 10
+# define OSSL_TIME_SPEC_BIT_MONTH_DEC 11
+
+typedef struct OSSL_TIME_SPEC_MONTH_st {
+    int type;
+    union {
+        ASN1_NULL *allMonths;
+        STACK_OF(ASN1_INTEGER) *intMonth;
+        ASN1_BIT_STRING *bitMonth;
+    } choice;
+} OSSL_TIME_SPEC_MONTH;
+
+typedef struct OSSL_TIME_PERIOD_st {
+    STACK_OF(OSSL_DAY_TIME_BAND) *timesOfDay;
+    OSSL_TIME_SPEC_DAY *days;
+    OSSL_TIME_SPEC_WEEKS *weeks;
+    OSSL_TIME_SPEC_MONTH *months;
+    STACK_OF(ASN1_INTEGER) *years;
+} OSSL_TIME_PERIOD;
+
+# define OSSL_TIME_SPEC_TIME_TYPE_ABSOLUTE 0
+# define OSSL_TIME_SPEC_TIME_TYPE_PERIODIC 1
+
+typedef struct OSSL_TIME_SPEC_TIME_st {
+    int type;
+    union {
+        OSSL_TIME_SPEC_ABSOLUTE *absolute;
+        STACK_OF(OSSL_TIME_PERIOD) *periodic;
+    } choice;
+} OSSL_TIME_SPEC_TIME;
+
+typedef struct OSSL_TIME_SPEC_st {
+    OSSL_TIME_SPEC_TIME *time;
+    ASN1_BOOLEAN notThisTime;
+    ASN1_INTEGER *timeZone;
+} OSSL_TIME_SPEC;
+
+DECLARE_ASN1_FUNCTIONS(OSSL_DAY_TIME)
+DECLARE_ASN1_FUNCTIONS(OSSL_DAY_TIME_BAND)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_SPEC_DAY)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_SPEC_WEEKS)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_SPEC_MONTH)
+DECLARE_ASN1_FUNCTIONS(OSSL_NAMED_DAY)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_SPEC_X_DAY_OF)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_SPEC_ABSOLUTE)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_SPEC_TIME)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_SPEC)
+DECLARE_ASN1_FUNCTIONS(OSSL_TIME_PERIOD)
+
+SKM_DEFINE_STACK_OF_INTERNAL(OSSL_TIME_PERIOD, OSSL_TIME_PERIOD, OSSL_TIME_PERIOD)
+#define sk_OSSL_TIME_PERIOD_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_TIME_PERIOD_sk_type(sk))
+#define sk_OSSL_TIME_PERIOD_value(sk, idx) ((OSSL_TIME_PERIOD *)OPENSSL_sk_value(ossl_check_const_OSSL_TIME_PERIOD_sk_type(sk), (idx)))
+#define sk_OSSL_TIME_PERIOD_new(cmp) ((STACK_OF(OSSL_TIME_PERIOD) *)OPENSSL_sk_new(ossl_check_OSSL_TIME_PERIOD_compfunc_type(cmp)))
+#define sk_OSSL_TIME_PERIOD_new_null() ((STACK_OF(OSSL_TIME_PERIOD) *)OPENSSL_sk_new_null())
+#define sk_OSSL_TIME_PERIOD_new_reserve(cmp, n) ((STACK_OF(OSSL_TIME_PERIOD) *)OPENSSL_sk_new_reserve(ossl_check_OSSL_TIME_PERIOD_compfunc_type(cmp), (n)))
+#define sk_OSSL_TIME_PERIOD_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), (n))
+#define sk_OSSL_TIME_PERIOD_free(sk) OPENSSL_sk_free(ossl_check_OSSL_TIME_PERIOD_sk_type(sk))
+#define sk_OSSL_TIME_PERIOD_zero(sk) OPENSSL_sk_zero(ossl_check_OSSL_TIME_PERIOD_sk_type(sk))
+#define sk_OSSL_TIME_PERIOD_delete(sk, i) ((OSSL_TIME_PERIOD *)OPENSSL_sk_delete(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), (i)))
+#define sk_OSSL_TIME_PERIOD_delete_ptr(sk, ptr) ((OSSL_TIME_PERIOD *)OPENSSL_sk_delete_ptr(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_type(ptr)))
+#define sk_OSSL_TIME_PERIOD_push(sk, ptr) OPENSSL_sk_push(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_type(ptr))
+#define sk_OSSL_TIME_PERIOD_unshift(sk, ptr) OPENSSL_sk_unshift(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_type(ptr))
+#define sk_OSSL_TIME_PERIOD_pop(sk) ((OSSL_TIME_PERIOD *)OPENSSL_sk_pop(ossl_check_OSSL_TIME_PERIOD_sk_type(sk)))
+#define sk_OSSL_TIME_PERIOD_shift(sk) ((OSSL_TIME_PERIOD *)OPENSSL_sk_shift(ossl_check_OSSL_TIME_PERIOD_sk_type(sk)))
+#define sk_OSSL_TIME_PERIOD_pop_free(sk, freefunc) OPENSSL_sk_pop_free(ossl_check_OSSL_TIME_PERIOD_sk_type(sk),ossl_check_OSSL_TIME_PERIOD_freefunc_type(freefunc))
+#define sk_OSSL_TIME_PERIOD_insert(sk, ptr, idx) OPENSSL_sk_insert(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_type(ptr), (idx))
+#define sk_OSSL_TIME_PERIOD_set(sk, idx, ptr) ((OSSL_TIME_PERIOD *)OPENSSL_sk_set(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), (idx), ossl_check_OSSL_TIME_PERIOD_type(ptr)))
+#define sk_OSSL_TIME_PERIOD_find(sk, ptr) OPENSSL_sk_find(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_type(ptr))
+#define sk_OSSL_TIME_PERIOD_find_ex(sk, ptr) OPENSSL_sk_find_ex(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_type(ptr))
+#define sk_OSSL_TIME_PERIOD_find_all(sk, ptr, pnum) OPENSSL_sk_find_all(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_type(ptr), pnum)
+#define sk_OSSL_TIME_PERIOD_sort(sk) OPENSSL_sk_sort(ossl_check_OSSL_TIME_PERIOD_sk_type(sk))
+#define sk_OSSL_TIME_PERIOD_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_OSSL_TIME_PERIOD_sk_type(sk))
+#define sk_OSSL_TIME_PERIOD_dup(sk) ((STACK_OF(OSSL_TIME_PERIOD) *)OPENSSL_sk_dup(ossl_check_const_OSSL_TIME_PERIOD_sk_type(sk)))
+#define sk_OSSL_TIME_PERIOD_deep_copy(sk, copyfunc, freefunc) ((STACK_OF(OSSL_TIME_PERIOD) *)OPENSSL_sk_deep_copy(ossl_check_const_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_copyfunc_type(copyfunc), ossl_check_OSSL_TIME_PERIOD_freefunc_type(freefunc)))
+#define sk_OSSL_TIME_PERIOD_set_cmp_func(sk, cmp) ((sk_OSSL_TIME_PERIOD_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_OSSL_TIME_PERIOD_sk_type(sk), ossl_check_OSSL_TIME_PERIOD_compfunc_type(cmp)))
+
+
+SKM_DEFINE_STACK_OF_INTERNAL(OSSL_DAY_TIME_BAND, OSSL_DAY_TIME_BAND, OSSL_DAY_TIME_BAND)
+#define sk_OSSL_DAY_TIME_BAND_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_DAY_TIME_BAND_sk_type(sk))
+#define sk_OSSL_DAY_TIME_BAND_value(sk, idx) ((OSSL_DAY_TIME_BAND *)OPENSSL_sk_value(ossl_check_const_OSSL_DAY_TIME_BAND_sk_type(sk), (idx)))
+#define sk_OSSL_DAY_TIME_BAND_new(cmp) ((STACK_OF(OSSL_DAY_TIME_BAND) *)OPENSSL_sk_new(ossl_check_OSSL_DAY_TIME_BAND_compfunc_type(cmp)))
+#define sk_OSSL_DAY_TIME_BAND_new_null() ((STACK_OF(OSSL_DAY_TIME_BAND) *)OPENSSL_sk_new_null())
+#define sk_OSSL_DAY_TIME_BAND_new_reserve(cmp, n) ((STACK_OF(OSSL_DAY_TIME_BAND) *)OPENSSL_sk_new_reserve(ossl_check_OSSL_DAY_TIME_BAND_compfunc_type(cmp), (n)))
+#define sk_OSSL_DAY_TIME_BAND_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), (n))
+#define sk_OSSL_DAY_TIME_BAND_free(sk) OPENSSL_sk_free(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk))
+#define sk_OSSL_DAY_TIME_BAND_zero(sk) OPENSSL_sk_zero(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk))
+#define sk_OSSL_DAY_TIME_BAND_delete(sk, i) ((OSSL_DAY_TIME_BAND *)OPENSSL_sk_delete(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), (i)))
+#define sk_OSSL_DAY_TIME_BAND_delete_ptr(sk, ptr) ((OSSL_DAY_TIME_BAND *)OPENSSL_sk_delete_ptr(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_type(ptr)))
+#define sk_OSSL_DAY_TIME_BAND_push(sk, ptr) OPENSSL_sk_push(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_type(ptr))
+#define sk_OSSL_DAY_TIME_BAND_unshift(sk, ptr) OPENSSL_sk_unshift(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_type(ptr))
+#define sk_OSSL_DAY_TIME_BAND_pop(sk) ((OSSL_DAY_TIME_BAND *)OPENSSL_sk_pop(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk)))
+#define sk_OSSL_DAY_TIME_BAND_shift(sk) ((OSSL_DAY_TIME_BAND *)OPENSSL_sk_shift(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk)))
+#define sk_OSSL_DAY_TIME_BAND_pop_free(sk, freefunc) OPENSSL_sk_pop_free(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk),ossl_check_OSSL_DAY_TIME_BAND_freefunc_type(freefunc))
+#define sk_OSSL_DAY_TIME_BAND_insert(sk, ptr, idx) OPENSSL_sk_insert(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_type(ptr), (idx))
+#define sk_OSSL_DAY_TIME_BAND_set(sk, idx, ptr) ((OSSL_DAY_TIME_BAND *)OPENSSL_sk_set(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), (idx), ossl_check_OSSL_DAY_TIME_BAND_type(ptr)))
+#define sk_OSSL_DAY_TIME_BAND_find(sk, ptr) OPENSSL_sk_find(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_type(ptr))
+#define sk_OSSL_DAY_TIME_BAND_find_ex(sk, ptr) OPENSSL_sk_find_ex(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_type(ptr))
+#define sk_OSSL_DAY_TIME_BAND_find_all(sk, ptr, pnum) OPENSSL_sk_find_all(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_type(ptr), pnum)
+#define sk_OSSL_DAY_TIME_BAND_sort(sk) OPENSSL_sk_sort(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk))
+#define sk_OSSL_DAY_TIME_BAND_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_OSSL_DAY_TIME_BAND_sk_type(sk))
+#define sk_OSSL_DAY_TIME_BAND_dup(sk) ((STACK_OF(OSSL_DAY_TIME_BAND) *)OPENSSL_sk_dup(ossl_check_const_OSSL_DAY_TIME_BAND_sk_type(sk)))
+#define sk_OSSL_DAY_TIME_BAND_deep_copy(sk, copyfunc, freefunc) ((STACK_OF(OSSL_DAY_TIME_BAND) *)OPENSSL_sk_deep_copy(ossl_check_const_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_copyfunc_type(copyfunc), ossl_check_OSSL_DAY_TIME_BAND_freefunc_type(freefunc)))
+#define sk_OSSL_DAY_TIME_BAND_set_cmp_func(sk, cmp) ((sk_OSSL_DAY_TIME_BAND_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_compfunc_type(cmp)))
+
 
 # ifdef  __cplusplus
 }
