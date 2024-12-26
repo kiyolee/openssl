@@ -1807,6 +1807,68 @@ SKM_DEFINE_STACK_OF_INTERNAL(OSSL_DAY_TIME_BAND, OSSL_DAY_TIME_BAND, OSSL_DAY_TI
 #define sk_OSSL_DAY_TIME_BAND_set_cmp_func(sk, cmp) ((sk_OSSL_DAY_TIME_BAND_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk), ossl_check_OSSL_DAY_TIME_BAND_compfunc_type(cmp)))
 
 
+/* Attribute Type and Value */
+typedef struct atav_st {
+    ASN1_OBJECT *type;
+    ASN1_TYPE *value;
+} OSSL_ATAV;
+
+typedef struct ATTRIBUTE_TYPE_MAPPING_st {
+    ASN1_OBJECT *local;
+    ASN1_OBJECT *remote;
+} OSSL_ATTRIBUTE_TYPE_MAPPING;
+
+typedef struct ATTRIBUTE_VALUE_MAPPING_st {
+    OSSL_ATAV *local;
+    OSSL_ATAV *remote;
+} OSSL_ATTRIBUTE_VALUE_MAPPING;
+
+# define OSSL_ATTR_MAP_TYPE   0
+# define OSSL_ATTR_MAP_VALUE  1
+
+typedef struct ATTRIBUTE_MAPPING_st {
+    int type;
+    union {
+        OSSL_ATTRIBUTE_TYPE_MAPPING *typeMappings;
+        OSSL_ATTRIBUTE_VALUE_MAPPING *typeValueMappings;
+    } choice;
+} OSSL_ATTRIBUTE_MAPPING;
+
+typedef STACK_OF(OSSL_ATTRIBUTE_MAPPING) OSSL_ATTRIBUTE_MAPPINGS;
+DECLARE_ASN1_FUNCTIONS(OSSL_ATAV)
+DECLARE_ASN1_FUNCTIONS(OSSL_ATTRIBUTE_TYPE_MAPPING)
+DECLARE_ASN1_FUNCTIONS(OSSL_ATTRIBUTE_VALUE_MAPPING)
+DECLARE_ASN1_FUNCTIONS(OSSL_ATTRIBUTE_MAPPING)
+DECLARE_ASN1_FUNCTIONS(OSSL_ATTRIBUTE_MAPPINGS)
+
+SKM_DEFINE_STACK_OF_INTERNAL(OSSL_ATTRIBUTE_MAPPING, OSSL_ATTRIBUTE_MAPPING, OSSL_ATTRIBUTE_MAPPING)
+#define sk_OSSL_ATTRIBUTE_MAPPING_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_ATTRIBUTE_MAPPING_sk_type(sk))
+#define sk_OSSL_ATTRIBUTE_MAPPING_value(sk, idx) ((OSSL_ATTRIBUTE_MAPPING *)OPENSSL_sk_value(ossl_check_const_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), (idx)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_new(cmp) ((STACK_OF(OSSL_ATTRIBUTE_MAPPING) *)OPENSSL_sk_new(ossl_check_OSSL_ATTRIBUTE_MAPPING_compfunc_type(cmp)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_new_null() ((STACK_OF(OSSL_ATTRIBUTE_MAPPING) *)OPENSSL_sk_new_null())
+#define sk_OSSL_ATTRIBUTE_MAPPING_new_reserve(cmp, n) ((STACK_OF(OSSL_ATTRIBUTE_MAPPING) *)OPENSSL_sk_new_reserve(ossl_check_OSSL_ATTRIBUTE_MAPPING_compfunc_type(cmp), (n)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), (n))
+#define sk_OSSL_ATTRIBUTE_MAPPING_free(sk) OPENSSL_sk_free(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk))
+#define sk_OSSL_ATTRIBUTE_MAPPING_zero(sk) OPENSSL_sk_zero(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk))
+#define sk_OSSL_ATTRIBUTE_MAPPING_delete(sk, i) ((OSSL_ATTRIBUTE_MAPPING *)OPENSSL_sk_delete(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), (i)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_delete_ptr(sk, ptr) ((OSSL_ATTRIBUTE_MAPPING *)OPENSSL_sk_delete_ptr(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_push(sk, ptr) OPENSSL_sk_push(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr))
+#define sk_OSSL_ATTRIBUTE_MAPPING_unshift(sk, ptr) OPENSSL_sk_unshift(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr))
+#define sk_OSSL_ATTRIBUTE_MAPPING_pop(sk) ((OSSL_ATTRIBUTE_MAPPING *)OPENSSL_sk_pop(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_shift(sk) ((OSSL_ATTRIBUTE_MAPPING *)OPENSSL_sk_shift(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_pop_free(sk, freefunc) OPENSSL_sk_pop_free(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk),ossl_check_OSSL_ATTRIBUTE_MAPPING_freefunc_type(freefunc))
+#define sk_OSSL_ATTRIBUTE_MAPPING_insert(sk, ptr, idx) OPENSSL_sk_insert(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr), (idx))
+#define sk_OSSL_ATTRIBUTE_MAPPING_set(sk, idx, ptr) ((OSSL_ATTRIBUTE_MAPPING *)OPENSSL_sk_set(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), (idx), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_find(sk, ptr) OPENSSL_sk_find(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr))
+#define sk_OSSL_ATTRIBUTE_MAPPING_find_ex(sk, ptr) OPENSSL_sk_find_ex(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr))
+#define sk_OSSL_ATTRIBUTE_MAPPING_find_all(sk, ptr, pnum) OPENSSL_sk_find_all(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr), pnum)
+#define sk_OSSL_ATTRIBUTE_MAPPING_sort(sk) OPENSSL_sk_sort(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk))
+#define sk_OSSL_ATTRIBUTE_MAPPING_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_OSSL_ATTRIBUTE_MAPPING_sk_type(sk))
+#define sk_OSSL_ATTRIBUTE_MAPPING_dup(sk) ((STACK_OF(OSSL_ATTRIBUTE_MAPPING) *)OPENSSL_sk_dup(ossl_check_const_OSSL_ATTRIBUTE_MAPPING_sk_type(sk)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_deep_copy(sk, copyfunc, freefunc) ((STACK_OF(OSSL_ATTRIBUTE_MAPPING) *)OPENSSL_sk_deep_copy(ossl_check_const_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_copyfunc_type(copyfunc), ossl_check_OSSL_ATTRIBUTE_MAPPING_freefunc_type(freefunc)))
+#define sk_OSSL_ATTRIBUTE_MAPPING_set_cmp_func(sk, cmp) ((sk_OSSL_ATTRIBUTE_MAPPING_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk), ossl_check_OSSL_ATTRIBUTE_MAPPING_compfunc_type(cmp)))
+
+
 # ifdef  __cplusplus
 }
 # endif

@@ -1327,6 +1327,10 @@ int ossl_param_find_pidx(const char *s)
             if (strcmp("ounter", s + 2) == 0)
                 return PIDX_PKEY_PARAM_FFC_PCOUNTER;
             break;
+        case 'i':
+            if (strcmp("peline-tag", s + 2) == 0)
+                return PIDX_CIPHER_PARAM_PIPELINE_AEAD_TAG;
+            break;
         case 'k':
             if (strcmp("cs5", s + 2) == 0)
                 return PIDX_KDF_PARAM_PKCS5;
