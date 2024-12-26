@@ -11557,6 +11557,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-lib-v3_akid.o",
                 "crypto\\x509\\libcrypto-lib-v3_asid.o",
                 "crypto\\x509\\libcrypto-lib-v3_attrdesc.o",
+                "crypto\\x509\\libcrypto-lib-v3_attrmap.o",
                 "crypto\\x509\\libcrypto-lib-v3_audit_id.o",
                 "crypto\\x509\\libcrypto-lib-v3_authattid.o",
                 "crypto\\x509\\libcrypto-lib-v3_battcons.o",
@@ -11653,6 +11654,7 @@ our %unified_info = (
                 "crypto\\x509\\libcrypto-shlib-v3_akid.o",
                 "crypto\\x509\\libcrypto-shlib-v3_asid.o",
                 "crypto\\x509\\libcrypto-shlib-v3_attrdesc.o",
+                "crypto\\x509\\libcrypto-shlib-v3_attrmap.o",
                 "crypto\\x509\\libcrypto-shlib-v3_audit_id.o",
                 "crypto\\x509\\libcrypto-shlib-v3_authattid.o",
                 "crypto\\x509\\libcrypto-shlib-v3_battcons.o",
@@ -25530,6 +25532,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-shlib-v3_akid.o",
             "crypto\\x509\\libcrypto-shlib-v3_asid.o",
             "crypto\\x509\\libcrypto-shlib-v3_attrdesc.o",
+            "crypto\\x509\\libcrypto-shlib-v3_attrmap.o",
             "crypto\\x509\\libcrypto-shlib-v3_audit_id.o",
             "crypto\\x509\\libcrypto-shlib-v3_authattid.o",
             "crypto\\x509\\libcrypto-shlib-v3_battcons.o",
@@ -30483,6 +30486,9 @@ our %unified_info = (
         "crypto\\x509\\libcrypto-lib-v3_attrdesc.o" => [
             ".\\crypto\\x509\\v3_attrdesc.c"
         ],
+        "crypto\\x509\\libcrypto-lib-v3_attrmap.o" => [
+            ".\\crypto\\x509\\v3_attrmap.c"
+        ],
         "crypto\\x509\\libcrypto-lib-v3_audit_id.o" => [
             ".\\crypto\\x509\\v3_audit_id.c"
         ],
@@ -30770,6 +30776,9 @@ our %unified_info = (
         ],
         "crypto\\x509\\libcrypto-shlib-v3_attrdesc.o" => [
             ".\\crypto\\x509\\v3_attrdesc.c"
+        ],
+        "crypto\\x509\\libcrypto-shlib-v3_attrmap.o" => [
+            ".\\crypto\\x509\\v3_attrmap.c"
         ],
         "crypto\\x509\\libcrypto-shlib-v3_audit_id.o" => [
             ".\\crypto\\x509\\v3_audit_id.c"
@@ -32060,6 +32069,7 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-lib-v3_akid.o",
             "crypto\\x509\\libcrypto-lib-v3_asid.o",
             "crypto\\x509\\libcrypto-lib-v3_attrdesc.o",
+            "crypto\\x509\\libcrypto-lib-v3_attrmap.o",
             "crypto\\x509\\libcrypto-lib-v3_audit_id.o",
             "crypto\\x509\\libcrypto-lib-v3_authattid.o",
             "crypto\\x509\\libcrypto-lib-v3_battcons.o",
@@ -34581,10 +34591,14 @@ our %unified_info = (
         "test\\evp_extra_test" => [
             "providers\\evp_extra_test-bin-legacyprov.o",
             "test\\evp_extra_test-bin-evp_extra_test.o",
+            "test\\evp_extra_test-bin-fake_pipelineprov.o",
             "test\\evp_extra_test-bin-fake_rsaprov.o"
         ],
         "test\\evp_extra_test-bin-evp_extra_test.o" => [
             ".\\test\\evp_extra_test.c"
+        ],
+        "test\\evp_extra_test-bin-fake_pipelineprov.o" => [
+            ".\\test\\fake_pipelineprov.c"
         ],
         "test\\evp_extra_test-bin-fake_rsaprov.o" => [
             ".\\test\\fake_rsaprov.c"
