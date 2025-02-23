@@ -15,7 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\util\quicserver.c">
+    <ClCompile Include="..\..\..\fuzz\slh-dsa.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\fuzz\fuzz_rand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\fuzz\test-corpus.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
