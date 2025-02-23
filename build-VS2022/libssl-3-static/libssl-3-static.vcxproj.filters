@@ -309,5 +309,17 @@
     <ClCompile Include="..\..\ssl\quic\qlog.c">
       <Filter>Source Files\ssl\quic</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ssl\quic\quic_obj.c">
+      <Filter>Source Files\ssl\quic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\quic\quic_reactor_wait_ctx.c">
+      <Filter>Source Files\ssl\quic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\rio\rio_notifier.c">
+      <Filter>Source Files\ssl\rio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\rio\poll_builder.c">
+      <Filter>Source Files\ssl\rio</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
