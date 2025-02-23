@@ -103,6 +103,9 @@ extern "C" {
 # ifndef OPENSSL_NO_H3DEMO
 #  define OPENSSL_NO_H3DEMO
 # endif
+# ifndef OPENSSL_NO_HQINTEROP
+#  define OPENSSL_NO_HQINTEROP
+# endif
 # ifndef OPENSSL_NO_JITTER
 #  define OPENSSL_NO_JITTER
 # endif
