@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{38DDB979-43DD-432A-8634-4EC48328FFD4}</ProjectGuid>
-    <RootNamespace>quicserver</RootNamespace>
+    <ProjectGuid>{FE2B3DA5-95D6-49EE-90BD-F0506F94B71F}</ProjectGuid>
+    <RootNamespace>slh_dsa_test</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -94,7 +94,7 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\util\quicserver.c" />
+    <ClCompile Include="..\..\..\test\slh_dsa_test.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
