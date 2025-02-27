@@ -346,6 +346,7 @@ extern "C" {
 # define OSSL_OBJECT_PARAM_DATA_STRUCTURE "data-structure"
 # define OSSL_OBJECT_PARAM_DATA_TYPE "data-type"
 # define OSSL_OBJECT_PARAM_DESC "desc"
+# define OSSL_OBJECT_PARAM_INPUT_TYPE "input-type"
 # define OSSL_OBJECT_PARAM_REFERENCE "reference"
 # define OSSL_OBJECT_PARAM_TYPE "type"
 # define OSSL_PASSPHRASE_PARAM_INFO "info"
