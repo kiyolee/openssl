@@ -2631,6 +2631,9 @@
     <ClCompile Include="..\..\crypto\hashtable\hashfunc.c">
       <Filter>Source Files\crypto\hashtable</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\ml_dsa\ml_dsa_key_compress.c">
+      <Filter>Source Files\crypto\ml_dsa</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\crypto\ml_dsa\ml_dsa_matrix.c">
       <Filter>Source Files\crypto\ml_dsa</Filter>
     </ClCompile>
@@ -2650,9 +2653,6 @@
       <Filter>Source Files\crypto\ml_dsa</Filter>
     </ClCompile>
     <ClCompile Include="..\..\crypto\ml_dsa\ml_dsa_key.c">
-      <Filter>Source Files\crypto\ml_dsa</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\ml_dsa\ml_dsa_key_compress.c">
       <Filter>Source Files\crypto\ml_dsa</Filter>
     </ClCompile>
     <ClCompile Include="..\..\crypto\ml_kem\ml_kem.c">
@@ -2706,6 +2706,9 @@
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\crypto\aes\asm\aesni-x86_64.pl">
+      <Filter>Source Files\asm\x64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\crypto\aes\asm\aesni-xts-avx512.pl">
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\crypto\aes\asm\aes-x86_64.pl">

@@ -2723,6 +2723,9 @@
     <CustomBuild Include="..\..\crypto\aes\asm\aesni-x86_64.pl">
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\crypto\aes\asm\aesni-xts-avx512.pl">
+      <Filter>Source Files\asm\x64</Filter>
+    </CustomBuild>
     <CustomBuild Include="..\..\crypto\aes\asm\aes-x86_64.pl">
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
