@@ -9728,6 +9728,7 @@ our %unified_info = (
                 "crypto\\aes\\libcrypto-lib-aesni-sha1-x86_64.o",
                 "crypto\\aes\\libcrypto-lib-aesni-sha256-x86_64.o",
                 "crypto\\aes\\libcrypto-lib-aesni-x86_64.o",
+                "crypto\\aes\\libcrypto-lib-aesni-xts-avx512.o",
                 "crypto\\aes\\libcrypto-lib-bsaes-x86_64.o",
                 "crypto\\aes\\libcrypto-lib-vpaes-x86_64.o"
             ],
@@ -11996,6 +11997,9 @@ our %unified_info = (
         ],
         "crypto\\aes\\aesni-x86_64.s" => [
             ".\\crypto\\aes\\asm\\aesni-x86_64.pl"
+        ],
+        "crypto\\aes\\aesni-xts-avx512.s" => [
+            ".\\crypto\\aes\\asm\\aesni-xts-avx512.pl"
         ],
         "crypto\\aes\\aesp8-ppc.s" => [
             ".\\crypto\\aes\\asm\\aesp8-ppc.pl"
@@ -24782,6 +24786,9 @@ our %unified_info = (
         "crypto\\aes\\libcrypto-lib-aesni-x86_64.o" => [
             "crypto\\aes\\aesni-x86_64.s"
         ],
+        "crypto\\aes\\libcrypto-lib-aesni-xts-avx512.o" => [
+            "crypto\\aes\\aesni-xts-avx512.s"
+        ],
         "crypto\\aes\\libcrypto-lib-bsaes-x86_64.o" => [
             "crypto\\aes\\bsaes-x86_64.s"
         ],
@@ -27649,6 +27656,7 @@ our %unified_info = (
             "crypto\\aes\\libcrypto-lib-aesni-sha1-x86_64.o",
             "crypto\\aes\\libcrypto-lib-aesni-sha256-x86_64.o",
             "crypto\\aes\\libcrypto-lib-aesni-x86_64.o",
+            "crypto\\aes\\libcrypto-lib-aesni-xts-avx512.o",
             "crypto\\aes\\libcrypto-lib-bsaes-x86_64.o",
             "crypto\\aes\\libcrypto-lib-vpaes-x86_64.o",
             "crypto\\aria\\libcrypto-lib-aria.o",
