@@ -12984,6 +12984,9 @@ our %unified_info = (
         "crypto\\aes\\aesni-x86_64.s" => [
             ".\\crypto\\aes\\asm\\aesni-x86_64.pl"
         ],
+        "crypto\\aes\\aesni-xts-avx512.s" => [
+            ".\\crypto\\aes\\asm\\aesni-xts-avx512.pl"
+        ],
         "crypto\\aes\\aesp8-ppc.s" => [
             ".\\crypto\\aes\\asm\\aesp8-ppc.pl"
         ],
