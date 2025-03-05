@@ -9695,6 +9695,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-self_test_core.o",
                 "crypto\\libcrypto-lib-sleep.o",
                 "crypto\\libcrypto-lib-sparse_array.o",
+                "crypto\\libcrypto-lib-ssl_err.o",
                 "crypto\\libcrypto-lib-threads_lib.o",
                 "crypto\\libcrypto-lib-threads_none.o",
                 "crypto\\libcrypto-lib-threads_pthread.o",
@@ -11621,7 +11622,6 @@ our %unified_info = (
                 "ssl\\libssl-lib-ssl_cert_comp.o",
                 "ssl\\libssl-lib-ssl_ciph.o",
                 "ssl\\libssl-lib-ssl_conf.o",
-                "ssl\\libssl-lib-ssl_err.o",
                 "ssl\\libssl-lib-ssl_err_legacy.o",
                 "ssl\\libssl-lib-ssl_init.o",
                 "ssl\\libssl-lib-ssl_lib.o",
@@ -26340,6 +26340,9 @@ our %unified_info = (
         "crypto\\libcrypto-lib-sparse_array.o" => [
             ".\\crypto\\sparse_array.c"
         ],
+        "crypto\\libcrypto-lib-ssl_err.o" => [
+            ".\\crypto\\ssl_err.c"
+        ],
         "crypto\\libcrypto-lib-threads_lib.o" => [
             ".\\crypto\\threads_lib.c"
         ],
@@ -28170,6 +28173,7 @@ our %unified_info = (
             "crypto\\libcrypto-lib-self_test_core.o",
             "crypto\\libcrypto-lib-sleep.o",
             "crypto\\libcrypto-lib-sparse_array.o",
+            "crypto\\libcrypto-lib-ssl_err.o",
             "crypto\\libcrypto-lib-threads_lib.o",
             "crypto\\libcrypto-lib-threads_none.o",
             "crypto\\libcrypto-lib-threads_pthread.o",
@@ -28503,7 +28507,6 @@ our %unified_info = (
             "ssl\\libssl-lib-ssl_cert_comp.o",
             "ssl\\libssl-lib-ssl_ciph.o",
             "ssl\\libssl-lib-ssl_conf.o",
-            "ssl\\libssl-lib-ssl_err.o",
             "ssl\\libssl-lib-ssl_err_legacy.o",
             "ssl\\libssl-lib-ssl_init.o",
             "ssl\\libssl-lib-ssl_lib.o",
@@ -29491,9 +29494,6 @@ our %unified_info = (
         ],
         "ssl\\libssl-lib-ssl_conf.o" => [
             ".\\ssl\\ssl_conf.c"
-        ],
-        "ssl\\libssl-lib-ssl_err.o" => [
-            ".\\ssl\\ssl_err.c"
         ],
         "ssl\\libssl-lib-ssl_err_legacy.o" => [
             ".\\ssl\\ssl_err_legacy.c"

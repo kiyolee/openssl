@@ -2688,6 +2688,9 @@
     <ClCompile Include="..\..\crypto\slh_dsa\slh_dsa_hash_ctx.c">
       <Filter>Source Files\crypto\slh_dsa</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\ssl_err.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
