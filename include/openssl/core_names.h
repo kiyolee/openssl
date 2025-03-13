@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright 2019-2025 The OpenSSL Project Authors. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -155,7 +155,9 @@ extern "C" {
 # define OSSL_CAPABILITY_TLS_SIGALG_IANA_NAME "tls-sigalg-iana-name"
 # define OSSL_CAPABILITY_TLS_SIGALG_KEYTYPE "tls-sigalg-keytype"
 # define OSSL_CAPABILITY_TLS_SIGALG_KEYTYPE_OID "tls-sigalg-keytype-oid"
+# define OSSL_CAPABILITY_TLS_SIGALG_MAX_DTLS "tls-max-dtls"
 # define OSSL_CAPABILITY_TLS_SIGALG_MAX_TLS "tls-max-tls"
+# define OSSL_CAPABILITY_TLS_SIGALG_MIN_DTLS "tls-min-dtls"
 # define OSSL_CAPABILITY_TLS_SIGALG_MIN_TLS "tls-min-tls"
 # define OSSL_CAPABILITY_TLS_SIGALG_NAME "tls-sigalg-name"
 # define OSSL_CAPABILITY_TLS_SIGALG_OID "tls-sigalg-oid"
