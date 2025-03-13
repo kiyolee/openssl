@@ -2639,7 +2639,7 @@ int ossl_param_find_pidx(const char *s)
                                         break;
                                     case 'd':
                                         if (strcmp("tls", s + 9) == 0)
-                                            return PIDX_CAPABILITY_TLS_GROUP_MAX_DTLS;
+                                            return PIDX_CAPABILITY_TLS_SIGALG_MAX_DTLS;
                                         break;
                                     case 't':
                                         if (strcmp("ls", s + 9) == 0)
@@ -2662,7 +2662,7 @@ int ossl_param_find_pidx(const char *s)
                                         break;
                                     case 'd':
                                         if (strcmp("tls", s + 9) == 0)
-                                            return PIDX_CAPABILITY_TLS_GROUP_MIN_DTLS;
+                                            return PIDX_CAPABILITY_TLS_SIGALG_MIN_DTLS;
                                         break;
                                     case 't':
                                         if (strcmp("ls", s + 9) == 0)
