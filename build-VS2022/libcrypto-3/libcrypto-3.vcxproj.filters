@@ -2888,6 +2888,12 @@
     <CustomBuild Include="..\..\crypto\ec\asm\x25519-x86_64.pl">
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\crypto\sm3\asm\sm3-x86_64.pl">
+      <Filter>Source Files\asm\x64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\crypto\sm4\asm\sm4-x86_64.pl">
+      <Filter>Source Files\asm\x64</Filter>
+    </CustomBuild>
     <CustomBuild Include="..\..\engines\asm\e_padlock-x86_64.pl">
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
