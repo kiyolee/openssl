@@ -1999,12 +1999,14 @@ our %unified_info = (
             "OPENSSL_BN_ASM_MONT5",
             "OPENSSL_CPUID_OBJ",
             "OPENSSL_IA32_SSE2",
+            "OPENSSL_SM3_ASM",
             "PADLOCK_ASM",
             "POLY1305_ASM",
             "RC4_ASM",
             "SHA1_ASM",
             "SHA256_ASM",
             "SHA512_ASM",
+            "SM4_ASM",
             "VPAES_ASM",
             "WHIRLPOOL_ASM",
             "X25519_ASM"
@@ -2029,6 +2031,7 @@ our %unified_info = (
             "SHA1_ASM",
             "SHA256_ASM",
             "SHA512_ASM",
+            "SM4_ASM",
             "VPAES_ASM",
             "X25519_ASM"
         ],
@@ -2047,6 +2050,7 @@ our %unified_info = (
             "SHA1_ASM",
             "SHA256_ASM",
             "SHA512_ASM",
+            "SM4_ASM",
             "VPAES_ASM",
             "X25519_ASM"
         ],
@@ -10934,6 +10938,7 @@ our %unified_info = (
         "crypto\\sm3" => {
             "deps" => [
                 "crypto\\sm3\\libcrypto-lib-legacy_sm3.o",
+                "crypto\\sm3\\libcrypto-lib-sm3-x86_64.o",
                 "crypto\\sm3\\libcrypto-lib-sm3.o"
             ],
             "products" => {
@@ -10944,6 +10949,7 @@ our %unified_info = (
         },
         "crypto\\sm4" => {
             "deps" => [
+                "crypto\\sm4\\libcrypto-lib-sm4-x86_64.o",
                 "crypto\\sm4\\libcrypto-lib-sm4.o"
             ],
             "products" => {
@@ -12585,11 +12591,17 @@ our %unified_info = (
         "crypto\\sm3\\sm3-riscv64-zvksh.S" => [
             ".\\crypto\\sm3\\asm\\sm3-riscv64-zvksh.pl"
         ],
+        "crypto\\sm3\\sm3-x86_64.S" => [
+            ".\\crypto\\sm3\\asm\\sm3-x86_64.pl"
+        ],
         "crypto\\sm4\\sm4-armv8.S" => [
             ".\\crypto\\sm4\\asm\\sm4-armv8.pl"
         ],
         "crypto\\sm4\\sm4-riscv64-zvksed.s" => [
             ".\\crypto\\sm4\\asm\\sm4-riscv64-zvksed.pl"
+        ],
+        "crypto\\sm4\\sm4-x86_64.S" => [
+            ".\\crypto\\sm4\\asm\\sm4-x86_64.pl"
         ],
         "crypto\\sm4\\vpsm4-armv8.S" => [
             ".\\crypto\\sm4\\asm\\vpsm4-armv8.pl"
@@ -26871,8 +26883,14 @@ our %unified_info = (
         "crypto\\sm3\\libcrypto-lib-legacy_sm3.o" => [
             ".\\crypto\\sm3\\legacy_sm3.c"
         ],
+        "crypto\\sm3\\libcrypto-lib-sm3-x86_64.o" => [
+            "crypto\\sm3\\sm3-x86_64.S"
+        ],
         "crypto\\sm3\\libcrypto-lib-sm3.o" => [
             ".\\crypto\\sm3\\sm3.c"
+        ],
+        "crypto\\sm4\\libcrypto-lib-sm4-x86_64.o" => [
+            "crypto\\sm4\\sm4-x86_64.S"
         ],
         "crypto\\sm4\\libcrypto-lib-sm4.o" => [
             ".\\crypto\\sm4\\sm4.c"
@@ -28353,7 +28371,9 @@ our %unified_info = (
             "crypto\\sm2\\libcrypto-lib-sm2_key.o",
             "crypto\\sm2\\libcrypto-lib-sm2_sign.o",
             "crypto\\sm3\\libcrypto-lib-legacy_sm3.o",
+            "crypto\\sm3\\libcrypto-lib-sm3-x86_64.o",
             "crypto\\sm3\\libcrypto-lib-sm3.o",
+            "crypto\\sm4\\libcrypto-lib-sm4-x86_64.o",
             "crypto\\sm4\\libcrypto-lib-sm4.o",
             "crypto\\srp\\libcrypto-lib-srp_lib.o",
             "crypto\\srp\\libcrypto-lib-srp_vfy.o",
