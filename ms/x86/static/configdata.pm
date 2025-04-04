@@ -12556,11 +12556,17 @@ our %unified_info = (
         "crypto\\sm3\\sm3-riscv64-zvksh.S" => [
             ".\\crypto\\sm3\\asm\\sm3-riscv64-zvksh.pl"
         ],
+        "crypto\\sm3\\sm3-x86_64.S" => [
+            ".\\crypto\\sm3\\asm\\sm3-x86_64.pl"
+        ],
         "crypto\\sm4\\sm4-armv8.S" => [
             ".\\crypto\\sm4\\asm\\sm4-armv8.pl"
         ],
         "crypto\\sm4\\sm4-riscv64-zvksed.s" => [
             ".\\crypto\\sm4\\asm\\sm4-riscv64-zvksed.pl"
+        ],
+        "crypto\\sm4\\sm4-x86_64.S" => [
+            ".\\crypto\\sm4\\asm\\sm4-x86_64.pl"
         ],
         "crypto\\sm4\\vpsm4-armv8.S" => [
             ".\\crypto\\sm4\\asm\\vpsm4-armv8.pl"
