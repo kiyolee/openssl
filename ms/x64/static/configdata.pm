@@ -11324,8 +11324,12 @@ our %unified_info = (
                 "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha1_etm_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha1_hw.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha256_etm_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha256_hw.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha512_etm_hw.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha_etm.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm.o",
@@ -11979,6 +11983,15 @@ our %unified_info = (
         ],
         "crypto\\aes\\aes-s390x.S" => [
             ".\\crypto\\aes\\asm\\aes-s390x.pl"
+        ],
+        "crypto\\aes\\aes-sha1-armv8.S" => [
+            ".\\crypto\\aes\\asm\\aes-sha1-armv8.pl"
+        ],
+        "crypto\\aes\\aes-sha256-armv8.S" => [
+            ".\\crypto\\aes\\asm\\aes-sha256-armv8.pl"
+        ],
+        "crypto\\aes\\aes-sha512-armv8.S" => [
+            ".\\crypto\\aes\\asm\\aes-sha512-armv8.pl"
         ],
         "crypto\\aes\\aes-sparcv9.S" => [
             ".\\crypto\\aes\\asm\\aes-sparcv9.pl"
@@ -19960,6 +19973,18 @@ our %unified_info = (
             ".\\crypto"
         ],
         "crypto\\aes\\aes-s390x.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\aes\\aes-sha1-armv8.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\aes\\aes-sha256-armv8.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\aes\\aes-sha512-armv8.o" => [
             "crypto",
             ".\\crypto"
         ],
@@ -28739,11 +28764,23 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c"
         ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha1_etm_hw.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha1_etm_hw.c"
+        ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha1_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha1_hw.c"
         ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha256_etm_hw.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha256_etm_hw.c"
+        ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha256_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha256_hw.c"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha512_etm_hw.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha512_etm_hw.c"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha_etm.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_ccm.c"
@@ -29302,8 +29339,12 @@ our %unified_info = (
             "providers\\implementations\\asymciphers\\libdefault-lib-sm2_enc.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha1_etm_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha1_hw.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha256_etm_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha256_hw.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha512_etm_hw.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha_etm.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm.o",
