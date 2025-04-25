@@ -112,8 +112,12 @@
     <ClCompile Include="..\..\..\providers\implementations\asymciphers\sm2_enc.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha1_etm_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha1_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha256_etm_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha256_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha512_etm_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha_etm.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ccm.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ccm_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_gcm.c" />

@@ -543,6 +543,10 @@ int ossl_param_find_pidx(const char *s)
                                     case 'l':
                                         if (strcmp("evel", s + 9) == 0)
                                             return PIDX_ENCODER_PARAM_ENCRYPT_LEVEL;
+                                        break;
+                                    case 't':
+                                        if (strcmp("hen-mac", s + 9) == 0)
+                                            return PIDX_CIPHER_PARAM_ENCRYPT_THEN_MAC;
                                     }
                                 }
                             }
