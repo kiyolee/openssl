@@ -24,6 +24,7 @@ FUNCTION functions[] = {
 #ifndef OPENSSL_NO_CMS
     {FT_general, "cms", cms_main, cms_options, NULL, NULL},
 #endif
+    {FT_general, "configutl", configutl_main, configutl_options, NULL, NULL},
     {FT_general, "crl", crl_main, crl_options, NULL, NULL},
     {FT_general, "crl2pkcs7", crl2pkcs7_main, crl2pkcs7_options, NULL, NULL},
     {FT_general, "dgst", dgst_main, dgst_options, NULL, NULL},
