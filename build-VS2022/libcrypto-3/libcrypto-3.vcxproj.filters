@@ -2547,9 +2547,6 @@
     <ClCompile Include="..\..\crypto\modes\xts128gb.c">
       <Filter>Source Files\crypto\modes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\crypto\params_idx.c">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\crypto\cmp\cmp_genm.c">
       <Filter>Source Files\crypto\cmp</Filter>
     </ClCompile>
