@@ -633,6 +633,11 @@ our %unified_info = (
                     "pod" => "1"
                 }
             },
+            "doc\\man1\\openssl-configutl.pod" => {
+                ".\\doc\\man1\\openssl-configutl.pod.in" => {
+                    "pod" => "1"
+                }
+            },
             "doc\\man1\\openssl-crl.pod" => {
                 ".\\doc\\man1\\openssl-crl.pod.in" => {
                     "pod" => "1"
@@ -2099,7 +2104,6 @@ our %unified_info = (
     "depends" => {
         "" => [
             "OpenSSLConfigVersion.cmake",
-            "crypto\\params_idx.c",
             "exporters\\OpenSSLConfigVersion.cmake",
             "exporters\\openssl.pc",
             "include\\crypto\\bn_conf.h",
@@ -2133,6 +2137,7 @@ our %unified_info = (
             "include\\openssl\\x509_vfy.h",
             "include\\openssl\\x509v3.h",
             "openssl.pc",
+            "providers\\implementations\\ciphers\\ciphercommon.c",
             "test\\provider_internal_test.cnf"
         ],
         "OpenSSLConfig.cmake" => [
@@ -2168,6 +2173,9 @@ our %unified_info = (
             "apps\\progs.h"
         ],
         "apps\\openssl-bin-cms.o" => [
+            "apps\\progs.h"
+        ],
+        "apps\\openssl-bin-configutl.o" => [
             "apps\\progs.h"
         ],
         "apps\\openssl-bin-crl.o" => [
@@ -2384,9 +2392,6 @@ our %unified_info = (
         "crypto\\libcrypto-shlib-info.o" => [
             "crypto\\buildinf.h"
         ],
-        "crypto\\params_idx.c" => [
-            ".\\util\\perl|OpenSSL/paramnames.pm"
-        ],
         "crypto\\rc4\\rc4-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
@@ -2428,6 +2433,9 @@ our %unified_info = (
         ],
         "doc\\html\\man1\\openssl-cms.html" => [
             "doc\\man1\\openssl-cms.pod"
+        ],
+        "doc\\html\\man1\\openssl-configutl.html" => [
+            "doc\\man1\\openssl-configutl.pod"
         ],
         "doc\\html\\man1\\openssl-crl.html" => [
             "doc\\man1\\openssl-crl.pod"
@@ -5111,6 +5119,10 @@ our %unified_info = (
             ".\\doc\\man1\\openssl-cms.pod.in",
             ".\\doc\\perlvars.pm"
         ],
+        "doc\\man1\\openssl-configutl.pod" => [
+            ".\\doc\\man1\\openssl-configutl.pod.in",
+            ".\\doc\\perlvars.pm"
+        ],
         "doc\\man1\\openssl-crl.pod" => [
             ".\\doc\\man1\\openssl-crl.pod.in",
             ".\\doc\\perlvars.pm"
@@ -5326,6 +5338,9 @@ our %unified_info = (
         ],
         "doc\\man\\man1\\openssl-cms.1" => [
             "doc\\man1\\openssl-cms.pod"
+        ],
+        "doc\\man\\man1\\openssl-configutl.1" => [
+            "doc\\man1\\openssl-configutl.pod"
         ],
         "doc\\man\\man1\\openssl-crl.1" => [
             "doc\\man1\\openssl-crl.pod"
@@ -8282,6 +8297,9 @@ our %unified_info = (
             ".\\providers\\common\\der\\oids_to_c.pm",
             ".\\providers\\common\\der\\wrap.asn1"
         ],
+        "providers\\implementations\\ciphers\\ciphercommon.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\encode_decode\\libdefault-lib-encode_key2any.o" => [
             "providers\\common\\include\\prov\\der_rsa.h"
         ],
@@ -9731,7 +9749,6 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-params.o",
                 "crypto\\libcrypto-lib-params_dup.o",
                 "crypto\\libcrypto-lib-params_from_text.o",
-                "crypto\\libcrypto-lib-params_idx.o",
                 "crypto\\libcrypto-lib-passphrase.o",
                 "crypto\\libcrypto-lib-provider.o",
                 "crypto\\libcrypto-lib-provider_child.o",
@@ -9789,7 +9806,6 @@ our %unified_info = (
                 "crypto\\libcrypto-shlib-params.o",
                 "crypto\\libcrypto-shlib-params_dup.o",
                 "crypto\\libcrypto-shlib-params_from_text.o",
-                "crypto\\libcrypto-shlib-params_idx.o",
                 "crypto\\libcrypto-shlib-passphrase.o",
                 "crypto\\libcrypto-shlib-provider.o",
                 "crypto\\libcrypto-shlib-provider_child.o",
@@ -13404,9 +13420,6 @@ our %unified_info = (
         "crypto\\modes\\ghashv8-armx.S" => [
             ".\\crypto\\modes\\asm\\ghashv8-armx.pl"
         ],
-        "crypto\\params_idx.c" => [
-            ".\\crypto\\params_idx.c.in"
-        ],
         "crypto\\pariscid.s" => [
             ".\\crypto\\pariscid.pl"
         ],
@@ -13582,10 +13595,14 @@ our %unified_info = (
             ".\\crypto\\sha\\asm\\sha512-ppc.pl"
         ],
         "crypto\\sha\\sha256-riscv64-zbb.S" => [
-            ".\\crypto\\sha\\asm\\sha256-riscv64-zbb.pl"
+            ".\\crypto\\sha\\asm\\sha256-riscv64-zbb.pl",
+            "zbb"
         ],
         "crypto\\sha\\sha256-riscv64-zvkb-zvknha_or_zvknhb.S" => [
             ".\\crypto\\sha\\asm\\sha256-riscv64-zvkb-zvknha_or_zvknhb.pl"
+        ],
+        "crypto\\sha\\sha256-riscv64.S" => [
+            ".\\crypto\\sha\\asm\\sha256-riscv64-zbb.pl"
         ],
         "crypto\\sha\\sha256-s390x.S" => [
             ".\\crypto\\sha\\asm\\sha512-s390x.pl"
@@ -13706,6 +13723,9 @@ our %unified_info = (
         ],
         "doc\\html\\man1\\openssl-cms.html" => [
             "doc\\man1\\openssl-cms.pod"
+        ],
+        "doc\\html\\man1\\openssl-configutl.html" => [
+            "doc\\man1\\openssl-configutl.pod"
         ],
         "doc\\html\\man1\\openssl-crl.html" => [
             "doc\\man1\\openssl-crl.pod"
@@ -16383,6 +16403,9 @@ our %unified_info = (
         "doc\\man1\\openssl-cms.pod" => [
             ".\\doc\\man1\\openssl-cms.pod.in"
         ],
+        "doc\\man1\\openssl-configutl.pod" => [
+            ".\\doc\\man1\\openssl-configutl.pod.in"
+        ],
         "doc\\man1\\openssl-crl.pod" => [
             ".\\doc\\man1\\openssl-crl.pod.in"
         ],
@@ -16550,6 +16573,9 @@ our %unified_info = (
         ],
         "doc\\man\\man1\\openssl-cms.1" => [
             "doc\\man1\\openssl-cms.pod"
+        ],
+        "doc\\man\\man1\\openssl-configutl.1" => [
+            "doc\\man1\\openssl-configutl.pod"
         ],
         "doc\\man\\man1\\openssl-crl.1" => [
             "doc\\man1\\openssl-crl.pod"
@@ -19417,6 +19443,9 @@ our %unified_info = (
         "providers\\common\\include\\prov\\der_wrap.h" => [
             ".\\providers\\common\\include\\prov\\der_wrap.h.in"
         ],
+        "providers\\implementations\\ciphers\\ciphercommon.c" => [
+            ".\\providers\\implementations\\ciphers\\ciphercommon.c.in"
+        ],
         "providers\\legacy.ld" => [
             ".\\util\\providers.num"
         ],
@@ -19735,6 +19764,7 @@ our %unified_info = (
             "doc\\html\\man1\\openssl-cmds.html",
             "doc\\html\\man1\\openssl-cmp.html",
             "doc\\html\\man1\\openssl-cms.html",
+            "doc\\html\\man1\\openssl-configutl.html",
             "doc\\html\\man1\\openssl-crl.html",
             "doc\\html\\man1\\openssl-crl2pkcs7.html",
             "doc\\html\\man1\\openssl-dgst.html",
@@ -20664,6 +20694,9 @@ our %unified_info = (
         "apps\\cms.o" => [
             "apps"
         ],
+        "apps\\configutl.o" => [
+            "apps"
+        ],
         "apps\\crl.o" => [
             "apps"
         ],
@@ -20765,6 +20798,9 @@ our %unified_info = (
             "apps"
         ],
         "apps\\openssl-bin-cms.o" => [
+            "apps"
+        ],
+        "apps\\openssl-bin-configutl.o" => [
             "apps"
         ],
         "apps\\openssl-bin-crl.o" => [
@@ -21397,9 +21433,6 @@ our %unified_info = (
             "crypto",
             ".\\crypto"
         ],
-        "crypto\\params_idx.c" => [
-            ".\\util\\perl"
-        ],
         "crypto\\poly1305\\poly1305-armv4.o" => [
             "crypto",
             ".\\crypto"
@@ -21524,6 +21557,9 @@ our %unified_info = (
             ".\\doc"
         ],
         "doc\\man1\\openssl-cms.pod" => [
+            ".\\doc"
+        ],
+        "doc\\man1\\openssl-configutl.pod" => [
             ".\\doc"
         ],
         "doc\\man1\\openssl-crl.pod" => [
@@ -22023,6 +22059,17 @@ our %unified_info = (
         ],
         "providers\\common\\include\\prov\\der_wrap.h" => [
             ".\\providers\\common\\der"
+        ],
+        "providers\\implementations\\ciphers\\ciphercommon.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\ciphercommon.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
         ],
         "providers\\implementations\\encode_decode\\encode_key2any.o" => [
             "providers\\common\\include\\prov"
@@ -24326,6 +24373,7 @@ our %unified_info = (
             "doc\\man\\man1\\openssl-cmds.1",
             "doc\\man\\man1\\openssl-cmp.1",
             "doc\\man\\man1\\openssl-cms.1",
+            "doc\\man\\man1\\openssl-configutl.1",
             "doc\\man\\man1\\openssl-crl.1",
             "doc\\man\\man1\\openssl-crl2pkcs7.1",
             "doc\\man\\man1\\openssl-dgst.1",
@@ -26094,7 +26142,6 @@ our %unified_info = (
             "crypto\\libcrypto-shlib-params.o",
             "crypto\\libcrypto-shlib-params_dup.o",
             "crypto\\libcrypto-shlib-params_from_text.o",
-            "crypto\\libcrypto-shlib-params_idx.o",
             "crypto\\libcrypto-shlib-passphrase.o",
             "crypto\\libcrypto-shlib-provider.o",
             "crypto\\libcrypto-shlib-provider_child.o",
@@ -26677,6 +26724,7 @@ our %unified_info = (
             "apps\\openssl-bin-ciphers.o",
             "apps\\openssl-bin-cmp.o",
             "apps\\openssl-bin-cms.o",
+            "apps\\openssl-bin-configutl.o",
             "apps\\openssl-bin-crl.o",
             "apps\\openssl-bin-crl2pkcs7.o",
             "apps\\openssl-bin-dgst.o",
@@ -26744,6 +26792,9 @@ our %unified_info = (
         ],
         "apps\\openssl-bin-cms.o" => [
             ".\\apps\\cms.c"
+        ],
+        "apps\\openssl-bin-configutl.o" => [
+            ".\\apps\\configutl.c"
         ],
         "apps\\openssl-bin-crl.o" => [
             ".\\apps\\crl.c"
@@ -29904,9 +29955,6 @@ our %unified_info = (
         "crypto\\libcrypto-lib-params_from_text.o" => [
             ".\\crypto\\params_from_text.c"
         ],
-        "crypto\\libcrypto-lib-params_idx.o" => [
-            "crypto\\params_idx.c"
-        ],
         "crypto\\libcrypto-lib-passphrase.o" => [
             ".\\crypto\\passphrase.c"
         ],
@@ -30077,9 +30125,6 @@ our %unified_info = (
         ],
         "crypto\\libcrypto-shlib-params_from_text.o" => [
             ".\\crypto\\params_from_text.c"
-        ],
-        "crypto\\libcrypto-shlib-params_idx.o" => [
-            "crypto\\params_idx.c"
         ],
         "crypto\\libcrypto-shlib-passphrase.o" => [
             ".\\crypto\\passphrase.c"
@@ -32913,7 +32958,6 @@ our %unified_info = (
             "crypto\\libcrypto-lib-params.o",
             "crypto\\libcrypto-lib-params_dup.o",
             "crypto\\libcrypto-lib-params_from_text.o",
-            "crypto\\libcrypto-lib-params_idx.o",
             "crypto\\libcrypto-lib-passphrase.o",
             "crypto\\libcrypto-lib-provider.o",
             "crypto\\libcrypto-lib-provider_child.o",
@@ -33467,7 +33511,7 @@ our %unified_info = (
             ".\\providers\\implementations\\asymciphers\\sm2_enc.c"
         ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon.o" => [
-            ".\\providers\\implementations\\ciphers\\ciphercommon.c"
+            "providers\\implementations\\ciphers\\ciphercommon.c"
         ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon_block.o" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon_block.c"
