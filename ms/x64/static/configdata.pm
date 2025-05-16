@@ -249,7 +249,7 @@ our %config = (
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
-    "perl_version" => "5.40.0",
+    "perl_version" => "5.40.2",
     "perlargv" => [
         "--prefix=C:\\Program Files\\OpenSSL-3",
         "--with-zlib-include=..\\zlib",
@@ -2112,6 +2112,7 @@ our %unified_info = (
             "include\\openssl\\x509_vfy.h",
             "include\\openssl\\x509v3.h",
             "openssl.pc",
+            "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c",
             "providers\\implementations\\ciphers\\ciphercommon.c",
             "test\\provider_internal_test.cnf"
         ],
@@ -8265,6 +8266,9 @@ our %unified_info = (
         "providers\\common\\include\\prov\\der_wrap.h" => [
             ".\\providers\\common\\der\\oids_to_c.pm",
             ".\\providers\\common\\der\\wrap.asn1"
+        ],
+        "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
@@ -18401,6 +18405,9 @@ our %unified_info = (
         "providers\\common\\include\\prov\\der_wrap.h" => [
             ".\\providers\\common\\include\\prov\\der_wrap.h.in"
         ],
+        "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c.in"
+        ],
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon.c.in"
         ],
@@ -20948,6 +20955,13 @@ our %unified_info = (
         "providers\\common\\include\\prov\\der_wrap.h" => [
             ".\\providers\\common\\der"
         ],
+        "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
             ".\\util\\perl"
         ],
@@ -20956,6 +20970,10 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers"
         ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20_poly1305.o" => [
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
@@ -28910,7 +28928,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_chacha20_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20_poly1305.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c"
+            "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20_poly1305_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_chacha20_poly1305_hw.c"
