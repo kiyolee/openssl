@@ -45,6 +45,7 @@ set _GEN_LIST_PARAMNAMES_INCL=^
   include\openssl\core_names.h
 
 set _GEN_LIST_PARAMNAMES_CSRC=^
+  providers\implementations\ciphers\cipher_chacha20_poly1305.c ^
   providers\implementations\ciphers\ciphercommon.c
 
 set _GEN_LIST_PROV_INCL=^
