@@ -46,7 +46,9 @@ set _GEN_LIST_PARAMNAMES_INCL=^
 
 set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\ciphers\cipher_chacha20_poly1305.c ^
-  providers\implementations\ciphers\ciphercommon.c
+  providers\implementations\ciphers\ciphercommon.c ^
+  providers\implementations\keymgmt\ml_dsa_kmgmt.c ^
+  providers\implementations\keymgmt\ml_kem_kmgmt.c
 
 set _GEN_LIST_PROV_INCL=^
   providers\common\include\prov\der_digests.h ^
