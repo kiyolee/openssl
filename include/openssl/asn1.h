@@ -259,7 +259,7 @@ SKM_DEFINE_STACK_OF_INTERNAL(ASN1_STRING_TABLE, ASN1_STRING_TABLE, ASN1_STRING_T
 #define sk_ASN1_STRING_TABLE_set_cmp_func(sk, cmp) ((sk_ASN1_STRING_TABLE_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_ASN1_STRING_TABLE_sk_type(sk), ossl_check_ASN1_STRING_TABLE_compfunc_type(cmp)))
 
 
-/* size limits: this stuff is taken straight from RFC2459 */
+/* size limits: this stuff is taken straight from RFC 5280 */
 
 # define ub_name                         32768
 # define ub_common_name                  64
