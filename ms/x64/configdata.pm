@@ -2139,6 +2139,8 @@ our %unified_info = (
             "openssl.pc",
             "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c",
             "providers\\implementations\\ciphers\\ciphercommon.c",
+            "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c",
+            "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c",
             "test\\provider_internal_test.cnf"
         ],
         "OpenSSLConfig.cmake" => [
@@ -8309,6 +8311,12 @@ our %unified_info = (
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-x942kdf.o" => [
             "providers\\common\\include\\prov\\der_wrap.h"
+        ],
+        "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\signature\\libdefault-lib-dsa_sig.o" => [
             "providers\\common\\include\\prov\\der_dsa.h"
@@ -19453,6 +19461,12 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon.c.in"
         ],
+        "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c.in"
+        ],
+        "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\ml_kem_kmgmt.c.in"
+        ],
         "providers\\legacy.ld" => [
             ".\\util\\providers.num"
         ],
@@ -22100,6 +22114,12 @@ our %unified_info = (
         ],
         "providers\\implementations\\kdfs\\x942kdf.o" => [
             "providers\\common\\include\\prov"
+        ],
+        "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c" => [
+            ".\\util\\perl"
         ],
         "providers\\implementations\\signature\\dsa_sig.o" => [
             "providers\\common\\include\\prov"
@@ -33949,10 +33969,10 @@ our %unified_info = (
             ".\\providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ml_dsa_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c"
+            "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ml_kem_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\ml_kem_kmgmt.c"
+            "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-mlx_kmgmt.o" => [
             ".\\providers\\implementations\\keymgmt\\mlx_kmgmt.c"
