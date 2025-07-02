@@ -2092,7 +2092,6 @@ our %unified_info = (
             "exporters\\openssl.pc",
             "include\\crypto\\bn_conf.h",
             "include\\crypto\\dso_conf.h",
-            "include\\internal\\param_names.h",
             "include\\openssl\\asn1.h",
             "include\\openssl\\asn1t.h",
             "include\\openssl\\bio.h",
@@ -2123,8 +2122,14 @@ our %unified_info = (
             "openssl.pc",
             "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c",
             "providers\\implementations\\ciphers\\ciphercommon.c",
+            "providers\\implementations\\ciphers\\ciphercommon_ccm.c",
+            "providers\\implementations\\ciphers\\ciphercommon_gcm.c",
+            "providers\\implementations\\digests\\digestcommon.c",
             "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c",
             "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c",
+            "providers\\implementations\\keymgmt\\mlx_kmgmt.c",
+            "providers\\implementations\\signature\\eddsa_sig.c",
+            "providers\\implementations\\signature\\ml_dsa_sig.c",
             "test\\provider_internal_test.cnf"
         ],
         "OpenSSLConfig.cmake" => [
@@ -8106,9 +8111,6 @@ our %unified_info = (
         "fuzz\\x509-test" => [
             "libcrypto"
         ],
-        "include\\internal\\param_names.h" => [
-            ".\\util\\perl|OpenSSL/paramnames.pm"
-        ],
         "include\\openssl\\core_names.h" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
@@ -8290,6 +8292,15 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\ciphers\\ciphercommon_ccm.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\ciphercommon_gcm.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\digests\\digestcommon.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\encode_decode\\libdefault-lib-encode_key2any.o" => [
             "providers\\common\\include\\prov\\der_rsa.h"
         ],
@@ -8300,6 +8311,12 @@ our %unified_info = (
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\keymgmt\\mlx_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\signature\\eddsa_sig.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\signature\\libdefault-lib-dsa_sig.o" => [
@@ -8322,6 +8339,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\signature\\libdefault-lib-sm2_sig.o" => [
             "providers\\common\\include\\prov\\der_sm2.h"
+        ],
+        "providers\\implementations\\signature\\ml_dsa_sig.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\legacy" => [
             "libcrypto",
@@ -8409,7 +8429,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\bio_comp_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\bio_core_test" => [
@@ -8757,7 +8777,7 @@ our %unified_info = (
             "libssl"
         ],
         "test\\byteorder_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\ca_internals_test" => [
@@ -8831,7 +8851,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\cmp_server_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\cmp_status_test" => [
@@ -8858,7 +8878,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\context_internal_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\crltest" => [
@@ -8887,7 +8907,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\decoder_propq_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\defltfips_test" => [
@@ -8903,7 +8923,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\drbgtest" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\dsa_no_digest_size_test" => [
@@ -8992,7 +9012,7 @@ our %unified_info = (
             "libcrypto"
         ],
         "test\\evp_pkey_dhkem_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\evp_pkey_dparams_test" => [
@@ -9054,7 +9074,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\hpke_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\http_test" => [
@@ -9129,7 +9149,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\nodefltctxtest" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\ocspapitest" => [
@@ -9137,7 +9157,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\ossl_store_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\packettest" => [
@@ -9145,11 +9165,11 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\pairwise_fail_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\param_build_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\params_api_test" => [
@@ -9161,7 +9181,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\params_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\pbelutest" => [
@@ -9214,11 +9234,11 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\prov_config_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\provfetchtest" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\provider_default_search_path_test" => [
@@ -9238,11 +9258,11 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\provider_status_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\provider_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\punycode_test" => [
@@ -9250,17 +9270,17 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\quic_ackm_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "libssl.a",
             "test\\libtestutil.a"
         ],
         "test\\quic_cc_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "libssl.a",
             "test\\libtestutil.a"
         ],
         "test\\quic_cfq_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "libssl.a",
             "test\\libtestutil.a"
         ],
@@ -9270,7 +9290,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\quic_fc_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "libssl.a",
             "test\\libtestutil.a"
         ],
@@ -9305,7 +9325,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\quic_rcidm_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "libssl.a",
             "test\\libtestutil.a"
         ],
@@ -9320,7 +9340,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\quic_srtm_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "libssl.a",
             "test\\libtestutil.a"
         ],
@@ -9340,7 +9360,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\quic_txpim_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "libssl.a",
             "test\\libtestutil.a"
         ],
@@ -9372,15 +9392,16 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\rc4test" => [
+            "libcrypto",
             "libcrypto.a",
             "test\\libtestutil.a"
         ],
         "test\\rc5test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\rdcpu_sanitytest" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\recordlentest" => [
@@ -9435,7 +9456,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\slh_dsa_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\sm2_internal_test" => [
@@ -9536,11 +9557,11 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\time_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\timing_load_creds" => [
-            "libcrypto.a"
+            "libcrypto"
         ],
         "test\\tls13ccstest" => [
             "libcrypto",
@@ -9563,7 +9584,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\trace_api_test" => [
-            "libcrypto.a",
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\uitest" => [
@@ -9757,6 +9778,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-sleep.o",
                 "crypto\\libcrypto-lib-sparse_array.o",
                 "crypto\\libcrypto-lib-ssl_err.o",
+                "crypto\\libcrypto-lib-threads_common.o",
                 "crypto\\libcrypto-lib-threads_lib.o",
                 "crypto\\libcrypto-lib-threads_none.o",
                 "crypto\\libcrypto-lib-threads_pthread.o",
@@ -9813,6 +9835,7 @@ our %unified_info = (
                 "crypto\\libcrypto-shlib-sleep.o",
                 "crypto\\libcrypto-shlib-sparse_array.o",
                 "crypto\\libcrypto-shlib-ssl_err.o",
+                "crypto\\libcrypto-shlib-threads_common.o",
                 "crypto\\libcrypto-shlib-threads_lib.o",
                 "crypto\\libcrypto-shlib-threads_none.o",
                 "crypto\\libcrypto-shlib-threads_pthread.o",
@@ -19211,9 +19234,6 @@ our %unified_info = (
         "include\\crypto\\dso_conf.h" => [
             ".\\include\\crypto\\dso_conf.h.in"
         ],
-        "include\\internal\\param_names.h" => [
-            ".\\include\\internal\\param_names.h.in"
-        ],
         "include\\openssl\\asn1.h" => [
             ".\\include\\openssl\\asn1.h.in"
         ],
@@ -19398,11 +19418,29 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon.c.in"
         ],
+        "providers\\implementations\\ciphers\\ciphercommon_ccm.c" => [
+            ".\\providers\\implementations\\ciphers\\ciphercommon_ccm.c.in"
+        ],
+        "providers\\implementations\\ciphers\\ciphercommon_gcm.c" => [
+            ".\\providers\\implementations\\ciphers\\ciphercommon_gcm.c.in"
+        ],
+        "providers\\implementations\\digests\\digestcommon.c" => [
+            ".\\providers\\implementations\\digests\\digestcommon.c.in"
+        ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c.in"
         ],
         "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\ml_kem_kmgmt.c.in"
+        ],
+        "providers\\implementations\\keymgmt\\mlx_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\mlx_kmgmt.c.in"
+        ],
+        "providers\\implementations\\signature\\eddsa_sig.c" => [
+            ".\\providers\\implementations\\signature\\eddsa_sig.c.in"
+        ],
+        "providers\\implementations\\signature\\ml_dsa_sig.c" => [
+            ".\\providers\\implementations\\signature\\ml_dsa_sig.c.in"
         ],
         "providers\\legacy.ld" => [
             ".\\util\\providers.num"
@@ -21799,9 +21837,6 @@ our %unified_info = (
             "include",
             ".\\include"
         ],
-        "include\\internal\\param_names.h" => [
-            ".\\util\\perl"
-        ],
         "include\\openssl\\core_names.h" => [
             ".\\util\\perl"
         ],
@@ -22032,6 +22067,12 @@ our %unified_info = (
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
+        "providers\\implementations\\ciphers\\ciphercommon_ccm.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\ciphercommon_gcm.c" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon.o" => [
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
@@ -22039,6 +22080,9 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20_poly1305.o" => [
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\digests\\digestcommon.c" => [
+            ".\\util\\perl"
         ],
         "providers\\implementations\\encode_decode\\encode_key2any.o" => [
             "providers\\common\\include\\prov"
@@ -22058,11 +22102,17 @@ our %unified_info = (
         "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c" => [
             ".\\util\\perl"
         ],
+        "providers\\implementations\\keymgmt\\mlx_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\signature\\dsa_sig.o" => [
             "providers\\common\\include\\prov"
         ],
         "providers\\implementations\\signature\\ecdsa_sig.o" => [
             "providers\\common\\include\\prov"
+        ],
+        "providers\\implementations\\signature\\eddsa_sig.c" => [
+            ".\\util\\perl"
         ],
         "providers\\implementations\\signature\\eddsa_sig.o" => [
             "providers\\common\\include\\prov"
@@ -22087,6 +22137,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\signature\\libdefault-lib-sm2_sig.o" => [
             "providers\\common\\include\\prov"
+        ],
+        "providers\\implementations\\signature\\ml_dsa_sig.c" => [
+            ".\\util\\perl"
         ],
         "providers\\implementations\\signature\\ml_dsa_sig.o" => [
             "providers\\common\\include\\prov"
@@ -26112,6 +26165,7 @@ our %unified_info = (
             "crypto\\libcrypto-shlib-sleep.o",
             "crypto\\libcrypto-shlib-sparse_array.o",
             "crypto\\libcrypto-shlib-ssl_err.o",
+            "crypto\\libcrypto-shlib-threads_common.o",
             "crypto\\libcrypto-shlib-threads_lib.o",
             "crypto\\libcrypto-shlib-threads_none.o",
             "crypto\\libcrypto-shlib-threads_pthread.o",
@@ -29841,6 +29895,9 @@ our %unified_info = (
         "crypto\\libcrypto-lib-ssl_err.o" => [
             ".\\crypto\\ssl_err.c"
         ],
+        "crypto\\libcrypto-lib-threads_common.o" => [
+            ".\\crypto\\threads_common.c"
+        ],
         "crypto\\libcrypto-lib-threads_lib.o" => [
             ".\\crypto\\threads_lib.c"
         ],
@@ -30008,6 +30065,9 @@ our %unified_info = (
         ],
         "crypto\\libcrypto-shlib-ssl_err.o" => [
             ".\\crypto\\ssl_err.c"
+        ],
+        "crypto\\libcrypto-shlib-threads_common.o" => [
+            ".\\crypto\\threads_common.c"
         ],
         "crypto\\libcrypto-shlib-threads_lib.o" => [
             ".\\crypto\\threads_lib.c"
@@ -32764,6 +32824,7 @@ our %unified_info = (
             "crypto\\libcrypto-lib-sleep.o",
             "crypto\\libcrypto-lib-sparse_array.o",
             "crypto\\libcrypto-lib-ssl_err.o",
+            "crypto\\libcrypto-lib-threads_common.o",
             "crypto\\libcrypto-lib-threads_lib.o",
             "crypto\\libcrypto-lib-threads_none.o",
             "crypto\\libcrypto-lib-threads_pthread.o",
@@ -33305,13 +33366,13 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\ciphercommon_block.c"
         ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon_ccm.o" => [
-            ".\\providers\\implementations\\ciphers\\ciphercommon_ccm.c"
+            "providers\\implementations\\ciphers\\ciphercommon_ccm.c"
         ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon_ccm_hw.o" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon_ccm_hw.c"
         ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon_gcm.o" => [
-            ".\\providers\\implementations\\ciphers\\ciphercommon_gcm.c"
+            "providers\\implementations\\ciphers\\ciphercommon_gcm.c"
         ],
         "providers\\implementations\\ciphers\\libcommon-lib-ciphercommon_gcm_hw.o" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon_gcm_hw.c"
@@ -33536,7 +33597,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_tdes_common.c"
         ],
         "providers\\implementations\\digests\\libcommon-lib-digestcommon.o" => [
-            ".\\providers\\implementations\\digests\\digestcommon.c"
+            "providers\\implementations\\digests\\digestcommon.c"
         ],
         "providers\\implementations\\digests\\libdefault-lib-blake2_prov.o" => [
             ".\\providers\\implementations\\digests\\blake2_prov.c"
@@ -33725,7 +33786,7 @@ our %unified_info = (
             "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-mlx_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\mlx_kmgmt.c"
+            "providers\\implementations\\keymgmt\\mlx_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-rsa_kmgmt.o" => [
             ".\\providers\\implementations\\keymgmt\\rsa_kmgmt.c"
@@ -33800,13 +33861,13 @@ our %unified_info = (
             ".\\providers\\implementations\\signature\\ecdsa_sig.c"
         ],
         "providers\\implementations\\signature\\libdefault-lib-eddsa_sig.o" => [
-            ".\\providers\\implementations\\signature\\eddsa_sig.c"
+            "providers\\implementations\\signature\\eddsa_sig.c"
         ],
         "providers\\implementations\\signature\\libdefault-lib-mac_legacy_sig.o" => [
             ".\\providers\\implementations\\signature\\mac_legacy_sig.c"
         ],
         "providers\\implementations\\signature\\libdefault-lib-ml_dsa_sig.o" => [
-            ".\\providers\\implementations\\signature\\ml_dsa_sig.c"
+            "providers\\implementations\\signature\\ml_dsa_sig.c"
         ],
         "providers\\implementations\\signature\\libdefault-lib-rsa_sig.o" => [
             ".\\providers\\implementations\\signature\\rsa_sig.c"
