@@ -218,6 +218,7 @@ our %config = (
         "OPENSSL_NO_HQINTEROP",
         "OPENSSL_NO_JITTER",
         "OPENSSL_NO_KTLS",
+        "OPENSSL_NO_LMS",
         "OPENSSL_NO_LOADERENG",
         "OPENSSL_NO_MD2",
         "OPENSSL_NO_MSAN",
@@ -244,7 +245,7 @@ our %config = (
         "OPENSSL_SYS_WIN64A"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-afalgeng no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-loadereng no-md2 no-msan no-pie no-rc5 no-sctp no-ssl3 no-ssl3-method no-sslkeylog no-tfo no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-afalgeng no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-loadereng no-md2 no-msan no-pie no-rc5 no-sctp no-ssl3 no-ssl3-method no-sslkeylog no-tfo no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -469,6 +470,7 @@ our @disablables = (
     "jitter",
     "ktls",
     "legacy",
+    "lms",
     "loadereng",
     "makedepend",
     "md2",
@@ -578,6 +580,7 @@ our %disabled = (
     "hqinterop" => "default",
     "jitter" => "default",
     "ktls" => "default",
+    "lms" => "default",
     "loadereng" => "cascade",
     "md2" => "default",
     "msan" => "default",
@@ -4836,6 +4839,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_PKEY-HMAC.html" => [
             ".\\doc\\man7\\EVP_PKEY-HMAC.pod"
         ],
+        "doc\\html\\man7\\EVP_PKEY-LMS.html" => [
+            ".\\doc\\man7\\EVP_PKEY-LMS.pod"
+        ],
         "doc\\html\\man7\\EVP_PKEY-ML-DSA.html" => [
             ".\\doc\\man7\\EVP_PKEY-ML-DSA.pod"
         ],
@@ -4889,6 +4895,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\EVP_SIGNATURE-HMAC.html" => [
             ".\\doc\\man7\\EVP_SIGNATURE-HMAC.pod"
+        ],
+        "doc\\html\\man7\\EVP_SIGNATURE-LMS.html" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-LMS.pod"
         ],
         "doc\\html\\man7\\EVP_SIGNATURE-ML-DSA.html" => [
             ".\\doc\\man7\\EVP_SIGNATURE-ML-DSA.pod"
@@ -7741,6 +7750,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_PKEY-HMAC.7" => [
             ".\\doc\\man7\\EVP_PKEY-HMAC.pod"
         ],
+        "doc\\man\\man7\\EVP_PKEY-LMS.7" => [
+            ".\\doc\\man7\\EVP_PKEY-LMS.pod"
+        ],
         "doc\\man\\man7\\EVP_PKEY-ML-DSA.7" => [
             ".\\doc\\man7\\EVP_PKEY-ML-DSA.pod"
         ],
@@ -7794,6 +7806,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\EVP_SIGNATURE-HMAC.7" => [
             ".\\doc\\man7\\EVP_SIGNATURE-HMAC.pod"
+        ],
+        "doc\\man\\man7\\EVP_SIGNATURE-LMS.7" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-LMS.pod"
         ],
         "doc\\man\\man7\\EVP_SIGNATURE-ML-DSA.7" => [
             ".\\doc\\man7\\EVP_SIGNATURE-ML-DSA.pod"
@@ -13696,6 +13711,9 @@ our %unified_info = (
         "crypto\\sm3\\sm3-armv8.S" => [
             ".\\crypto\\sm3\\asm\\sm3-armv8.pl"
         ],
+        "crypto\\sm3\\sm3-riscv64-zbb.S" => [
+            ".\\crypto\\sm3\\asm\\sm3-riscv64-zbb.pl"
+        ],
         "crypto\\sm3\\sm3-riscv64-zvksh.S" => [
             ".\\crypto\\sm3\\asm\\sm3-riscv64-zvksh.pl"
         ],
@@ -16153,6 +16171,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_PKEY-HMAC.html" => [
             ".\\doc\\man7\\EVP_PKEY-HMAC.pod"
         ],
+        "doc\\html\\man7\\EVP_PKEY-LMS.html" => [
+            ".\\doc\\man7\\EVP_PKEY-LMS.pod"
+        ],
         "doc\\html\\man7\\EVP_PKEY-ML-DSA.html" => [
             ".\\doc\\man7\\EVP_PKEY-ML-DSA.pod"
         ],
@@ -16206,6 +16227,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\EVP_SIGNATURE-HMAC.html" => [
             ".\\doc\\man7\\EVP_SIGNATURE-HMAC.pod"
+        ],
+        "doc\\html\\man7\\EVP_SIGNATURE-LMS.html" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-LMS.pod"
         ],
         "doc\\html\\man7\\EVP_SIGNATURE-ML-DSA.html" => [
             ".\\doc\\man7\\EVP_SIGNATURE-ML-DSA.pod"
@@ -19003,6 +19027,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_PKEY-HMAC.7" => [
             ".\\doc\\man7\\EVP_PKEY-HMAC.pod"
         ],
+        "doc\\man\\man7\\EVP_PKEY-LMS.7" => [
+            ".\\doc\\man7\\EVP_PKEY-LMS.pod"
+        ],
         "doc\\man\\man7\\EVP_PKEY-ML-DSA.7" => [
             ".\\doc\\man7\\EVP_PKEY-ML-DSA.pod"
         ],
@@ -19056,6 +19083,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\EVP_SIGNATURE-HMAC.7" => [
             ".\\doc\\man7\\EVP_SIGNATURE-HMAC.pod"
+        ],
+        "doc\\man\\man7\\EVP_SIGNATURE-LMS.7" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-LMS.pod"
         ],
         "doc\\man\\man7\\EVP_SIGNATURE-ML-DSA.7" => [
             ".\\doc\\man7\\EVP_SIGNATURE-ML-DSA.pod"
@@ -20627,6 +20657,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_PKEY-EC.html",
             "doc\\html\\man7\\EVP_PKEY-FFC.html",
             "doc\\html\\man7\\EVP_PKEY-HMAC.html",
+            "doc\\html\\man7\\EVP_PKEY-LMS.html",
             "doc\\html\\man7\\EVP_PKEY-ML-DSA.html",
             "doc\\html\\man7\\EVP_PKEY-ML-KEM.html",
             "doc\\html\\man7\\EVP_PKEY-RSA.html",
@@ -20645,6 +20676,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_SIGNATURE-ECDSA.html",
             "doc\\html\\man7\\EVP_SIGNATURE-ED25519.html",
             "doc\\html\\man7\\EVP_SIGNATURE-HMAC.html",
+            "doc\\html\\man7\\EVP_SIGNATURE-LMS.html",
             "doc\\html\\man7\\EVP_SIGNATURE-ML-DSA.html",
             "doc\\html\\man7\\EVP_SIGNATURE-RSA.html",
             "doc\\html\\man7\\EVP_SIGNATURE-SLH-DSA.html",
@@ -25268,6 +25300,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_PKEY-EC.7",
             "doc\\man\\man7\\EVP_PKEY-FFC.7",
             "doc\\man\\man7\\EVP_PKEY-HMAC.7",
+            "doc\\man\\man7\\EVP_PKEY-LMS.7",
             "doc\\man\\man7\\EVP_PKEY-ML-DSA.7",
             "doc\\man\\man7\\EVP_PKEY-ML-KEM.7",
             "doc\\man\\man7\\EVP_PKEY-RSA.7",
@@ -25286,6 +25319,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_SIGNATURE-ECDSA.7",
             "doc\\man\\man7\\EVP_SIGNATURE-ED25519.7",
             "doc\\man\\man7\\EVP_SIGNATURE-HMAC.7",
+            "doc\\man\\man7\\EVP_SIGNATURE-LMS.7",
             "doc\\man\\man7\\EVP_SIGNATURE-ML-DSA.7",
             "doc\\man\\man7\\EVP_SIGNATURE-RSA.7",
             "doc\\man\\man7\\EVP_SIGNATURE-SLH-DSA.7",
@@ -37397,6 +37431,12 @@ my %disabled_info = (
     },
     "ktls" => {
         "macro" => "OPENSSL_NO_KTLS"
+    },
+    "lms" => {
+        "macro" => "OPENSSL_NO_LMS",
+        "skipped" => [
+            "crypto\\lms"
+        ]
     },
     "loadereng" => {
         "macro" => "OPENSSL_NO_LOADERENG"
