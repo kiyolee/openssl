@@ -700,12 +700,13 @@ void *ml_kem_load(const void *reference, size_t reference_sz)
             if (!ml_kem_pairwise_test(key, key->prov_flags))
                 goto err;
         }
-        OPENSSL_free(encoded_dk);
+        OPENSSL_secure_clear_free(encoded_dk, key->vinfo->prvkey_bytes);
         return key;
     }
 
  err:
-    OPENSSL_free(encoded_dk);
+    if (key != NULL && key->vinfo != NULL)
+        OPENSSL_secure_clear_free(encoded_dk, key->vinfo->prvkey_bytes);
     ossl_ml_kem_key_free(key);
     return NULL;
 }
@@ -735,13 +736,13 @@ static int ml_kem_get_params(void *vkey, OSSL_PARAM params[])
     const ML_KEM_VINFO *v = ossl_ml_kem_key_vinfo(key);
     struct ml_kem_get_params_st p = ml_kem_get_params_decoder(params);
 
-    if (p.bits != NULL && !OSSL_PARAM_set_int(p.bits, v->bits))
+    if (p.bits != NULL && !OSSL_PARAM_set_size_t(p.bits, v->bits))
         return 0;
 
-    if (p.secbits != NULL && !OSSL_PARAM_set_int(p.secbits, v->secbits))
+    if (p.secbits != NULL && !OSSL_PARAM_set_size_t(p.secbits, v->secbits))
         return 0;
 
-    if (p.maxsize != NULL && !OSSL_PARAM_set_int(p.maxsize, v->ctext_bytes))
+    if (p.maxsize != NULL && !OSSL_PARAM_set_size_t(p.maxsize, v->ctext_bytes))
         return 0;
 
     if (p.seccat != NULL && !OSSL_PARAM_set_int(p.seccat, v->security_category))
