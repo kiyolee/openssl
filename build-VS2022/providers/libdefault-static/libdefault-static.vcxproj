@@ -120,6 +120,7 @@
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cbc_hmac_sha_etm.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ccm.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_ccm_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_cfb_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_gcm.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_gcm_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_gcm_siv.c" />
