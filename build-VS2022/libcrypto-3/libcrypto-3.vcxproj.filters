@@ -2706,6 +2706,9 @@
     <ClCompile Include="..\..\crypto\threads_common.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\evp\evp_pkey_type.c">
+      <Filter>Source Files\crypto\evp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
@@ -2727,6 +2730,9 @@
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\crypto\aes\asm\aesni-xts-avx512.pl">
+      <Filter>Source Files\asm\x64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\crypto\aes\asm\aes-cfb-avx512.pl">
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\crypto\aes\asm\aes-x86_64.pl">
