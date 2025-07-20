@@ -10927,6 +10927,7 @@ our %unified_info = (
                 "crypto\\evp\\libcrypto-lib-evp_lib.o",
                 "crypto\\evp\\libcrypto-lib-evp_pbe.o",
                 "crypto\\evp\\libcrypto-lib-evp_pkey.o",
+                "crypto\\evp\\libcrypto-lib-evp_pkey_type.o",
                 "crypto\\evp\\libcrypto-lib-evp_rand.o",
                 "crypto\\evp\\libcrypto-lib-evp_utils.o",
                 "crypto\\evp\\libcrypto-lib-exchange.o",
@@ -11009,6 +11010,7 @@ our %unified_info = (
                 "crypto\\evp\\libcrypto-shlib-evp_lib.o",
                 "crypto\\evp\\libcrypto-shlib-evp_pbe.o",
                 "crypto\\evp\\libcrypto-shlib-evp_pkey.o",
+                "crypto\\evp\\libcrypto-shlib-evp_pkey_type.o",
                 "crypto\\evp\\libcrypto-shlib-evp_rand.o",
                 "crypto\\evp\\libcrypto-shlib-evp_utils.o",
                 "crypto\\evp\\libcrypto-shlib-exchange.o",
@@ -12278,6 +12280,7 @@ our %unified_info = (
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha_etm.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm_hw.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cfb_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm_siv.o",
@@ -12996,6 +12999,9 @@ our %unified_info = (
         ],
         "crypto\\aes\\aes-c64xplus.S" => [
             ".\\crypto\\aes\\asm\\aes-c64xplus.pl"
+        ],
+        "crypto\\aes\\aes-cfb-avx512.s" => [
+            ".\\crypto\\aes\\asm\\aes-cfb-avx512.pl"
         ],
         "crypto\\aes\\aes-ia64.s" => [
             ".\\crypto\\aes\\asm\\aes-ia64.S"
@@ -26090,6 +26096,7 @@ our %unified_info = (
             "crypto\\evp\\libcrypto-shlib-evp_lib.o",
             "crypto\\evp\\libcrypto-shlib-evp_pbe.o",
             "crypto\\evp\\libcrypto-shlib-evp_pkey.o",
+            "crypto\\evp\\libcrypto-shlib-evp_pkey_type.o",
             "crypto\\evp\\libcrypto-shlib-evp_rand.o",
             "crypto\\evp\\libcrypto-shlib-evp_utils.o",
             "crypto\\evp\\libcrypto-shlib-exchange.o",
@@ -29278,6 +29285,9 @@ our %unified_info = (
         "crypto\\evp\\libcrypto-lib-evp_pkey.o" => [
             ".\\crypto\\evp\\evp_pkey.c"
         ],
+        "crypto\\evp\\libcrypto-lib-evp_pkey_type.o" => [
+            ".\\crypto\\evp\\evp_pkey_type.c"
+        ],
         "crypto\\evp\\libcrypto-lib-evp_rand.o" => [
             ".\\crypto\\evp\\evp_rand.c"
         ],
@@ -29523,6 +29533,9 @@ our %unified_info = (
         ],
         "crypto\\evp\\libcrypto-shlib-evp_pkey.o" => [
             ".\\crypto\\evp\\evp_pkey.c"
+        ],
+        "crypto\\evp\\libcrypto-shlib-evp_pkey_type.o" => [
+            ".\\crypto\\evp\\evp_pkey_type.c"
         ],
         "crypto\\evp\\libcrypto-shlib-evp_rand.o" => [
             ".\\crypto\\evp\\evp_rand.c"
@@ -32750,6 +32763,7 @@ our %unified_info = (
             "crypto\\evp\\libcrypto-lib-evp_lib.o",
             "crypto\\evp\\libcrypto-lib-evp_pbe.o",
             "crypto\\evp\\libcrypto-lib-evp_pkey.o",
+            "crypto\\evp\\libcrypto-lib-evp_pkey_type.o",
             "crypto\\evp\\libcrypto-lib-evp_rand.o",
             "crypto\\evp\\libcrypto-lib-evp_utils.o",
             "crypto\\evp\\libcrypto-lib-exchange.o",
@@ -33444,6 +33458,9 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_ccm_hw.c"
         ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cfb_hw.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_cfb_hw.c"
+        ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_gcm.c"
         ],
@@ -34018,6 +34035,7 @@ our %unified_info = (
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha_etm.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm_hw.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cfb_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm_siv.o",
