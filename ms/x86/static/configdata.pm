@@ -12559,6 +12559,9 @@ our %unified_info = (
         "crypto\\sha\\sha256-ia64.s" => [
             ".\\crypto\\sha\\asm\\sha512-ia64.pl"
         ],
+        "crypto\\sha\\sha256-loongarch64.S" => [
+            ".\\crypto\\sha\\asm\\sha256-loongarch64.pl"
+        ],
         "crypto\\sha\\sha256-mb-x86_64.s" => [
             ".\\crypto\\sha\\asm\\sha256-mb-x86_64.pl"
         ],
@@ -12607,6 +12610,9 @@ our %unified_info = (
         ],
         "crypto\\sha\\sha512-ia64.s" => [
             ".\\crypto\\sha\\asm\\sha512-ia64.pl"
+        ],
+        "crypto\\sha\\sha512-loongarch64.S" => [
+            ".\\crypto\\sha\\asm\\sha512-loongarch64.pl"
         ],
         "crypto\\sha\\sha512-mips.S" => [
             ".\\crypto\\sha\\asm\\sha512-mips.pl"
@@ -20441,6 +20447,10 @@ our %unified_info = (
             "crypto",
             ".\\crypto"
         ],
+        "crypto\\sha\\sha256-loongarch64.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
         "crypto\\sha\\sha256-mips.o" => [
             "crypto",
             ".\\crypto"
@@ -20458,6 +20468,10 @@ our %unified_info = (
             ".\\crypto"
         ],
         "crypto\\sha\\sha512-armv8.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\sha\\sha512-loongarch64.o" => [
             "crypto",
             ".\\crypto"
         ],
