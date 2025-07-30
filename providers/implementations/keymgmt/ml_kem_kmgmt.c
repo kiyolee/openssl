@@ -20,9 +20,13 @@
 #include <openssl/rand.h>
 #include <openssl/self_test.h>
 #include <openssl/param_build.h>
+#include <openssl/cms.h>
 #include "crypto/ml_kem.h"
 #include "internal/fips.h"
 #include "internal/param_build_set.h"
+#include "internal/sizes.h"
+#include "prov/der_hkdf.h"
+#include "prov/der_wrap.h"
 #include "prov/implementations.h"
 #include "prov/providercommon.h"
 #include "prov/provider_ctx.h"
@@ -543,6 +547,8 @@ static const OSSL_PARAM ml_kem_get_params_list[] = {
     OSSL_PARAM_octet_string(OSSL_PKEY_PARAM_PRIV_KEY, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_PKEY_PARAM_PUB_KEY, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_PKEY_PARAM_ENCODED_PUBLIC_KEY, NULL, 0),
+    OSSL_PARAM_int(OSSL_PKEY_PARAM_CMS_RI_TYPE, NULL),
+    OSSL_PARAM_octet_string(OSSL_PKEY_PARAM_CMS_KEMRI_KDF_ALGORITHM, NULL, 0),
     OSSL_PARAM_END
 };
 #endif
@@ -551,9 +557,11 @@ static const OSSL_PARAM ml_kem_get_params_list[] = {
 struct ml_kem_get_params_st {
     OSSL_PARAM *bits;
     OSSL_PARAM *encpubkey;
+    OSSL_PARAM *kemri_kdf_alg;
     OSSL_PARAM *maxsize;
     OSSL_PARAM *privkey;
     OSSL_PARAM *pubkey;
+    OSSL_PARAM *ri_type;
     OSSL_PARAM *secbits;
     OSSL_PARAM *seccat;
     OSSL_PARAM *seed;
@@ -580,6 +588,10 @@ ml_kem_get_params_decoder(const OSSL_PARAM params[]) {
             if (ossl_likely(r.encpubkey == NULL && strcmp("ncoded-pub-key", s + 1) == 0))
                 r.encpubkey = (OSSL_PARAM *)p;
             break;
+        case 'k':
+            if (ossl_likely(r.kemri_kdf_alg == NULL && strcmp("emri-kdf-alg", s + 1) == 0))
+                r.kemri_kdf_alg = (OSSL_PARAM *)p;
+            break;
         case 'm':
             if (ossl_likely(r.maxsize == NULL && strcmp("ax-size", s + 1) == 0))
                 r.maxsize = (OSSL_PARAM *)p;
@@ -596,6 +608,10 @@ ml_kem_get_params_decoder(const OSSL_PARAM params[]) {
                 if (ossl_likely(r.pubkey == NULL && strcmp("b", s + 2) == 0))
                     r.pubkey = (OSSL_PARAM *)p;
             }
+            break;
+        case 'r':
+            if (ossl_likely(r.ri_type == NULL && strcmp("i-type", s + 1) == 0))
+                r.ri_type = (OSSL_PARAM *)p;
             break;
         case 's':
             switch(s[1]) {
@@ -775,6 +791,36 @@ static int ml_kem_get_params(void *vkey, OSSL_PARAM params[])
                                   &ossl_ml_kem_encode_seed))
             return 0;
     }
+
+#ifndef OPENSSL_NO_CMS
+    if (p.ri_type != NULL && !OSSL_PARAM_set_int(p.ri_type, CMS_RECIPINFO_KEM))
+        return 0;
+
+    if (p.kemri_kdf_alg != NULL) {
+        uint8_t aid_buf[OSSL_MAX_ALGORITHM_ID_SIZE];
+        int ret;
+        size_t aid_len = 0;
+        WPACKET pkt;
+        uint8_t *aid = NULL;
+
+        ret = WPACKET_init_der(&pkt, aid_buf, sizeof(aid_buf));
+        ret &= ossl_DER_w_begin_sequence(&pkt, -1)
+            && ossl_DER_w_precompiled(&pkt, -1, ossl_der_oid_id_alg_hkdf_with_sha256,
+                                      sizeof(ossl_der_oid_id_alg_hkdf_with_sha256))
+            && ossl_DER_w_end_sequence(&pkt, -1);
+        if (ret && WPACKET_finish(&pkt)) {
+            WPACKET_get_total_written(&pkt, &aid_len);
+            aid = WPACKET_get_curr(&pkt);
+        }
+        WPACKET_cleanup(&pkt);
+        if (!ret)
+            return 0;
+        if (aid != NULL && aid_len != 0 &&
+            !OSSL_PARAM_set_octet_string(p.kemri_kdf_alg, aid, aid_len))
+            return 0;
+    }
+#endif
+
     return 1;
 }
 
