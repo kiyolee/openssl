@@ -8146,6 +8146,10 @@ our %unified_info = (
             ".\\providers\\common\\der\\ECX.asn1",
             ".\\providers\\common\\der\\oids_to_c.pm"
         ],
+        "providers\\common\\der\\der_hkdf_gen.c" => [
+            ".\\providers\\common\\der\\HKDF.asn1",
+            ".\\providers\\common\\der\\oids_to_c.pm"
+        ],
         "providers\\common\\der\\der_ml_dsa_gen.c" => [
             ".\\providers\\common\\der\\ML_DSA.asn1",
             ".\\providers\\common\\der\\oids_to_c.pm"
@@ -8197,6 +8201,9 @@ our %unified_info = (
         ],
         "providers\\common\\der\\libcommon-lib-der_ecx_key.o" => [
             "providers\\common\\include\\prov\\der_ecx.h"
+        ],
+        "providers\\common\\der\\libcommon-lib-der_hkdf_gen.o" => [
+            "providers\\common\\include\\prov\\der_hkdf.h"
         ],
         "providers\\common\\der\\libcommon-lib-der_ml_dsa_gen.o" => [
             "providers\\common\\include\\prov\\der_ml_dsa.h"
@@ -8252,6 +8259,10 @@ our %unified_info = (
             ".\\providers\\common\\der\\ECX.asn1",
             ".\\providers\\common\\der\\oids_to_c.pm"
         ],
+        "providers\\common\\include\\prov\\der_hkdf.h" => [
+            ".\\providers\\common\\der\\HKDF.asn1",
+            ".\\providers\\common\\der\\oids_to_c.pm"
+        ],
         "providers\\common\\include\\prov\\der_ml_dsa.h" => [
             ".\\providers\\common\\der\\ML_DSA.asn1",
             ".\\providers\\common\\der\\oids_to_c.pm"
@@ -8293,6 +8304,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-x942kdf.o" => [
             "providers\\common\\include\\prov\\der_wrap.h"
+        ],
+        "providers\\implementations\\keymgmt\\libdefault-lib-ml_kem_kmgmt.o" => [
+            "providers\\common\\include\\prov\\der_hkdf.h"
         ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
@@ -10095,6 +10109,8 @@ our %unified_info = (
                 "crypto\\cms\\libcrypto-lib-cms_ess.o",
                 "crypto\\cms\\libcrypto-lib-cms_io.o",
                 "crypto\\cms\\libcrypto-lib-cms_kari.o",
+                "crypto\\cms\\libcrypto-lib-cms_kem.o",
+                "crypto\\cms\\libcrypto-lib-cms_kemri.o",
                 "crypto\\cms\\libcrypto-lib-cms_lib.o",
                 "crypto\\cms\\libcrypto-lib-cms_pwri.o",
                 "crypto\\cms\\libcrypto-lib-cms_rsa.o",
@@ -11315,6 +11331,7 @@ our %unified_info = (
                 "providers\\common\\der\\libcommon-lib-der_ec_sig.o",
                 "providers\\common\\der\\libcommon-lib-der_ecx_gen.o",
                 "providers\\common\\der\\libcommon-lib-der_ecx_key.o",
+                "providers\\common\\der\\libcommon-lib-der_hkdf_gen.o",
                 "providers\\common\\der\\libcommon-lib-der_ml_dsa_gen.o",
                 "providers\\common\\der\\libcommon-lib-der_ml_dsa_key.o",
                 "providers\\common\\der\\libcommon-lib-der_rsa_gen.o",
@@ -18396,6 +18413,9 @@ our %unified_info = (
         "providers\\common\\der\\der_ecx_gen.c" => [
             ".\\providers\\common\\der\\der_ecx_gen.c.in"
         ],
+        "providers\\common\\der\\der_hkdf_gen.c" => [
+            ".\\providers\\common\\der\\der_hkdf_gen.c.in"
+        ],
         "providers\\common\\der\\der_ml_dsa_gen.c" => [
             ".\\providers\\common\\der\\der_ml_dsa_gen.c.in"
         ],
@@ -18422,6 +18442,9 @@ our %unified_info = (
         ],
         "providers\\common\\include\\prov\\der_ecx.h" => [
             ".\\providers\\common\\include\\prov\\der_ecx.h.in"
+        ],
+        "providers\\common\\include\\prov\\der_hkdf.h" => [
+            ".\\providers\\common\\include\\prov\\der_hkdf.h.in"
         ],
         "providers\\common\\include\\prov\\der_ml_dsa.h" => [
             ".\\providers\\common\\include\\prov\\der_ml_dsa.h.in"
@@ -20884,6 +20907,12 @@ our %unified_info = (
         "providers\\common\\der\\der_ecx_key.o" => [
             "providers\\common\\include\\prov"
         ],
+        "providers\\common\\der\\der_hkdf_gen.c" => [
+            ".\\providers\\common\\der"
+        ],
+        "providers\\common\\der\\der_hkdf_gen.o" => [
+            "providers\\common\\include\\prov"
+        ],
         "providers\\common\\der\\der_ml_dsa_gen.c" => [
             ".\\providers\\common\\der"
         ],
@@ -20959,6 +20988,9 @@ our %unified_info = (
         "providers\\common\\der\\libcommon-lib-der_ecx_key.o" => [
             "providers\\common\\include\\prov"
         ],
+        "providers\\common\\der\\libcommon-lib-der_hkdf_gen.o" => [
+            "providers\\common\\include\\prov"
+        ],
         "providers\\common\\der\\libcommon-lib-der_ml_dsa_gen.o" => [
             "providers\\common\\include\\prov"
         ],
@@ -21002,6 +21034,9 @@ our %unified_info = (
             ".\\providers\\common\\der"
         ],
         "providers\\common\\include\\prov\\der_ecx.h" => [
+            ".\\providers\\common\\der"
+        ],
+        "providers\\common\\include\\prov\\der_hkdf.h" => [
             ".\\providers\\common\\der"
         ],
         "providers\\common\\include\\prov\\der_ml_dsa.h" => [
@@ -21062,11 +21097,17 @@ our %unified_info = (
         "providers\\implementations\\kdfs\\x942kdf.o" => [
             "providers\\common\\include\\prov"
         ],
+        "providers\\implementations\\keymgmt\\libdefault-lib-ml_kem_kmgmt.o" => [
+            "providers\\common\\include\\prov"
+        ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c" => [
             ".\\util\\perl"
+        ],
+        "providers\\implementations\\keymgmt\\ml_kem_kmgmt.o" => [
+            "providers\\common\\include\\prov"
         ],
         "providers\\implementations\\keymgmt\\mlx_kmgmt.c" => [
             ".\\util\\perl"
@@ -25533,6 +25574,12 @@ our %unified_info = (
         "crypto\\cms\\libcrypto-lib-cms_kari.o" => [
             ".\\crypto\\cms\\cms_kari.c"
         ],
+        "crypto\\cms\\libcrypto-lib-cms_kem.o" => [
+            ".\\crypto\\cms\\cms_kem.c"
+        ],
+        "crypto\\cms\\libcrypto-lib-cms_kemri.o" => [
+            ".\\crypto\\cms\\cms_kemri.c"
+        ],
         "crypto\\cms\\libcrypto-lib-cms_lib.o" => [
             ".\\crypto\\cms\\cms_lib.c"
         ],
@@ -27983,6 +28030,8 @@ our %unified_info = (
             "crypto\\cms\\libcrypto-lib-cms_ess.o",
             "crypto\\cms\\libcrypto-lib-cms_io.o",
             "crypto\\cms\\libcrypto-lib-cms_kari.o",
+            "crypto\\cms\\libcrypto-lib-cms_kem.o",
+            "crypto\\cms\\libcrypto-lib-cms_kemri.o",
             "crypto\\cms\\libcrypto-lib-cms_lib.o",
             "crypto\\cms\\libcrypto-lib-cms_pwri.o",
             "crypto\\cms\\libcrypto-lib-cms_rsa.o",
@@ -28742,6 +28791,9 @@ our %unified_info = (
         "providers\\common\\der\\libcommon-lib-der_ecx_key.o" => [
             ".\\providers\\common\\der\\der_ecx_key.c"
         ],
+        "providers\\common\\der\\libcommon-lib-der_hkdf_gen.o" => [
+            "providers\\common\\der\\der_hkdf_gen.c"
+        ],
         "providers\\common\\der\\libcommon-lib-der_ml_dsa_gen.o" => [
             "providers\\common\\der\\der_ml_dsa_gen.c"
         ],
@@ -29372,6 +29424,7 @@ our %unified_info = (
             "providers\\common\\der\\libcommon-lib-der_ec_sig.o",
             "providers\\common\\der\\libcommon-lib-der_ecx_gen.o",
             "providers\\common\\der\\libcommon-lib-der_ecx_key.o",
+            "providers\\common\\der\\libcommon-lib-der_hkdf_gen.o",
             "providers\\common\\der\\libcommon-lib-der_ml_dsa_gen.o",
             "providers\\common\\der\\libcommon-lib-der_ml_dsa_key.o",
             "providers\\common\\der\\libcommon-lib-der_rsa_gen.o",
