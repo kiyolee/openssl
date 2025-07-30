@@ -314,6 +314,8 @@
     <ClCompile Include="..\..\crypto\cms\cms_ess.c" />
     <ClCompile Include="..\..\crypto\cms\cms_io.c" />
     <ClCompile Include="..\..\crypto\cms\cms_kari.c" />
+    <ClCompile Include="..\..\crypto\cms\cms_kem.c" />
+    <ClCompile Include="..\..\crypto\cms\cms_kemri.c" />
     <ClCompile Include="..\..\crypto\cms\cms_lib.c" />
     <ClCompile Include="..\..\crypto\cms\cms_pwri.c" />
     <ClCompile Include="..\..\crypto\cms\cms_rsa.c" />

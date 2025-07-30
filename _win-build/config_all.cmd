@@ -60,6 +60,7 @@ set _GEN_LIST_PROV_INCL=^
   providers\common\include\prov\der_dsa.h ^
   providers\common\include\prov\der_ec.h ^
   providers\common\include\prov\der_ecx.h ^
+  providers\common\include\prov\der_hkdf.h ^
   providers\common\include\prov\der_ml_dsa.h ^
   providers\common\include\prov\der_rsa.h ^
   providers\common\include\prov\der_slh_dsa.h ^
@@ -71,6 +72,7 @@ set _GEN_LIST_PROV_CSRC=^
   providers\common\der\der_dsa_gen.c ^
   providers\common\der\der_ec_gen.c ^
   providers\common\der\der_ecx_gen.c ^
+  providers\common\der\der_hkdf_gen.c ^
   providers\common\der\der_ml_dsa_gen.c ^
   providers\common\der\der_rsa_gen.c ^
   providers\common\der\der_slh_dsa_gen.c ^
