@@ -392,47 +392,56 @@ struct ml_dsa_set_ctx_params_st {
 #endif
 
 #ifndef ml_dsa_set_ctx_params_decoder
-static struct ml_dsa_set_ctx_params_st
-ml_dsa_set_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct ml_dsa_set_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int ml_dsa_set_ctx_params_decoder
+    (const OSSL_PARAM *p, struct ml_dsa_set_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'c':
-            if (ossl_likely(r.ctx == NULL && strcmp("ontext-string", s + 1) == 0))
-                r.ctx = (OSSL_PARAM *)p;
-            break;
-        case 'd':
-            if (ossl_likely(r.det == NULL && strcmp("eterministic", s + 1) == 0))
-                r.det = (OSSL_PARAM *)p;
-            break;
-        case 'm':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 'e':
-                if (ossl_likely(r.msgenc == NULL && strcmp("ssage-encoding", s + 2) == 0))
-                    r.msgenc = (OSSL_PARAM *)p;
+            case 'c':
+                if (ossl_likely(strcmp("ontext-string", s + 1) == 0)) {
+                    if (ossl_likely(r->ctx == NULL))
+                        r->ctx = (OSSL_PARAM *)p;
+                }
                 break;
-            case 'u':
-                switch(s[2]) {
+            case 'd':
+                if (ossl_likely(strcmp("eterministic", s + 1) == 0)) {
+                    if (ossl_likely(r->det == NULL))
+                        r->det = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'm':
+                switch(s[1]) {
                 default:
                     break;
-                case '\0':
-                    r.mu = ossl_likely(r.mu == NULL) ? (OSSL_PARAM *)p : r.mu;
+                case 'e':
+                    if (ossl_likely(strcmp("ssage-encoding", s + 2) == 0)) {
+                        if (ossl_likely(r->msgenc == NULL))
+                            r->msgenc = (OSSL_PARAM *)p;
+                    }
+                    break;
+                case 'u':
+                    switch(s[2]) {
+                    default:
+                        break;
+                    case '\0':
+                        if (ossl_likely(r->mu == NULL))
+                            r->mu = (OSSL_PARAM *)p;
+                    }
+                }
+                break;
+            case 't':
+                if (ossl_likely(strcmp("est-entropy", s + 1) == 0)) {
+                    if (ossl_likely(r->ent == NULL))
+                        r->ent = (OSSL_PARAM *)p;
                 }
             }
-            break;
-        case 't':
-            if (ossl_likely(r.ent == NULL && strcmp("est-entropy", s + 1) == 0))
-                r.ent = (OSSL_PARAM *)p;
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -462,51 +471,62 @@ struct ml_dsa_verifymsg_set_ctx_params_st {
 #endif
 
 #ifndef ml_dsa_verifymsg_set_ctx_params_decoder
-static struct ml_dsa_verifymsg_set_ctx_params_st
-ml_dsa_verifymsg_set_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct ml_dsa_verifymsg_set_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int ml_dsa_verifymsg_set_ctx_params_decoder
+    (const OSSL_PARAM *p, struct ml_dsa_verifymsg_set_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'c':
-            if (ossl_likely(r.ctx == NULL && strcmp("ontext-string", s + 1) == 0))
-                r.ctx = (OSSL_PARAM *)p;
-            break;
-        case 'd':
-            if (ossl_likely(r.det == NULL && strcmp("eterministic", s + 1) == 0))
-                r.det = (OSSL_PARAM *)p;
-            break;
-        case 'm':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 'e':
-                if (ossl_likely(r.msgenc == NULL && strcmp("ssage-encoding", s + 2) == 0))
-                    r.msgenc = (OSSL_PARAM *)p;
+            case 'c':
+                if (ossl_likely(strcmp("ontext-string", s + 1) == 0)) {
+                    if (ossl_likely(r->ctx == NULL))
+                        r->ctx = (OSSL_PARAM *)p;
+                }
                 break;
-            case 'u':
-                switch(s[2]) {
+            case 'd':
+                if (ossl_likely(strcmp("eterministic", s + 1) == 0)) {
+                    if (ossl_likely(r->det == NULL))
+                        r->det = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'm':
+                switch(s[1]) {
                 default:
                     break;
-                case '\0':
-                    r.mu = ossl_likely(r.mu == NULL) ? (OSSL_PARAM *)p : r.mu;
+                case 'e':
+                    if (ossl_likely(strcmp("ssage-encoding", s + 2) == 0)) {
+                        if (ossl_likely(r->msgenc == NULL))
+                            r->msgenc = (OSSL_PARAM *)p;
+                    }
+                    break;
+                case 'u':
+                    switch(s[2]) {
+                    default:
+                        break;
+                    case '\0':
+                        if (ossl_likely(r->mu == NULL))
+                            r->mu = (OSSL_PARAM *)p;
+                    }
+                }
+                break;
+            case 's':
+                if (ossl_likely(strcmp("ignature", s + 1) == 0)) {
+                    if (ossl_likely(r->sig == NULL))
+                        r->sig = (OSSL_PARAM *)p;
+                }
+                break;
+            case 't':
+                if (ossl_likely(strcmp("est-entropy", s + 1) == 0)) {
+                    if (ossl_likely(r->ent == NULL))
+                        r->ent = (OSSL_PARAM *)p;
                 }
             }
-            break;
-        case 's':
-            if (ossl_likely(r.sig == NULL && strcmp("ignature", s + 1) == 0))
-                r.sig = (OSSL_PARAM *)p;
-            break;
-        case 't':
-            if (ossl_likely(r.ent == NULL && strcmp("est-entropy", s + 1) == 0))
-                r.ent = (OSSL_PARAM *)p;
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -516,12 +536,8 @@ static int ml_dsa_set_ctx_params(void *vctx, const OSSL_PARAM params[])
     PROV_ML_DSA_CTX *pctx = (PROV_ML_DSA_CTX *)vctx;
     struct ml_dsa_verifymsg_set_ctx_params_st p;
 
-    if (pctx == NULL)
+    if (pctx == NULL || !ml_dsa_verifymsg_set_ctx_params_decoder(params, &p))
         return 0;
-    if (ossl_param_is_empty(params))
-        return 1;
-
-    p = ml_dsa_verifymsg_set_ctx_params_decoder(params);
 
     if (p.ctx != NULL) {
         void *vp = pctx->context_string;
@@ -594,17 +610,19 @@ struct ml_dsa_get_ctx_params_st {
 #endif
 
 #ifndef ml_dsa_get_ctx_params_decoder
-static struct ml_dsa_get_ctx_params_st
-ml_dsa_get_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct ml_dsa_get_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int ml_dsa_get_ctx_params_decoder
+    (const OSSL_PARAM *p, struct ml_dsa_get_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        if (ossl_likely(r.id == NULL && strcmp("algorithm-id", s + 0) == 0))
-            r.id = (OSSL_PARAM *)p;
-    return r;
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            if (ossl_likely(strcmp("algorithm-id", s + 0) == 0)) {
+                if (ossl_likely(r->id == NULL))
+                    r->id = (OSSL_PARAM *)p;
+            }
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -620,10 +638,8 @@ static int ml_dsa_get_ctx_params(void *vctx, OSSL_PARAM *params)
     PROV_ML_DSA_CTX *ctx = (PROV_ML_DSA_CTX *)vctx;
     struct ml_dsa_get_ctx_params_st p;
 
-    if (ctx == NULL)
+    if (ctx == NULL || !ml_dsa_get_ctx_params_decoder(params, &p))
         return 0;
-
-    p = ml_dsa_get_ctx_params_decoder(params);
 
     if (p.id != NULL
         && !OSSL_PARAM_set_octet_string(p.id,

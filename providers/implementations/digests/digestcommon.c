@@ -38,34 +38,42 @@ struct digest_default_get_params_st {
 #endif
 
 #ifndef digest_default_get_params_decoder
-static struct digest_default_get_params_st
-digest_default_get_params_decoder(const OSSL_PARAM params[]) {
-    struct digest_default_get_params_st r;
-    const OSSL_PARAM *p;
+static int digest_default_get_params_decoder
+    (const OSSL_PARAM *p, struct digest_default_get_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'a':
-            if (ossl_likely(r.aldid == NULL && strcmp("lgid-absent", s + 1) == 0))
-                r.aldid = (OSSL_PARAM *)p;
-            break;
-        case 'b':
-            if (ossl_likely(r.bsize == NULL && strcmp("locksize", s + 1) == 0))
-                r.bsize = (OSSL_PARAM *)p;
-            break;
-        case 's':
-            if (ossl_likely(r.size == NULL && strcmp("ize", s + 1) == 0))
-                r.size = (OSSL_PARAM *)p;
-            break;
-        case 'x':
-            if (ossl_likely(r.xof == NULL && strcmp("of", s + 1) == 0))
-                r.xof = (OSSL_PARAM *)p;
-        }
-    return r;
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
+            default:
+                break;
+            case 'a':
+                if (ossl_likely(strcmp("lgid-absent", s + 1) == 0)) {
+                    if (ossl_likely(r->aldid == NULL))
+                        r->aldid = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'b':
+                if (ossl_likely(strcmp("locksize", s + 1) == 0)) {
+                    if (ossl_likely(r->bsize == NULL))
+                        r->bsize = (OSSL_PARAM *)p;
+                }
+                break;
+            case 's':
+                if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    if (ossl_likely(r->size == NULL))
+                        r->size = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'x':
+                if (ossl_likely(strcmp("of", s + 1) == 0)) {
+                    if (ossl_likely(r->xof == NULL))
+                        r->xof = (OSSL_PARAM *)p;
+                }
+            }
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -75,7 +83,8 @@ int ossl_digest_default_get_params(OSSL_PARAM params[], size_t blksz,
 {
     struct digest_default_get_params_st p;
 
-    p = digest_default_get_params_decoder(params);
+    if (!digest_default_get_params_decoder(params, &p))
+        return 0;
 
     if (p.bsize != NULL && !OSSL_PARAM_set_size_t(p.bsize, blksz)) {
         ERR_raise(ERR_LIB_PROV, PROV_R_FAILED_TO_SET_PARAMETER);

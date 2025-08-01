@@ -202,35 +202,41 @@ struct ml_dsa_key_type_params_st {
 #endif
 
 #ifndef ml_dsa_key_type_params_decoder
-static struct ml_dsa_key_type_params_st
-ml_dsa_key_type_params_decoder(const OSSL_PARAM params[]) {
-    struct ml_dsa_key_type_params_st r;
-    const OSSL_PARAM *p;
+static int ml_dsa_key_type_params_decoder
+    (const OSSL_PARAM *p, struct ml_dsa_key_type_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'p':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 'r':
-                if (ossl_likely(r.privkey == NULL && strcmp("iv", s + 2) == 0))
-                    r.privkey = (OSSL_PARAM *)p;
+            case 'p':
+                switch(s[1]) {
+                default:
+                    break;
+                case 'r':
+                    if (ossl_likely(strcmp("iv", s + 2) == 0)) {
+                        if (ossl_likely(r->privkey == NULL))
+                            r->privkey = (OSSL_PARAM *)p;
+                    }
+                    break;
+                case 'u':
+                    if (ossl_likely(strcmp("b", s + 2) == 0)) {
+                        if (ossl_likely(r->pubkey == NULL))
+                            r->pubkey = (OSSL_PARAM *)p;
+                    }
+                }
                 break;
-            case 'u':
-                if (ossl_likely(r.pubkey == NULL && strcmp("b", s + 2) == 0))
-                    r.pubkey = (OSSL_PARAM *)p;
+            case 's':
+                if (ossl_likely(strcmp("eed", s + 1) == 0)) {
+                    if (ossl_likely(r->seed == NULL))
+                        r->seed = (OSSL_PARAM *)p;
+                }
             }
-            break;
-        case 's':
-            if (ossl_likely(r.seed == NULL && strcmp("eed", s + 1) == 0))
-                r.seed = (OSSL_PARAM *)p;
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -250,7 +256,10 @@ static int ml_dsa_key_fromdata(ML_DSA_KEY *key, const OSSL_PARAM params[],
     const ML_DSA_PARAMS *key_params = ossl_ml_dsa_key_params(key);
     const uint8_t *pk = NULL, *sk = NULL, *seed = NULL;
     size_t pk_len = 0, sk_len = 0, seed_len = 0;
-    struct ml_dsa_key_type_params_st p = ml_dsa_key_type_params_decoder(params);
+    struct ml_dsa_key_type_params_st p;
+
+    if (key == NULL || !ml_dsa_key_type_params_decoder(params, &p))
+        return 0;
 
     if (p.pubkey != NULL) {
         if (!OSSL_PARAM_get_octet_string_ptr(p.pubkey, (const void **)&pk, &pk_len))
@@ -372,110 +381,126 @@ struct ml_dsa_get_params_st {
 #endif
 
 #ifndef ml_dsa_get_params_decoder
-static struct ml_dsa_get_params_st
-ml_dsa_get_params_decoder(const OSSL_PARAM params[]) {
-    struct ml_dsa_get_params_st r;
-    const OSSL_PARAM *p;
+static int ml_dsa_get_params_decoder
+    (const OSSL_PARAM *p, struct ml_dsa_get_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'b':
-            if (ossl_likely(r.bits == NULL && strcmp("its", s + 1) == 0))
-                r.bits = (OSSL_PARAM *)p;
-            break;
-        case 'm':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 'a':
-                switch(s[2]) {
-                default:
-                    break;
-                case 'n':
-                    if (ossl_likely(r.dgstp == NULL && strcmp("datory-digest", s + 3) == 0))
-                        r.dgstp = (OSSL_PARAM *)p;
-                    break;
-                case 'x':
-                    if (ossl_likely(r.maxsize == NULL && strcmp("-size", s + 3) == 0))
-                        r.maxsize = (OSSL_PARAM *)p;
+            case 'b':
+                if (ossl_likely(strcmp("its", s + 1) == 0)) {
+                    if (ossl_likely(r->bits == NULL))
+                        r->bits = (OSSL_PARAM *)p;
                 }
-            }
-            break;
-        case 'p':
-            switch(s[1]) {
-            default:
                 break;
-            case 'r':
-                if (ossl_likely(r.privkey == NULL && strcmp("iv", s + 2) == 0))
-                    r.privkey = (OSSL_PARAM *)p;
-                break;
-            case 'u':
-                if (ossl_likely(r.pubkey == NULL && strcmp("b", s + 2) == 0))
-                    r.pubkey = (OSSL_PARAM *)p;
-            }
-            break;
-        case 's':
-            switch(s[1]) {
-            default:
-                break;
-            case 'e':
-                switch(s[2]) {
+            case 'm':
+                switch(s[1]) {
                 default:
                     break;
-                case 'c':
-                    switch(s[3]) {
+                case 'a':
+                    switch(s[2]) {
                     default:
                         break;
-                    case 'u':
-                        switch(s[4]) {
+                    case 'n':
+                        if (ossl_likely(strcmp("datory-digest", s + 3) == 0)) {
+                            if (ossl_likely(r->dgstp == NULL))
+                                r->dgstp = (OSSL_PARAM *)p;
+                        }
+                        break;
+                    case 'x':
+                        if (ossl_likely(strcmp("-size", s + 3) == 0)) {
+                            if (ossl_likely(r->maxsize == NULL))
+                                r->maxsize = (OSSL_PARAM *)p;
+                        }
+                    }
+                }
+                break;
+            case 'p':
+                switch(s[1]) {
+                default:
+                    break;
+                case 'r':
+                    if (ossl_likely(strcmp("iv", s + 2) == 0)) {
+                        if (ossl_likely(r->privkey == NULL))
+                            r->privkey = (OSSL_PARAM *)p;
+                    }
+                    break;
+                case 'u':
+                    if (ossl_likely(strcmp("b", s + 2) == 0)) {
+                        if (ossl_likely(r->pubkey == NULL))
+                            r->pubkey = (OSSL_PARAM *)p;
+                    }
+                }
+                break;
+            case 's':
+                switch(s[1]) {
+                default:
+                    break;
+                case 'e':
+                    switch(s[2]) {
+                    default:
+                        break;
+                    case 'c':
+                        switch(s[3]) {
                         default:
                             break;
-                        case 'r':
-                            switch(s[5]) {
+                        case 'u':
+                            switch(s[4]) {
                             default:
                                 break;
-                            case 'i':
-                                switch(s[6]) {
+                            case 'r':
+                                switch(s[5]) {
                                 default:
                                     break;
-                                case 't':
-                                    switch(s[7]) {
+                                case 'i':
+                                    switch(s[6]) {
                                     default:
                                         break;
-                                    case 'y':
-                                        switch(s[8]) {
+                                    case 't':
+                                        switch(s[7]) {
                                         default:
                                             break;
-                                        case '-':
-                                            switch(s[9]) {
+                                        case 'y':
+                                            switch(s[8]) {
                                             default:
                                                 break;
-                                            case 'b':
-                                                if (ossl_likely(r.secbits == NULL && strcmp("its", s + 10) == 0))
-                                                    r.secbits = (OSSL_PARAM *)p;
-                                                break;
-                                            case 'c':
-                                                if (ossl_likely(r.seccat == NULL && strcmp("ategory", s + 10) == 0))
-                                                    r.seccat = (OSSL_PARAM *)p;
+                                            case '-':
+                                                switch(s[9]) {
+                                                default:
+                                                    break;
+                                                case 'b':
+                                                    if (ossl_likely(strcmp("its", s + 10) == 0)) {
+                                                        if (ossl_likely(r->secbits == NULL))
+                                                            r->secbits = (OSSL_PARAM *)p;
+                                                    }
+                                                    break;
+                                                case 'c':
+                                                    if (ossl_likely(strcmp("ategory", s + 10) == 0)) {
+                                                        if (ossl_likely(r->seccat == NULL))
+                                                            r->seccat = (OSSL_PARAM *)p;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
+                        break;
+                    case 'e':
+                        if (ossl_likely(strcmp("d", s + 3) == 0)) {
+                            if (ossl_likely(r->seed == NULL))
+                                r->seed = (OSSL_PARAM *)p;
+                        }
                     }
-                    break;
-                case 'e':
-                    if (ossl_likely(r.seed == NULL && strcmp("d", s + 3) == 0))
-                        r.seed = (OSSL_PARAM *)p;
                 }
             }
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -490,7 +515,10 @@ static int ml_dsa_get_params(void *keydata, OSSL_PARAM params[])
     ML_DSA_KEY *key = keydata;
     const uint8_t *d;
     size_t len;
-    struct ml_dsa_get_params_st p = ml_dsa_get_params_decoder(params);
+    struct ml_dsa_get_params_st p;
+
+    if (key == NULL || !ml_dsa_get_params_decoder(params, &p))
+        return 0;
 
     if (p.bits != NULL
             && !OSSL_PARAM_set_size_t(p.bits, 8 * ossl_ml_dsa_key_get_pub_len(key)))
@@ -692,26 +720,30 @@ struct ml_dsa_gen_set_params_st {
 #endif
 
 #ifndef ml_dsa_gen_set_params_decoder
-static struct ml_dsa_gen_set_params_st
-ml_dsa_gen_set_params_decoder(const OSSL_PARAM params[]) {
-    struct ml_dsa_gen_set_params_st r;
-    const OSSL_PARAM *p;
+static int ml_dsa_gen_set_params_decoder
+    (const OSSL_PARAM *p, struct ml_dsa_gen_set_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'p':
-            if (ossl_likely(r.propq == NULL && strcmp("roperties", s + 1) == 0))
-                r.propq = (OSSL_PARAM *)p;
-            break;
-        case 's':
-            if (ossl_likely(r.seed == NULL && strcmp("eed", s + 1) == 0))
-                r.seed = (OSSL_PARAM *)p;
-        }
-    return r;
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
+            default:
+                break;
+            case 'p':
+                if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
+                    if (ossl_likely(r->propq == NULL))
+                        r->propq = (OSSL_PARAM *)p;
+                }
+                break;
+            case 's':
+                if (ossl_likely(strcmp("eed", s + 1) == 0)) {
+                    if (ossl_likely(r->seed == NULL))
+                        r->seed = (OSSL_PARAM *)p;
+                }
+            }
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -721,12 +753,8 @@ static int ml_dsa_gen_set_params(void *genctx, const OSSL_PARAM params[])
     struct ml_dsa_gen_ctx *gctx = genctx;
     struct ml_dsa_gen_set_params_st p;
 
-    if (gctx == NULL)
+    if (gctx == NULL || !ml_dsa_gen_set_params_decoder(params, &p))
         return 0;
-    if (ossl_param_is_empty(params))
-        return 1;
-
-    p = ml_dsa_gen_set_params_decoder(params);
 
     if (p.seed != NULL) {
         void *vp = gctx->entropy;
