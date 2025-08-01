@@ -49,6 +49,20 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\ciphers\ciphercommon_ccm.c ^
   providers\implementations\ciphers\ciphercommon_gcm.c ^
   providers\implementations\digests\digestcommon.c ^
+  providers\implementations\kdfs\argon2.c ^
+  providers\implementations\kdfs\hkdf.c ^
+  providers\implementations\kdfs\hmacdrbg_kdf.c ^
+  providers\implementations\kdfs\kbkdf.c ^
+  providers\implementations\kdfs\krb5kdf.c ^
+  providers\implementations\kdfs\pbkdf1.c ^
+  providers\implementations\kdfs\pbkdf2.c ^
+  providers\implementations\kdfs\pkcs12kdf.c ^
+  providers\implementations\kdfs\pvkkdf.c ^
+  providers\implementations\kdfs\scrypt.c ^
+  providers\implementations\kdfs\sshkdf.c ^
+  providers\implementations\kdfs\sskdf.c ^
+  providers\implementations\kdfs\tls1_prf.c ^
+  providers\implementations\kdfs\x942kdf.c ^
   providers\implementations\keymgmt\ml_dsa_kmgmt.c ^
   providers\implementations\keymgmt\ml_kem_kmgmt.c ^
   providers\implementations\keymgmt\mlx_kmgmt.c ^
