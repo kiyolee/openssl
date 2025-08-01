@@ -808,17 +808,19 @@ struct eddsa_get_ctx_params_st {
 #endif
 
 #ifndef eddsa_get_ctx_params_decoder
-static struct eddsa_get_ctx_params_st
-eddsa_get_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct eddsa_get_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int eddsa_get_ctx_params_decoder
+    (const OSSL_PARAM *p, struct eddsa_get_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        if (ossl_likely(r.id == NULL && strcmp("algorithm-id", s + 0) == 0))
-            r.id = (OSSL_PARAM *)p;
-    return r;
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            if (ossl_likely(strcmp("algorithm-id", s + 0) == 0)) {
+                if (ossl_likely(r->id == NULL))
+                    r->id = (OSSL_PARAM *)p;
+            }
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -828,10 +830,8 @@ static int eddsa_get_ctx_params(void *vpeddsactx, OSSL_PARAM *params)
     PROV_EDDSA_CTX *peddsactx = (PROV_EDDSA_CTX *)vpeddsactx;
     struct eddsa_get_ctx_params_st p;
 
-    if (peddsactx == NULL)
+    if (peddsactx == NULL || !eddsa_get_ctx_params_decoder(params, &p))
         return 0;
-
-    p = eddsa_get_ctx_params_decoder(params);
 
     if (p.id != NULL
         && !OSSL_PARAM_set_octet_string(p.id,
@@ -865,26 +865,30 @@ struct eddsa_set_ctx_params_st {
 #endif
 
 #ifndef eddsa_set_ctx_params_decoder
-static struct eddsa_set_ctx_params_st
-eddsa_set_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct eddsa_set_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int eddsa_set_ctx_params_decoder
+    (const OSSL_PARAM *p, struct eddsa_set_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'c':
-            if (ossl_likely(r.ctx == NULL && strcmp("ontext-string", s + 1) == 0))
-                r.ctx = (OSSL_PARAM *)p;
-            break;
-        case 'i':
-            if (ossl_likely(r.inst == NULL && strcmp("nstance", s + 1) == 0))
-                r.inst = (OSSL_PARAM *)p;
-        }
-    return r;
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
+            default:
+                break;
+            case 'c':
+                if (ossl_likely(strcmp("ontext-string", s + 1) == 0)) {
+                    if (ossl_likely(r->ctx == NULL))
+                        r->ctx = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'i':
+                if (ossl_likely(strcmp("nstance", s + 1) == 0)) {
+                    if (ossl_likely(r->inst == NULL))
+                        r->inst = (OSSL_PARAM *)p;
+                }
+            }
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -962,12 +966,8 @@ static int eddsa_set_ctx_params(void *vpeddsactx, const OSSL_PARAM params[])
     PROV_EDDSA_CTX *peddsactx = (PROV_EDDSA_CTX *)vpeddsactx;
     struct eddsa_set_ctx_params_st p;
 
-    if (peddsactx == NULL)
+    if (peddsactx == NULL || !eddsa_set_ctx_params_decoder(params, &p))
         return 0;
-    if (ossl_param_is_empty(params))
-        return 1;
-
-    p = eddsa_set_ctx_params_decoder(params);
     return eddsa_set_ctx_params_internal(peddsactx, &p);
 }
 
@@ -987,17 +987,19 @@ struct eddsa_set_variant_ctx_params_st {
 #endif
 
 #ifndef eddsa_set_variant_ctx_params_decoder
-static struct eddsa_set_variant_ctx_params_st
-eddsa_set_variant_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct eddsa_set_variant_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int eddsa_set_variant_ctx_params_decoder
+    (const OSSL_PARAM *p, struct eddsa_set_variant_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        if (ossl_likely(r.ctx == NULL && strcmp("context-string", s + 0) == 0))
-            r.ctx = (OSSL_PARAM *)p;
-    return r;
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            if (ossl_likely(strcmp("context-string", s + 0) == 0)) {
+                if (ossl_likely(r->ctx == NULL))
+                    r->ctx = (OSSL_PARAM *)p;
+            }
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -1015,12 +1017,8 @@ static int eddsa_set_variant_ctx_params(void *vpeddsactx,
     PROV_EDDSA_CTX *peddsactx = (PROV_EDDSA_CTX *)vpeddsactx;
     struct eddsa_set_ctx_params_st p;
 
-    if (peddsactx == NULL)
+    if (peddsactx == NULL || !eddsa_set_variant_ctx_params_decoder(params, &p))
         return 0;
-    if (ossl_param_is_empty(params))
-        return 1;
-
-    p = eddsa_set_variant_ctx_params_decoder(params);
     return eddsa_set_ctx_params_internal(peddsactx, &p);
 }
 

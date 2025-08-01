@@ -2106,6 +2106,20 @@ our %unified_info = (
             "providers\\implementations\\ciphers\\ciphercommon_ccm.c",
             "providers\\implementations\\ciphers\\ciphercommon_gcm.c",
             "providers\\implementations\\digests\\digestcommon.c",
+            "providers\\implementations\\kdfs\\argon2.c",
+            "providers\\implementations\\kdfs\\hkdf.c",
+            "providers\\implementations\\kdfs\\hmacdrbg_kdf.c",
+            "providers\\implementations\\kdfs\\kbkdf.c",
+            "providers\\implementations\\kdfs\\krb5kdf.c",
+            "providers\\implementations\\kdfs\\pbkdf1.c",
+            "providers\\implementations\\kdfs\\pbkdf2.c",
+            "providers\\implementations\\kdfs\\pkcs12kdf.c",
+            "providers\\implementations\\kdfs\\pvkkdf.c",
+            "providers\\implementations\\kdfs\\scrypt.c",
+            "providers\\implementations\\kdfs\\sshkdf.c",
+            "providers\\implementations\\kdfs\\sskdf.c",
+            "providers\\implementations\\kdfs\\tls1_prf.c",
+            "providers\\implementations\\kdfs\\x942kdf.c",
             "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c",
             "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c",
             "providers\\implementations\\keymgmt\\mlx_kmgmt.c",
@@ -8302,8 +8316,50 @@ our %unified_info = (
         "providers\\implementations\\encode_decode\\libdefault-lib-encode_key2any.o" => [
             "providers\\common\\include\\prov\\der_rsa.h"
         ],
+        "providers\\implementations\\kdfs\\argon2.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\hkdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\hmacdrbg_kdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\kbkdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\krb5kdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\kdfs\\libdefault-lib-x942kdf.o" => [
             "providers\\common\\include\\prov\\der_wrap.h"
+        ],
+        "providers\\implementations\\kdfs\\pbkdf1.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\pbkdf2.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\pkcs12kdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\pvkkdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\scrypt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\sshkdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\sskdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\tls1_prf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\x942kdf.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ml_kem_kmgmt.o" => [
             "providers\\common\\include\\prov\\der_hkdf.h"
@@ -11523,7 +11579,6 @@ our %unified_info = (
                 "providers\\implementations\\kdfs\\libdefault-lib-kbkdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-krb5kdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2.o",
-                "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2_fips.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-pkcs12kdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o",
@@ -18476,6 +18531,48 @@ our %unified_info = (
         "providers\\implementations\\digests\\digestcommon.c" => [
             ".\\providers\\implementations\\digests\\digestcommon.c.in"
         ],
+        "providers\\implementations\\kdfs\\argon2.c" => [
+            ".\\providers\\implementations\\kdfs\\argon2.c.in"
+        ],
+        "providers\\implementations\\kdfs\\hkdf.c" => [
+            ".\\providers\\implementations\\kdfs\\hkdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\hmacdrbg_kdf.c" => [
+            ".\\providers\\implementations\\kdfs\\hmacdrbg_kdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\kbkdf.c" => [
+            ".\\providers\\implementations\\kdfs\\kbkdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\krb5kdf.c" => [
+            ".\\providers\\implementations\\kdfs\\krb5kdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\pbkdf1.c" => [
+            ".\\providers\\implementations\\kdfs\\pbkdf1.c.in"
+        ],
+        "providers\\implementations\\kdfs\\pbkdf2.c" => [
+            ".\\providers\\implementations\\kdfs\\pbkdf2.c.in"
+        ],
+        "providers\\implementations\\kdfs\\pkcs12kdf.c" => [
+            ".\\providers\\implementations\\kdfs\\pkcs12kdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\pvkkdf.c" => [
+            ".\\providers\\implementations\\kdfs\\pvkkdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\scrypt.c" => [
+            ".\\providers\\implementations\\kdfs\\scrypt.c.in"
+        ],
+        "providers\\implementations\\kdfs\\sshkdf.c" => [
+            ".\\providers\\implementations\\kdfs\\sshkdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\sskdf.c" => [
+            ".\\providers\\implementations\\kdfs\\sskdf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\tls1_prf.c" => [
+            ".\\providers\\implementations\\kdfs\\tls1_prf.c.in"
+        ],
+        "providers\\implementations\\kdfs\\x942kdf.c" => [
+            ".\\providers\\implementations\\kdfs\\x942kdf.c.in"
+        ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c.in"
         ],
@@ -21091,8 +21188,50 @@ our %unified_info = (
         "providers\\implementations\\encode_decode\\libdefault-lib-encode_key2any.o" => [
             "providers\\common\\include\\prov"
         ],
+        "providers\\implementations\\kdfs\\argon2.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\hkdf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\hmacdrbg_kdf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\kbkdf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\krb5kdf.c" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\kdfs\\libdefault-lib-x942kdf.o" => [
             "providers\\common\\include\\prov"
+        ],
+        "providers\\implementations\\kdfs\\pbkdf1.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\pbkdf2.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\pkcs12kdf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\pvkkdf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\scrypt.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\sshkdf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\sskdf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\tls1_prf.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\x942kdf.c" => [
+            ".\\util\\perl"
         ],
         "providers\\implementations\\kdfs\\x942kdf.o" => [
             "providers\\common\\include\\prov"
@@ -29206,49 +29345,46 @@ our %unified_info = (
             ".\\providers\\implementations\\exchange\\kdf_exch.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-argon2.o" => [
-            ".\\providers\\implementations\\kdfs\\argon2.c"
+            "providers\\implementations\\kdfs\\argon2.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-hkdf.o" => [
-            ".\\providers\\implementations\\kdfs\\hkdf.c"
+            "providers\\implementations\\kdfs\\hkdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-hmacdrbg_kdf.o" => [
-            ".\\providers\\implementations\\kdfs\\hmacdrbg_kdf.c"
+            "providers\\implementations\\kdfs\\hmacdrbg_kdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-kbkdf.o" => [
-            ".\\providers\\implementations\\kdfs\\kbkdf.c"
+            "providers\\implementations\\kdfs\\kbkdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-krb5kdf.o" => [
-            ".\\providers\\implementations\\kdfs\\krb5kdf.c"
+            "providers\\implementations\\kdfs\\krb5kdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2.o" => [
-            ".\\providers\\implementations\\kdfs\\pbkdf2.c"
-        ],
-        "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2_fips.o" => [
-            ".\\providers\\implementations\\kdfs\\pbkdf2_fips.c"
+            "providers\\implementations\\kdfs\\pbkdf2.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-pkcs12kdf.o" => [
-            ".\\providers\\implementations\\kdfs\\pkcs12kdf.c"
+            "providers\\implementations\\kdfs\\pkcs12kdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o" => [
-            ".\\providers\\implementations\\kdfs\\scrypt.c"
+            "providers\\implementations\\kdfs\\scrypt.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o" => [
-            ".\\providers\\implementations\\kdfs\\sshkdf.c"
+            "providers\\implementations\\kdfs\\sshkdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-sskdf.o" => [
-            ".\\providers\\implementations\\kdfs\\sskdf.c"
+            "providers\\implementations\\kdfs\\sskdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-tls1_prf.o" => [
-            ".\\providers\\implementations\\kdfs\\tls1_prf.c"
+            "providers\\implementations\\kdfs\\tls1_prf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-x942kdf.o" => [
-            ".\\providers\\implementations\\kdfs\\x942kdf.c"
+            "providers\\implementations\\kdfs\\x942kdf.c"
         ],
         "providers\\implementations\\kdfs\\liblegacy-lib-pbkdf1.o" => [
-            ".\\providers\\implementations\\kdfs\\pbkdf1.c"
+            "providers\\implementations\\kdfs\\pbkdf1.c"
         ],
         "providers\\implementations\\kdfs\\liblegacy-lib-pvkkdf.o" => [
-            ".\\providers\\implementations\\kdfs\\pvkkdf.c"
+            "providers\\implementations\\kdfs\\pvkkdf.c"
         ],
         "providers\\implementations\\kem\\libdefault-lib-ec_kem.o" => [
             ".\\providers\\implementations\\kem\\ec_kem.c"
@@ -29558,7 +29694,6 @@ our %unified_info = (
             "providers\\implementations\\kdfs\\libdefault-lib-kbkdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-krb5kdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2.o",
-            "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2_fips.o",
             "providers\\implementations\\kdfs\\libdefault-lib-pkcs12kdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o",
             "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o",
