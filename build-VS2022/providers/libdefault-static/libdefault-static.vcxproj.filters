@@ -414,9 +414,6 @@
     <ClCompile Include="..\..\..\providers\implementations\kdfs\x942kdf.c">
       <Filter>Source Files\providers\implementations\kdfs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\providers\implementations\kdfs\pbkdf2_fips.c">
-      <Filter>Source Files\providers\implementations\kdfs</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\providers\implementations\keymgmt\ecx_kmgmt.c">
       <Filter>Source Files\providers\implementations\keymgmt</Filter>
     </ClCompile>

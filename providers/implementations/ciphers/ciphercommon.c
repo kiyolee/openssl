@@ -62,63 +62,83 @@ struct ossl_cipher_generic_get_params_st {
 #endif
 
 #ifndef ossl_cipher_generic_get_params_decoder
-static struct ossl_cipher_generic_get_params_st
-ossl_cipher_generic_get_params_decoder(const OSSL_PARAM params[]) {
-    struct ossl_cipher_generic_get_params_st r;
-    const OSSL_PARAM *p;
+static int ossl_cipher_generic_get_params_decoder
+    (const OSSL_PARAM *p, struct ossl_cipher_generic_get_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'a':
-            if (ossl_likely(r.aead == NULL && strcmp("ead", s + 1) == 0))
-                r.aead = (OSSL_PARAM *)p;
-            break;
-        case 'b':
-            if (ossl_likely(r.bsize == NULL && strcmp("locksize", s + 1) == 0))
-                r.bsize = (OSSL_PARAM *)p;
-            break;
-        case 'c':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 't':
-                if (ossl_likely(r.cts == NULL && strcmp("s", s + 2) == 0))
-                    r.cts = (OSSL_PARAM *)p;
+            case 'a':
+                if (ossl_likely(strcmp("ead", s + 1) == 0)) {
+                    if (ossl_likely(r->aead == NULL))
+                        r->aead = (OSSL_PARAM *)p;
+                }
                 break;
-            case 'u':
-                if (ossl_likely(r.custiv == NULL && strcmp("stom-iv", s + 2) == 0))
-                    r.custiv = (OSSL_PARAM *)p;
+            case 'b':
+                if (ossl_likely(strcmp("locksize", s + 1) == 0)) {
+                    if (ossl_likely(r->bsize == NULL))
+                        r->bsize = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'c':
+                switch(s[1]) {
+                default:
+                    break;
+                case 't':
+                    if (ossl_likely(strcmp("s", s + 2) == 0)) {
+                        if (ossl_likely(r->cts == NULL))
+                            r->cts = (OSSL_PARAM *)p;
+                    }
+                    break;
+                case 'u':
+                    if (ossl_likely(strcmp("stom-iv", s + 2) == 0)) {
+                        if (ossl_likely(r->custiv == NULL))
+                            r->custiv = (OSSL_PARAM *)p;
+                    }
+                }
+                break;
+            case 'e':
+                if (ossl_likely(strcmp("ncrypt-then-mac", s + 1) == 0)) {
+                    if (ossl_likely(r->etm == NULL))
+                        r->etm = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'h':
+                if (ossl_likely(strcmp("as-randkey", s + 1) == 0)) {
+                    if (ossl_likely(r->rand == NULL))
+                        r->rand = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'i':
+                if (ossl_likely(strcmp("vlen", s + 1) == 0)) {
+                    if (ossl_likely(r->ivlen == NULL))
+                        r->ivlen = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'k':
+                if (ossl_likely(strcmp("eylen", s + 1) == 0)) {
+                    if (ossl_likely(r->keylen == NULL))
+                        r->keylen = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'm':
+                if (ossl_likely(strcmp("ode", s + 1) == 0)) {
+                    if (ossl_likely(r->mode == NULL))
+                        r->mode = (OSSL_PARAM *)p;
+                }
+                break;
+            case 't':
+                if (ossl_likely(strcmp("ls-multi", s + 1) == 0)) {
+                    if (ossl_likely(r->mb == NULL))
+                        r->mb = (OSSL_PARAM *)p;
+                }
             }
-            break;
-        case 'e':
-            if (ossl_likely(r.etm == NULL && strcmp("ncrypt-then-mac", s + 1) == 0))
-                r.etm = (OSSL_PARAM *)p;
-            break;
-        case 'h':
-            if (ossl_likely(r.rand == NULL && strcmp("as-randkey", s + 1) == 0))
-                r.rand = (OSSL_PARAM *)p;
-            break;
-        case 'i':
-            if (ossl_likely(r.ivlen == NULL && strcmp("vlen", s + 1) == 0))
-                r.ivlen = (OSSL_PARAM *)p;
-            break;
-        case 'k':
-            if (ossl_likely(r.keylen == NULL && strcmp("eylen", s + 1) == 0))
-                r.keylen = (OSSL_PARAM *)p;
-            break;
-        case 'm':
-            if (ossl_likely(r.mode == NULL && strcmp("ode", s + 1) == 0))
-                r.mode = (OSSL_PARAM *)p;
-            break;
-        case 't':
-            if (ossl_likely(r.mb == NULL && strcmp("ls-multi", s + 1) == 0))
-                r.mb = (OSSL_PARAM *)p;
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -134,7 +154,8 @@ int ossl_cipher_generic_get_params(OSSL_PARAM params[], unsigned int md,
 {
     struct ossl_cipher_generic_get_params_st p;
 
-    p = ossl_cipher_generic_get_params_decoder(params);
+    if (!ossl_cipher_generic_get_params_decoder(params, &p))
+        return 0;
 
     if (p.mode != NULL && !OSSL_PARAM_set_uint(p.mode, md)) {
         ERR_raise(ERR_LIB_PROV, PROV_R_FAILED_TO_SET_PARAMETER);
@@ -214,55 +235,68 @@ struct cipher_generic_get_ctx_params_st {
 #endif
 
 #ifndef cipher_generic_get_ctx_params_decoder
-static struct cipher_generic_get_ctx_params_st
-cipher_generic_get_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct cipher_generic_get_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int cipher_generic_get_ctx_params_decoder
+    (const OSSL_PARAM *p, struct cipher_generic_get_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'i':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 'v':
-                switch(s[2]) {
+            case 'i':
+                switch(s[1]) {
                 default:
                     break;
-                case 'l':
-                    if (ossl_likely(r.ivlen == NULL && strcmp("en", s + 3) == 0))
-                        r.ivlen = (OSSL_PARAM *)p;
-                    break;
-                case '\0':
-                    r.iv = ossl_likely(r.iv == NULL) ? (OSSL_PARAM *)p : r.iv;
+                case 'v':
+                    switch(s[2]) {
+                    default:
+                        break;
+                    case 'l':
+                        if (ossl_likely(strcmp("en", s + 3) == 0)) {
+                            if (ossl_likely(r->ivlen == NULL))
+                                r->ivlen = (OSSL_PARAM *)p;
+                        }
+                        break;
+                    case '\0':
+                        if (ossl_likely(r->iv == NULL))
+                            r->iv = (OSSL_PARAM *)p;
+                    }
+                }
+                break;
+            case 'k':
+                if (ossl_likely(strcmp("eylen", s + 1) == 0)) {
+                    if (ossl_likely(r->keylen == NULL))
+                        r->keylen = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'n':
+                if (ossl_likely(strcmp("um", s + 1) == 0)) {
+                    if (ossl_likely(r->num == NULL))
+                        r->num = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'p':
+                if (ossl_likely(strcmp("adding", s + 1) == 0)) {
+                    if (ossl_likely(r->pad == NULL))
+                        r->pad = (OSSL_PARAM *)p;
+                }
+                break;
+            case 't':
+                if (ossl_likely(strcmp("ls-mac", s + 1) == 0)) {
+                    if (ossl_likely(r->tlsmac == NULL))
+                        r->tlsmac = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'u':
+                if (ossl_likely(strcmp("pdated-iv", s + 1) == 0)) {
+                    if (ossl_likely(r->updiv == NULL))
+                        r->updiv = (OSSL_PARAM *)p;
                 }
             }
-            break;
-        case 'k':
-            if (ossl_likely(r.keylen == NULL && strcmp("eylen", s + 1) == 0))
-                r.keylen = (OSSL_PARAM *)p;
-            break;
-        case 'n':
-            if (ossl_likely(r.num == NULL && strcmp("um", s + 1) == 0))
-                r.num = (OSSL_PARAM *)p;
-            break;
-        case 'p':
-            if (ossl_likely(r.pad == NULL && strcmp("adding", s + 1) == 0))
-                r.pad = (OSSL_PARAM *)p;
-            break;
-        case 't':
-            if (ossl_likely(r.tlsmac == NULL && strcmp("ls-mac", s + 1) == 0))
-                r.tlsmac = (OSSL_PARAM *)p;
-            break;
-        case 'u':
-            if (ossl_likely(r.updiv == NULL && strcmp("pdated-iv", s + 1) == 0))
-                r.updiv = (OSSL_PARAM *)p;
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -298,58 +332,68 @@ struct cipher_generic_set_ctx_params_st {
 #endif
 
 #ifndef cipher_generic_set_ctx_params_decoder
-static struct cipher_generic_set_ctx_params_st
-cipher_generic_set_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct cipher_generic_set_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int cipher_generic_set_ctx_params_decoder
+    (const OSSL_PARAM *p, struct cipher_generic_set_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'n':
-            if (ossl_likely(r.num == NULL && strcmp("um", s + 1) == 0))
-                r.num = (OSSL_PARAM *)p;
-            break;
-        case 'p':
-            if (ossl_likely(r.pad == NULL && strcmp("adding", s + 1) == 0))
-                r.pad = (OSSL_PARAM *)p;
-            break;
-        case 't':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 'l':
-                switch(s[2]) {
+            case 'n':
+                if (ossl_likely(strcmp("um", s + 1) == 0)) {
+                    if (ossl_likely(r->num == NULL))
+                        r->num = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'p':
+                if (ossl_likely(strcmp("adding", s + 1) == 0)) {
+                    if (ossl_likely(r->pad == NULL))
+                        r->pad = (OSSL_PARAM *)p;
+                }
+                break;
+            case 't':
+                switch(s[1]) {
                 default:
                     break;
-                case 's':
-                    switch(s[3]) {
+                case 'l':
+                    switch(s[2]) {
                     default:
                         break;
-                    case '-':
-                        switch(s[4]) {
+                    case 's':
+                        switch(s[3]) {
                         default:
                             break;
-                        case 'm':
-                            if (ossl_likely(r.tlsmacsize == NULL && strcmp("ac-size", s + 5) == 0))
-                                r.tlsmacsize = (OSSL_PARAM *)p;
-                            break;
-                        case 'v':
-                            if (ossl_likely(r.tlsvers == NULL && strcmp("ersion", s + 5) == 0))
-                                r.tlsvers = (OSSL_PARAM *)p;
+                        case '-':
+                            switch(s[4]) {
+                            default:
+                                break;
+                            case 'm':
+                                if (ossl_likely(strcmp("ac-size", s + 5) == 0)) {
+                                    if (ossl_likely(r->tlsmacsize == NULL))
+                                        r->tlsmacsize = (OSSL_PARAM *)p;
+                                }
+                                break;
+                            case 'v':
+                                if (ossl_likely(strcmp("ersion", s + 5) == 0)) {
+                                    if (ossl_likely(r->tlsvers == NULL))
+                                        r->tlsvers = (OSSL_PARAM *)p;
+                                }
+                            }
                         }
                     }
                 }
+                break;
+            case 'u':
+                if (ossl_likely(strcmp("se-bits", s + 1) == 0)) {
+                    if (ossl_likely(r->bits == NULL))
+                        r->bits = (OSSL_PARAM *)p;
+                }
             }
-            break;
-        case 'u':
-            if (ossl_likely(r.bits == NULL && strcmp("se-bits", s + 1) == 0))
-                r.bits = (OSSL_PARAM *)p;
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -390,62 +434,74 @@ struct cipher_var_keylen_set_ctx_params_st {
 #endif
 
 #ifndef cipher_var_keylen_set_ctx_params_decoder
-static struct cipher_var_keylen_set_ctx_params_st
-cipher_var_keylen_set_ctx_params_decoder(const OSSL_PARAM params[]) {
-    struct cipher_var_keylen_set_ctx_params_st r;
-    const OSSL_PARAM *p;
+static int cipher_var_keylen_set_ctx_params_decoder
+    (const OSSL_PARAM *p, struct cipher_var_keylen_set_ctx_params_st *r)
+{
     const char *s;
 
-    memset(&r, 0, sizeof(r));
-    for (p = params; (s = p->key) != NULL; p++)
-        switch(s[0]) {
-        default:
-            break;
-        case 'k':
-            if (ossl_likely(r.keylen == NULL && strcmp("eylen", s + 1) == 0))
-                r.keylen = (OSSL_PARAM *)p;
-            break;
-        case 'n':
-            if (ossl_likely(r.num == NULL && strcmp("um", s + 1) == 0))
-                r.num = (OSSL_PARAM *)p;
-            break;
-        case 'p':
-            if (ossl_likely(r.pad == NULL && strcmp("adding", s + 1) == 0))
-                r.pad = (OSSL_PARAM *)p;
-            break;
-        case 't':
-            switch(s[1]) {
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
             default:
                 break;
-            case 'l':
-                switch(s[2]) {
+            case 'k':
+                if (ossl_likely(strcmp("eylen", s + 1) == 0)) {
+                    if (ossl_likely(r->keylen == NULL))
+                        r->keylen = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'n':
+                if (ossl_likely(strcmp("um", s + 1) == 0)) {
+                    if (ossl_likely(r->num == NULL))
+                        r->num = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'p':
+                if (ossl_likely(strcmp("adding", s + 1) == 0)) {
+                    if (ossl_likely(r->pad == NULL))
+                        r->pad = (OSSL_PARAM *)p;
+                }
+                break;
+            case 't':
+                switch(s[1]) {
                 default:
                     break;
-                case 's':
-                    switch(s[3]) {
+                case 'l':
+                    switch(s[2]) {
                     default:
                         break;
-                    case '-':
-                        switch(s[4]) {
+                    case 's':
+                        switch(s[3]) {
                         default:
                             break;
-                        case 'm':
-                            if (ossl_likely(r.tlsmacsize == NULL && strcmp("ac-size", s + 5) == 0))
-                                r.tlsmacsize = (OSSL_PARAM *)p;
-                            break;
-                        case 'v':
-                            if (ossl_likely(r.tlsvers == NULL && strcmp("ersion", s + 5) == 0))
-                                r.tlsvers = (OSSL_PARAM *)p;
+                        case '-':
+                            switch(s[4]) {
+                            default:
+                                break;
+                            case 'm':
+                                if (ossl_likely(strcmp("ac-size", s + 5) == 0)) {
+                                    if (ossl_likely(r->tlsmacsize == NULL))
+                                        r->tlsmacsize = (OSSL_PARAM *)p;
+                                }
+                                break;
+                            case 'v':
+                                if (ossl_likely(strcmp("ersion", s + 5) == 0)) {
+                                    if (ossl_likely(r->tlsvers == NULL))
+                                        r->tlsvers = (OSSL_PARAM *)p;
+                                }
+                            }
                         }
                     }
                 }
+                break;
+            case 'u':
+                if (ossl_likely(strcmp("se-bits", s + 1) == 0)) {
+                    if (ossl_likely(r->bits == NULL))
+                        r->bits = (OSSL_PARAM *)p;
+                }
             }
-            break;
-        case 'u':
-            if (ossl_likely(r.bits == NULL && strcmp("se-bits", s + 1) == 0))
-                r.bits = (OSSL_PARAM *)p;
-        }
-    return r;
+    return 1;
 }
 #endif
 /* End of machine generated */
@@ -461,11 +517,9 @@ int ossl_cipher_var_keylen_set_ctx_params(void *vctx, const OSSL_PARAM params[])
     PROV_CIPHER_CTX *ctx = (PROV_CIPHER_CTX *)vctx;
     struct ossl_cipher_set_ctx_param_list_st p;
 
-    if (ossl_param_is_empty(params))
-        return 1;
-
-    p = cipher_var_keylen_set_ctx_params_decoder(params);
-    if (!ossl_cipher_common_set_ctx_params(ctx, &p))
+    if (ctx == NULL
+            || !cipher_var_keylen_set_ctx_params_decoder(params, &p)
+            || !ossl_cipher_common_set_ctx_params(ctx, &p))
         return 0;
 
     if (p.keylen != NULL) {
@@ -948,7 +1002,8 @@ int ossl_cipher_generic_get_ctx_params(void *vctx, OSSL_PARAM params[])
     PROV_CIPHER_CTX *ctx = (PROV_CIPHER_CTX *)vctx;
     struct ossl_cipher_get_ctx_param_list_st p;
 
-    p = cipher_generic_get_ctx_params_decoder(params);
+    if (ctx == NULL || !cipher_generic_get_ctx_params_decoder(params, &p))
+        return 0;
     return ossl_cipher_common_get_ctx_params(ctx, &p);
 }
 
@@ -1009,7 +1064,8 @@ int ossl_cipher_generic_set_ctx_params(void *vctx, const OSSL_PARAM params[])
     if (ossl_param_is_empty(params))
         return 1;
 
-    p = cipher_generic_set_ctx_params_decoder(params);
+    if (ctx == NULL || !cipher_generic_set_ctx_params_decoder(params, &p))
+        return 0;
     return ossl_cipher_common_set_ctx_params(ctx, &p);
 }
 
