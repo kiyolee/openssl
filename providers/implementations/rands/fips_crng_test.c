@@ -405,6 +405,7 @@ static int crng_test_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* RAND_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -416,6 +417,7 @@ static int crng_test_get_ctx_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("ax_request", s + 1) == 0)) {
+                    /* RAND_PARAM_MAX_REQUEST */
                     if (ossl_unlikely(r->maxreq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -434,6 +436,7 @@ static int crng_test_get_ctx_params_decoder
                         break;
                     case 'a':
                         if (ossl_likely(strcmp("te", s + 3) == 0)) {
+                            /* RAND_PARAM_STATE */
                             if (ossl_unlikely(r->state != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -444,6 +447,7 @@ static int crng_test_get_ctx_params_decoder
                         break;
                     case 'r':
                         if (ossl_likely(strcmp("ength", s + 3) == 0)) {
+                            /* RAND_PARAM_STRENGTH */
                             if (ossl_unlikely(r->str != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);

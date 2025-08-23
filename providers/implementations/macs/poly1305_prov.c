@@ -162,6 +162,7 @@ static int poly1305_get_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("size", s + 0) == 0)) {
+                /* MAC_PARAM_SIZE */
                 if (ossl_unlikely(r->size != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
@@ -216,6 +217,7 @@ static int poly1305_set_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("key", s + 0) == 0)) {
+                /* MAC_PARAM_KEY */
                 if (ossl_unlikely(r->key != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
