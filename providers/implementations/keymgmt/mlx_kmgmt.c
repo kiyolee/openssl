@@ -182,6 +182,7 @@ static int ml_kem_import_export_decoder
                     break;
                 case 'r':
                     if (ossl_likely(strcmp("iv", s + 2) == 0)) {
+                        /* PKEY_PARAM_PRIV_KEY */
                         if (ossl_unlikely(r->privkey != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -192,6 +193,7 @@ static int ml_kem_import_export_decoder
                     break;
                 case 'u':
                     if (ossl_likely(strcmp("b", s + 2) == 0)) {
+                        /* PKEY_PARAM_PUB_KEY */
                         if (ossl_unlikely(r->pubkey != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -567,6 +569,7 @@ static int mlx_get_params_decoder
                 break;
             case 'b':
                 if (ossl_likely(strcmp("its", s + 1) == 0)) {
+                    /* PKEY_PARAM_BITS */
                     if (ossl_unlikely(r->bits != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -577,6 +580,7 @@ static int mlx_get_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ncoded-pub-key", s + 1) == 0)) {
+                    /* PKEY_PARAM_ENCODED_PUBLIC_KEY */
                     if (ossl_unlikely(r->pub != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -587,6 +591,7 @@ static int mlx_get_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("ax-size", s + 1) == 0)) {
+                    /* PKEY_PARAM_MAX_SIZE */
                     if (ossl_unlikely(r->maxsize != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -597,6 +602,7 @@ static int mlx_get_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("riv", s + 1) == 0)) {
+                    /* PKEY_PARAM_PRIV_KEY */
                     if (ossl_unlikely(r->priv != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -643,6 +649,7 @@ static int mlx_get_params_decoder
                                                     break;
                                                 case 'b':
                                                     if (ossl_likely(strcmp("its", s + 10) == 0)) {
+                                                        /* PKEY_PARAM_SECURITY_BITS */
                                                         if (ossl_unlikely(r->secbits != NULL)) {
                                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                            "param %s is repeated", s);
@@ -653,6 +660,7 @@ static int mlx_get_params_decoder
                                                     break;
                                                 case 'c':
                                                     if (ossl_likely(strcmp("ategory", s + 10) == 0)) {
+                                                        /* PKEY_PARAM_SECURITY_CATEGORY */
                                                         if (ossl_unlikely(r->seccat != NULL)) {
                                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                            "param %s is repeated", s);
@@ -805,6 +813,7 @@ static int mlx_set_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ncoded-pub-key", s + 1) == 0)) {
+                    /* PKEY_PARAM_ENCODED_PUBLIC_KEY */
                     if (ossl_unlikely(r->pub != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -815,6 +824,7 @@ static int mlx_set_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
+                    /* PKEY_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -896,6 +906,7 @@ static int mlx_gen_set_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("properties", s + 0) == 0)) {
+                /* PKEY_PARAM_PROPERTIES */
                 if (ossl_unlikely(r->propq != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

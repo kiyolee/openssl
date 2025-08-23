@@ -208,6 +208,7 @@ static int rsakem_get_ctx_params_decoder
         for (; (s = p->key) != NULL; p++)
 # if defined(FIPS_MODULE)
             if (ossl_likely(strcmp("fips-indicator", s + 0) == 0)) {
+                /* KEM_PARAM_FIPS_APPROVED_INDICATOR */
                 if (ossl_unlikely(r->ind != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
@@ -277,6 +278,7 @@ static int rsakem_set_ctx_params_decoder
             case 'k':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ey-check", s + 1) == 0)) {
+                    /* KEM_PARAM_FIPS_KEY_CHECK */
                     if (ossl_unlikely(r->ind_k != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -288,6 +290,7 @@ static int rsakem_set_ctx_params_decoder
                 break;
             case 'o':
                 if (ossl_likely(strcmp("peration", s + 1) == 0)) {
+                    /* KEM_PARAM_OPERATION */
                     if (ossl_unlikely(r->op != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
