@@ -295,6 +295,7 @@ static int slh_dsa_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ontext-string", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_CONTEXT_STRING */
                     if (ossl_unlikely(r->context != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -305,6 +306,7 @@ static int slh_dsa_set_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("eterministic", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_DETERMINISTIC */
                     if (ossl_unlikely(r->det != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -315,6 +317,7 @@ static int slh_dsa_set_ctx_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("essage-encoding", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_MESSAGE_ENCODING */
                     if (ossl_unlikely(r->msgenc != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -325,6 +328,7 @@ static int slh_dsa_set_ctx_params_decoder
                 break;
             case 't':
                 if (ossl_likely(strcmp("est-entropy", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_TEST_ENTROPY */
                     if (ossl_unlikely(r->entropy != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -406,6 +410,7 @@ static int slh_dsa_get_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("algorithm-id", s + 0) == 0)) {
+                /* SIGNATURE_PARAM_ALGORITHM_ID */
                 if (ossl_unlikely(r->algid != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

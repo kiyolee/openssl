@@ -213,6 +213,7 @@ static int ecx_get_ctx_params_decoder
         for (; (s = p->key) != NULL; p++)
 # if defined(FIPS_MODULE)
             if (ossl_likely(strcmp("fips-indicator", s + 0) == 0)) {
+                /* ALG_PARAM_FIPS_APPROVED_INDICATOR */
                 if (ossl_unlikely(r->ind != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

@@ -51,6 +51,7 @@ static int digest_default_get_params_decoder
                 break;
             case 'a':
                 if (ossl_likely(strcmp("lgid-absent", s + 1) == 0)) {
+                    /* DIGEST_PARAM_ALGID_ABSENT */
                     if (ossl_unlikely(r->aldid != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -61,6 +62,7 @@ static int digest_default_get_params_decoder
                 break;
             case 'b':
                 if (ossl_likely(strcmp("locksize", s + 1) == 0)) {
+                    /* DIGEST_PARAM_BLOCK_SIZE */
                     if (ossl_unlikely(r->bsize != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -71,6 +73,7 @@ static int digest_default_get_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    /* DIGEST_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -81,6 +84,7 @@ static int digest_default_get_params_decoder
                 break;
             case 'x':
                 if (ossl_likely(strcmp("of", s + 1) == 0)) {
+                    /* DIGEST_PARAM_XOF */
                     if (ossl_unlikely(r->xof != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

@@ -48,6 +48,7 @@ static int blake_get_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("size", s + 0) == 0)) {
+                /* DIGEST_PARAM_SIZE */
                 if (ossl_unlikely(r->size != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
@@ -90,6 +91,7 @@ static int blake_set_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("size", s + 0) == 0)) {
+                /* DIGEST_PARAM_SIZE */
                 if (ossl_unlikely(r->size != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
