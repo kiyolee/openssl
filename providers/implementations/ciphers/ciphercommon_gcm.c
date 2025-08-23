@@ -196,6 +196,7 @@ static int ossl_cipher_gcm_get_ctx_params_decoder
                         break;
                     case '-':
                         if (ossl_likely(strcmp("generated", s + 3) == 0)) {
+                            /* CIPHER_PARAM_AEAD_IV_GENERATED */
                             if (ossl_unlikely(r->gen != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -206,6 +207,7 @@ static int ossl_cipher_gcm_get_ctx_params_decoder
                         break;
                     case 'l':
                         if (ossl_likely(strcmp("en", s + 3) == 0)) {
+                            /* CIPHER_PARAM_IVLEN */
                             if (ossl_unlikely(r->ivlen != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -226,6 +228,7 @@ static int ossl_cipher_gcm_get_ctx_params_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("eylen", s + 1) == 0)) {
+                    /* CIPHER_PARAM_KEYLEN */
                     if (ossl_unlikely(r->keylen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -248,6 +251,7 @@ static int ossl_cipher_gcm_get_ctx_params_decoder
                             break;
                         case 'l':
                             if (ossl_likely(strcmp("en", s + 4) == 0)) {
+                                /* CIPHER_PARAM_AEAD_TAGLEN */
                                 if (ossl_unlikely(r->taglen != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -276,6 +280,7 @@ static int ossl_cipher_gcm_get_ctx_params_decoder
                             break;
                         case 'a':
                             if (ossl_likely(strcmp("adpad", s + 4) == 0)) {
+                                /* CIPHER_PARAM_AEAD_TLS1_AAD_PAD */
                                 if (ossl_unlikely(r->pad != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -286,6 +291,7 @@ static int ossl_cipher_gcm_get_ctx_params_decoder
                             break;
                         case 'i':
                             if (ossl_likely(strcmp("vgen", s + 4) == 0)) {
+                                /* CIPHER_PARAM_AEAD_TLS1_GET_IV_GEN */
                                 if (ossl_unlikely(r->ivgen != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -299,6 +305,7 @@ static int ossl_cipher_gcm_get_ctx_params_decoder
                 break;
             case 'u':
                 if (ossl_likely(strcmp("pdated-iv", s + 1) == 0)) {
+                    /* CIPHER_PARAM_UPDATED_IV */
                     if (ossl_unlikely(r->updiv != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -442,6 +449,7 @@ static int ossl_cipher_gcm_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("vlen", s + 1) == 0)) {
+                    /* CIPHER_PARAM_AEAD_IVLEN */
                     if (ossl_unlikely(r->ivlen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -456,6 +464,7 @@ static int ossl_cipher_gcm_set_ctx_params_decoder
                     break;
                 case 'a':
                     if (ossl_likely(strcmp("g", s + 2) == 0)) {
+                        /* CIPHER_PARAM_AEAD_TAG */
                         if (ossl_unlikely(r->tag != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -474,6 +483,7 @@ static int ossl_cipher_gcm_set_ctx_params_decoder
                             break;
                         case 'a':
                             if (ossl_likely(strcmp("ad", s + 4) == 0)) {
+                                /* CIPHER_PARAM_AEAD_TLS1_AAD */
                                 if (ossl_unlikely(r->aad != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -492,6 +502,7 @@ static int ossl_cipher_gcm_set_ctx_params_decoder
                                     break;
                                 case 'f':
                                     if (ossl_likely(strcmp("ixed", s + 6) == 0)) {
+                                        /* CIPHER_PARAM_AEAD_TLS1_IV_FIXED */
                                         if (ossl_unlikely(r->fixed != NULL)) {
                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                            "param %s is repeated", s);
@@ -502,6 +513,7 @@ static int ossl_cipher_gcm_set_ctx_params_decoder
                                     break;
                                 case 'i':
                                     if (ossl_likely(strcmp("nv", s + 6) == 0)) {
+                                        /* CIPHER_PARAM_AEAD_TLS1_SET_IV_INV */
                                         if (ossl_unlikely(r->inviv != NULL)) {
                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                            "param %s is repeated", s);

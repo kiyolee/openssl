@@ -286,6 +286,7 @@ static int sshkdf_set_ctx_params_decoder
                                     case '-':
 # if defined(FIPS_MODULE)
                                         if (ossl_likely(strcmp("check", s + 7) == 0)) {
+                                            /* KDF_PARAM_FIPS_DIGEST_CHECK */
                                             if (ossl_unlikely(r->ind_d != NULL)) {
                                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                "param %s is repeated", s);
@@ -311,6 +312,7 @@ static int sshkdf_set_ctx_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
+                    /* ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -334,6 +336,7 @@ static int sshkdf_set_ctx_params_decoder
                         case '-':
 # if defined(FIPS_MODULE)
                             if (ossl_likely(strcmp("check", s + 4) == 0)) {
+                                /* KDF_PARAM_FIPS_KEY_CHECK */
                                 if (ossl_unlikely(r->ind_k != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -356,6 +359,7 @@ static int sshkdf_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
+                    /* KDF_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -366,6 +370,7 @@ static int sshkdf_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ession_id", s + 1) == 0)) {
+                    /* KDF_PARAM_SSHKDF_SESSION_ID */
                     if (ossl_unlikely(r->sid != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -376,6 +381,7 @@ static int sshkdf_set_ctx_params_decoder
                 break;
             case 't':
                 if (ossl_likely(strcmp("ype", s + 1) == 0)) {
+                    /* KDF_PARAM_SSHKDF_TYPE */
                     if (ossl_unlikely(r->type != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -386,6 +392,7 @@ static int sshkdf_set_ctx_params_decoder
                 break;
             case 'x':
                 if (ossl_likely(strcmp("cghash", s + 1) == 0)) {
+                    /* KDF_PARAM_SSHKDF_XCGHASH */
                     if (ossl_unlikely(r->xcg != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -510,6 +517,7 @@ static int sshkdf_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* KDF_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -521,6 +529,7 @@ static int sshkdf_get_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    /* KDF_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

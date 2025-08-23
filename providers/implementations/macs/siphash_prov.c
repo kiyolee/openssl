@@ -185,6 +185,7 @@ static int siphash_get_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("-rounds", s + 1) == 0)) {
+                    /* MAC_PARAM_C_ROUNDS */
                     if (ossl_unlikely(r->c != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -195,6 +196,7 @@ static int siphash_get_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("-rounds", s + 1) == 0)) {
+                    /* MAC_PARAM_D_ROUNDS */
                     if (ossl_unlikely(r->d != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -205,6 +207,7 @@ static int siphash_get_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    /* MAC_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -275,6 +278,7 @@ static int siphash_set_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("-rounds", s + 1) == 0)) {
+                    /* MAC_PARAM_C_ROUNDS */
                     if (ossl_unlikely(r->c != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -285,6 +289,7 @@ static int siphash_set_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("-rounds", s + 1) == 0)) {
+                    /* MAC_PARAM_D_ROUNDS */
                     if (ossl_unlikely(r->d != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -295,6 +300,7 @@ static int siphash_set_params_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("ey", s + 1) == 0)) {
+                    /* MAC_PARAM_KEY */
                     if (ossl_unlikely(r->key != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -305,6 +311,7 @@ static int siphash_set_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    /* MAC_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
