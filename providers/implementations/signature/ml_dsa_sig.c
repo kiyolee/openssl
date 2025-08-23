@@ -405,6 +405,7 @@ static int ml_dsa_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ontext-string", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_CONTEXT_STRING */
                     if (ossl_unlikely(r->ctx != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -415,6 +416,7 @@ static int ml_dsa_set_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("eterministic", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_DETERMINISTIC */
                     if (ossl_unlikely(r->det != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -429,6 +431,7 @@ static int ml_dsa_set_ctx_params_decoder
                     break;
                 case 'e':
                     if (ossl_likely(strcmp("ssage-encoding", s + 2) == 0)) {
+                        /* SIGNATURE_PARAM_MESSAGE_ENCODING */
                         if (ossl_unlikely(r->msgenc != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -453,6 +456,7 @@ static int ml_dsa_set_ctx_params_decoder
                 break;
             case 't':
                 if (ossl_likely(strcmp("est-entropy", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_TEST_ENTROPY */
                     if (ossl_unlikely(r->ent != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -504,6 +508,7 @@ static int ml_dsa_verifymsg_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ontext-string", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_CONTEXT_STRING */
                     if (ossl_unlikely(r->ctx != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -514,6 +519,7 @@ static int ml_dsa_verifymsg_set_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("eterministic", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_DETERMINISTIC */
                     if (ossl_unlikely(r->det != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -528,6 +534,7 @@ static int ml_dsa_verifymsg_set_ctx_params_decoder
                     break;
                 case 'e':
                     if (ossl_likely(strcmp("ssage-encoding", s + 2) == 0)) {
+                        /* SIGNATURE_PARAM_MESSAGE_ENCODING */
                         if (ossl_unlikely(r->msgenc != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -552,6 +559,7 @@ static int ml_dsa_verifymsg_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ignature", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_SIGNATURE */
                     if (ossl_unlikely(r->sig != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -562,6 +570,7 @@ static int ml_dsa_verifymsg_set_ctx_params_decoder
                 break;
             case 't':
                 if (ossl_likely(strcmp("est-entropy", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_TEST_ENTROPY */
                     if (ossl_unlikely(r->ent != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -663,6 +672,7 @@ static int ml_dsa_get_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("algorithm-id", s + 0) == 0)) {
+                /* SIGNATURE_PARAM_ALGORITHM_ID */
                 if (ossl_unlikely(r->id != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

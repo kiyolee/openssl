@@ -95,6 +95,7 @@ static int any2obj_set_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("data-structure", s + 0) == 0)) {
+                /* OBJECT_PARAM_DATA_STRUCTURE */
                 if (ossl_unlikely(r->datastruct != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
