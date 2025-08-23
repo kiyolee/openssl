@@ -2186,9 +2186,13 @@ our %unified_info = (
             "providers\\implementations\\kem\\ecx_kem.c",
             "providers\\implementations\\kem\\ml_kem_kem.c",
             "providers\\implementations\\kem\\rsa_kem.c",
+            "providers\\implementations\\keymgmt\\ecx_kmgmt.c",
+            "providers\\implementations\\keymgmt\\lms_kmgmt.c",
             "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c",
             "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c",
             "providers\\implementations\\keymgmt\\mlx_kmgmt.c",
+            "providers\\implementations\\keymgmt\\slh_dsa_kmgmt.c",
+            "providers\\implementations\\keymgmt\\template_kmgmt.c",
             "providers\\implementations\\macs\\cmac_prov.c",
             "providers\\implementations\\macs\\gmac_prov.c",
             "providers\\implementations\\macs\\hmac_prov.c",
@@ -8512,8 +8516,14 @@ our %unified_info = (
         "providers\\implementations\\kem\\rsa_kem.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\keymgmt\\ecx_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ml_kem_kmgmt.o" => [
             "providers\\common\\include\\prov\\der_hkdf.h"
+        ],
+        "providers\\implementations\\keymgmt\\lms_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
@@ -8522,6 +8532,12 @@ our %unified_info = (
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\keymgmt\\mlx_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\keymgmt\\slh_dsa_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\keymgmt\\template_kmgmt.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\macs\\cmac_prov.c" => [
@@ -19908,6 +19924,12 @@ our %unified_info = (
         "providers\\implementations\\kem\\rsa_kem.c" => [
             ".\\providers\\implementations\\kem\\rsa_kem.c.in"
         ],
+        "providers\\implementations\\keymgmt\\ecx_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\ecx_kmgmt.c.in"
+        ],
+        "providers\\implementations\\keymgmt\\lms_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\lms_kmgmt.c.in"
+        ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c.in"
         ],
@@ -19916,6 +19938,12 @@ our %unified_info = (
         ],
         "providers\\implementations\\keymgmt\\mlx_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\mlx_kmgmt.c.in"
+        ],
+        "providers\\implementations\\keymgmt\\slh_dsa_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\slh_dsa_kmgmt.c.in"
+        ],
+        "providers\\implementations\\keymgmt\\template_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\template_kmgmt.c.in"
         ],
         "providers\\implementations\\macs\\cmac_prov.c" => [
             ".\\providers\\implementations\\macs\\cmac_prov.c.in"
@@ -22768,8 +22796,14 @@ our %unified_info = (
         "providers\\implementations\\kem\\rsa_kem.c" => [
             ".\\util\\perl"
         ],
+        "providers\\implementations\\keymgmt\\ecx_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ml_kem_kmgmt.o" => [
             "providers\\common\\include\\prov"
+        ],
+        "providers\\implementations\\keymgmt\\lms_kmgmt.c" => [
+            ".\\util\\perl"
         ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\util\\perl"
@@ -22781,6 +22815,12 @@ our %unified_info = (
             "providers\\common\\include\\prov"
         ],
         "providers\\implementations\\keymgmt\\mlx_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\keymgmt\\slh_dsa_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\keymgmt\\template_kmgmt.c" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\macs\\cmac_prov.c" => [
@@ -34767,7 +34807,7 @@ our %unified_info = (
             ".\\providers\\implementations\\keymgmt\\ec_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ecx_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\ecx_kmgmt.c"
+            "providers\\implementations\\keymgmt\\ecx_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-kdf_legacy_kmgmt.o" => [
             ".\\providers\\implementations\\keymgmt\\kdf_legacy_kmgmt.c"
@@ -34788,10 +34828,10 @@ our %unified_info = (
             ".\\providers\\implementations\\keymgmt\\rsa_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-slh_dsa_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\slh_dsa_kmgmt.c"
+            "providers\\implementations\\keymgmt\\slh_dsa_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libtemplate-lib-template_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\template_kmgmt.c"
+            "providers\\implementations\\keymgmt\\template_kmgmt.c"
         ],
         "providers\\implementations\\macs\\libdefault-lib-blake2b_mac.o" => [
             ".\\providers\\implementations\\macs\\blake2b_mac.c"

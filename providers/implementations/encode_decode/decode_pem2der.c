@@ -109,6 +109,7 @@ static int pem2der_set_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("ata-structure", s + 1) == 0)) {
+                    /* OBJECT_PARAM_DATA_STRUCTURE */
                     if (ossl_unlikely(r->ds != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -119,6 +120,7 @@ static int pem2der_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
+                    /* DECODER_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

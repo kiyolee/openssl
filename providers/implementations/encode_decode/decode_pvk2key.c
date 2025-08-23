@@ -113,6 +113,7 @@ static int pvk2key_set_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("properties", s + 0) == 0)) {
+                /* DECODER_PARAM_PROPERTIES */
                 if (ossl_unlikely(r->propq != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
