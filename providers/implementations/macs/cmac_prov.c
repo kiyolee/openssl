@@ -240,6 +240,7 @@ static int cmac_get_ctx_params_decoder
                 break;
             case 'b':
                 if (ossl_likely(strcmp("lock-size", s + 1) == 0)) {
+                    /* MAC_PARAM_BLOCK_SIZE */
                     if (ossl_unlikely(r->bsize != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -251,6 +252,7 @@ static int cmac_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* ALG_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -262,6 +264,7 @@ static int cmac_get_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    /* MAC_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -340,6 +343,7 @@ static int cmac_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ipher", s + 1) == 0)) {
+                    /* MAC_PARAM_CIPHER */
                     if (ossl_unlikely(r->cipher != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -359,6 +363,7 @@ static int cmac_set_ctx_params_decoder
                     case 'c':
 # if defined(FIPS_MODULE)
                         if (ossl_likely(strcmp("rypt-check", s + 3) == 0)) {
+                            /* CIPHER_PARAM_FIPS_ENCRYPT_CHECK */
                             if (ossl_unlikely(r->ind_ec != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -370,6 +375,7 @@ static int cmac_set_ctx_params_decoder
                         break;
                     case 'g':
                         if (ossl_likely(strcmp("ine", s + 3) == 0)) {
+                            /* ALG_PARAM_ENGINE */
                             if (ossl_unlikely(r->engine != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -382,6 +388,7 @@ static int cmac_set_ctx_params_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("ey", s + 1) == 0)) {
+                    /* MAC_PARAM_KEY */
                     if (ossl_unlikely(r->key != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -392,6 +399,7 @@ static int cmac_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
+                    /* MAC_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
