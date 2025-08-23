@@ -427,6 +427,7 @@ static int kbkdf_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ipher", s + 1) == 0)) {
+                    /* KDF_PARAM_CIPHER */
                     if (ossl_unlikely(r->cipher != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -437,6 +438,7 @@ static int kbkdf_set_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("igest", s + 1) == 0)) {
+                    /* KDF_PARAM_DIGEST */
                     if (ossl_unlikely(r->digest != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -447,6 +449,7 @@ static int kbkdf_set_ctx_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
+                    /* ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -457,6 +460,7 @@ static int kbkdf_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("nfo", s + 1) == 0)) {
+                    /* KDF_PARAM_INFO */
                     if (ossl_unlikely(r->num_info >= KBKDF_MAX_INFOS)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_TOO_MANY_RECORDS,
                                        "param %s present >%d times", s, KBKDF_MAX_INFOS);
@@ -480,6 +484,7 @@ static int kbkdf_set_ctx_params_decoder
                         case '-':
 # if defined(FIPS_MODULE)
                             if (ossl_likely(strcmp("check", s + 4) == 0)) {
+                                /* KDF_PARAM_FIPS_KEY_CHECK */
                                 if (ossl_unlikely(r->ind_k != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -506,6 +511,7 @@ static int kbkdf_set_ctx_params_decoder
                     break;
                 case 'a':
                     if (ossl_likely(strcmp("c", s + 2) == 0)) {
+                        /* KDF_PARAM_MAC */
                         if (ossl_unlikely(r->mac != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -516,6 +522,7 @@ static int kbkdf_set_ctx_params_decoder
                     break;
                 case 'o':
                     if (ossl_likely(strcmp("de", s + 2) == 0)) {
+                        /* KDF_PARAM_MODE */
                         if (ossl_unlikely(r->mode != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -527,6 +534,7 @@ static int kbkdf_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
+                    /* KDF_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -554,6 +562,7 @@ static int kbkdf_set_ctx_params_decoder
                     break;
                 case 'a':
                     if (ossl_likely(strcmp("lt", s + 2) == 0)) {
+                        /* KDF_PARAM_SALT */
                         if (ossl_unlikely(r->salt != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -564,6 +573,7 @@ static int kbkdf_set_ctx_params_decoder
                     break;
                 case 'e':
                     if (ossl_likely(strcmp("ed", s + 2) == 0)) {
+                        /* KDF_PARAM_SEED */
                         if (ossl_unlikely(r->seed != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -604,6 +614,7 @@ static int kbkdf_set_ctx_params_decoder
                                 break;
                             case 's':
                                 if (ossl_likely(strcmp("eparator", s + 5) == 0)) {
+                                    /* KDF_PARAM_KBKDF_USE_SEPARATOR */
                                     if (ossl_unlikely(r->sep != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -756,6 +767,7 @@ static int kbkdf_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* KDF_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -767,6 +779,7 @@ static int kbkdf_get_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    /* KDF_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
