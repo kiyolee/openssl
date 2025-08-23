@@ -135,16 +135,15 @@ static ECX_KEY *ecxkey_pubfromdata(PROV_ECX_CTX *ctx,
                                    const unsigned char *pubbuf, size_t pubbuflen)
 {
     ECX_KEY *ecx = NULL;
-    OSSL_PARAM params[2], *p = params;
+    OSSL_PARAM pub;
 
-    *p++ = OSSL_PARAM_construct_octet_string(OSSL_PKEY_PARAM_PUB_KEY,
-                                             (char *)pubbuf, pubbuflen);
-    *p = OSSL_PARAM_construct_end();
+    pub = OSSL_PARAM_construct_octet_string(OSSL_PKEY_PARAM_PUB_KEY,
+                                            (char *)pubbuf, pubbuflen);
 
     ecx = ossl_ecx_key_new(ctx->libctx, ctx->recipient_key->type, 1, ctx->propq);
     if (ecx == NULL)
         return NULL;
-    if (ossl_ecx_key_fromdata(ecx, params, 0) <= 0) {
+    if (ossl_ecx_key_fromdata(ecx, &pub, NULL, 0) <= 0) {
         ossl_ecx_key_free(ecx);
         ecx = NULL;
     }
@@ -276,6 +275,7 @@ static int ecxkem_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("kme", s + 1) == 0)) {
+                    /* KEM_PARAM_IKME */
                     if (ossl_unlikely(r->ikme != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -286,6 +286,7 @@ static int ecxkem_set_ctx_params_decoder
                 break;
             case 'o':
                 if (ossl_likely(strcmp("peration", s + 1) == 0)) {
+                    /* KEM_PARAM_OPERATION */
                     if (ossl_unlikely(r->op != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

@@ -259,6 +259,7 @@ static int scrypt_set_ctx_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("axmem_bytes", s + 1) == 0)) {
+                    /* KDF_PARAM_SCRYPT_MAXMEM */
                     if (ossl_unlikely(r->maxmem != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -286,6 +287,7 @@ static int scrypt_set_ctx_params_decoder
                     break;
                 case 'a':
                     if (ossl_likely(strcmp("ss", s + 2) == 0)) {
+                        /* KDF_PARAM_PASSWORD */
                         if (ossl_unlikely(r->pw != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -296,6 +298,7 @@ static int scrypt_set_ctx_params_decoder
                     break;
                 case 'r':
                     if (ossl_likely(strcmp("operties", s + 2) == 0)) {
+                        /* KDF_PARAM_PROPERTIES */
                         if (ossl_unlikely(r->propq != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -328,6 +331,7 @@ static int scrypt_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("alt", s + 1) == 0)) {
+                    /* KDF_PARAM_SALT */
                     if (ossl_unlikely(r->salt != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -421,6 +425,7 @@ static int scrypt_get_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("size", s + 0) == 0)) {
+                /* KDF_PARAM_SIZE */
                 if (ossl_unlikely(r->size != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

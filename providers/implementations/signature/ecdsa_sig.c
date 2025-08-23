@@ -722,6 +722,7 @@ static int ecdsa_get_ctx_params_decoder
                 break;
             case 'a':
                 if (ossl_likely(strcmp("lgorithm-id", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_ALGORITHM_ID */
                     if (ossl_unlikely(r->algid != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -756,6 +757,7 @@ static int ecdsa_get_ctx_params_decoder
                                         break;
                                     case '-':
                                         if (ossl_likely(strcmp("size", s + 7) == 0)) {
+                                            /* SIGNATURE_PARAM_DIGEST_SIZE */
                                             if (ossl_unlikely(r->size != NULL)) {
                                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                "param %s is repeated", s);
@@ -781,6 +783,7 @@ static int ecdsa_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -792,6 +795,7 @@ static int ecdsa_get_ctx_params_decoder
                 break;
             case 'n':
                 if (ossl_likely(strcmp("once-type", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_NONCE_TYPE */
                     if (ossl_unlikely(r->nonce != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -803,6 +807,7 @@ static int ecdsa_get_ctx_params_decoder
             case 'v':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("erify-message", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_FIPS_VERIFY_MESSAGE */
                     if (ossl_unlikely(r->verify != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -983,6 +988,7 @@ static int ecdsa_set_ctx_params_decoder
                                         case 'c':
 # if defined(FIPS_MODULE)
                                             if (ossl_likely(strcmp("heck", s + 8) == 0)) {
+                                                /* SIGNATURE_PARAM_FIPS_DIGEST_CHECK */
                                                 if (ossl_unlikely(r->ind_d != NULL)) {
                                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                    "param %s is repeated", s);
@@ -994,6 +1000,7 @@ static int ecdsa_set_ctx_params_decoder
                                             break;
                                         case 's':
                                             if (ossl_likely(strcmp("ize", s + 8) == 0)) {
+                                                /* SIGNATURE_PARAM_DIGEST_SIZE */
                                                 if (ossl_unlikely(r->size != NULL)) {
                                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                    "param %s is repeated", s);
@@ -1024,6 +1031,7 @@ static int ecdsa_set_ctx_params_decoder
                 case 'a':
 # if !defined(OPENSSL_NO_ACVP_TESTS)
                     if (ossl_likely(strcmp("t", s + 2) == 0)) {
+                        /* SIGNATURE_PARAM_KAT */
                         if (ossl_unlikely(r->kat != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -1036,6 +1044,7 @@ static int ecdsa_set_ctx_params_decoder
                 case 'e':
 # if defined(FIPS_MODULE)
                     if (ossl_likely(strcmp("y-check", s + 2) == 0)) {
+                        /* SIGNATURE_PARAM_FIPS_KEY_CHECK */
                         if (ossl_unlikely(r->ind_k != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -1049,6 +1058,7 @@ static int ecdsa_set_ctx_params_decoder
                 break;
             case 'n':
                 if (ossl_likely(strcmp("once-type", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_NONCE_TYPE */
                     if (ossl_unlikely(r->nonce != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1059,6 +1069,7 @@ static int ecdsa_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1301,6 +1312,7 @@ static int ecdsa_sigalg_set_ctx_params_decoder
             case 'd':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("igest-check", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_FIPS_DIGEST_CHECK */
                     if (ossl_unlikely(r->ind_d != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1317,6 +1329,7 @@ static int ecdsa_sigalg_set_ctx_params_decoder
                 case 'a':
 # if !defined(OPENSSL_NO_ACVP_TESTS)
                     if (ossl_likely(strcmp("t", s + 2) == 0)) {
+                        /* SIGNATURE_PARAM_KAT */
                         if (ossl_unlikely(r->kat != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -1329,6 +1342,7 @@ static int ecdsa_sigalg_set_ctx_params_decoder
                 case 'e':
 # if defined(FIPS_MODULE)
                     if (ossl_likely(strcmp("y-check", s + 2) == 0)) {
+                        /* SIGNATURE_PARAM_FIPS_KEY_CHECK */
                         if (ossl_unlikely(r->ind_k != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -1342,6 +1356,7 @@ static int ecdsa_sigalg_set_ctx_params_decoder
                 break;
             case 'n':
                 if (ossl_likely(strcmp("once-type", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_NONCE_TYPE */
                     if (ossl_unlikely(r->nonce != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1352,6 +1367,7 @@ static int ecdsa_sigalg_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ignature", s + 1) == 0)) {
+                    /* SIGNATURE_PARAM_SIGNATURE */
                     if (ossl_unlikely(r->sig != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
