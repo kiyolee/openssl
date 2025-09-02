@@ -11939,11 +11939,13 @@ our %unified_info = (
         "providers\\implementations\\skeymgmt" => {
             "deps" => [
                 "providers\\implementations\\skeymgmt\\libdefault-lib-aes_skmgmt.o",
-                "providers\\implementations\\skeymgmt\\libdefault-lib-generic.o"
+                "providers\\implementations\\skeymgmt\\libdefault-lib-generic.o",
+                "providers\\implementations\\skeymgmt\\liblegacy-lib-generic.o"
             ],
             "products" => {
                 "lib" => [
-                    "providers\\libdefault.a"
+                    "providers\\libdefault.a",
+                    "providers\\liblegacy.a"
                 ]
             }
         },
@@ -30166,6 +30168,9 @@ our %unified_info = (
         "providers\\implementations\\skeymgmt\\libdefault-lib-generic.o" => [
             "providers\\implementations\\skeymgmt\\generic.c"
         ],
+        "providers\\implementations\\skeymgmt\\liblegacy-lib-generic.o" => [
+            "providers\\implementations\\skeymgmt\\generic.c"
+        ],
         "providers\\implementations\\storemgmt\\libdefault-lib-file_store.o" => [
             "providers\\implementations\\storemgmt\\file_store.c"
         ],
@@ -30416,6 +30421,7 @@ our %unified_info = (
             "providers\\implementations\\digests\\liblegacy-lib-wp_prov.o",
             "providers\\implementations\\kdfs\\liblegacy-lib-pbkdf1.o",
             "providers\\implementations\\kdfs\\liblegacy-lib-pvkkdf.o",
+            "providers\\implementations\\skeymgmt\\liblegacy-lib-generic.o",
             "providers\\liblegacy-lib-prov_running.o"
         ],
         "providers\\libtemplate.a" => [
