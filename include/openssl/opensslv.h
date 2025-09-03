@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2020 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright 1999-2025 The OpenSSL Project Authors. All Rights Reserved.
  *
  * Licensed under the Apache License 2.0 (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -28,7 +28,7 @@ extern "C" {
  * These macros express version number MAJOR.MINOR.PATCH exactly
  */
 # define OPENSSL_VERSION_MAJOR  3
-# define OPENSSL_VERSION_MINOR  6
+# define OPENSSL_VERSION_MINOR  7
 # define OPENSSL_VERSION_PATCH  0
 
 /*
@@ -74,8 +74,8 @@ extern "C" {
  * longer variant with OPENSSL_VERSION_PRE_RELEASE_STR and
  * OPENSSL_VERSION_BUILD_METADATA_STR appended.
  */
-# define OPENSSL_VERSION_STR "3.6.0"
-# define OPENSSL_FULL_VERSION_STR "3.6.0-dev"
+# define OPENSSL_VERSION_STR "3.7.0"
+# define OPENSSL_FULL_VERSION_STR "3.7.0-dev"
 
 /*
  * SECTION 3: ADDITIONAL METADATA
@@ -88,7 +88,7 @@ extern "C" {
  * SECTION 4: BACKWARD COMPATIBILITY
  */
 
-# define OPENSSL_VERSION_TEXT "OpenSSL 3.6.0-dev "
+# define OPENSSL_VERSION_TEXT "OpenSSL 3.7.0-dev "
 
 /* Synthesize OPENSSL_VERSION_NUMBER with the layout 0xMNN00PPSL */
 # define OPENSSL_VERSION_NUMBER          \
