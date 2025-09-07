@@ -200,7 +200,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\ms\openssl3.rc">
+    <ResourceCompile Include="..\..\ms\openssl4.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
