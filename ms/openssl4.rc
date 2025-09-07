@@ -33,10 +33,10 @@ BEGIN
             VALUE "FileVersion", "4.0.0-dev\0"
 #if defined(LIBCRYPTO)
             VALUE "InternalName", "libcrypto\0"
-            VALUE "OriginalFilename", "libcrypto-3.dll\0"
+            VALUE "OriginalFilename", "libcrypto-4.dll\0"
 #elif defined(LIBSSL)
             VALUE "InternalName", "libssl\0"
-            VALUE "OriginalFilename", "libssl-3.dll\0"
+            VALUE "OriginalFilename", "libssl-4.dll\0"
 #elif defined(OPENSSL)
             VALUE "InternalName", "openssl\0"
             VALUE "OriginalFilename", "openssl.exe\0"
