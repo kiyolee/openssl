@@ -1,7 +1,7 @@
 setlocal
 
-set OPENSSL_VER=3.7.0-dev
-set OPENSSL_VER_SED=3\.7\.0-dev
+set OPENSSL_VER=4.0.0-dev
+set OPENSSL_VER_SED=4\.0\.0-dev
 set OPENSSL_BASE=openssl-%OPENSSL_VER%
 set OPENSSL_BASE_SED=openssl-%OPENSSL_VER_SED%
 set OPENSSL_DIR=..\%OPENSSL_BASE%
