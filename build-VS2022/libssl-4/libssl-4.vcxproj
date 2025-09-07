@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{1E068827-5CD6-4648-98DD-B0417F0B9DDC}</ProjectGuid>
-    <RootNamespace>libssl-3</RootNamespace>
+    <RootNamespace>libssl-4</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -53,19 +53,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libssl-3.props" />
+    <Import Project="..\_props\libssl-4.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libssl-3.props" />
+    <Import Project="..\_props\libssl-4.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libssl-3.props" />
+    <Import Project="..\_props\libssl-4.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libssl-3.props" />
+    <Import Project="..\_props\libssl-4.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -74,7 +74,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libssl-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libssl-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBSSL</PreprocessorDefinitions>
@@ -85,7 +85,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libssl-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libssl-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBSSL</PreprocessorDefinitions>
@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libssl-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libssl-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBSSL</PreprocessorDefinitions>
@@ -107,7 +107,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libssl-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libssl-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBSSL</PreprocessorDefinitions>
@@ -223,31 +223,31 @@
     <ClCompile Include="..\..\ssl\tls_srp.c" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\ms\openssl3.rc" />
+    <ResourceCompile Include="..\..\ms\openssl4.rc" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\util\mkdef.pl">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-3.def
+$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-4.def
 popd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-3.def
+$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-4.def
 popd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-3.def
+$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-4.def
 popd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-3.def
+$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libssl.num --name libssl --OS windows &gt; $(OutDir)_work\libssl-4.def
 popd</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\libssl-3.def</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\libssl-3.def</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\libssl-3.def</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\libssl-3.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\libssl-4.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\libssl-4.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\libssl-4.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\libssl-4.def</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\util\libssl.num</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\util\libssl.num</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\util\libssl.num</AdditionalInputs>
