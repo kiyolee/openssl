@@ -185,7 +185,7 @@ copy $(TargetPath) $(OutDir)static\openssl.exe 2&gt;nul</Command>
     <ClCompile Include="..\..\apps\x509.c" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\ms\openssl3.rc" />
+    <ResourceCompile Include="..\..\ms\openssl4.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
