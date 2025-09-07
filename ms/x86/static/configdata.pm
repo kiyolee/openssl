@@ -45,7 +45,7 @@ our %config = (
     "RC" => "rc",
     "RCFLAGS" => [],
     "afalgeng" => "",
-    "api" => "30700",
+    "api" => "40000",
     "b32" => "1",
     "b64" => "0",
     "b64l" => "0",
@@ -177,19 +177,19 @@ our %config = (
     ],
     "dynamic_engines" => "0",
     "ex_libs" => [],
-    "full_version" => "3.7.0-dev",
+    "full_version" => "4.0.0-dev",
     "includes" => [],
     "lflags" => [],
     "lib_defines" => [
         "OPENSSL_PIC"
     ],
     "libdir" => "",
-    "major" => "3",
+    "major" => "4",
     "makedep_scheme" => "VC",
     "makedepcmd" => "\$(CC) /Zs /showIncludes",
-    "minor" => "7",
+    "minor" => "0",
     "openssl_api_defines" => [
-        "OPENSSL_CONFIGURED_API=30700"
+        "OPENSSL_CONFIGURED_API=40000"
     ],
     "openssl_feature_defines" => [
         "OPENSSL_RAND_SEED_OS",
@@ -300,10 +300,10 @@ our %config = (
     "processor" => "",
     "rc4_int" => "unsigned int",
     "release_date" => "",
-    "shlib_version" => "3",
+    "shlib_version" => "4",
     "sourcedir" => ".",
     "target" => "VC-WIN32",
-    "version" => "3.7.0"
+    "version" => "4.0.0"
 );
 our %target = (
     "AR" => "lib",

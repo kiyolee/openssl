@@ -27,8 +27,8 @@ extern "C" {
  *
  * These macros express version number MAJOR.MINOR.PATCH exactly
  */
-# define OPENSSL_VERSION_MAJOR  3
-# define OPENSSL_VERSION_MINOR  7
+# define OPENSSL_VERSION_MAJOR  4
+# define OPENSSL_VERSION_MINOR  0
 # define OPENSSL_VERSION_PATCH  0
 
 /*
@@ -57,7 +57,7 @@ extern "C" {
  * be related to the API version expressed with the macros above.
  * This is defined in free form.
  */
-# define OPENSSL_SHLIB_VERSION 3
+# define OPENSSL_SHLIB_VERSION 4
 
 /*
  * SECTION 2: USEFUL MACROS
@@ -74,8 +74,8 @@ extern "C" {
  * longer variant with OPENSSL_VERSION_PRE_RELEASE_STR and
  * OPENSSL_VERSION_BUILD_METADATA_STR appended.
  */
-# define OPENSSL_VERSION_STR "3.7.0"
-# define OPENSSL_FULL_VERSION_STR "3.7.0-dev"
+# define OPENSSL_VERSION_STR "4.0.0"
+# define OPENSSL_FULL_VERSION_STR "4.0.0-dev"
 
 /*
  * SECTION 3: ADDITIONAL METADATA
@@ -88,7 +88,7 @@ extern "C" {
  * SECTION 4: BACKWARD COMPATIBILITY
  */
 
-# define OPENSSL_VERSION_TEXT "OpenSSL 3.7.0-dev "
+# define OPENSSL_VERSION_TEXT "OpenSSL 4.0.0-dev "
 
 /* Synthesize OPENSSL_VERSION_NUMBER with the layout 0xMNN00PPSL */
 # define OPENSSL_VERSION_NUMBER          \
