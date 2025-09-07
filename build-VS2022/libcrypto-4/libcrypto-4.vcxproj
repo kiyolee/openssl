@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{C92E1E46-3C94-4DD6-8E7D-E23ECED32A8C}</ProjectGuid>
-    <RootNamespace>libcrypto-3</RootNamespace>
+    <RootNamespace>libcrypto-4</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -53,19 +53,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libcrypto-3.props" />
+    <Import Project="..\_props\libcrypto-4.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libcrypto-3.props" />
+    <Import Project="..\_props\libcrypto-4.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libcrypto-3.props" />
+    <Import Project="..\_props\libcrypto-4.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\_props\libcrypto-3.props" />
+    <Import Project="..\_props\libcrypto-4.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -74,7 +74,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBCRYPTO</PreprocessorDefinitions>
@@ -85,7 +85,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBCRYPTO</PreprocessorDefinitions>
@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBCRYPTO</PreprocessorDefinitions>
@@ -107,7 +107,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(OutDir)_work\libcrypto-4.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <PreprocessorDefinitions>LIBCRYPTO</PreprocessorDefinitions>
@@ -1823,24 +1823,24 @@ $(PERL) %(FullPath) masm $(OutDir)_work\%(Filename).asm &amp;&amp; ml64 /c /Cp /
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-3.def
+$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-4.def
 popd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-3.def
+$(PERL) -Ims\x86 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-4.def
 popd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-3.def
+$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-4.def
 popd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
 pushd ..\..
-$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-3.def
+$(PERL) -Ims\x64 %(FullPath) --version $(OPENSSL_WIN_BUILD_VERSION) --ordinals util\libcrypto.num --name libcrypto --OS windows &gt; $(OutDir)_work\libcrypto-4.def
 popd</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\libcrypto-3.def</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\libcrypto-3.def</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\libcrypto-3.def</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\libcrypto-3.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\libcrypto-4.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\libcrypto-4.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\libcrypto-4.def</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\libcrypto-4.def</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\util\libcrypto.num</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\util\libcrypto.num</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\util\libcrypto.num</AdditionalInputs>
@@ -1848,7 +1848,7 @@ popd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\ms\openssl3.rc" />
+    <ResourceCompile Include="..\..\ms\openssl4.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
