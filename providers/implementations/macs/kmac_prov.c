@@ -223,7 +223,7 @@ static int kmac_new_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("igest", s + 1) == 0)) {
-                    /* MAC_PARAM_DIGEST */
+                    /* OSSL_MAC_PARAM_DIGEST */
                     if (ossl_unlikely(r->digest != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -234,7 +234,7 @@ static int kmac_new_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* ALG_PARAM_ENGINE */
+                    /* OSSL_ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -245,7 +245,7 @@ static int kmac_new_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
-                    /* MAC_PARAM_PROPERTIES */
+                    /* OSSL_MAC_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -265,21 +265,23 @@ static void *kmac_fetch_new(void *provctx, const OSSL_PARAM *params)
     struct kmac_new_st p;
     int md_size;
 
-    if (kctx == NULL || !kmac_new_decoder(params, &p))
+    if (kctx == NULL)
         return 0;
+    if (!kmac_new_decoder(params, &p))
+        goto err;
     if (!ossl_prov_digest_load(&kctx->digest, p.digest, p.propq, p.engine,
-                               PROV_LIBCTX_OF(provctx))) {
-        kmac_free(kctx);
-        return 0;
-    }
+                               PROV_LIBCTX_OF(provctx)))
+        goto err;
 
     md_size = EVP_MD_get_size(ossl_prov_digest_md(&kctx->digest));
-    if (md_size <= 0) {
-        kmac_free(kctx);
-        return 0;
-    }
+    if (md_size <= 0)
+        goto err;
     kctx->out_len = (size_t)md_size;
     return kctx;
+
+err:
+    kmac_free(kctx);
+    return NULL;
 }
 
 static void *kmac128_new(void *provctx)
@@ -499,7 +501,7 @@ static int kmac_get_ctx_params_decoder
                 break;
             case 'b':
                 if (ossl_likely(strcmp("lock-size", s + 1) == 0)) {
-                    /* MAC_PARAM_BLOCK_SIZE */
+                    /* OSSL_MAC_PARAM_BLOCK_SIZE */
                     if (ossl_unlikely(r->bsize != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -511,7 +513,7 @@ static int kmac_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
-                    /* ALG_PARAM_FIPS_APPROVED_INDICATOR */
+                    /* OSSL_ALG_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -523,7 +525,7 @@ static int kmac_get_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
-                    /* MAC_PARAM_SIZE */
+                    /* OSSL_MAC_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -613,7 +615,7 @@ static int kmac_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ustom", s + 1) == 0)) {
-                    /* MAC_PARAM_CUSTOM */
+                    /* OSSL_MAC_PARAM_CUSTOM */
                     if (ossl_unlikely(r->custom != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -637,7 +639,7 @@ static int kmac_set_ctx_params_decoder
                         case '-':
 # if defined(FIPS_MODULE)
                             if (ossl_likely(strcmp("check", s + 4) == 0)) {
-                                /* MAC_PARAM_FIPS_KEY_CHECK */
+                                /* OSSL_MAC_PARAM_FIPS_KEY_CHECK */
                                 if (ossl_unlikely(r->ind_k != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -661,7 +663,7 @@ static int kmac_set_ctx_params_decoder
             case 'n':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("o-short-mac", s + 1) == 0)) {
-                    /* MAC_PARAM_FIPS_NO_SHORT_MAC */
+                    /* OSSL_MAC_PARAM_FIPS_NO_SHORT_MAC */
                     if (ossl_unlikely(r->ind_sht != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -673,7 +675,7 @@ static int kmac_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
-                    /* MAC_PARAM_SIZE */
+                    /* OSSL_MAC_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -684,7 +686,7 @@ static int kmac_set_ctx_params_decoder
                 break;
             case 'x':
                 if (ossl_likely(strcmp("of", s + 1) == 0)) {
-                    /* MAC_PARAM_XOF */
+                    /* OSSL_MAC_PARAM_XOF */
                     if (ossl_unlikely(r->xof != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

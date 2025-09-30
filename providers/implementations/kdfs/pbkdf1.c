@@ -265,7 +265,7 @@ static int pbkdf1_set_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("igest", s + 1) == 0)) {
-                    /* KDF_PARAM_DIGEST */
+                    /* OSSL_KDF_PARAM_DIGEST */
                     if (ossl_unlikely(r->digest != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -276,7 +276,7 @@ static int pbkdf1_set_ctx_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* ALG_PARAM_ENGINE */
+                    /* OSSL_ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -287,7 +287,7 @@ static int pbkdf1_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("ter", s + 1) == 0)) {
-                    /* KDF_PARAM_ITER */
+                    /* OSSL_KDF_PARAM_ITER */
                     if (ossl_unlikely(r->iter != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -302,7 +302,7 @@ static int pbkdf1_set_ctx_params_decoder
                     break;
                 case 'a':
                     if (ossl_likely(strcmp("ss", s + 2) == 0)) {
-                        /* KDF_PARAM_PASSWORD */
+                        /* OSSL_KDF_PARAM_PASSWORD */
                         if (ossl_unlikely(r->pw != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -313,7 +313,7 @@ static int pbkdf1_set_ctx_params_decoder
                     break;
                 case 'r':
                     if (ossl_likely(strcmp("operties", s + 2) == 0)) {
-                        /* KDF_PARAM_PROPERTIES */
+                        /* OSSL_KDF_PARAM_PROPERTIES */
                         if (ossl_unlikely(r->propq != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -325,7 +325,7 @@ static int pbkdf1_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("alt", s + 1) == 0)) {
-                    /* KDF_PARAM_SALT */
+                    /* OSSL_KDF_PARAM_SALT */
                     if (ossl_unlikely(r->salt != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -395,7 +395,7 @@ static int pbkdf1_get_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("size", s + 0) == 0)) {
-                /* KDF_PARAM_SIZE */
+                /* OSSL_KDF_PARAM_SIZE */
                 if (ossl_unlikely(r->size != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
@@ -445,7 +445,8 @@ static int kdf_pbkdf1_set_skey(void *vctx, void *skeydata, const char *paramname
 }
 
 static
-void *kdf_pbkdf1_derive_skey(void *vctx, void *provctx, OSSL_FUNC_skeymgmt_import_fn *import,
+void *kdf_pbkdf1_derive_skey(void *vctx, const char *key_type ossl_unused, void *provctx,
+                             OSSL_FUNC_skeymgmt_import_fn *import,
                              size_t keylen, const OSSL_PARAM params[])
 {
     unsigned char *key = NULL;

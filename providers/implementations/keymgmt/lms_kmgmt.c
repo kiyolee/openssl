@@ -92,7 +92,7 @@ static int lms_import_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("pub", s + 0) == 0)) {
-                /* PKEY_PARAM_PUB_KEY */
+                /* OSSL_PKEY_PARAM_PUB_KEY */
                 if (ossl_unlikely(r->pub != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

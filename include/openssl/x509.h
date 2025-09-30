@@ -538,7 +538,7 @@ char *NETSCAPE_SPKI_b64_encode(NETSCAPE_SPKI *x);
 EVP_PKEY *NETSCAPE_SPKI_get_pubkey(NETSCAPE_SPKI *x);
 int NETSCAPE_SPKI_set_pubkey(NETSCAPE_SPKI *x, EVP_PKEY *pkey);
 
-int NETSCAPE_SPKI_print(BIO *out, NETSCAPE_SPKI *spki);
+int NETSCAPE_SPKI_print(BIO *out, const NETSCAPE_SPKI *spki);
 
 int X509_signature_dump(BIO *bp, const ASN1_STRING *sig, int indent);
 int X509_signature_print(BIO *bp, const X509_ALGOR *alg,
@@ -794,8 +794,8 @@ ASN1_OCTET_STRING *X509_REQ_get0_distinguishing_id(X509_REQ *x);
 
 int X509_alias_set1(X509 *x, const unsigned char *name, int len);
 int X509_keyid_set1(X509 *x, const unsigned char *id, int len);
-unsigned char *X509_alias_get0(X509 *x, int *len);
-unsigned char *X509_keyid_get0(X509 *x, int *len);
+unsigned char *X509_alias_get0(const X509 *x, int *len);
+unsigned char *X509_keyid_get0(const X509 *x, int *len);
 
 DECLARE_ASN1_FUNCTIONS(X509_REVOKED)
 DECLARE_ASN1_FUNCTIONS(X509_CRL_INFO)
@@ -864,7 +864,6 @@ int X509_set1_notBefore(X509 *x, const ASN1_TIME *tm);
 const ASN1_TIME *X509_get0_notAfter(const X509 *x);
 ASN1_TIME *X509_getm_notAfter(const X509 *x);
 int X509_set1_notAfter(X509 *x, const ASN1_TIME *tm);
-int X509_set_pubkey(X509 *x, EVP_PKEY *pkey);
 int X509_up_ref(X509 *x);
 int X509_get_signature_type(const X509 *x);
 
@@ -875,7 +874,9 @@ int X509_get_signature_type(const X509 *x);
 #  define X509_set_notAfter X509_set1_notAfter
 #endif
 
-
+int X509_set_pubkey(X509 *x, EVP_PKEY *pkey);
+EVP_PKEY *X509_get_pubkey(X509 *x); /* deprecated */
+EVP_PKEY *X509_get0_pubkey(const X509 *x);
 /*
  * This one is only used so that a binary form can output, as in
  * i2d_X509_PUBKEY(X509_get_X509_PUBKEY(x), &buf)
@@ -886,8 +887,6 @@ void X509_get0_uids(const X509 *x, const ASN1_BIT_STRING **piuid,
                     const ASN1_BIT_STRING **psuid);
 const X509_ALGOR *X509_get0_tbs_sigalg(const X509 *x);
 
-EVP_PKEY *X509_get0_pubkey(const X509 *x);
-EVP_PKEY *X509_get_pubkey(X509 *x);
 ASN1_BIT_STRING *X509_get0_pubkey_bitstr(const X509 *x);
 
 #define X509_REQ_VERSION_1 0
@@ -903,13 +902,13 @@ int X509_REQ_set1_signature_algo(X509_REQ *req, X509_ALGOR *palg);
 int X509_REQ_get_signature_nid(const X509_REQ *req);
 int i2d_re_X509_REQ_tbs(X509_REQ *req, unsigned char **pp);
 int X509_REQ_set_pubkey(X509_REQ *x, EVP_PKEY *pkey);
-EVP_PKEY *X509_REQ_get_pubkey(X509_REQ *req);
+EVP_PKEY *X509_REQ_get_pubkey(X509_REQ *req); /* deprecated */
 EVP_PKEY *X509_REQ_get0_pubkey(const X509_REQ *req);
-X509_PUBKEY *X509_REQ_get_X509_PUBKEY(X509_REQ *req);
+X509_PUBKEY *X509_REQ_get_X509_PUBKEY(const X509_REQ *req);
 int X509_REQ_extension_nid(int nid);
 int *X509_REQ_get_extension_nids(void);
 void X509_REQ_set_extension_nids(int *nids);
-STACK_OF(X509_EXTENSION) *X509_REQ_get_extensions(OSSL_FUTURE_CONST X509_REQ *req);
+STACK_OF(X509_EXTENSION) *X509_REQ_get_extensions(const X509_REQ *req);
 int X509_REQ_add_extensions_nid(X509_REQ *req,
                                 const STACK_OF(X509_EXTENSION) *exts, int nid);
 int X509_REQ_add_extensions(X509_REQ *req, const STACK_OF(X509_EXTENSION) *ext);
@@ -954,7 +953,7 @@ OSSL_DEPRECATEDIN_1_1_0 ASN1_TIME *X509_CRL_get_nextUpdate(X509_CRL *crl);
 #endif
 X509_NAME *X509_CRL_get_issuer(const X509_CRL *crl);
 const STACK_OF(X509_EXTENSION) *X509_CRL_get0_extensions(const X509_CRL *crl);
-STACK_OF(X509_REVOKED) *X509_CRL_get_REVOKED(X509_CRL *crl);
+STACK_OF(X509_REVOKED) *X509_CRL_get_REVOKED(const X509_CRL *crl);
 const X509_ALGOR *X509_CRL_get0_tbs_sigalg(const X509_CRL *crl);
 void X509_CRL_get0_signature(const X509_CRL *crl, const ASN1_BIT_STRING **psig,
                              const X509_ALGOR **palg);
@@ -1016,29 +1015,24 @@ unsigned long X509_NAME_hash_old(const X509_NAME *x);
 
 int X509_CRL_cmp(const X509_CRL *a, const X509_CRL *b);
 int X509_CRL_match(const X509_CRL *a, const X509_CRL *b);
-int X509_aux_print(BIO *out, X509 *x, int indent);
+int X509_aux_print(BIO *out, const X509 *x, int indent);
 # ifndef OPENSSL_NO_STDIO
-int X509_print_ex_fp(FILE *bp, X509 *x, unsigned long nmflag,
-                     unsigned long cflag);
+int X509_print_ex_fp(FILE *bp, X509 *x, unsigned long nmflag, unsigned long cflag);
 int X509_print_fp(FILE *bp, X509 *x);
 int X509_CRL_print_fp(FILE *bp, X509_CRL *x);
-int X509_REQ_print_fp(FILE *bp, X509_REQ *req);
-int X509_NAME_print_ex_fp(FILE *fp, const X509_NAME *nm, int indent,
-                          unsigned long flags);
+int X509_REQ_print_fp(FILE *bp, const X509_REQ *req);
+int X509_NAME_print_ex_fp(FILE *fp, const X509_NAME *nm, int indent, unsigned long flags);
 # endif
 
 int X509_NAME_print(BIO *bp, const X509_NAME *name, int obase);
-int X509_NAME_print_ex(BIO *out, const X509_NAME *nm, int indent,
-                       unsigned long flags);
-int X509_print_ex(BIO *bp, X509 *x, unsigned long nmflag,
-                  unsigned long cflag);
-int X509_print(BIO *bp, X509 *x);
-int X509_ocspid_print(BIO *bp, X509 *x);
-int X509_CRL_print_ex(BIO *out, X509_CRL *x, unsigned long nmflag);
-int X509_CRL_print(BIO *bp, X509_CRL *x);
-int X509_REQ_print_ex(BIO *bp, X509_REQ *x, unsigned long nmflag,
-                      unsigned long cflag);
-int X509_REQ_print(BIO *bp, X509_REQ *req);
+int X509_NAME_print_ex(BIO *out, const X509_NAME *nm, int indent, unsigned long flags);
+int X509_print_ex(BIO *bp, const X509 *x, unsigned long nmflag, unsigned long cflag);
+int X509_print(BIO *bp, const X509 *x);
+int X509_ocspid_print(BIO *bp, const X509 *x);
+int X509_CRL_print_ex(BIO *out, const X509_CRL *x, unsigned long nmflag);
+int X509_CRL_print(BIO *bp, const X509_CRL *x);
+int X509_REQ_print_ex(BIO *bp, const X509_REQ *x, unsigned long nmflag, unsigned long cflag);
+int X509_REQ_print(BIO *bp, const X509_REQ *req);
 
 int X509_NAME_entry_count(const X509_NAME *name);
 int X509_NAME_get_text_by_NID(const X509_NAME *name, int nid,

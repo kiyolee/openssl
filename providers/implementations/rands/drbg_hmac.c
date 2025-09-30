@@ -431,7 +431,7 @@ static int drbg_hmac_get_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("igest", s + 1) == 0)) {
-                    /* DRBG_PARAM_DIGEST */
+                    /* OSSL_DRBG_PARAM_DIGEST */
                     if (ossl_unlikely(r->digest != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -443,7 +443,7 @@ static int drbg_hmac_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
-                    /* KDF_PARAM_FIPS_APPROVED_INDICATOR */
+                    /* OSSL_KDF_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -484,7 +484,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                 break;
                             case 'a':
                                 if (ossl_likely(strcmp("dinlen", s + 5) == 0)) {
-                                    /* DRBG_PARAM_MAX_ADINLEN */
+                                    /* OSSL_DRBG_PARAM_MAX_ADINLEN */
                                     if (ossl_unlikely(r->maxadlen != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -495,7 +495,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                 break;
                             case 'e':
                                 if (ossl_likely(strcmp("ntropylen", s + 5) == 0)) {
-                                    /* DRBG_PARAM_MAX_ENTROPYLEN */
+                                    /* OSSL_DRBG_PARAM_MAX_ENTROPYLEN */
                                     if (ossl_unlikely(r->maxentlen != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -506,7 +506,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                 break;
                             case 'n':
                                 if (ossl_likely(strcmp("oncelen", s + 5) == 0)) {
-                                    /* DRBG_PARAM_MAX_NONCELEN */
+                                    /* OSSL_DRBG_PARAM_MAX_NONCELEN */
                                     if (ossl_unlikely(r->maxnonlen != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -517,7 +517,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                 break;
                             case 'p':
                                 if (ossl_likely(strcmp("erslen", s + 5) == 0)) {
-                                    /* DRBG_PARAM_MAX_PERSLEN */
+                                    /* OSSL_DRBG_PARAM_MAX_PERSLEN */
                                     if (ossl_unlikely(r->maxperlen != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -528,7 +528,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                 break;
                             case 'r':
                                 if (ossl_likely(strcmp("equest", s + 5) == 0)) {
-                                    /* RAND_PARAM_MAX_REQUEST */
+                                    /* OSSL_RAND_PARAM_MAX_REQUEST */
                                     if (ossl_unlikely(r->maxreq != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -554,7 +554,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                 break;
                             case 'e':
                                 if (ossl_likely(strcmp("ntropylen", s + 5) == 0)) {
-                                    /* DRBG_PARAM_MIN_ENTROPYLEN */
+                                    /* OSSL_DRBG_PARAM_MIN_ENTROPYLEN */
                                     if (ossl_unlikely(r->minentlen != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -565,7 +565,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                 break;
                             case 'n':
                                 if (ossl_likely(strcmp("oncelen", s + 5) == 0)) {
-                                    /* DRBG_PARAM_MIN_NONCELEN */
+                                    /* OSSL_DRBG_PARAM_MIN_NONCELEN */
                                     if (ossl_unlikely(r->minnonlen != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -608,7 +608,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                             break;
                                         case 'c':
                                             if (ossl_likely(strcmp("ounter", s + 8) == 0)) {
-                                                /* DRBG_PARAM_RESEED_COUNTER */
+                                                /* OSSL_DRBG_PARAM_RESEED_COUNTER */
                                                 if (ossl_unlikely(r->reseed_cnt != NULL)) {
                                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                    "param %s is repeated", s);
@@ -619,7 +619,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                             break;
                                         case 'r':
                                             if (ossl_likely(strcmp("equests", s + 8) == 0)) {
-                                                /* DRBG_PARAM_RESEED_REQUESTS */
+                                                /* OSSL_DRBG_PARAM_RESEED_REQUESTS */
                                                 if (ossl_unlikely(r->reseed_req != NULL)) {
                                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                    "param %s is repeated", s);
@@ -646,7 +646,7 @@ static int drbg_hmac_get_ctx_params_decoder
                                                             break;
                                                         case '_':
                                                             if (ossl_likely(strcmp("interval", s + 12) == 0)) {
-                                                                /* DRBG_PARAM_RESEED_TIME_INTERVAL */
+                                                                /* OSSL_DRBG_PARAM_RESEED_TIME_INTERVAL */
                                                                 if (ossl_unlikely(r->reseed_int != NULL)) {
                                                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                                    "param %s is repeated", s);
@@ -684,7 +684,7 @@ static int drbg_hmac_get_ctx_params_decoder
                         break;
                     case 'a':
                         if (ossl_likely(strcmp("te", s + 3) == 0)) {
-                            /* RAND_PARAM_STATE */
+                            /* OSSL_RAND_PARAM_STATE */
                             if (ossl_unlikely(r->state != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -695,7 +695,7 @@ static int drbg_hmac_get_ctx_params_decoder
                         break;
                     case 'r':
                         if (ossl_likely(strcmp("ength", s + 3) == 0)) {
-                            /* RAND_PARAM_STRENGTH */
+                            /* OSSL_RAND_PARAM_STRENGTH */
                             if (ossl_unlikely(r->str != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -943,7 +943,7 @@ static int drbg_hmac_set_ctx_params_decoder
                                     case '-':
 # if defined(FIPS_MODULE)
                                         if (ossl_likely(strcmp("check", s + 7) == 0)) {
-                                            /* KDF_PARAM_FIPS_DIGEST_CHECK */
+                                            /* OSSL_KDF_PARAM_FIPS_DIGEST_CHECK */
                                             if (ossl_unlikely(r->ind_d != NULL)) {
                                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                "param %s is repeated", s);
@@ -969,7 +969,7 @@ static int drbg_hmac_set_ctx_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* ALG_PARAM_ENGINE */
+                    /* OSSL_ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -980,7 +980,7 @@ static int drbg_hmac_set_ctx_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("ac", s + 1) == 0)) {
-                    /* DRBG_PARAM_MAC */
+                    /* OSSL_DRBG_PARAM_MAC */
                     if (ossl_unlikely(r->mac != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1003,7 +1003,7 @@ static int drbg_hmac_set_ctx_params_decoder
                             break;
                         case 'p':
                             if (ossl_likely(strcmp("erties", s + 4) == 0)) {
-                                /* DRBG_PARAM_PROPERTIES */
+                                /* OSSL_DRBG_PARAM_PROPERTIES */
                                 if (ossl_unlikely(r->propq != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -1014,7 +1014,7 @@ static int drbg_hmac_set_ctx_params_decoder
                             break;
                         case 'v':
                             if (ossl_likely(strcmp("ider-name", s + 4) == 0)) {
-                                /* PROV_PARAM_CORE_PROV_NAME */
+                                /* OSSL_PROV_PARAM_CORE_PROV_NAME */
                                 if (ossl_unlikely(r->prov != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -1056,7 +1056,7 @@ static int drbg_hmac_set_ctx_params_decoder
                                             break;
                                         case 'r':
                                             if (ossl_likely(strcmp("equests", s + 8) == 0)) {
-                                                /* DRBG_PARAM_RESEED_REQUESTS */
+                                                /* OSSL_DRBG_PARAM_RESEED_REQUESTS */
                                                 if (ossl_unlikely(r->reseed_req != NULL)) {
                                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                    "param %s is repeated", s);
@@ -1067,7 +1067,7 @@ static int drbg_hmac_set_ctx_params_decoder
                                             break;
                                         case 't':
                                             if (ossl_likely(strcmp("ime_interval", s + 8) == 0)) {
-                                                /* DRBG_PARAM_RESEED_TIME_INTERVAL */
+                                                /* OSSL_DRBG_PARAM_RESEED_TIME_INTERVAL */
                                                 if (ossl_unlikely(r->reseed_time != NULL)) {
                                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                    "param %s is repeated", s);

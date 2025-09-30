@@ -195,7 +195,7 @@ static int gmac_get_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("size", s + 0) == 0)) {
-                /* MAC_PARAM_SIZE */
+                /* OSSL_MAC_PARAM_SIZE */
                 if (ossl_unlikely(r->size != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
@@ -261,7 +261,7 @@ static int gmac_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ipher", s + 1) == 0)) {
-                    /* MAC_PARAM_CIPHER */
+                    /* OSSL_MAC_PARAM_CIPHER */
                     if (ossl_unlikely(r->cipher != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -272,7 +272,7 @@ static int gmac_set_ctx_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* ALG_PARAM_ENGINE */
+                    /* OSSL_ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -283,7 +283,7 @@ static int gmac_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("v", s + 1) == 0)) {
-                    /* MAC_PARAM_IV */
+                    /* OSSL_MAC_PARAM_IV */
                     if (ossl_unlikely(r->iv != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -294,7 +294,7 @@ static int gmac_set_ctx_params_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("ey", s + 1) == 0)) {
-                    /* MAC_PARAM_KEY */
+                    /* OSSL_MAC_PARAM_KEY */
                     if (ossl_unlikely(r->key != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -305,7 +305,7 @@ static int gmac_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
-                    /* MAC_PARAM_PROPERTIES */
+                    /* OSSL_MAC_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

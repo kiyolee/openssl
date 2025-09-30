@@ -139,7 +139,7 @@ static int winstore_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
-                    /* STORE_PARAM_PROPERTIES */
+                    /* OSSL_STORE_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -150,7 +150,7 @@ static int winstore_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ubject", s + 1) == 0)) {
-                    /* STORE_PARAM_SUBJECT */
+                    /* OSSL_STORE_PARAM_SUBJECT */
                     if (ossl_unlikely(r->sub != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

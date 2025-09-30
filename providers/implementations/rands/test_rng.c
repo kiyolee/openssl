@@ -227,7 +227,7 @@ static int test_rng_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
-                    /* RAND_PARAM_FIPS_APPROVED_INDICATOR */
+                    /* OSSL_RAND_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -239,7 +239,7 @@ static int test_rng_get_ctx_params_decoder
                 break;
             case 'g':
                 if (ossl_likely(strcmp("enerate", s + 1) == 0)) {
-                    /* RAND_PARAM_GENERATE */
+                    /* OSSL_RAND_PARAM_GENERATE */
                     if (ossl_unlikely(r->gen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -250,7 +250,7 @@ static int test_rng_get_ctx_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("ax_request", s + 1) == 0)) {
-                    /* RAND_PARAM_MAX_REQUEST */
+                    /* OSSL_RAND_PARAM_MAX_REQUEST */
                     if (ossl_unlikely(r->maxreq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -269,7 +269,7 @@ static int test_rng_get_ctx_params_decoder
                         break;
                     case 'a':
                         if (ossl_likely(strcmp("te", s + 3) == 0)) {
-                            /* RAND_PARAM_STATE */
+                            /* OSSL_RAND_PARAM_STATE */
                             if (ossl_unlikely(r->state != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -280,7 +280,7 @@ static int test_rng_get_ctx_params_decoder
                         break;
                     case 'r':
                         if (ossl_likely(strcmp("ength", s + 3) == 0)) {
-                            /* RAND_PARAM_STRENGTH */
+                            /* OSSL_RAND_PARAM_STRENGTH */
                             if (ossl_unlikely(r->str != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);
@@ -366,7 +366,7 @@ static int test_rng_set_ctx_params_decoder
                 break;
             case 'g':
                 if (ossl_likely(strcmp("enerate", s + 1) == 0)) {
-                    /* RAND_PARAM_GENERATE */
+                    /* OSSL_RAND_PARAM_GENERATE */
                     if (ossl_unlikely(r->gen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -377,7 +377,7 @@ static int test_rng_set_ctx_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("ax_request", s + 1) == 0)) {
-                    /* RAND_PARAM_MAX_REQUEST */
+                    /* OSSL_RAND_PARAM_MAX_REQUEST */
                     if (ossl_unlikely(r->maxreq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -388,7 +388,7 @@ static int test_rng_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("trength", s + 1) == 0)) {
-                    /* RAND_PARAM_STRENGTH */
+                    /* OSSL_RAND_PARAM_STRENGTH */
                     if (ossl_unlikely(r->str != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -419,7 +419,7 @@ static int test_rng_set_ctx_params_decoder
                                     break;
                                 case 'e':
                                     if (ossl_likely(strcmp("ntropy", s + 6) == 0)) {
-                                        /* RAND_PARAM_TEST_ENTROPY */
+                                        /* OSSL_RAND_PARAM_TEST_ENTROPY */
                                         if (ossl_unlikely(r->ent != NULL)) {
                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                            "param %s is repeated", s);
@@ -430,7 +430,7 @@ static int test_rng_set_ctx_params_decoder
                                     break;
                                 case 'n':
                                     if (ossl_likely(strcmp("once", s + 6) == 0)) {
-                                        /* RAND_PARAM_TEST_NONCE */
+                                        /* OSSL_RAND_PARAM_TEST_NONCE */
                                         if (ossl_unlikely(r->nonce != NULL)) {
                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                            "param %s is repeated", s);

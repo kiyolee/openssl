@@ -617,7 +617,7 @@ static int shake_get_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
-                    /* DIGEST_PARAM_SIZE */
+                    /* OSSL_DIGEST_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -628,7 +628,7 @@ static int shake_get_ctx_params_decoder
                 break;
             case 'x':
                 if (ossl_likely(strcmp("oflen", s + 1) == 0)) {
-                    /* DIGEST_PARAM_XOFLEN */
+                    /* OSSL_DIGEST_PARAM_XOFLEN */
                     if (ossl_unlikely(r->xoflen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -697,7 +697,7 @@ static int shake_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
-                    /* DIGEST_PARAM_SIZE */
+                    /* OSSL_DIGEST_PARAM_SIZE */
                     if (ossl_unlikely(r->xoflen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -708,7 +708,7 @@ static int shake_set_ctx_params_decoder
                 break;
             case 'x':
                 if (ossl_likely(strcmp("oflen", s + 1) == 0)) {
-                    /* DIGEST_PARAM_XOFLEN */
+                    /* OSSL_DIGEST_PARAM_XOFLEN */
                     if (ossl_unlikely(r->xoflen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

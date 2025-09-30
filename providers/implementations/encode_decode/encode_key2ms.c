@@ -118,7 +118,7 @@ static int key2pvk_set_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("encrypt-level", s + 0) == 0)) {
-                /* ENCODER_PARAM_ENCRYPT_LEVEL */
+                /* OSSL_ENCODER_PARAM_ENCRYPT_LEVEL */
                 if (ossl_unlikely(r->enclvl != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

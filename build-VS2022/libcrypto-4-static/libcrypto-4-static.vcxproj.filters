@@ -2703,6 +2703,9 @@
     <ClCompile Include="..\..\crypto\array_alloc.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\aligned_alloc.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">

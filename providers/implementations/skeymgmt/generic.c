@@ -58,7 +58,7 @@ static int generic_skey_import_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("raw-bytes", s + 0) == 0)) {
-                /* SKEY_PARAM_RAW_BYTES */
+                /* OSSL_SKEY_PARAM_RAW_BYTES */
                 if (ossl_unlikely(r->raw_bytes != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

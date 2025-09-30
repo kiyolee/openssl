@@ -275,7 +275,7 @@ static int ecxkem_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("kme", s + 1) == 0)) {
-                    /* KEM_PARAM_IKME */
+                    /* OSSL_KEM_PARAM_IKME */
                     if (ossl_unlikely(r->ikme != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -286,7 +286,7 @@ static int ecxkem_set_ctx_params_decoder
                 break;
             case 'o':
                 if (ossl_likely(strcmp("peration", s + 1) == 0)) {
-                    /* KEM_PARAM_OPERATION */
+                    /* OSSL_KEM_PARAM_OPERATION */
                     if (ossl_unlikely(r->op != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
