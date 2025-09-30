@@ -1170,7 +1170,7 @@ static int key2any_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ipher", s + 1) == 0)) {
-                    /* ENCODER_PARAM_CIPHER */
+                    /* OSSL_ENCODER_PARAM_CIPHER */
                     if (ossl_unlikely(r->cipher != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1181,7 +1181,7 @@ static int key2any_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
-                    /* ENCODER_PARAM_PROPERTIES */
+                    /* OSSL_ENCODER_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1192,7 +1192,7 @@ static int key2any_set_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ave-parameters", s + 1) == 0)) {
-                    /* ENCODER_PARAM_SAVE_PARAMETERS */
+                    /* OSSL_ENCODER_PARAM_SAVE_PARAMETERS */
                     if (ossl_unlikely(r->svprm != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

@@ -940,6 +940,9 @@ our %unified_info = (
             "test\\p_minimal" => {
                 "noinst" => "1"
             },
+            "test\\p_ossltest" => {
+                "noinst" => "1"
+            },
             "test\\p_test" => {
                 "noinst" => "1"
             }
@@ -2186,8 +2189,11 @@ our %unified_info = (
             "providers\\implementations\\kem\\ecx_kem.c",
             "providers\\implementations\\kem\\ml_kem_kem.c",
             "providers\\implementations\\kem\\rsa_kem.c",
+            "providers\\implementations\\keymgmt\\dh_kmgmt.c",
+            "providers\\implementations\\keymgmt\\dsa_kmgmt.c",
             "providers\\implementations\\keymgmt\\ecx_kmgmt.c",
             "providers\\implementations\\keymgmt\\lms_kmgmt.c",
+            "providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c",
             "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c",
             "providers\\implementations\\keymgmt\\ml_kem_kmgmt.c",
             "providers\\implementations\\keymgmt\\mlx_kmgmt.c",
@@ -8516,6 +8522,12 @@ our %unified_info = (
         "providers\\implementations\\kem\\rsa_kem.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\keymgmt\\dh_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\keymgmt\\dsa_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\keymgmt\\ecx_kmgmt.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
@@ -8523,6 +8535,9 @@ our %unified_info = (
             "providers\\common\\include\\prov\\der_hkdf.h"
         ],
         "providers\\implementations\\keymgmt\\lms_kmgmt.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
@@ -8759,7 +8774,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\bioprinttest" => [
-            "libcrypto",
+            "libcrypto.a",
             "test\\libtestutil.a"
         ],
         "test\\bn_internal_test" => [
@@ -9463,6 +9478,10 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\p_ossltest" => [
+            "libcrypto",
+            "providers\\libcommon.a"
+        ],
         "test\\packettest" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -10034,6 +10053,7 @@ our %unified_info = (
                 "crypto\\legacy-dso-cpuid.o",
                 "crypto\\legacy-dso-ctype.o",
                 "crypto\\legacy-dso-x86_64cpuid.o",
+                "crypto\\libcrypto-lib-aligned_alloc.o",
                 "crypto\\libcrypto-lib-array_alloc.o",
                 "crypto\\libcrypto-lib-asn1_dsa.o",
                 "crypto\\libcrypto-lib-bsearch.o",
@@ -10092,6 +10112,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-uid.o",
                 "crypto\\libcrypto-lib-uplink-x86_64.o",
                 "crypto\\libcrypto-lib-x86_64cpuid.o",
+                "crypto\\libcrypto-shlib-aligned_alloc.o",
                 "crypto\\libcrypto-shlib-array_alloc.o",
                 "crypto\\libcrypto-shlib-asn1_dsa.o",
                 "crypto\\libcrypto-shlib-bsearch.o",
@@ -12517,6 +12538,7 @@ our %unified_info = (
             "deps" => [
                 "providers\\endecode_test-bin-legacyprov.o",
                 "providers\\evp_extra_test-bin-legacyprov.o",
+                "providers\\p_ossltest-dso-prov_running.o",
                 "providers\\libcrypto-lib-baseprov.o",
                 "providers\\libcrypto-lib-defltprov.o",
                 "providers\\libcrypto-lib-nullprov.o",
@@ -12534,7 +12556,8 @@ our %unified_info = (
                     "test\\evp_extra_test"
                 ],
                 "dso" => [
-                    "providers\\legacy"
+                    "providers\\legacy",
+                    "test\\p_ossltest"
                 ],
                 "lib" => [
                     "libcrypto",
@@ -13279,6 +13302,7 @@ our %unified_info = (
                 "test\\testutil\\libtestutil-lib-apps_shims.o",
                 "test\\testutil\\libtestutil-lib-basic_output.o",
                 "test\\testutil\\libtestutil-lib-cb.o",
+                "test\\testutil\\libtestutil-lib-compare.o",
                 "test\\testutil\\libtestutil-lib-driver.o",
                 "test\\testutil\\libtestutil-lib-fake_random.o",
                 "test\\testutil\\libtestutil-lib-format_output.o",
@@ -13507,6 +13531,9 @@ our %unified_info = (
         "crypto\\bn\\ppc64-mont.s" => [
             ".\\crypto\\bn\\asm\\ppc64-mont.pl"
         ],
+        "crypto\\bn\\riscv64-mont.S" => [
+            ".\\crypto\\bn\\asm\\riscv64-mont.pl"
+        ],
         "crypto\\bn\\rsaz-2k-avx512.s" => [
             ".\\crypto\\bn\\asm\\rsaz-2k-avx512.pl"
         ],
@@ -13670,6 +13697,9 @@ our %unified_info = (
         ],
         "crypto\\ec\\ecp_sm2p256-armv8.S" => [
             ".\\crypto\\ec\\asm\\ecp_sm2p256-armv8.pl"
+        ],
+        "crypto\\ec\\ecp_sm2p256-riscv64.S" => [
+            ".\\crypto\\ec\\asm\\ecp_sm2p256-riscv64.pl"
         ],
         "crypto\\ec\\x25519-ppc64.s" => [
             ".\\crypto\\ec\\asm\\x25519-ppc64.pl"
@@ -19926,11 +19956,20 @@ our %unified_info = (
         "providers\\implementations\\kem\\rsa_kem.c" => [
             ".\\providers\\implementations\\kem\\rsa_kem.c.in"
         ],
+        "providers\\implementations\\keymgmt\\dh_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\dh_kmgmt.c.in"
+        ],
+        "providers\\implementations\\keymgmt\\dsa_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\dsa_kmgmt.c.in"
+        ],
         "providers\\implementations\\keymgmt\\ecx_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\ecx_kmgmt.c.in"
         ],
         "providers\\implementations\\keymgmt\\lms_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\lms_kmgmt.c.in"
+        ],
+        "providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c" => [
+            ".\\providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c.in"
         ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
             ".\\providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c.in"
@@ -21710,6 +21749,10 @@ our %unified_info = (
             "crypto",
             ".\\crypto"
         ],
+        "crypto\\bn\\riscv64-mont.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
         "crypto\\bn\\sparct4-mont.o" => [
             "crypto",
             ".\\crypto"
@@ -21782,6 +21825,10 @@ our %unified_info = (
             ".\\crypto"
         ],
         "crypto\\ec\\ecp_sm2p256-armv8.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\ec\\ecp_sm2p256-riscv64.o" => [
             "crypto",
             ".\\crypto"
         ],
@@ -22798,6 +22845,12 @@ our %unified_info = (
         "providers\\implementations\\kem\\rsa_kem.c" => [
             ".\\util\\perl"
         ],
+        "providers\\implementations\\keymgmt\\dh_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\keymgmt\\dsa_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\keymgmt\\ecx_kmgmt.c" => [
             ".\\util\\perl"
         ],
@@ -22805,6 +22858,9 @@ our %unified_info = (
             "providers\\common\\include\\prov"
         ],
         "providers\\implementations\\keymgmt\\lms_kmgmt.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c" => [
@@ -24426,6 +24482,18 @@ our %unified_info = (
             ".",
             ".\\include",
             "."
+        ],
+        "test\\p_ossltest" => [
+            "include",
+            ".",
+            "providers\\common\\include",
+            "providers\\implementations\\include",
+            "providers\\implementations",
+            ".\\include",
+            ".",
+            ".\\providers\\common\\include",
+            ".\\providers\\implementations\\include",
+            ".\\providers\\implementations"
         ],
         "test\\p_test" => [
             "include",
@@ -26105,6 +26173,7 @@ our %unified_info = (
     "modules" => [
         "providers\\legacy",
         "test\\p_minimal",
+        "test\\p_ossltest",
         "test\\p_test"
     ],
     "programs" => [
@@ -26946,6 +27015,7 @@ our %unified_info = (
             "crypto\\kdf\\libcrypto-shlib-kdf_err.o",
             "crypto\\lhash\\libcrypto-shlib-lh_stats.o",
             "crypto\\lhash\\libcrypto-shlib-lhash.o",
+            "crypto\\libcrypto-shlib-aligned_alloc.o",
             "crypto\\libcrypto-shlib-array_alloc.o",
             "crypto\\libcrypto-shlib-asn1_dsa.o",
             "crypto\\libcrypto-shlib-bsearch.o",
@@ -30716,6 +30786,9 @@ our %unified_info = (
         "crypto\\lhash\\libcrypto-shlib-lhash.o" => [
             ".\\crypto\\lhash\\lhash.c"
         ],
+        "crypto\\libcrypto-lib-aligned_alloc.o" => [
+            ".\\crypto\\aligned_alloc.c"
+        ],
         "crypto\\libcrypto-lib-array_alloc.o" => [
             ".\\crypto\\array_alloc.c"
         ],
@@ -30889,6 +30962,9 @@ our %unified_info = (
         ],
         "crypto\\libcrypto-lib-x86_64cpuid.o" => [
             "crypto\\x86_64cpuid.s"
+        ],
+        "crypto\\libcrypto-shlib-aligned_alloc.o" => [
+            ".\\crypto\\aligned_alloc.c"
         ],
         "crypto\\libcrypto-shlib-array_alloc.o" => [
             ".\\crypto\\array_alloc.c"
@@ -33805,6 +33881,7 @@ our %unified_info = (
             "crypto\\kdf\\libcrypto-lib-kdf_err.o",
             "crypto\\lhash\\libcrypto-lib-lh_stats.o",
             "crypto\\lhash\\libcrypto-lib-lhash.o",
+            "crypto\\libcrypto-lib-aligned_alloc.o",
             "crypto\\libcrypto-lib-array_alloc.o",
             "crypto\\libcrypto-lib-asn1_dsa.o",
             "crypto\\libcrypto-lib-bsearch.o",
@@ -34800,10 +34877,10 @@ our %unified_info = (
             ".\\providers\\implementations\\kem\\template_kem.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-dh_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\dh_kmgmt.c"
+            "providers\\implementations\\keymgmt\\dh_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-dsa_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\dsa_kmgmt.c"
+            "providers\\implementations\\keymgmt\\dsa_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ec_kmgmt.o" => [
             ".\\providers\\implementations\\keymgmt\\ec_kmgmt.c"
@@ -34815,7 +34892,7 @@ our %unified_info = (
             ".\\providers\\implementations\\keymgmt\\kdf_legacy_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-mac_legacy_kmgmt.o" => [
-            ".\\providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c"
+            "providers\\implementations\\keymgmt\\mac_legacy_kmgmt.c"
         ],
         "providers\\implementations\\keymgmt\\libdefault-lib-ml_dsa_kmgmt.o" => [
             "providers\\implementations\\keymgmt\\ml_dsa_kmgmt.c"
@@ -35205,6 +35282,9 @@ our %unified_info = (
         "providers\\libtemplate.a" => [
             "providers\\implementations\\kem\\libtemplate-lib-template_kem.o",
             "providers\\implementations\\keymgmt\\libtemplate-lib-template_kmgmt.o"
+        ],
+        "providers\\p_ossltest-dso-prov_running.o" => [
+            ".\\providers\\prov_running.c"
         ],
         "ssl\\libssl-lib-bio_ssl.o" => [
             ".\\ssl\\bio_ssl.c"
@@ -37119,6 +37199,7 @@ our %unified_info = (
             "test\\testutil\\libtestutil-lib-apps_shims.o",
             "test\\testutil\\libtestutil-lib-basic_output.o",
             "test\\testutil\\libtestutil-lib-cb.o",
+            "test\\testutil\\libtestutil-lib-compare.o",
             "test\\testutil\\libtestutil-lib-driver.o",
             "test\\testutil\\libtestutil-lib-fake_random.o",
             "test\\testutil\\libtestutil-lib-format_output.o",
@@ -37247,6 +37328,14 @@ our %unified_info = (
         ],
         "test\\p_minimal-dso-p_minimal.o" => [
             ".\\test\\p_minimal.c"
+        ],
+        "test\\p_ossltest" => [
+            "providers\\p_ossltest-dso-prov_running.o",
+            "test\\p_ossltest-dso-p_ossltest.o",
+            "test\\p_test.ld"
+        ],
+        "test\\p_ossltest-dso-p_ossltest.o" => [
+            ".\\test\\p_ossltest.c"
         ],
         "test\\p_test" => [
             "test\\p_test-dso-p_test.o",
@@ -37866,6 +37955,9 @@ our %unified_info = (
         ],
         "test\\testutil\\libtestutil-lib-cb.o" => [
             ".\\test\\testutil\\cb.c"
+        ],
+        "test\\testutil\\libtestutil-lib-compare.o" => [
+            ".\\test\\testutil\\compare.c"
         ],
         "test\\testutil\\libtestutil-lib-driver.o" => [
             ".\\test\\testutil\\driver.c"

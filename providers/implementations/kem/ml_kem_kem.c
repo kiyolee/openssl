@@ -124,7 +124,7 @@ static int ml_kem_set_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("ikme", s + 0) == 0)) {
-                /* KEM_PARAM_IKME */
+                /* OSSL_KEM_PARAM_IKME */
                 if (ossl_unlikely(r->ikme != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);

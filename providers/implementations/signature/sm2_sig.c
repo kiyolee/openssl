@@ -432,7 +432,7 @@ static int sm2sig_get_ctx_params_decoder
                 break;
             case 'a':
                 if (ossl_likely(strcmp("lgorithm-id", s + 1) == 0)) {
-                    /* SIGNATURE_PARAM_ALGORITHM_ID */
+                    /* OSSL_SIGNATURE_PARAM_ALGORITHM_ID */
                     if (ossl_unlikely(r->algid != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -467,7 +467,7 @@ static int sm2sig_get_ctx_params_decoder
                                         break;
                                     case '-':
                                         if (ossl_likely(strcmp("size", s + 7) == 0)) {
-                                            /* SIGNATURE_PARAM_DIGEST_SIZE */
+                                            /* OSSL_SIGNATURE_PARAM_DIGEST_SIZE */
                                             if (ossl_unlikely(r->size != NULL)) {
                                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                "param %s is repeated", s);
@@ -583,7 +583,7 @@ static int sm2sig_set_ctx_params_decoder
                                         break;
                                     case '-':
                                         if (ossl_likely(strcmp("size", s + 7) == 0)) {
-                                            /* SIGNATURE_PARAM_DIGEST_SIZE */
+                                            /* OSSL_SIGNATURE_PARAM_DIGEST_SIZE */
                                             if (ossl_unlikely(r->size != NULL)) {
                                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                "param %s is repeated", s);
@@ -606,7 +606,7 @@ static int sm2sig_set_ctx_params_decoder
                         break;
                     case 's':
                         if (ossl_likely(strcmp("tid", s + 3) == 0)) {
-                            /* PKEY_PARAM_DIST_ID */
+                            /* OSSL_PKEY_PARAM_DIST_ID */
                             if (ossl_unlikely(r->distid != NULL)) {
                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                "param %s is repeated", s);

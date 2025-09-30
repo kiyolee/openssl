@@ -44,7 +44,7 @@ static int blake2_get_ctx_decoder
                 break;
             case 'b':
                 if (ossl_likely(strcmp("lock-size", s + 1) == 0)) {
-                    /* MAC_PARAM_BLOCK_SIZE */
+                    /* OSSL_MAC_PARAM_BLOCK_SIZE */
                     if (ossl_unlikely(r->bsize != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -55,7 +55,7 @@ static int blake2_get_ctx_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
-                    /* MAC_PARAM_SIZE */
+                    /* OSSL_MAC_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -103,7 +103,7 @@ static int blake2_mac_set_ctx_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ustom", s + 1) == 0)) {
-                    /* MAC_PARAM_CUSTOM */
+                    /* OSSL_MAC_PARAM_CUSTOM */
                     if (ossl_unlikely(r->cust != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -114,7 +114,7 @@ static int blake2_mac_set_ctx_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("ey", s + 1) == 0)) {
-                    /* MAC_PARAM_KEY */
+                    /* OSSL_MAC_PARAM_KEY */
                     if (ossl_unlikely(r->key != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -129,7 +129,7 @@ static int blake2_mac_set_ctx_decoder
                     break;
                 case 'a':
                     if (ossl_likely(strcmp("lt", s + 2) == 0)) {
-                        /* MAC_PARAM_SALT */
+                        /* OSSL_MAC_PARAM_SALT */
                         if (ossl_unlikely(r->salt != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -140,7 +140,7 @@ static int blake2_mac_set_ctx_decoder
                     break;
                 case 'i':
                     if (ossl_likely(strcmp("ze", s + 2) == 0)) {
-                        /* MAC_PARAM_SIZE */
+                        /* OSSL_MAC_PARAM_SIZE */
                         if (ossl_unlikely(r->size != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);

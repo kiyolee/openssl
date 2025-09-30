@@ -100,6 +100,7 @@
     <ClCompile Include="..\..\crypto\aes\aes_misc.c" />
     <ClCompile Include="..\..\crypto\aes\aes_ofb.c" />
     <ClCompile Include="..\..\crypto\aes\aes_wrap.c" />
+    <ClCompile Include="..\..\crypto\aligned_alloc.c" />
     <ClCompile Include="..\..\crypto\aria\aria.c" />
     <ClCompile Include="..\..\crypto\array_alloc.c" />
     <ClCompile Include="..\..\crypto\asn1\ameth_lib.c" />

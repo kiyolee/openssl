@@ -90,7 +90,7 @@ extern "C" {
 
 # define OPENSSL_VERSION_TEXT "OpenSSL 4.0.0-dev "
 
-/* Synthesize OPENSSL_VERSION_NUMBER with the layout 0xMNN00PPSL */
+/* Synthesize OPENSSL_VERSION_NUMBER with the layout 0xMNN00PP0L */
 # define OPENSSL_VERSION_NUMBER          \
     ( (OPENSSL_VERSION_MAJOR<<28)        \
       |(OPENSSL_VERSION_MINOR<<20)       \

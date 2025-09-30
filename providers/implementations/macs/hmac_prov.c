@@ -308,7 +308,7 @@ static int hmac_get_ctx_params_decoder
                 break;
             case 'b':
                 if (ossl_likely(strcmp("lock-size", s + 1) == 0)) {
-                    /* MAC_PARAM_BLOCK_SIZE */
+                    /* OSSL_MAC_PARAM_BLOCK_SIZE */
                     if (ossl_unlikely(r->bsize != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -320,7 +320,7 @@ static int hmac_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
-                    /* ALG_PARAM_FIPS_APPROVED_INDICATOR */
+                    /* OSSL_ALG_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -332,7 +332,7 @@ static int hmac_get_ctx_params_decoder
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {
-                    /* MAC_PARAM_SIZE */
+                    /* OSSL_MAC_PARAM_SIZE */
                     if (ossl_unlikely(r->size != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -420,7 +420,7 @@ static int hmac_set_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("igest", s + 1) == 0)) {
-                    /* MAC_PARAM_DIGEST */
+                    /* OSSL_MAC_PARAM_DIGEST */
                     if (ossl_unlikely(r->digest != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -431,7 +431,7 @@ static int hmac_set_ctx_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* ALG_PARAM_ENGINE */
+                    /* OSSL_ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -455,7 +455,7 @@ static int hmac_set_ctx_params_decoder
                         case '-':
 # if defined(FIPS_MODULE)
                             if (ossl_likely(strcmp("check", s + 4) == 0)) {
-                                /* MAC_PARAM_FIPS_KEY_CHECK */
+                                /* OSSL_MAC_PARAM_FIPS_KEY_CHECK */
                                 if (ossl_unlikely(r->ind_k != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -478,7 +478,7 @@ static int hmac_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
-                    /* MAC_PARAM_PROPERTIES */
+                    /* OSSL_MAC_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -489,7 +489,7 @@ static int hmac_set_ctx_params_decoder
                 break;
             case 't':
                 if (ossl_likely(strcmp("ls-data-size", s + 1) == 0)) {
-                    /* MAC_PARAM_TLS_DATA_SIZE */
+                    /* OSSL_MAC_PARAM_TLS_DATA_SIZE */
                     if (ossl_unlikely(r->tlssize != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);

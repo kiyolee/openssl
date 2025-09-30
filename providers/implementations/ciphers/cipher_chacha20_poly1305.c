@@ -137,7 +137,7 @@ static int chacha20_poly1305_get_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("vlen", s + 1) == 0)) {
-                    /* CIPHER_PARAM_IVLEN */
+                    /* OSSL_CIPHER_PARAM_IVLEN */
                     if (ossl_unlikely(r->ivlen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -148,7 +148,7 @@ static int chacha20_poly1305_get_ctx_params_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("eylen", s + 1) == 0)) {
-                    /* CIPHER_PARAM_KEYLEN */
+                    /* OSSL_CIPHER_PARAM_KEYLEN */
                     if (ossl_unlikely(r->keylen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -171,7 +171,7 @@ static int chacha20_poly1305_get_ctx_params_decoder
                             break;
                         case 'l':
                             if (ossl_likely(strcmp("en", s + 4) == 0)) {
-                                /* CIPHER_PARAM_AEAD_TAGLEN */
+                                /* OSSL_CIPHER_PARAM_AEAD_TAGLEN */
                                 if (ossl_unlikely(r->taglen != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -192,7 +192,7 @@ static int chacha20_poly1305_get_ctx_params_decoder
                     break;
                 case 'l':
                     if (ossl_likely(strcmp("saadpad", s + 2) == 0)) {
-                        /* CIPHER_PARAM_AEAD_TLS1_AAD_PAD */
+                        /* OSSL_CIPHER_PARAM_AEAD_TLS1_AAD_PAD */
                         if (ossl_unlikely(r->pad != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -299,7 +299,7 @@ static int chacha20_poly1305_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("vlen", s + 1) == 0)) {
-                    /* CIPHER_PARAM_IVLEN */
+                    /* OSSL_CIPHER_PARAM_IVLEN */
                     if (ossl_unlikely(r->ivlen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -310,7 +310,7 @@ static int chacha20_poly1305_set_ctx_params_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("eylen", s + 1) == 0)) {
-                    /* CIPHER_PARAM_KEYLEN */
+                    /* OSSL_CIPHER_PARAM_KEYLEN */
                     if (ossl_unlikely(r->keylen != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -325,7 +325,7 @@ static int chacha20_poly1305_set_ctx_params_decoder
                     break;
                 case 'a':
                     if (ossl_likely(strcmp("g", s + 2) == 0)) {
-                        /* CIPHER_PARAM_AEAD_TAG */
+                        /* OSSL_CIPHER_PARAM_AEAD_TAG */
                         if (ossl_unlikely(r->tag != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -344,7 +344,7 @@ static int chacha20_poly1305_set_ctx_params_decoder
                             break;
                         case 'a':
                             if (ossl_likely(strcmp("ad", s + 4) == 0)) {
-                                /* CIPHER_PARAM_AEAD_TLS1_AAD */
+                                /* OSSL_CIPHER_PARAM_AEAD_TLS1_AAD */
                                 if (ossl_unlikely(r->aad != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);
@@ -355,7 +355,7 @@ static int chacha20_poly1305_set_ctx_params_decoder
                             break;
                         case 'i':
                             if (ossl_likely(strcmp("vfixed", s + 4) == 0)) {
-                                /* CIPHER_PARAM_AEAD_TLS1_IV_FIXED */
+                                /* OSSL_CIPHER_PARAM_AEAD_TLS1_IV_FIXED */
                                 if (ossl_unlikely(r->fixed != NULL)) {
                                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                    "param %s is repeated", s);

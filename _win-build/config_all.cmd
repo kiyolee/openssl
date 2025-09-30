@@ -81,8 +81,11 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\kem\ecx_kem.c ^
   providers\implementations\kem\ml_kem_kem.c ^
   providers\implementations\kem\rsa_kem.c ^
+  providers\implementations\keymgmt\dh_kmgmt.c ^
+  providers\implementations\keymgmt\dsa_kmgmt.c ^
   providers\implementations\keymgmt\ecx_kmgmt.c ^
   providers\implementations\keymgmt\lms_kmgmt.c ^
+  providers\implementations\keymgmt\mac_legacy_kmgmt.c ^
   providers\implementations\keymgmt\ml_dsa_kmgmt.c ^
   providers\implementations\keymgmt\ml_kem_kmgmt.c ^
   providers\implementations\keymgmt\mlx_kmgmt.c ^

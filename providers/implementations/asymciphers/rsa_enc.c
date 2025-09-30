@@ -156,6 +156,7 @@ static int rsa_encrypt(void *vprsactx, unsigned char *out, size_t *outlen,
                        size_t outsize, const unsigned char *in, size_t inlen)
 {
     PROV_RSA_CTX *prsactx = (PROV_RSA_CTX *)vprsactx;
+    size_t len = RSA_size(prsactx->rsa);
     int ret;
 
     if (!ossl_prov_is_running())
@@ -173,15 +174,19 @@ static int rsa_encrypt(void *vprsactx, unsigned char *out, size_t *outlen,
     }
 #endif
 
-    if (out == NULL) {
-        size_t len = RSA_size(prsactx->rsa);
+    if (len == 0) {
+        ERR_raise(ERR_LIB_PROV, PROV_R_INVALID_KEY);
+        return 0;
+    }
 
-        if (len == 0) {
-            ERR_raise(ERR_LIB_PROV, PROV_R_INVALID_KEY);
-            return 0;
-        }
+    if (out == NULL) {
         *outlen = len;
         return 1;
+    }
+
+    if (outsize < len) {
+        ERR_raise(ERR_LIB_PROV, PROV_R_OUTPUT_BUFFER_TOO_SMALL);
+        return 0;
     }
 
     if (prsactx->pad_mode == RSA_PKCS1_OAEP_PADDING) {
@@ -411,7 +416,7 @@ static int rsa_get_ctx_params_decoder
                 break;
             case 'd':
                 if (ossl_likely(strcmp("igest", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_OAEP_DIGEST */
+                    /* OSSL_ASYM_CIPHER_PARAM_OAEP_DIGEST */
                     if (ossl_unlikely(r->oaep != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -423,7 +428,7 @@ static int rsa_get_ctx_params_decoder
             case 'f':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_FIPS_APPROVED_INDICATOR */
+                    /* OSSL_ASYM_CIPHER_PARAM_FIPS_APPROVED_INDICATOR */
                     if (ossl_unlikely(r->ind != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -435,7 +440,7 @@ static int rsa_get_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("mplicit-rejection", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_IMPLICIT_REJECTION */
+                    /* OSSL_ASYM_CIPHER_PARAM_IMPLICIT_REJECTION */
                     if (ossl_unlikely(r->imrej != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -446,7 +451,7 @@ static int rsa_get_ctx_params_decoder
                 break;
             case 'm':
                 if (ossl_likely(strcmp("gf1-digest", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_MGF1_DIGEST */
+                    /* OSSL_ASYM_CIPHER_PARAM_MGF1_DIGEST */
                     if (ossl_unlikely(r->mgf1 != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -457,7 +462,7 @@ static int rsa_get_ctx_params_decoder
                 break;
             case 'o':
                 if (ossl_likely(strcmp("aep-label", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_OAEP_LABEL */
+                    /* OSSL_ASYM_CIPHER_PARAM_OAEP_LABEL */
                     if (ossl_unlikely(r->label != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -468,7 +473,7 @@ static int rsa_get_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("ad-mode", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_PAD_MODE */
+                    /* OSSL_ASYM_CIPHER_PARAM_PAD_MODE */
                     if (ossl_unlikely(r->pad != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -495,7 +500,7 @@ static int rsa_get_ctx_params_decoder
                                 break;
                             case 'c':
                                 if (ossl_likely(strcmp("lient-version", s + 5) == 0)) {
-                                    /* ASYM_CIPHER_PARAM_TLS_CLIENT_VERSION */
+                                    /* OSSL_ASYM_CIPHER_PARAM_TLS_CLIENT_VERSION */
                                     if (ossl_unlikely(r->tlsver != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -506,7 +511,7 @@ static int rsa_get_ctx_params_decoder
                                 break;
                             case 'n':
                                 if (ossl_likely(strcmp("egotiated-version", s + 5) == 0)) {
-                                    /* ASYM_CIPHER_PARAM_TLS_NEGOTIATED_VERSION */
+                                    /* OSSL_ASYM_CIPHER_PARAM_TLS_NEGOTIATED_VERSION */
                                     if (ossl_unlikely(r->negver != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -683,7 +688,7 @@ static int rsa_set_ctx_params_decoder
                                         break;
                                     case '-':
                                         if (ossl_likely(strcmp("props", s + 7) == 0)) {
-                                            /* ASYM_CIPHER_PARAM_OAEP_DIGEST_PROPS */
+                                            /* OSSL_ASYM_CIPHER_PARAM_OAEP_DIGEST_PROPS */
                                             if (ossl_unlikely(r->oaep_pq != NULL)) {
                                                 ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                                "param %s is repeated", s);
@@ -708,7 +713,7 @@ static int rsa_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("mplicit-rejection", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_IMPLICIT_REJECTION */
+                    /* OSSL_ASYM_CIPHER_PARAM_IMPLICIT_REJECTION */
                     if (ossl_unlikely(r->imrej != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -720,7 +725,7 @@ static int rsa_set_ctx_params_decoder
             case 'k':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("ey-check", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_FIPS_KEY_CHECK */
+                    /* OSSL_ASYM_CIPHER_PARAM_FIPS_KEY_CHECK */
                     if (ossl_unlikely(r->ind_k != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -752,7 +757,7 @@ static int rsa_set_ctx_params_decoder
                                     break;
                                 case 'd':
                                     if (ossl_likely(strcmp("igest", s + 6) == 0)) {
-                                        /* ASYM_CIPHER_PARAM_MGF1_DIGEST */
+                                        /* OSSL_ASYM_CIPHER_PARAM_MGF1_DIGEST */
                                         if (ossl_unlikely(r->mgf1 != NULL)) {
                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                            "param %s is repeated", s);
@@ -763,7 +768,7 @@ static int rsa_set_ctx_params_decoder
                                     break;
                                 case 'p':
                                     if (ossl_likely(strcmp("roperties", s + 6) == 0)) {
-                                        /* ASYM_CIPHER_PARAM_MGF1_DIGEST_PROPS */
+                                        /* OSSL_ASYM_CIPHER_PARAM_MGF1_DIGEST_PROPS */
                                         if (ossl_unlikely(r->mgf1_pq != NULL)) {
                                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                            "param %s is repeated", s);
@@ -779,7 +784,7 @@ static int rsa_set_ctx_params_decoder
                 break;
             case 'o':
                 if (ossl_likely(strcmp("aep-label", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_OAEP_LABEL */
+                    /* OSSL_ASYM_CIPHER_PARAM_OAEP_LABEL */
                     if (ossl_unlikely(r->label != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -790,7 +795,7 @@ static int rsa_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("ad-mode", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_PAD_MODE */
+                    /* OSSL_ASYM_CIPHER_PARAM_PAD_MODE */
                     if (ossl_unlikely(r->pad != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -802,7 +807,7 @@ static int rsa_set_ctx_params_decoder
             case 'r':
 # if defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("sa-pkcs15-pad-disabled", s + 1) == 0)) {
-                    /* ASYM_CIPHER_PARAM_FIPS_RSA_PKCS15_PAD_DISABLED */
+                    /* OSSL_ASYM_CIPHER_PARAM_FIPS_RSA_PKCS15_PAD_DISABLED */
                     if (ossl_unlikely(r->ind_pad != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -830,7 +835,7 @@ static int rsa_set_ctx_params_decoder
                                 break;
                             case 'c':
                                 if (ossl_likely(strcmp("lient-version", s + 5) == 0)) {
-                                    /* ASYM_CIPHER_PARAM_TLS_CLIENT_VERSION */
+                                    /* OSSL_ASYM_CIPHER_PARAM_TLS_CLIENT_VERSION */
                                     if (ossl_unlikely(r->tlsver != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);
@@ -841,7 +846,7 @@ static int rsa_set_ctx_params_decoder
                                 break;
                             case 'n':
                                 if (ossl_likely(strcmp("egotiated-version", s + 5) == 0)) {
-                                    /* ASYM_CIPHER_PARAM_TLS_NEGOTIATED_VERSION */
+                                    /* OSSL_ASYM_CIPHER_PARAM_TLS_NEGOTIATED_VERSION */
                                     if (ossl_unlikely(r->negver != NULL)) {
                                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                                        "param %s is repeated", s);

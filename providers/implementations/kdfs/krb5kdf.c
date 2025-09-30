@@ -194,7 +194,7 @@ static int krb5kdf_set_ctx_params_decoder
                     break;
                 case 'i':
                     if (ossl_likely(strcmp("pher", s + 2) == 0)) {
-                        /* KDF_PARAM_CIPHER */
+                        /* OSSL_KDF_PARAM_CIPHER */
                         if (ossl_unlikely(r->cipher != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -205,7 +205,7 @@ static int krb5kdf_set_ctx_params_decoder
                     break;
                 case 'o':
                     if (ossl_likely(strcmp("nstant", s + 2) == 0)) {
-                        /* KDF_PARAM_CONSTANT */
+                        /* OSSL_KDF_PARAM_CONSTANT */
                         if (ossl_unlikely(r->cnst != NULL)) {
                             ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                            "param %s is repeated", s);
@@ -217,7 +217,7 @@ static int krb5kdf_set_ctx_params_decoder
                 break;
             case 'e':
                 if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* ALG_PARAM_ENGINE */
+                    /* OSSL_ALG_PARAM_ENGINE */
                     if (ossl_unlikely(r->engine != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -228,7 +228,7 @@ static int krb5kdf_set_ctx_params_decoder
                 break;
             case 'k':
                 if (ossl_likely(strcmp("ey", s + 1) == 0)) {
-                    /* KDF_PARAM_KEY */
+                    /* OSSL_KDF_PARAM_KEY */
                     if (ossl_unlikely(r->key != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -239,7 +239,7 @@ static int krb5kdf_set_ctx_params_decoder
                 break;
             case 'p':
                 if (ossl_likely(strcmp("roperties", s + 1) == 0)) {
-                    /* KDF_PARAM_PROPERTIES */
+                    /* OSSL_KDF_PARAM_PROPERTIES */
                     if (ossl_unlikely(r->propq != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -307,7 +307,7 @@ static int krb5kdf_get_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("size", s + 0) == 0)) {
-                /* KDF_PARAM_SIZE */
+                /* OSSL_KDF_PARAM_SIZE */
                 if (ossl_unlikely(r->size != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
@@ -483,7 +483,7 @@ static int cipher_init(EVP_CIPHER_CTX *ctx,
 {
     int klen, ret;
 
-    ret = EVP_EncryptInit_ex(ctx, cipher, engine, key, NULL);
+    ret = EVP_EncryptInit_ex(ctx, cipher, engine, NULL, NULL);
     if (!ret)
         goto out;
     /* set the key len for the odd variable key len cipher */
@@ -495,6 +495,9 @@ static int cipher_init(EVP_CIPHER_CTX *ctx,
             goto out;
         }
     }
+    ret = EVP_EncryptInit_ex(ctx, NULL, NULL, key, NULL);
+    if (!ret)
+        goto out;
     /* we never want padding, either the length requested is a multiple of
      * the cipher block size or we are passed a cipher that can cope with
      * partial blocks via techniques like cipher text stealing */

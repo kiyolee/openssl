@@ -817,7 +817,7 @@ static int eddsa_get_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("algorithm-id", s + 0) == 0)) {
-                /* SIGNATURE_PARAM_ALGORITHM_ID */
+                /* OSSL_SIGNATURE_PARAM_ALGORITHM_ID */
                 if (ossl_unlikely(r->id != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
@@ -883,7 +883,7 @@ static int eddsa_set_ctx_params_decoder
                 break;
             case 'c':
                 if (ossl_likely(strcmp("ontext-string", s + 1) == 0)) {
-                    /* SIGNATURE_PARAM_CONTEXT_STRING */
+                    /* OSSL_SIGNATURE_PARAM_CONTEXT_STRING */
                     if (ossl_unlikely(r->ctx != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -894,7 +894,7 @@ static int eddsa_set_ctx_params_decoder
                 break;
             case 'i':
                 if (ossl_likely(strcmp("nstance", s + 1) == 0)) {
-                    /* SIGNATURE_PARAM_INSTANCE */
+                    /* OSSL_SIGNATURE_PARAM_INSTANCE */
                     if (ossl_unlikely(r->inst != NULL)) {
                         ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                        "param %s is repeated", s);
@@ -1011,7 +1011,7 @@ static int eddsa_set_variant_ctx_params_decoder
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
             if (ossl_likely(strcmp("context-string", s + 0) == 0)) {
-                /* SIGNATURE_PARAM_CONTEXT_STRING */
+                /* OSSL_SIGNATURE_PARAM_CONTEXT_STRING */
                 if (ossl_unlikely(r->ctx != NULL)) {
                     ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
                                    "param %s is repeated", s);
