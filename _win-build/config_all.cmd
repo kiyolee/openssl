@@ -46,12 +46,24 @@ set _GEN_LIST_PARAMNAMES_INCL=^
 set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\asymciphers\rsa_enc.c ^
   providers\implementations\asymciphers\sm2_enc.c ^
+  providers\implementations\ciphers\cipher_aes_cbc_hmac_sha.c ^
+  providers\implementations\ciphers\cipher_aes_cbc_hmac_sha_etm.c ^
+  providers\implementations\ciphers\cipher_aes_gcm_siv.c ^
+  providers\implementations\ciphers\cipher_aes_ocb.c ^
+  providers\implementations\ciphers\cipher_aes_siv.c ^
+  providers\implementations\ciphers\cipher_aes_wrp.c ^
+  providers\implementations\ciphers\cipher_aes_xts.c ^
+  providers\implementations\ciphers\cipher_chacha20.c ^
   providers\implementations\ciphers\cipher_chacha20_poly1305.c ^
+  providers\implementations\ciphers\cipher_null.c ^
+  providers\implementations\ciphers\cipher_rc4_hmac_md5.c ^
+  providers\implementations\ciphers\cipher_sm4_xts.c ^
   providers\implementations\ciphers\ciphercommon.c ^
   providers\implementations\ciphers\ciphercommon_ccm.c ^
   providers\implementations\ciphers\ciphercommon_gcm.c ^
   providers\implementations\digests\blake2_prov.c ^
   providers\implementations\digests\digestcommon.c ^
+  providers\implementations\digests\mdc2_prov.c ^
   providers\implementations\digests\sha3_prov.c ^
   providers\implementations\encode_decode\decode_der2key.c ^
   providers\implementations\encode_decode\decode_epki2pki.c ^
