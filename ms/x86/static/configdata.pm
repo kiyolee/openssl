@@ -2115,12 +2115,24 @@ our %unified_info = (
             "openssl.pc",
             "providers\\implementations\\asymciphers\\rsa_enc.c",
             "providers\\implementations\\asymciphers\\sm2_enc.c",
+            "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c",
+            "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c",
+            "providers\\implementations\\ciphers\\cipher_aes_gcm_siv.c",
+            "providers\\implementations\\ciphers\\cipher_aes_ocb.c",
+            "providers\\implementations\\ciphers\\cipher_aes_siv.c",
+            "providers\\implementations\\ciphers\\cipher_aes_wrp.c",
+            "providers\\implementations\\ciphers\\cipher_aes_xts.c",
+            "providers\\implementations\\ciphers\\cipher_chacha20.c",
             "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c",
+            "providers\\implementations\\ciphers\\cipher_null.c",
+            "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.c",
+            "providers\\implementations\\ciphers\\cipher_sm4_xts.c",
             "providers\\implementations\\ciphers\\ciphercommon.c",
             "providers\\implementations\\ciphers\\ciphercommon_ccm.c",
             "providers\\implementations\\ciphers\\ciphercommon_gcm.c",
             "providers\\implementations\\digests\\blake2_prov.c",
             "providers\\implementations\\digests\\digestcommon.c",
+            "providers\\implementations\\digests\\mdc2_prov.c",
             "providers\\implementations\\digests\\sha3_prov.c",
             "providers\\implementations\\encode_decode\\decode_der2key.c",
             "providers\\implementations\\encode_decode\\decode_epki2pki.c",
@@ -8364,7 +8376,40 @@ our %unified_info = (
         "providers\\implementations\\asymciphers\\sm2_enc.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_gcm_siv.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_ocb.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_siv.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_wrp.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_xts.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_chacha20.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_null.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_sm4_xts.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
@@ -8380,6 +8425,9 @@ our %unified_info = (
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\digests\\digestcommon.c" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\digests\\mdc2_prov.c" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\digests\\sha3_prov.c" => [
@@ -18763,8 +18811,41 @@ our %unified_info = (
         "providers\\implementations\\asymciphers\\sm2_enc.c" => [
             ".\\providers\\implementations\\asymciphers\\sm2_enc.c.in"
         ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_gcm_siv.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_gcm_siv.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_ocb.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_ocb.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_siv.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_siv.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_wrp.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_wrp.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_xts.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_aes_xts.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_chacha20.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_chacha20.c.in"
+        ],
         "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c" => [
             ".\\providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_null.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_null.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.c.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_sm4_xts.c" => [
+            ".\\providers\\implementations\\ciphers\\cipher_sm4_xts.c.in"
         ],
         "providers\\implementations\\ciphers\\ciphercommon.c" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon.c.in"
@@ -18780,6 +18861,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\digests\\digestcommon.c" => [
             ".\\providers\\implementations\\digests\\digestcommon.c.in"
+        ],
+        "providers\\implementations\\digests\\mdc2_prov.c" => [
+            ".\\providers\\implementations\\digests\\mdc2_prov.c.in"
         ],
         "providers\\implementations\\digests\\sha3_prov.c" => [
             ".\\providers\\implementations\\digests\\sha3_prov.c.in"
@@ -21554,10 +21638,83 @@ our %unified_info = (
         "providers\\implementations\\asymciphers\\sm2_enc.c" => [
             ".\\util\\perl"
         ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_gcm_siv.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_gcm_siv.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_ocb.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_ocb.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_siv.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_siv.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_wrp.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_wrp.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_xts.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_aes_xts.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_chacha20.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_chacha20.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
         "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.c" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_null.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_sm4_xts.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_sm4_xts.o" => [
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
@@ -21578,7 +21735,47 @@ our %unified_info = (
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha_etm.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm_siv.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ocb.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_siv.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_wrp.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_xts.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20_poly1305.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\liblegacy-lib-cipher_rc4_hmac_md5.o" => [
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
@@ -21586,6 +21783,9 @@ our %unified_info = (
             ".\\util\\perl"
         ],
         "providers\\implementations\\digests\\digestcommon.c" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\digests\\mdc2_prov.c" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\digests\\sha3_prov.c" => [
@@ -29612,7 +29812,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_aes.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c"
+            "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha1_etm_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha1_etm_hw.c"
@@ -29630,7 +29830,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha512_etm_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_cbc_hmac_sha_etm.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c"
+            "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha_etm.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ccm.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_ccm.c"
@@ -29648,7 +29848,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_aes_gcm_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm_siv.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_aes_gcm_siv.c"
+            "providers\\implementations\\ciphers\\cipher_aes_gcm_siv.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_gcm_siv_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_gcm_siv_hw.c"
@@ -29660,22 +29860,22 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_aes_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ocb.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_aes_ocb.c"
+            "providers\\implementations\\ciphers\\cipher_aes_ocb.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_ocb_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_ocb_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_siv.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_aes_siv.c"
+            "providers\\implementations\\ciphers\\cipher_aes_siv.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_siv_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_siv_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_wrp.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_aes_wrp.c"
+            "providers\\implementations\\ciphers\\cipher_aes_wrp.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_xts.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_aes_xts.c"
+            "providers\\implementations\\ciphers\\cipher_aes_xts.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_xts_fips.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_xts_fips.c"
@@ -29708,7 +29908,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_camellia_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_chacha20.c"
+            "providers\\implementations\\ciphers\\cipher_chacha20.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_chacha20_hw.c"
@@ -29723,7 +29923,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_cts.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_null.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_null.c"
+            "providers\\implementations\\ciphers\\cipher_null.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_sm4.c"
@@ -29744,7 +29944,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_sm4_hw.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_sm4_xts.c"
+            "providers\\implementations\\ciphers\\cipher_sm4_xts.c"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_sm4_xts_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_sm4_xts_hw.c"
@@ -29810,7 +30010,7 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers\\cipher_rc4.c"
         ],
         "providers\\implementations\\ciphers\\liblegacy-lib-cipher_rc4_hmac_md5.o" => [
-            ".\\providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.c"
+            "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.c"
         ],
         "providers\\implementations\\ciphers\\liblegacy-lib-cipher_rc4_hmac_md5_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_rc4_hmac_md5_hw.c"
@@ -29864,7 +30064,7 @@ our %unified_info = (
             ".\\providers\\implementations\\digests\\md4_prov.c"
         ],
         "providers\\implementations\\digests\\liblegacy-lib-mdc2_prov.o" => [
-            ".\\providers\\implementations\\digests\\mdc2_prov.c"
+            "providers\\implementations\\digests\\mdc2_prov.c"
         ],
         "providers\\implementations\\digests\\liblegacy-lib-ripemd_prov.o" => [
             ".\\providers\\implementations\\digests\\ripemd_prov.c"
