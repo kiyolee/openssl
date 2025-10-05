@@ -4328,6 +4328,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_get_handshake_rtt.html" => [
             ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
         ],
+        "doc\\html\\man3\\SSL_get_peer_addr.html" => [
+            ".\\doc\\man3\\SSL_get_peer_addr.pod"
+        ],
         "doc\\html\\man3\\SSL_get_peer_cert_chain.html" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
         ],
@@ -7238,6 +7241,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_get_handshake_rtt.3" => [
             ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
+        ],
+        "doc\\man\\man3\\SSL_get_peer_addr.3" => [
+            ".\\doc\\man3\\SSL_get_peer_addr.pod"
         ],
         "doc\\man\\man3\\SSL_get_peer_cert_chain.3" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
@@ -15953,6 +15959,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_get_handshake_rtt.html" => [
             ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
         ],
+        "doc\\html\\man3\\SSL_get_peer_addr.html" => [
+            ".\\doc\\man3\\SSL_get_peer_addr.pod"
+        ],
         "doc\\html\\man3\\SSL_get_peer_cert_chain.html" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
         ],
@@ -18809,6 +18818,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_get_handshake_rtt.3" => [
             ".\\doc\\man3\\SSL_get_handshake_rtt.pod"
         ],
+        "doc\\man\\man3\\SSL_get_peer_addr.3" => [
+            ".\\doc\\man3\\SSL_get_peer_addr.pod"
+        ],
         "doc\\man\\man3\\SSL_get_peer_cert_chain.3" => [
             ".\\doc\\man3\\SSL_get_peer_cert_chain.pod"
         ],
@@ -21061,6 +21073,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_get_extms_support.html",
             "doc\\html\\man3\\SSL_get_fd.html",
             "doc\\html\\man3\\SSL_get_handshake_rtt.html",
+            "doc\\html\\man3\\SSL_get_peer_addr.html",
             "doc\\html\\man3\\SSL_get_peer_cert_chain.html",
             "doc\\html\\man3\\SSL_get_peer_certificate.html",
             "doc\\html\\man3\\SSL_get_peer_signature_nid.html",
@@ -26074,6 +26087,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_get_extms_support.3",
             "doc\\man\\man3\\SSL_get_fd.3",
             "doc\\man\\man3\\SSL_get_handshake_rtt.3",
+            "doc\\man\\man3\\SSL_get_peer_addr.3",
             "doc\\man\\man3\\SSL_get_peer_cert_chain.3",
             "doc\\man\\man3\\SSL_get_peer_certificate.3",
             "doc\\man\\man3\\SSL_get_peer_signature_nid.3",
