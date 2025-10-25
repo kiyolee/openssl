@@ -7,7 +7,7 @@
 # https://www.openssl.org/source/license.html
 
 use strict;
-use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file srctop_dir bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file srctop_dir bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use File::Temp qw(tempfile);
 use TLSProxy::Proxy;
@@ -200,7 +200,8 @@ plan skip_all => "$test_name needs EC enabled"
     [0,0,0,0]
 );
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 my $proxy = TLSProxy::Proxy->new(
     undef,
