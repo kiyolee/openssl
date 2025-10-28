@@ -183,7 +183,10 @@ extern "C" {
 # undef I386_ONLY
 
 /*
- * The following are cipher-specific, but are part of the public API.
+ * The UEFI build supports both 32-bit and 64-bit builds from a single run
+ * of the Configure script.  To allow this, they define THIRTY_TWO_BIT and
+ * SIXTY_FOUR_BIT appropriately for their builds, and we should not touch
+ * them in that case.
  */
 # if !defined(OPENSSL_SYS_UEFI)
 #ifdef _WIN64
@@ -202,6 +205,9 @@ extern "C" {
 #endif
 # endif
 
+/*
+ * The following are cipher-specific, but are part of the public API.
+ */
 #if defined(_M_ARM) || defined(_M_ARM64)
 # define RC4_INT unsigned char
 #else
