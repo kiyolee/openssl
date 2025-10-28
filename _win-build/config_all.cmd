@@ -10,7 +10,6 @@ set OPENSSL_DIR_SED=\.\.\\\\openssl-%OPENSSL_VER_SED%
 set ZLIB_DIR=..\zlib
 
 set _GEN_LIST_INCL=^
-  include\crypto\bn_conf.h ^
   include\crypto\dso_conf.h ^
   include\openssl\asn1.h ^
   include\openssl\asn1t.h ^
