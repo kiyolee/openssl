@@ -2099,7 +2099,6 @@ our %unified_info = (
             "OpenSSLConfigVersion.cmake",
             "exporters\\OpenSSLConfigVersion.cmake",
             "exporters\\openssl.pc",
-            "include\\crypto\\bn_conf.h",
             "include\\crypto\\dso_conf.h",
             "include\\openssl\\asn1.h",
             "include\\openssl\\asn1t.h",
@@ -18669,9 +18668,6 @@ our %unified_info = (
         ],
         "exporters\\openssl.pc" => [
             ".\\exporters\\pkg-config\\openssl.pc.in"
-        ],
-        "include\\crypto\\bn_conf.h" => [
-            ".\\include\\crypto\\bn_conf.h.in"
         ],
         "include\\crypto\\dso_conf.h" => [
             ".\\include\\crypto\\dso_conf.h.in"
