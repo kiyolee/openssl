@@ -17,14 +17,14 @@
 static const OSSL_PARAM hkdf_set_ctx_params_list[] = {
     OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_MODE, NULL, 0),
     OSSL_PARAM_int(OSSL_KDF_PARAM_MODE, NULL),
-    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_PROPERTIES, NULL, 0),
-    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_DIGEST, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_KDF_PARAM_KEY, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_KDF_PARAM_SALT, NULL, 0),
+    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_PROPERTIES, NULL, 0),
+    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_DIGEST, NULL, 0),
+    OSSL_PARAM_octet_string(OSSL_KDF_PARAM_INFO, NULL, 0),
 # if defined(FIPS_MODULE)
     OSSL_PARAM_int(OSSL_KDF_PARAM_FIPS_KEY_CHECK, NULL),
 # endif
-    OSSL_PARAM_octet_string(OSSL_KDF_PARAM_INFO, NULL, 0),
     OSSL_PARAM_END
 };
 #endif
@@ -290,17 +290,16 @@ static const OSSL_PARAM hkdf_fixed_digest_set_ctx_params_list[] = {
     OSSL_PARAM_int(OSSL_KDF_PARAM_MODE, NULL),
     OSSL_PARAM_octet_string(OSSL_KDF_PARAM_KEY, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_KDF_PARAM_SALT, NULL, 0),
+    OSSL_PARAM_octet_string(OSSL_KDF_PARAM_INFO, NULL, 0),
 # if defined(FIPS_MODULE)
     OSSL_PARAM_int(OSSL_KDF_PARAM_FIPS_KEY_CHECK, NULL),
 # endif
-    OSSL_PARAM_octet_string(OSSL_KDF_PARAM_INFO, NULL, 0),
     OSSL_PARAM_END
 };
 #endif
 
 #ifndef hkdf_fixed_digest_set_ctx_params_st
 struct hkdf_fixed_digest_set_ctx_params_st {
-    OSSL_PARAM *digest;
 # if defined(FIPS_MODULE)
     OSSL_PARAM *ind_k;
 # endif
@@ -327,12 +326,9 @@ static int hkdf_fixed_digest_set_ctx_params_decoder
             case 'd':
                 if (ossl_likely(strcmp("igest", s + 1) == 0)) {
                     /* OSSL_KDF_PARAM_DIGEST */
-                    if (ossl_unlikely(r->digest != NULL)) {
-                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                       "param %s is repeated", s);
-                        return 0;
-                    }
-                    r->digest = (OSSL_PARAM *)p;
+                    ERR_raise_data(ERR_LIB_PROV, ERR_R_UNSUPPORTED,
+                                   "param %s is unsupported", s);
+                    return 0;
                 }
                 break;
             case 'i':
@@ -414,10 +410,10 @@ static int hkdf_fixed_digest_set_ctx_params_decoder
 static const OSSL_PARAM kdf_tls1_3_set_ctx_params_list[] = {
     OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_MODE, NULL, 0),
     OSSL_PARAM_int(OSSL_KDF_PARAM_MODE, NULL),
-    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_PROPERTIES, NULL, 0),
-    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_DIGEST, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_KDF_PARAM_KEY, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_KDF_PARAM_SALT, NULL, 0),
+    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_PROPERTIES, NULL, 0),
+    OSSL_PARAM_utf8_string(OSSL_KDF_PARAM_DIGEST, NULL, 0),
 # if defined(FIPS_MODULE)
     OSSL_PARAM_int(OSSL_KDF_PARAM_FIPS_KEY_CHECK, NULL),
 # endif
