@@ -2928,6 +2928,9 @@ our %unified_info = (
         "doc\\html\\man3\\CMS_EncryptedData_encrypt.html" => [
             ".\\doc\\man3\\CMS_EncryptedData_encrypt.pod"
         ],
+        "doc\\html\\man3\\CMS_EncryptedData_set1_key.html" => [
+            ".\\doc\\man3\\CMS_EncryptedData_set1_key.pod"
+        ],
         "doc\\html\\man3\\CMS_EnvelopedData_create.html" => [
             ".\\doc\\man3\\CMS_EnvelopedData_create.pod"
         ],
@@ -5841,6 +5844,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\CMS_EncryptedData_encrypt.3" => [
             ".\\doc\\man3\\CMS_EncryptedData_encrypt.pod"
+        ],
+        "doc\\man\\man3\\CMS_EncryptedData_set1_key.3" => [
+            ".\\doc\\man3\\CMS_EncryptedData_set1_key.pod"
         ],
         "doc\\man\\man3\\CMS_EnvelopedData_create.3" => [
             ".\\doc\\man3\\CMS_EnvelopedData_create.pod"
@@ -10559,7 +10565,7 @@ our %unified_info = (
                 "crypto\\bn\\libcrypto-lib-bn_print.o",
                 "crypto\\bn\\libcrypto-lib-bn_rand.o",
                 "crypto\\bn\\libcrypto-lib-bn_recp.o",
-                "crypto\\bn\\libcrypto-lib-bn_rsa_fips186_4.o",
+                "crypto\\bn\\libcrypto-lib-bn_rsa_fips186_5.o",
                 "crypto\\bn\\libcrypto-lib-bn_shift.o",
                 "crypto\\bn\\libcrypto-lib-bn_sqr.o",
                 "crypto\\bn\\libcrypto-lib-bn_sqrt.o",
@@ -10595,7 +10601,7 @@ our %unified_info = (
                 "crypto\\bn\\libcrypto-shlib-bn_print.o",
                 "crypto\\bn\\libcrypto-shlib-bn_rand.o",
                 "crypto\\bn\\libcrypto-shlib-bn_recp.o",
-                "crypto\\bn\\libcrypto-shlib-bn_rsa_fips186_4.o",
+                "crypto\\bn\\libcrypto-shlib-bn_rsa_fips186_5.o",
                 "crypto\\bn\\libcrypto-shlib-bn_shift.o",
                 "crypto\\bn\\libcrypto-shlib-bn_sqr.o",
                 "crypto\\bn\\libcrypto-shlib-bn_sqrt.o",
@@ -13352,6 +13358,9 @@ our %unified_info = (
             "\"INCLUDEDIR=\$(SRCDIR)/include\"",
             "ENGINESDIR=engines",
             "MODULESDIR=providers",
+            "libdir=",
+            "CMAKECONFIGDIR=",
+            "PKGCONFIGDIR=",
             "\"VERSION=\$(VERSION)\"",
             "\"LDLIBS=\$(LIB_EX_LIBS)\""
         ],
@@ -14513,6 +14522,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\CMS_EncryptedData_encrypt.html" => [
             ".\\doc\\man3\\CMS_EncryptedData_encrypt.pod"
+        ],
+        "doc\\html\\man3\\CMS_EncryptedData_set1_key.html" => [
+            ".\\doc\\man3\\CMS_EncryptedData_set1_key.pod"
         ],
         "doc\\html\\man3\\CMS_EnvelopedData_create.html" => [
             ".\\doc\\man3\\CMS_EnvelopedData_create.pod"
@@ -17372,6 +17384,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\CMS_EncryptedData_encrypt.3" => [
             ".\\doc\\man3\\CMS_EncryptedData_encrypt.pod"
+        ],
+        "doc\\man\\man3\\CMS_EncryptedData_set1_key.3" => [
+            ".\\doc\\man3\\CMS_EncryptedData_set1_key.pod"
         ],
         "doc\\man\\man3\\CMS_EnvelopedData_create.3" => [
             ".\\doc\\man3\\CMS_EnvelopedData_create.pod"
@@ -20553,6 +20568,7 @@ our %unified_info = (
             "doc\\html\\man3\\CMAC_CTX.html",
             "doc\\html\\man3\\CMS_EncryptedData_decrypt.html",
             "doc\\html\\man3\\CMS_EncryptedData_encrypt.html",
+            "doc\\html\\man3\\CMS_EncryptedData_set1_key.html",
             "doc\\html\\man3\\CMS_EnvelopedData_create.html",
             "doc\\html\\man3\\CMS_add0_cert.html",
             "doc\\html\\man3\\CMS_add1_recipient_cert.html",
@@ -25575,6 +25591,7 @@ our %unified_info = (
             "doc\\man\\man3\\CMAC_CTX.3",
             "doc\\man\\man3\\CMS_EncryptedData_decrypt.3",
             "doc\\man\\man3\\CMS_EncryptedData_encrypt.3",
+            "doc\\man\\man3\\CMS_EncryptedData_set1_key.3",
             "doc\\man\\man3\\CMS_EnvelopedData_create.3",
             "doc\\man\\man3\\CMS_add0_cert.3",
             "doc\\man\\man3\\CMS_add1_recipient_cert.3",
@@ -26838,7 +26855,7 @@ our %unified_info = (
             "crypto\\bn\\libcrypto-shlib-bn_print.o",
             "crypto\\bn\\libcrypto-shlib-bn_rand.o",
             "crypto\\bn\\libcrypto-shlib-bn_recp.o",
-            "crypto\\bn\\libcrypto-shlib-bn_rsa_fips186_4.o",
+            "crypto\\bn\\libcrypto-shlib-bn_rsa_fips186_5.o",
             "crypto\\bn\\libcrypto-shlib-bn_shift.o",
             "crypto\\bn\\libcrypto-shlib-bn_sqr.o",
             "crypto\\bn\\libcrypto-shlib-bn_sqrt.o",
@@ -28776,8 +28793,8 @@ our %unified_info = (
         "crypto\\bn\\libcrypto-lib-bn_recp.o" => [
             ".\\crypto\\bn\\bn_recp.c"
         ],
-        "crypto\\bn\\libcrypto-lib-bn_rsa_fips186_4.o" => [
-            ".\\crypto\\bn\\bn_rsa_fips186_4.c"
+        "crypto\\bn\\libcrypto-lib-bn_rsa_fips186_5.o" => [
+            ".\\crypto\\bn\\bn_rsa_fips186_5.c"
         ],
         "crypto\\bn\\libcrypto-lib-bn_shift.o" => [
             ".\\crypto\\bn\\bn_shift.c"
@@ -28884,8 +28901,8 @@ our %unified_info = (
         "crypto\\bn\\libcrypto-shlib-bn_recp.o" => [
             ".\\crypto\\bn\\bn_recp.c"
         ],
-        "crypto\\bn\\libcrypto-shlib-bn_rsa_fips186_4.o" => [
-            ".\\crypto\\bn\\bn_rsa_fips186_4.c"
+        "crypto\\bn\\libcrypto-shlib-bn_rsa_fips186_5.o" => [
+            ".\\crypto\\bn\\bn_rsa_fips186_5.c"
         ],
         "crypto\\bn\\libcrypto-shlib-bn_shift.o" => [
             ".\\crypto\\bn\\bn_shift.c"
@@ -33533,7 +33550,7 @@ our %unified_info = (
             "crypto\\bn\\libcrypto-lib-bn_print.o",
             "crypto\\bn\\libcrypto-lib-bn_rand.o",
             "crypto\\bn\\libcrypto-lib-bn_recp.o",
-            "crypto\\bn\\libcrypto-lib-bn_rsa_fips186_4.o",
+            "crypto\\bn\\libcrypto-lib-bn_rsa_fips186_5.o",
             "crypto\\bn\\libcrypto-lib-bn_shift.o",
             "crypto\\bn\\libcrypto-lib-bn_sqr.o",
             "crypto\\bn\\libcrypto-lib-bn_sqrt.o",
