@@ -240,7 +240,7 @@
     <ClCompile Include="..\..\crypto\bn\bn_print.c" />
     <ClCompile Include="..\..\crypto\bn\bn_rand.c" />
     <ClCompile Include="..\..\crypto\bn\bn_recp.c" />
-    <ClCompile Include="..\..\crypto\bn\bn_rsa_fips186_4.c" />
+    <ClCompile Include="..\..\crypto\bn\bn_rsa_fips186_5.c" />
     <ClCompile Include="..\..\crypto\bn\bn_shift.c" />
     <ClCompile Include="..\..\crypto\bn\bn_sqr.c" />
     <ClCompile Include="..\..\crypto\bn\bn_sqrt.c" />
