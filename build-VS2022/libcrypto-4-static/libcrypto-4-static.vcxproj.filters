@@ -2076,7 +2076,7 @@
     <ClCompile Include="..\..\crypto\asn1_dsa.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\crypto\bn\bn_rsa_fips186_4.c">
+    <ClCompile Include="..\..\crypto\bn\bn_rsa_fips186_5.c">
       <Filter>Source Files\crypto\bn</Filter>
     </ClCompile>
     <ClCompile Include="..\..\crypto\bn\bn_conv.c">
