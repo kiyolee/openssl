@@ -9969,6 +9969,10 @@ our %unified_info = (
             "libssl.a",
             "test\\libtestutil.a"
         ],
+        "test\\x509-memfail" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
         "test\\x509_acert_test" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -24289,6 +24293,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\wpackettest" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\x509-memfail" => [
             "include",
             "apps\\include",
             ".\\include",
