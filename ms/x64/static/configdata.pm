@@ -388,6 +388,7 @@ our %target = (
     "module_ldflags" => "/dll",
     "mtinflag" => "-manifest ",
     "mtoutflag" => "-outputresource:",
+    #"multilib" => "-x64",
     "perl_platform" => "Windows::MSVC",
     "perlasm_scheme" => "masm",
     "rcoutflag" => "/fo",
@@ -12828,6 +12829,9 @@ our %unified_info = (
         "crypto\\poly1305\\poly1305-armv8.S" => [
             ".\\crypto\\poly1305\\asm\\poly1305-armv8.pl"
         ],
+        "crypto\\poly1305\\poly1305-armv9-sve2.S" => [
+            ".\\crypto\\poly1305\\asm\\poly1305-armv9-sve2.pl"
+        ],
         "crypto\\poly1305\\poly1305-c64xplus.S" => [
             ".\\crypto\\poly1305\\asm\\poly1305-c64xplus.pl"
         ],
@@ -21069,6 +21073,10 @@ our %unified_info = (
             ".\\crypto"
         ],
         "crypto\\poly1305\\poly1305-armv8.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\poly1305\\poly1305-armv9-sve2.o" => [
             "crypto",
             ".\\crypto"
         ],
