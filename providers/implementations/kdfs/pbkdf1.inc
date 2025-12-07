@@ -27,7 +27,6 @@ static const OSSL_PARAM pbkdf1_set_ctx_params_list[] = {
 #ifndef pbkdf1_set_ctx_params_st
 struct pbkdf1_set_ctx_params_st {
     OSSL_PARAM *digest;
-    OSSL_PARAM *engine;
     OSSL_PARAM *iter;
     OSSL_PARAM *propq;
     OSSL_PARAM *pw;
@@ -56,17 +55,6 @@ static int pbkdf1_set_ctx_params_decoder
                         return 0;
                     }
                     r->digest = (OSSL_PARAM *)p;
-                }
-                break;
-            case 'e':
-                if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* OSSL_ALG_PARAM_ENGINE */
-                    if (ossl_unlikely(r->engine != NULL)) {
-                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                       "param %s is repeated", s);
-                        return 0;
-                    }
-                    r->engine = (OSSL_PARAM *)p;
                 }
                 break;
             case 'i':

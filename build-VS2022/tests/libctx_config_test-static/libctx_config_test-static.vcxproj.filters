@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\test\afalgtest.c">
+    <ClCompile Include="..\..\..\test\libctx_config_test.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

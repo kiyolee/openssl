@@ -44,9 +44,6 @@ FUNCTION functions[] = {
     {FT_general, "ecparam", ecparam_main, ecparam_options, NULL, NULL},
 #endif
     {FT_general, "enc", enc_main, enc_options, NULL, NULL},
-#ifndef OPENSSL_NO_ENGINE
-    {FT_general, "engine", engine_main, engine_options, NULL, NULL},
-#endif
     {FT_general, "errstr", errstr_main, errstr_options, NULL, NULL},
     {FT_general, "fipsinstall", fipsinstall_main, fipsinstall_options, NULL, NULL},
 #ifndef OPENSSL_NO_DSA

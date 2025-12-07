@@ -18,6 +18,7 @@ static const OSSL_PARAM key2any_set_ctx_params_list[] = {
     OSSL_PARAM_utf8_string(OSSL_ENCODER_PARAM_CIPHER, NULL, 0),
     OSSL_PARAM_utf8_string(OSSL_ENCODER_PARAM_PROPERTIES, NULL, 0),
     OSSL_PARAM_int(OSSL_ENCODER_PARAM_SAVE_PARAMETERS, NULL),
+    OSSL_PARAM_utf8_string(OSSL_PKEY_PARAM_OUTPUT_FORMATS, NULL, 0),
     OSSL_PARAM_END
 };
 #endif
@@ -25,6 +26,7 @@ static const OSSL_PARAM key2any_set_ctx_params_list[] = {
 #ifndef key2any_set_ctx_params_st
 struct key2any_set_ctx_params_st {
     OSSL_PARAM *cipher;
+    OSSL_PARAM *output_formats;
     OSSL_PARAM *propq;
     OSSL_PARAM *svprm;
 };
@@ -51,6 +53,17 @@ static int key2any_set_ctx_params_decoder
                         return 0;
                     }
                     r->cipher = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'o':
+                if (ossl_likely(strcmp("utput_formats", s + 1) == 0)) {
+                    /* OSSL_PKEY_PARAM_OUTPUT_FORMATS */
+                    if (ossl_unlikely(r->output_formats != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->output_formats = (OSSL_PARAM *)p;
                 }
                 break;
             case 'p':
