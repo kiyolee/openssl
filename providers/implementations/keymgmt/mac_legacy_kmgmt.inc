@@ -90,7 +90,6 @@ static const OSSL_PARAM cmac_import_list[] = {
 #ifndef cmac_import_st
 struct cmac_import_st {
     OSSL_PARAM *cipher;
-    OSSL_PARAM *engine;
     OSSL_PARAM *key;
     OSSL_PARAM *propq;
 };
@@ -117,17 +116,6 @@ static int cmac_import_decoder
                         return 0;
                     }
                     r->cipher = (OSSL_PARAM *)p;
-                }
-                break;
-            case 'e':
-                if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* OSSL_PKEY_PARAM_ENGINE */
-                    if (ossl_unlikely(r->engine != NULL)) {
-                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                       "param %s is repeated", s);
-                        return 0;
-                    }
-                    r->engine = (OSSL_PARAM *)p;
                 }
                 break;
             case 'p':
@@ -216,7 +204,6 @@ static const OSSL_PARAM cmac_get_params_list[] = {
 #ifndef cmac_get_params_st
 struct cmac_get_params_st {
     OSSL_PARAM *cipher;
-    OSSL_PARAM *engine;
     OSSL_PARAM *key;
 };
 #endif
@@ -242,17 +229,6 @@ static int cmac_get_params_decoder
                         return 0;
                     }
                     r->cipher = (OSSL_PARAM *)p;
-                }
-                break;
-            case 'e':
-                if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* OSSL_PKEY_PARAM_ENGINE */
-                    if (ossl_unlikely(r->engine != NULL)) {
-                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                       "param %s is repeated", s);
-                        return 0;
-                    }
-                    r->engine = (OSSL_PARAM *)p;
                 }
                 break;
             case 'p':
@@ -358,7 +334,6 @@ static const OSSL_PARAM cmac_gen_set_params_list[] = {
 #ifndef cmac_gen_set_params_st
 struct cmac_gen_set_params_st {
     OSSL_PARAM *cipher;
-    OSSL_PARAM *engine;
     OSSL_PARAM *key;
     OSSL_PARAM *propq;
 };
@@ -385,17 +360,6 @@ static int cmac_gen_set_params_decoder
                         return 0;
                     }
                     r->cipher = (OSSL_PARAM *)p;
-                }
-                break;
-            case 'e':
-                if (ossl_likely(strcmp("ngine", s + 1) == 0)) {
-                    /* OSSL_PKEY_PARAM_ENGINE */
-                    if (ossl_unlikely(r->engine != NULL)) {
-                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                       "param %s is repeated", s);
-                        return 0;
-                    }
-                    r->engine = (OSSL_PARAM *)p;
                 }
                 break;
             case 'p':

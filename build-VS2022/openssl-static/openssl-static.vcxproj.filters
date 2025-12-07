@@ -87,9 +87,6 @@
     <ClCompile Include="..\..\apps\enc.c">
       <Filter>Source Files\apps</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\apps\engine.c">
-      <Filter>Source Files\apps</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\apps\errstr.c">
       <Filter>Source Files\apps</Filter>
     </ClCompile>

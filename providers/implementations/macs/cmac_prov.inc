@@ -102,7 +102,6 @@ static const OSSL_PARAM cmac_set_ctx_params_list[] = {
 #ifndef cmac_set_ctx_params_st
 struct cmac_set_ctx_params_st {
     OSSL_PARAM *cipher;
-    OSSL_PARAM *engine;
 # if defined(FIPS_MODULE)
     OSSL_PARAM *ind_ec;
 # endif
@@ -135,38 +134,17 @@ static int cmac_set_ctx_params_decoder
                 }
                 break;
             case 'e':
-                switch(s[1]) {
-                default:
-                    break;
-                case 'n':
-                    switch(s[2]) {
-                    default:
-                        break;
-                    case 'c':
 # if defined(FIPS_MODULE)
-                        if (ossl_likely(strcmp("rypt-check", s + 3) == 0)) {
-                            /* OSSL_CIPHER_PARAM_FIPS_ENCRYPT_CHECK */
-                            if (ossl_unlikely(r->ind_ec != NULL)) {
-                                ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                               "param %s is repeated", s);
-                                return 0;
-                            }
-                            r->ind_ec = (OSSL_PARAM *)p;
-                        }
-# endif
-                        break;
-                    case 'g':
-                        if (ossl_likely(strcmp("ine", s + 3) == 0)) {
-                            /* OSSL_ALG_PARAM_ENGINE */
-                            if (ossl_unlikely(r->engine != NULL)) {
-                                ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                               "param %s is repeated", s);
-                                return 0;
-                            }
-                            r->engine = (OSSL_PARAM *)p;
-                        }
+                if (ossl_likely(strcmp("ncrypt-check", s + 1) == 0)) {
+                    /* OSSL_CIPHER_PARAM_FIPS_ENCRYPT_CHECK */
+                    if (ossl_unlikely(r->ind_ec != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
                     }
+                    r->ind_ec = (OSSL_PARAM *)p;
                 }
+# endif
                 break;
             case 'k':
                 if (ossl_likely(strcmp("ey", s + 1) == 0)) {
