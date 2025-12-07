@@ -122,7 +122,6 @@
     <ClCompile Include="..\..\apps\ec.c" />
     <ClCompile Include="..\..\apps\ecparam.c" />
     <ClCompile Include="..\..\apps\enc.c" />
-    <ClCompile Include="..\..\apps\engine.c" />
     <ClCompile Include="..\..\apps\errstr.c" />
     <ClCompile Include="..\..\apps\fipsinstall.c" />
     <ClCompile Include="..\..\apps\gendsa.c" />

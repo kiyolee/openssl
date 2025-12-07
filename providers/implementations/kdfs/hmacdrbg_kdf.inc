@@ -81,7 +81,6 @@ static const OSSL_PARAM hmac_drbg_kdf_set_ctx_params_list[] = {
 #ifndef hmac_drbg_kdf_set_ctx_params_st
 struct hmac_drbg_kdf_set_ctx_params_st {
     OSSL_PARAM *digest;
-    OSSL_PARAM *engine;
     OSSL_PARAM *ent;
     OSSL_PARAM *nonce;
     OSSL_PARAM *propq;
@@ -112,35 +111,14 @@ static int hmac_drbg_kdf_set_ctx_params_decoder
                 }
                 break;
             case 'e':
-                switch(s[1]) {
-                default:
-                    break;
-                case 'n':
-                    switch(s[2]) {
-                    default:
-                        break;
-                    case 'g':
-                        if (ossl_likely(strcmp("ine", s + 3) == 0)) {
-                            /* OSSL_ALG_PARAM_ENGINE */
-                            if (ossl_unlikely(r->engine != NULL)) {
-                                ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                               "param %s is repeated", s);
-                                return 0;
-                            }
-                            r->engine = (OSSL_PARAM *)p;
-                        }
-                        break;
-                    case 't':
-                        if (ossl_likely(strcmp("ropy", s + 3) == 0)) {
-                            /* OSSL_KDF_PARAM_HMACDRBG_ENTROPY */
-                            if (ossl_unlikely(r->ent != NULL)) {
-                                ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                               "param %s is repeated", s);
-                                return 0;
-                            }
-                            r->ent = (OSSL_PARAM *)p;
-                        }
+                if (ossl_likely(strcmp("ntropy", s + 1) == 0)) {
+                    /* OSSL_KDF_PARAM_HMACDRBG_ENTROPY */
+                    if (ossl_unlikely(r->ent != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
                     }
+                    r->ent = (OSSL_PARAM *)p;
                 }
                 break;
             case 'n':

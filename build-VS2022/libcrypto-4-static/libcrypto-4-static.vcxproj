@@ -446,28 +446,6 @@
     <ClCompile Include="..\..\crypto\ec\ec_oct.c" />
     <ClCompile Include="..\..\crypto\ec\ec_pmeth.c" />
     <ClCompile Include="..\..\crypto\ec\ec_print.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_all.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_cnf.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_ctrl.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_dyn.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_err.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_fat.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_init.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_lib.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_list.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_openssl.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_pkey.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_rdrand.c" />
-    <ClCompile Include="..\..\crypto\engine\eng_table.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_asnmth.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_cipher.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_dh.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_digest.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_dsa.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_eckey.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_pkmeth.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_rand.c" />
-    <ClCompile Include="..\..\crypto\engine\tb_rsa.c" />
     <ClCompile Include="..\..\crypto\err\err.c" />
     <ClCompile Include="..\..\crypto\err\err_all.c" />
     <ClCompile Include="..\..\crypto\err\err_all_legacy.c" />
@@ -924,8 +902,6 @@
     <ClCompile Include="..\..\crypto\x509\x_req.c" />
     <ClCompile Include="..\..\crypto\x509\x_x509.c" />
     <ClCompile Include="..\..\crypto\x509\x_x509a.c" />
-    <ClCompile Include="..\..\engines\e_capi.c" />
-    <ClCompile Include="..\..\engines\e_padlock.c" />
     <ClCompile Include="..\..\providers\baseprov.c" />
     <ClCompile Include="..\..\providers\defltprov.c" />
     <ClCompile Include="..\..\providers\implementations\asymciphers\rsa_enc.c" />
@@ -1866,36 +1842,6 @@ $(PERL) %(FullPath) masm $(OutDir)_work\static\%(Filename).asm &amp;&amp; ml64 /
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\crypto\sha\asm\keccak1600-x86_64.pl">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
-mkdir $(OutDir)_work\static 2&gt;nul
-set ASM=ml64
-$(PERL) %(FullPath) masm $(OutDir)_work\static\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\static\%(Filename).asm</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mkdir $(OutDir)_work 2&gt;nul
-mkdir $(OutDir)_work\static 2&gt;nul
-set ASM=ml64
-$(PERL) %(FullPath) masm $(OutDir)_work\static\%(Filename).asm &amp;&amp; ml64 /c /Cp /Cx /nologo /Zi /Fo$(IntDir)%(Filename).obj $(OutDir)_work\static\%(Filename).asm</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)_work\static\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)_work\static\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\engines\asm\e_padlock-x86.pl">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mkdir $(OutDir)_work 2&gt;nul
-mkdir $(OutDir)_work\static 2&gt;nul
-set ASM=nasm
-$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\static\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\static\%(Filename).asm</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mkdir $(OutDir)_work 2&gt;nul
-mkdir $(OutDir)_work\static 2&gt;nul
-set ASM=nasm
-$(PERL) %(FullPath) win32n $(PERLASM_FLAGS_X86) $(OutDir)_work\static\%(Filename).asm &amp;&amp; $(NASM) -f win32 -o $(IntDir)%(Filename).obj $(OutDir)_work\static\%(Filename).asm</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)_work\static\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)_work\static\%(Filename).asm;$(IntDir)%(Filename).obj</Outputs>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\engines\asm\e_padlock-x86_64.pl">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mkdir $(OutDir)_work 2&gt;nul
 mkdir $(OutDir)_work\static 2&gt;nul

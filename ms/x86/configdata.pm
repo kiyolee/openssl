@@ -44,7 +44,6 @@ our %config = (
     "PERL" => "C:\\Strawberry\\perl\\bin\\perl.exe",
     "RC" => "rc",
     "RCFLAGS" => [],
-    "afalgeng" => "",
     "api" => "40000",
     "b32" => "1",
     "b64" => "0",
@@ -66,7 +65,6 @@ our %config = (
         ".\\providers\\build.info",
         ".\\doc\\build.info",
         ".\\test\\build.info",
-        ".\\engines\\build.info",
         ".\\exporters\\build.info",
         ".\\crypto\\objects\\build.info",
         ".\\crypto\\buffer\\build.info",
@@ -118,7 +116,6 @@ our %config = (
         ".\\crypto\\dh\\build.info",
         ".\\crypto\\sm2\\build.info",
         ".\\crypto\\dso\\build.info",
-        ".\\crypto\\engine\\build.info",
         ".\\crypto\\err\\build.info",
         ".\\crypto\\comp\\build.info",
         ".\\crypto\\http\\build.info",
@@ -175,7 +172,6 @@ our %config = (
     "defines" => [
         "NDEBUG"
     ],
-    "dynamic_engines" => "0",
     "ex_libs" => [],
     "full_version" => "4.0.0-dev",
     "includes" => [],
@@ -195,7 +191,6 @@ our %config = (
         "OPENSSL_RAND_SEED_OS",
         "OPENSSL_THREADS",
         "OPENSSL_NO_ACVP_TESTS",
-        "OPENSSL_NO_AFALGENG",
         "OPENSSL_NO_ALLOCFAIL_TESTS",
         "OPENSSL_NO_ASAN",
         "OPENSSL_NO_BROTLI",
@@ -203,9 +198,10 @@ our %config = (
         "OPENSSL_NO_CRYPTO_MDEBUG",
         "OPENSSL_NO_CRYPTO_MDEBUG_BACKTRACE",
         "OPENSSL_NO_DEMOS",
-        "OPENSSL_NO_DEVCRYPTOENG",
+        "OPENSSL_NO_DYNAMIC_ENGINE",
         "OPENSSL_NO_EC_NISTP_64_GCC_128",
         "OPENSSL_NO_EGD",
+        "OPENSSL_NO_ENGINE",
         "OPENSSL_NO_EXTERNAL_TESTS",
         "OPENSSL_NO_FIPS_JITTER",
         "OPENSSL_NO_FIPS_POST",
@@ -217,7 +213,6 @@ our %config = (
         "OPENSSL_NO_JITTER",
         "OPENSSL_NO_KTLS",
         "OPENSSL_NO_LMS",
-        "OPENSSL_NO_LOADERENG",
         "OPENSSL_NO_MD2",
         "OPENSSL_NO_MSAN",
         "OPENSSL_NO_PIE",
@@ -226,6 +221,7 @@ our %config = (
         "OPENSSL_NO_SSL3",
         "OPENSSL_NO_SSL3_METHOD",
         "OPENSSL_NO_SSLKEYLOG",
+        "OPENSSL_NO_STATIC_ENGINE",
         "OPENSSL_NO_TFO",
         "OPENSSL_NO_TRACE",
         "OPENSSL_NO_UBSAN",
@@ -233,8 +229,7 @@ our %config = (
         "OPENSSL_NO_WEAK_SSL_CIPHERS",
         "OPENSSL_NO_ZLIB_DYNAMIC",
         "OPENSSL_NO_ZSTD",
-        "OPENSSL_NO_ZSTD_DYNAMIC",
-        "OPENSSL_NO_DYNAMIC_ENGINE"
+        "OPENSSL_NO_ZSTD_DYNAMIC"
     ],
     "openssl_other_defines" => [
         "OPENSSL_NO_KTLS"
@@ -243,7 +238,7 @@ our %config = (
         "OPENSSL_SYS_WIN32"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib no-acvp-tests no-afalgeng no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-devcryptoeng no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-loadereng no-md2 no-msan no-pie no-rc5 no-sctp no-ssl3 no-ssl3-method no-sslkeylog no-tfo no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-ssl3 no-ssl3-method no-sslkeylog no-static-engine no-tfo no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -401,7 +396,6 @@ our %target = (
 );
 our @disablables = (
     "acvp-tests",
-    "afalgeng",
     "apps",
     "argon2",
     "aria",
@@ -420,7 +414,6 @@ our @disablables = (
     "bulk",
     "cached-fetch",
     "camellia",
-    "capieng",
     "winstore",
     "cast",
     "chacha",
@@ -437,14 +430,12 @@ our @disablables = (
     "hqinterop",
     "deprecated",
     "des",
-    "devcryptoeng",
     "dgram",
     "dh",
     "docs",
     "dsa",
     "dso",
     "dtls",
-    "dynamic-engine",
     "ec",
     "ec2m",
     "ec_nistp_64_gcc_128",
@@ -452,7 +443,6 @@ our @disablables = (
     "ecdsa",
     "ecx",
     "egd",
-    "engine",
     "err",
     "external-tests",
     "filenames",
@@ -470,7 +460,6 @@ our @disablables = (
     "ktls",
     "legacy",
     "lms",
-    "loadereng",
     "makedepend",
     "md2",
     "md4",
@@ -483,7 +472,6 @@ our @disablables = (
     "nextprotoneg",
     "ocb",
     "ocsp",
-    "padlockeng",
     "pic",
     "pie",
     "pinshared",
@@ -516,7 +504,6 @@ our @disablables = (
     "sse2",
     "ssl",
     "ssl-trace",
-    "static-engine",
     "stdio",
     "sslkeylog",
     "tests",
@@ -556,7 +543,6 @@ our @disablables_int = (
 );
 our %disabled = (
     "acvp-tests" => "cascade",
-    "afalgeng" => "not-linux",
     "allocfail-tests" => "default",
     "asan" => "default",
     "brotli" => "default",
@@ -565,10 +551,10 @@ our %disabled = (
     "crypto-mdebug" => "default",
     "crypto-mdebug-backtrace" => "default",
     "demos" => "default",
-    "devcryptoeng" => "default",
-    "dynamic-engine" => "option",
+    "dynamic-engine" => "cascade",
     "ec_nistp_64_gcc_128" => "default",
     "egd" => "default",
+    "engine" => "default",
     "external-tests" => "default",
     "fips" => "default",
     "fips-jitter" => "default",
@@ -581,7 +567,6 @@ our %disabled = (
     "jitter" => "default",
     "ktls" => "default",
     "lms" => "default",
-    "loadereng" => "cascade",
     "md2" => "default",
     "msan" => "default",
     "pie" => "default",
@@ -590,6 +575,7 @@ our %disabled = (
     "ssl3" => "default",
     "ssl3-method" => "default",
     "sslkeylog" => "default",
+    "static-engine" => "cascade",
     "tfo" => "default",
     "trace" => "default",
     "ubsan" => "default",
@@ -683,11 +669,6 @@ our %unified_info = (
             },
             "doc\\man1\\openssl-enc.pod" => {
                 ".\\doc\\man1\\openssl-enc.pod.in" => {
-                    "pod" => "1"
-                }
-            },
-            "doc\\man1\\openssl-engine.pod" => {
-                ".\\doc\\man1\\openssl-engine.pod.in" => {
                     "pod" => "1"
                 }
             },
@@ -1041,9 +1022,6 @@ our %unified_info = (
             "test\\aesgcmtest" => {
                 "noinst" => "1"
             },
-            "test\\afalgtest" => {
-                "noinst" => "1"
-            },
             "test\\algorithmid_test" => {
                 "noinst" => "1"
             },
@@ -1213,9 +1191,6 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\buildtest_c_encoder" => {
-                "noinst" => "1"
-            },
-            "test\\buildtest_c_engine" => {
                 "noinst" => "1"
             },
             "test\\buildtest_c_evp" => {
@@ -1494,9 +1469,6 @@ our %unified_info = (
             "test\\endecoder_legacy_test" => {
                 "noinst" => "1"
             },
-            "test\\enginetest" => {
-                "noinst" => "1"
-            },
             "test\\errtest" => {
                 "noinst" => "1"
             },
@@ -1585,6 +1557,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\lhash_test" => {
+                "noinst" => "1"
+            },
+            "test\\libctx_config_test" => {
                 "noinst" => "1"
             },
             "test\\list_test" => {
@@ -2027,7 +2002,6 @@ our %unified_info = (
             "OPENSSL_CPUID_OBJ",
             "OPENSSL_IA32_SSE2",
             "OPENSSL_USE_APPLINK",
-            "PADLOCK_ASM",
             "POLY1305_ASM",
             "RC4_ASM",
             "RMD160_ASM",
@@ -2288,9 +2262,6 @@ our %unified_info = (
         "apps\\openssl-bin-enc.o" => [
             "apps\\progs.h"
         ],
-        "apps\\openssl-bin-engine.o" => [
-            "apps\\progs.h"
-        ],
         "apps\\openssl-bin-errstr.o" => [
             "apps\\progs.h"
         ],
@@ -2546,9 +2517,6 @@ our %unified_info = (
         ],
         "doc\\html\\man1\\openssl-enc.html" => [
             "doc\\man1\\openssl-enc.pod"
-        ],
-        "doc\\html\\man1\\openssl-engine.html" => [
-            "doc\\man1\\openssl-engine.pod"
         ],
         "doc\\html\\man1\\openssl-errstr.html" => [
             "doc\\man1\\openssl-errstr.pod"
@@ -5121,6 +5089,9 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-tls-server-block.html" => [
             ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
         ],
+        "doc\\html\\man7\\ossl-removed-api.html" => [
+            ".\\doc\\man7\\ossl-removed-api.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -5252,10 +5223,6 @@ our %unified_info = (
         ],
         "doc\\man1\\openssl-enc.pod" => [
             ".\\doc\\man1\\openssl-enc.pod.in",
-            ".\\doc\\perlvars.pm"
-        ],
-        "doc\\man1\\openssl-engine.pod" => [
-            ".\\doc\\man1\\openssl-engine.pod.in",
             ".\\doc\\perlvars.pm"
         ],
         "doc\\man1\\openssl-errstr.pod" => [
@@ -5463,9 +5430,6 @@ our %unified_info = (
         ],
         "doc\\man\\man1\\openssl-enc.1" => [
             "doc\\man1\\openssl-enc.pod"
-        ],
-        "doc\\man\\man1\\openssl-engine.1" => [
-            "doc\\man1\\openssl-engine.pod"
         ],
         "doc\\man\\man1\\openssl-errstr.1" => [
             "doc\\man1\\openssl-errstr.pod"
@@ -8038,6 +8002,9 @@ our %unified_info = (
         "doc\\man\\man7\\ossl-guide-tls-server-block.7" => [
             ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
         ],
+        "doc\\man\\man7\\ossl-removed-api.7" => [
+            ".\\doc\\man7\\ossl-removed-api.pod"
+        ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -8714,10 +8681,6 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
-        "test\\afalgtest" => [
-            "libcrypto",
-            "test\\libtestutil.a"
-        ],
         "test\\algorithmid_test" => [
             "libcrypto.a",
             "test\\libtestutil.a"
@@ -8944,10 +8907,6 @@ our %unified_info = (
             "libssl"
         ],
         "test\\buildtest_c_encoder" => [
-            "libcrypto",
-            "libssl"
-        ],
-        "test\\buildtest_c_engine" => [
             "libcrypto",
             "libssl"
         ],
@@ -9329,10 +9288,6 @@ our %unified_info = (
             "libcrypto.a",
             "test\\libtestutil.a"
         ],
-        "test\\enginetest" => [
-            "libcrypto",
-            "test\\libtestutil.a"
-        ],
         "test\\errtest" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -9460,6 +9415,11 @@ our %unified_info = (
         ],
         "test\\lhash_test" => [
             "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\libctx_config_test" => [
+            "libcrypto",
+            "libssl",
             "test\\libtestutil.a"
         ],
         "test\\libtestutil.a" => [
@@ -10057,7 +10017,6 @@ our %unified_info = (
                 "apps\\lib\\ca_internals_test-bin-app_x509.o",
                 "apps\\lib\\ca_internals_test-bin-apps.o",
                 "apps\\lib\\ca_internals_test-bin-apps_ui.o",
-                "apps\\lib\\ca_internals_test-bin-engine.o",
                 "apps\\lib\\ca_internals_test-bin-fmt.o",
                 "apps\\lib\\cmp_client_test-bin-cmp_mock_srv.o",
                 "apps\\lib\\uitest-bin-apps_ui.o",
@@ -10070,8 +10029,6 @@ our %unified_info = (
                 "apps\\lib\\libapps-lib-apps_opt_printf.o",
                 "apps\\lib\\libapps-lib-apps_ui.o",
                 "apps\\lib\\libapps-lib-columns.o",
-                "apps\\lib\\libapps-lib-engine.o",
-                "apps\\lib\\libapps-lib-engine_loader.o",
                 "apps\\lib\\libapps-lib-fmt.o",
                 "apps\\lib\\libapps-lib-http_server.o",
                 "apps\\lib\\libapps-lib-log.o",
@@ -11152,59 +11109,6 @@ our %unified_info = (
                 "crypto\\encode_decode\\libcrypto-shlib-encoder_lib.o",
                 "crypto\\encode_decode\\libcrypto-shlib-encoder_meth.o",
                 "crypto\\encode_decode\\libcrypto-shlib-encoder_pkey.o"
-            ],
-            "products" => {
-                "lib" => [
-                    "libcrypto"
-                ]
-            }
-        },
-        "crypto\\engine" => {
-            "deps" => [
-                "crypto\\engine\\libcrypto-lib-eng_all.o",
-                "crypto\\engine\\libcrypto-lib-eng_cnf.o",
-                "crypto\\engine\\libcrypto-lib-eng_ctrl.o",
-                "crypto\\engine\\libcrypto-lib-eng_dyn.o",
-                "crypto\\engine\\libcrypto-lib-eng_err.o",
-                "crypto\\engine\\libcrypto-lib-eng_fat.o",
-                "crypto\\engine\\libcrypto-lib-eng_init.o",
-                "crypto\\engine\\libcrypto-lib-eng_lib.o",
-                "crypto\\engine\\libcrypto-lib-eng_list.o",
-                "crypto\\engine\\libcrypto-lib-eng_openssl.o",
-                "crypto\\engine\\libcrypto-lib-eng_pkey.o",
-                "crypto\\engine\\libcrypto-lib-eng_rdrand.o",
-                "crypto\\engine\\libcrypto-lib-eng_table.o",
-                "crypto\\engine\\libcrypto-lib-tb_asnmth.o",
-                "crypto\\engine\\libcrypto-lib-tb_cipher.o",
-                "crypto\\engine\\libcrypto-lib-tb_dh.o",
-                "crypto\\engine\\libcrypto-lib-tb_digest.o",
-                "crypto\\engine\\libcrypto-lib-tb_dsa.o",
-                "crypto\\engine\\libcrypto-lib-tb_eckey.o",
-                "crypto\\engine\\libcrypto-lib-tb_pkmeth.o",
-                "crypto\\engine\\libcrypto-lib-tb_rand.o",
-                "crypto\\engine\\libcrypto-lib-tb_rsa.o",
-                "crypto\\engine\\libcrypto-shlib-eng_all.o",
-                "crypto\\engine\\libcrypto-shlib-eng_cnf.o",
-                "crypto\\engine\\libcrypto-shlib-eng_ctrl.o",
-                "crypto\\engine\\libcrypto-shlib-eng_dyn.o",
-                "crypto\\engine\\libcrypto-shlib-eng_err.o",
-                "crypto\\engine\\libcrypto-shlib-eng_fat.o",
-                "crypto\\engine\\libcrypto-shlib-eng_init.o",
-                "crypto\\engine\\libcrypto-shlib-eng_lib.o",
-                "crypto\\engine\\libcrypto-shlib-eng_list.o",
-                "crypto\\engine\\libcrypto-shlib-eng_openssl.o",
-                "crypto\\engine\\libcrypto-shlib-eng_pkey.o",
-                "crypto\\engine\\libcrypto-shlib-eng_rdrand.o",
-                "crypto\\engine\\libcrypto-shlib-eng_table.o",
-                "crypto\\engine\\libcrypto-shlib-tb_asnmth.o",
-                "crypto\\engine\\libcrypto-shlib-tb_cipher.o",
-                "crypto\\engine\\libcrypto-shlib-tb_dh.o",
-                "crypto\\engine\\libcrypto-shlib-tb_digest.o",
-                "crypto\\engine\\libcrypto-shlib-tb_dsa.o",
-                "crypto\\engine\\libcrypto-shlib-tb_eckey.o",
-                "crypto\\engine\\libcrypto-shlib-tb_pkmeth.o",
-                "crypto\\engine\\libcrypto-shlib-tb_rand.o",
-                "crypto\\engine\\libcrypto-shlib-tb_rsa.o"
             ],
             "products" => {
                 "lib" => [
@@ -12469,21 +12373,6 @@ our %unified_info = (
                 ]
             }
         },
-        "engines" => {
-            "deps" => [
-                "engines\\libcrypto-lib-e_capi.o",
-                "engines\\libcrypto-lib-e_padlock-x86.o",
-                "engines\\libcrypto-lib-e_padlock.o",
-                "engines\\libcrypto-shlib-e_capi.o",
-                "engines\\libcrypto-shlib-e_padlock-x86.o",
-                "engines\\libcrypto-shlib-e_padlock.o"
-            ],
-            "products" => {
-                "lib" => [
-                    "libcrypto"
-                ]
-            }
-        },
         "fuzz" => {
             "products" => {
                 "bin" => [
@@ -13360,7 +13249,6 @@ our %unified_info = (
             "LIBDIR=",
             "INCLUDEDIR=include",
             "\"INCLUDEDIR=\$(SRCDIR)/include\"",
-            "ENGINESDIR=engines",
             "MODULESDIR=providers",
             "libdir=",
             "CMAKECONFIGDIR=",
@@ -14148,9 +14036,6 @@ our %unified_info = (
         ],
         "doc\\html\\man1\\openssl-enc.html" => [
             "doc\\man1\\openssl-enc.pod"
-        ],
-        "doc\\html\\man1\\openssl-engine.html" => [
-            "doc\\man1\\openssl-engine.pod"
         ],
         "doc\\html\\man1\\openssl-errstr.html" => [
             "doc\\man1\\openssl-errstr.pod"
@@ -16723,6 +16608,9 @@ our %unified_info = (
         "doc\\html\\man7\\ossl-guide-tls-server-block.html" => [
             ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
         ],
+        "doc\\html\\man7\\ossl-removed-api.html" => [
+            ".\\doc\\man7\\ossl-removed-api.pod"
+        ],
         "doc\\html\\man7\\ossl_store-file.html" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -16839,9 +16727,6 @@ our %unified_info = (
         ],
         "doc\\man1\\openssl-enc.pod" => [
             ".\\doc\\man1\\openssl-enc.pod.in"
-        ],
-        "doc\\man1\\openssl-engine.pod" => [
-            ".\\doc\\man1\\openssl-engine.pod.in"
         ],
         "doc\\man1\\openssl-errstr.pod" => [
             ".\\doc\\man1\\openssl-errstr.pod.in"
@@ -17010,9 +16895,6 @@ our %unified_info = (
         ],
         "doc\\man\\man1\\openssl-enc.1" => [
             "doc\\man1\\openssl-enc.pod"
-        ],
-        "doc\\man\\man1\\openssl-engine.1" => [
-            "doc\\man1\\openssl-engine.pod"
         ],
         "doc\\man\\man1\\openssl-errstr.1" => [
             "doc\\man1\\openssl-errstr.pod"
@@ -19585,6 +19467,9 @@ our %unified_info = (
         "doc\\man\\man7\\ossl-guide-tls-server-block.7" => [
             ".\\doc\\man7\\ossl-guide-tls-server-block.pod"
         ],
+        "doc\\man\\man7\\ossl-removed-api.7" => [
+            ".\\doc\\man7\\ossl-removed-api.pod"
+        ],
         "doc\\man\\man7\\ossl_store-file.7" => [
             ".\\doc\\man7\\ossl_store-file.pod"
         ],
@@ -19653,12 +19538,6 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\x509.7" => [
             ".\\doc\\man7\\x509.pod"
-        ],
-        "engines\\e_padlock-x86.S" => [
-            ".\\engines\\asm\\e_padlock-x86.pl"
-        ],
-        "engines\\e_padlock-x86_64.s" => [
-            ".\\engines\\asm\\e_padlock-x86_64.pl"
         ],
         "exporters\\OpenSSLConfig.cmake" => [
             ".\\exporters\\cmake\\OpenSSLConfig.cmake.in"
@@ -19770,7 +19649,6 @@ our %unified_info = (
             "\"libdir=\$(libdir)\"",
             "INCLUDEDIR=include",
             "APPLINKDIR=include/openssl",
-            "\"ENGINESDIR=\$(ENGINESDIR)\"",
             "\"MODULESDIR=\$(MODULESDIR)\"",
             "\"PKGCONFIGDIR=\$(PKGCONFIGDIR)\"",
             "\"CMAKECONFIGDIR=\$(CMAKECONFIGDIR)\"",
@@ -20233,10 +20111,6 @@ our %unified_info = (
             ".\\test\\generate_buildtest.pl",
             "encoder"
         ],
-        "test\\buildtest_engine.c" => [
-            ".\\test\\generate_buildtest.pl",
-            "engine"
-        ],
         "test\\buildtest_evp.c" => [
             ".\\test\\generate_buildtest.pl",
             "evp"
@@ -20446,7 +20320,6 @@ our %unified_info = (
             "doc\\html\\man1\\openssl-ec.html",
             "doc\\html\\man1\\openssl-ecparam.html",
             "doc\\html\\man1\\openssl-enc.html",
-            "doc\\html\\man1\\openssl-engine.html",
             "doc\\html\\man1\\openssl-errstr.html",
             "doc\\html\\man1\\openssl-fipsinstall.html",
             "doc\\html\\man1\\openssl-format-options.html",
@@ -21310,6 +21183,7 @@ our %unified_info = (
             "doc\\html\\man7\\ossl-guide-tls-client-non-block.html",
             "doc\\html\\man7\\ossl-guide-tls-introduction.html",
             "doc\\html\\man7\\ossl-guide-tls-server-block.html",
+            "doc\\html\\man7\\ossl-removed-api.html",
             "doc\\html\\man7\\ossl_store-file.html",
             "doc\\html\\man7\\ossl_store.html",
             "doc\\html\\man7\\passphrase-encoding.html",
@@ -21398,9 +21272,6 @@ our %unified_info = (
             "apps"
         ],
         "apps\\enc.o" => [
-            "apps"
-        ],
-        "apps\\engine.o" => [
             "apps"
         ],
         "apps\\errstr.o" => [
@@ -21504,9 +21375,6 @@ our %unified_info = (
             "apps"
         ],
         "apps\\openssl-bin-enc.o" => [
-            "apps"
-        ],
-        "apps\\openssl-bin-engine.o" => [
             "apps"
         ],
         "apps\\openssl-bin-errstr.o" => [
@@ -22287,9 +22155,6 @@ our %unified_info = (
             ".\\doc"
         ],
         "doc\\man1\\openssl-enc.pod" => [
-            ".\\doc"
-        ],
-        "doc\\man1\\openssl-engine.pod" => [
             ".\\doc"
         ],
         "doc\\man1\\openssl-errstr.pod" => [
@@ -23269,12 +23134,6 @@ our %unified_info = (
             ".\\apps\\include",
             "."
         ],
-        "test\\afalgtest" => [
-            "include",
-            "apps\\include",
-            ".\\include",
-            ".\\apps\\include"
-        ],
         "test\\algorithmid_test" => [
             "include",
             "apps\\include",
@@ -23570,10 +23429,6 @@ our %unified_info = (
             ".\\include"
         ],
         "test\\buildtest_c_encoder" => [
-            "include",
-            ".\\include"
-        ],
-        "test\\buildtest_c_engine" => [
             "include",
             ".\\include"
         ],
@@ -24091,12 +23946,6 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
-        "test\\enginetest" => [
-            "include",
-            "apps\\include",
-            ".\\include",
-            ".\\apps\\include"
-        ],
         "test\\errtest" => [
             "include",
             "apps\\include",
@@ -24544,6 +24393,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\lhash_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\libctx_config_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -25479,7 +25334,6 @@ our %unified_info = (
             "doc\\man\\man1\\openssl-ec.1",
             "doc\\man\\man1\\openssl-ecparam.1",
             "doc\\man\\man1\\openssl-enc.1",
-            "doc\\man\\man1\\openssl-engine.1",
             "doc\\man\\man1\\openssl-errstr.1",
             "doc\\man\\man1\\openssl-fipsinstall.1",
             "doc\\man\\man1\\openssl-format-options.1",
@@ -26343,6 +26197,7 @@ our %unified_info = (
             "doc\\man\\man7\\ossl-guide-tls-client-non-block.7",
             "doc\\man\\man7\\ossl-guide-tls-introduction.7",
             "doc\\man\\man7\\ossl-guide-tls-server-block.7",
+            "doc\\man\\man7\\ossl-removed-api.7",
             "doc\\man\\man7\\ossl_store-file.7",
             "doc\\man\\man7\\ossl_store.7",
             "doc\\man\\man7\\passphrase-encoding.7",
@@ -26408,7 +26263,6 @@ our %unified_info = (
         "fuzz\\x509-test",
         "test\\aborttest",
         "test\\aesgcmtest",
-        "test\\afalgtest",
         "test\\algorithmid_test",
         "test\\asn1_decode_test",
         "test\\asn1_dsa_internal_test",
@@ -26466,7 +26320,6 @@ our %unified_info = (
         "test\\buildtest_c_ecdh",
         "test\\buildtest_c_ecdsa",
         "test\\buildtest_c_encoder",
-        "test\\buildtest_c_engine",
         "test\\buildtest_c_evp",
         "test\\buildtest_c_fips_names",
         "test\\buildtest_c_hmac",
@@ -26559,7 +26412,6 @@ our %unified_info = (
         "test\\ectest",
         "test\\endecode_test",
         "test\\endecoder_legacy_test",
-        "test\\enginetest",
         "test\\errtest",
         "test\\evp_byname_test",
         "test\\evp_extra_test",
@@ -26590,6 +26442,7 @@ our %unified_info = (
         "test\\json_test",
         "test\\keymgmt_internal_test",
         "test\\lhash_test",
+        "test\\libctx_config_test",
         "test\\list_test",
         "test\\localetest",
         "test\\mdc2_internal_test",
@@ -27059,28 +26912,6 @@ our %unified_info = (
             "crypto\\encode_decode\\libcrypto-shlib-encoder_lib.o",
             "crypto\\encode_decode\\libcrypto-shlib-encoder_meth.o",
             "crypto\\encode_decode\\libcrypto-shlib-encoder_pkey.o",
-            "crypto\\engine\\libcrypto-shlib-eng_all.o",
-            "crypto\\engine\\libcrypto-shlib-eng_cnf.o",
-            "crypto\\engine\\libcrypto-shlib-eng_ctrl.o",
-            "crypto\\engine\\libcrypto-shlib-eng_dyn.o",
-            "crypto\\engine\\libcrypto-shlib-eng_err.o",
-            "crypto\\engine\\libcrypto-shlib-eng_fat.o",
-            "crypto\\engine\\libcrypto-shlib-eng_init.o",
-            "crypto\\engine\\libcrypto-shlib-eng_lib.o",
-            "crypto\\engine\\libcrypto-shlib-eng_list.o",
-            "crypto\\engine\\libcrypto-shlib-eng_openssl.o",
-            "crypto\\engine\\libcrypto-shlib-eng_pkey.o",
-            "crypto\\engine\\libcrypto-shlib-eng_rdrand.o",
-            "crypto\\engine\\libcrypto-shlib-eng_table.o",
-            "crypto\\engine\\libcrypto-shlib-tb_asnmth.o",
-            "crypto\\engine\\libcrypto-shlib-tb_cipher.o",
-            "crypto\\engine\\libcrypto-shlib-tb_dh.o",
-            "crypto\\engine\\libcrypto-shlib-tb_digest.o",
-            "crypto\\engine\\libcrypto-shlib-tb_dsa.o",
-            "crypto\\engine\\libcrypto-shlib-tb_eckey.o",
-            "crypto\\engine\\libcrypto-shlib-tb_pkmeth.o",
-            "crypto\\engine\\libcrypto-shlib-tb_rand.o",
-            "crypto\\engine\\libcrypto-shlib-tb_rsa.o",
             "crypto\\err\\libcrypto-shlib-err.o",
             "crypto\\err\\libcrypto-shlib-err_all.o",
             "crypto\\err\\libcrypto-shlib-err_all_legacy.o",
@@ -27552,9 +27383,6 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-shlib-x_req.o",
             "crypto\\x509\\libcrypto-shlib-x_x509.o",
             "crypto\\x509\\libcrypto-shlib-x_x509a.o",
-            "engines\\libcrypto-shlib-e_capi.o",
-            "engines\\libcrypto-shlib-e_padlock-x86.o",
-            "engines\\libcrypto-shlib-e_padlock.o",
             "libcrypto-shlib-libcrypto.res",
             "libcrypto.ld",
             "ms\\libcrypto-shlib-uplink.o",
@@ -27701,9 +27529,6 @@ our %unified_info = (
         "apps\\lib\\ca_internals_test-bin-apps_ui.o" => [
             ".\\apps\\lib\\apps_ui.c"
         ],
-        "apps\\lib\\ca_internals_test-bin-engine.o" => [
-            ".\\apps\\lib\\engine.c"
-        ],
         "apps\\lib\\ca_internals_test-bin-fmt.o" => [
             ".\\apps\\lib\\fmt.c"
         ],
@@ -27736,12 +27561,6 @@ our %unified_info = (
         ],
         "apps\\lib\\libapps-lib-columns.o" => [
             ".\\apps\\lib\\columns.c"
-        ],
-        "apps\\lib\\libapps-lib-engine.o" => [
-            ".\\apps\\lib\\engine.c"
-        ],
-        "apps\\lib\\libapps-lib-engine_loader.o" => [
-            ".\\apps\\lib\\engine_loader.c"
         ],
         "apps\\lib\\libapps-lib-fmt.o" => [
             ".\\apps\\lib\\fmt.c"
@@ -27792,8 +27611,6 @@ our %unified_info = (
             "apps\\lib\\libapps-lib-apps_opt_printf.o",
             "apps\\lib\\libapps-lib-apps_ui.o",
             "apps\\lib\\libapps-lib-columns.o",
-            "apps\\lib\\libapps-lib-engine.o",
-            "apps\\lib\\libapps-lib-engine_loader.o",
             "apps\\lib\\libapps-lib-fmt.o",
             "apps\\lib\\libapps-lib-http_server.o",
             "apps\\lib\\libapps-lib-log.o",
@@ -27821,7 +27638,6 @@ our %unified_info = (
             "apps\\openssl-bin-ec.o",
             "apps\\openssl-bin-ecparam.o",
             "apps\\openssl-bin-enc.o",
-            "apps\\openssl-bin-engine.o",
             "apps\\openssl-bin-errstr.o",
             "apps\\openssl-bin-fipsinstall.o",
             "apps\\openssl-bin-gendsa.o",
@@ -27909,9 +27725,6 @@ our %unified_info = (
         ],
         "apps\\openssl-bin-enc.o" => [
             ".\\apps\\enc.c"
-        ],
-        "apps\\openssl-bin-engine.o" => [
-            ".\\apps\\engine.c"
         ],
         "apps\\openssl-bin-errstr.o" => [
             ".\\apps\\errstr.c"
@@ -30018,138 +29831,6 @@ our %unified_info = (
         ],
         "crypto\\encode_decode\\libcrypto-shlib-encoder_pkey.o" => [
             ".\\crypto\\encode_decode\\encoder_pkey.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_all.o" => [
-            ".\\crypto\\engine\\eng_all.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_cnf.o" => [
-            ".\\crypto\\engine\\eng_cnf.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_ctrl.o" => [
-            ".\\crypto\\engine\\eng_ctrl.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_dyn.o" => [
-            ".\\crypto\\engine\\eng_dyn.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_err.o" => [
-            ".\\crypto\\engine\\eng_err.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_fat.o" => [
-            ".\\crypto\\engine\\eng_fat.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_init.o" => [
-            ".\\crypto\\engine\\eng_init.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_lib.o" => [
-            ".\\crypto\\engine\\eng_lib.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_list.o" => [
-            ".\\crypto\\engine\\eng_list.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_openssl.o" => [
-            ".\\crypto\\engine\\eng_openssl.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_pkey.o" => [
-            ".\\crypto\\engine\\eng_pkey.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_rdrand.o" => [
-            ".\\crypto\\engine\\eng_rdrand.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-eng_table.o" => [
-            ".\\crypto\\engine\\eng_table.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_asnmth.o" => [
-            ".\\crypto\\engine\\tb_asnmth.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_cipher.o" => [
-            ".\\crypto\\engine\\tb_cipher.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_dh.o" => [
-            ".\\crypto\\engine\\tb_dh.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_digest.o" => [
-            ".\\crypto\\engine\\tb_digest.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_dsa.o" => [
-            ".\\crypto\\engine\\tb_dsa.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_eckey.o" => [
-            ".\\crypto\\engine\\tb_eckey.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_pkmeth.o" => [
-            ".\\crypto\\engine\\tb_pkmeth.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_rand.o" => [
-            ".\\crypto\\engine\\tb_rand.c"
-        ],
-        "crypto\\engine\\libcrypto-lib-tb_rsa.o" => [
-            ".\\crypto\\engine\\tb_rsa.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_all.o" => [
-            ".\\crypto\\engine\\eng_all.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_cnf.o" => [
-            ".\\crypto\\engine\\eng_cnf.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_ctrl.o" => [
-            ".\\crypto\\engine\\eng_ctrl.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_dyn.o" => [
-            ".\\crypto\\engine\\eng_dyn.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_err.o" => [
-            ".\\crypto\\engine\\eng_err.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_fat.o" => [
-            ".\\crypto\\engine\\eng_fat.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_init.o" => [
-            ".\\crypto\\engine\\eng_init.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_lib.o" => [
-            ".\\crypto\\engine\\eng_lib.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_list.o" => [
-            ".\\crypto\\engine\\eng_list.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_openssl.o" => [
-            ".\\crypto\\engine\\eng_openssl.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_pkey.o" => [
-            ".\\crypto\\engine\\eng_pkey.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_rdrand.o" => [
-            ".\\crypto\\engine\\eng_rdrand.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-eng_table.o" => [
-            ".\\crypto\\engine\\eng_table.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_asnmth.o" => [
-            ".\\crypto\\engine\\tb_asnmth.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_cipher.o" => [
-            ".\\crypto\\engine\\tb_cipher.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_dh.o" => [
-            ".\\crypto\\engine\\tb_dh.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_digest.o" => [
-            ".\\crypto\\engine\\tb_digest.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_dsa.o" => [
-            ".\\crypto\\engine\\tb_dsa.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_eckey.o" => [
-            ".\\crypto\\engine\\tb_eckey.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_pkmeth.o" => [
-            ".\\crypto\\engine\\tb_pkmeth.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_rand.o" => [
-            ".\\crypto\\engine\\tb_rand.c"
-        ],
-        "crypto\\engine\\libcrypto-shlib-tb_rsa.o" => [
-            ".\\crypto\\engine\\tb_rsa.c"
         ],
         "crypto\\err\\libcrypto-lib-err.o" => [
             ".\\crypto\\err\\err.c"
@@ -33040,24 +32721,6 @@ our %unified_info = (
         "crypto\\x509\\libcrypto-shlib-x_x509a.o" => [
             ".\\crypto\\x509\\x_x509a.c"
         ],
-        "engines\\libcrypto-lib-e_capi.o" => [
-            ".\\engines\\e_capi.c"
-        ],
-        "engines\\libcrypto-lib-e_padlock-x86.o" => [
-            "engines\\e_padlock-x86.S"
-        ],
-        "engines\\libcrypto-lib-e_padlock.o" => [
-            ".\\engines\\e_padlock.c"
-        ],
-        "engines\\libcrypto-shlib-e_capi.o" => [
-            ".\\engines\\e_capi.c"
-        ],
-        "engines\\libcrypto-shlib-e_padlock-x86.o" => [
-            "engines\\e_padlock-x86.S"
-        ],
-        "engines\\libcrypto-shlib-e_padlock.o" => [
-            ".\\engines\\e_padlock.c"
-        ],
         "fuzz\\acert-test" => [
             "fuzz\\acert-test-bin-acert.o",
             "fuzz\\acert-test-bin-test-corpus.o"
@@ -33754,28 +33417,6 @@ our %unified_info = (
             "crypto\\encode_decode\\libcrypto-lib-encoder_lib.o",
             "crypto\\encode_decode\\libcrypto-lib-encoder_meth.o",
             "crypto\\encode_decode\\libcrypto-lib-encoder_pkey.o",
-            "crypto\\engine\\libcrypto-lib-eng_all.o",
-            "crypto\\engine\\libcrypto-lib-eng_cnf.o",
-            "crypto\\engine\\libcrypto-lib-eng_ctrl.o",
-            "crypto\\engine\\libcrypto-lib-eng_dyn.o",
-            "crypto\\engine\\libcrypto-lib-eng_err.o",
-            "crypto\\engine\\libcrypto-lib-eng_fat.o",
-            "crypto\\engine\\libcrypto-lib-eng_init.o",
-            "crypto\\engine\\libcrypto-lib-eng_lib.o",
-            "crypto\\engine\\libcrypto-lib-eng_list.o",
-            "crypto\\engine\\libcrypto-lib-eng_openssl.o",
-            "crypto\\engine\\libcrypto-lib-eng_pkey.o",
-            "crypto\\engine\\libcrypto-lib-eng_rdrand.o",
-            "crypto\\engine\\libcrypto-lib-eng_table.o",
-            "crypto\\engine\\libcrypto-lib-tb_asnmth.o",
-            "crypto\\engine\\libcrypto-lib-tb_cipher.o",
-            "crypto\\engine\\libcrypto-lib-tb_dh.o",
-            "crypto\\engine\\libcrypto-lib-tb_digest.o",
-            "crypto\\engine\\libcrypto-lib-tb_dsa.o",
-            "crypto\\engine\\libcrypto-lib-tb_eckey.o",
-            "crypto\\engine\\libcrypto-lib-tb_pkmeth.o",
-            "crypto\\engine\\libcrypto-lib-tb_rand.o",
-            "crypto\\engine\\libcrypto-lib-tb_rsa.o",
             "crypto\\err\\libcrypto-lib-err.o",
             "crypto\\err\\libcrypto-lib-err_all.o",
             "crypto\\err\\libcrypto-lib-err_all_legacy.o",
@@ -34246,9 +33887,6 @@ our %unified_info = (
             "crypto\\x509\\libcrypto-lib-x_req.o",
             "crypto\\x509\\libcrypto-lib-x_x509.o",
             "crypto\\x509\\libcrypto-lib-x_x509a.o",
-            "engines\\libcrypto-lib-e_capi.o",
-            "engines\\libcrypto-lib-e_padlock-x86.o",
-            "engines\\libcrypto-lib-e_padlock.o",
             "ms\\libcrypto-lib-uplink.o",
             "providers\\libcrypto-lib-baseprov.o",
             "providers\\libcrypto-lib-defltprov.o",
@@ -35880,12 +35518,6 @@ our %unified_info = (
         "test\\aesgcmtest-bin-aesgcmtest.o" => [
             ".\\test\\aesgcmtest.c"
         ],
-        "test\\afalgtest" => [
-            "test\\afalgtest-bin-afalgtest.o"
-        ],
-        "test\\afalgtest-bin-afalgtest.o" => [
-            ".\\test\\afalgtest.c"
-        ],
         "test\\algorithmid_test" => [
             "test\\algorithmid_test-bin-algorithmid_test.o"
         ],
@@ -36231,12 +35863,6 @@ our %unified_info = (
         "test\\buildtest_c_encoder-bin-buildtest_encoder.o" => [
             "test\\buildtest_encoder.c"
         ],
-        "test\\buildtest_c_engine" => [
-            "test\\buildtest_c_engine-bin-buildtest_engine.o"
-        ],
-        "test\\buildtest_c_engine-bin-buildtest_engine.o" => [
-            "test\\buildtest_engine.c"
-        ],
         "test\\buildtest_c_evp" => [
             "test\\buildtest_c_evp-bin-buildtest_evp.o"
         ],
@@ -36521,7 +36147,6 @@ our %unified_info = (
             "apps\\lib\\ca_internals_test-bin-app_x509.o",
             "apps\\lib\\ca_internals_test-bin-apps.o",
             "apps\\lib\\ca_internals_test-bin-apps_ui.o",
-            "apps\\lib\\ca_internals_test-bin-engine.o",
             "apps\\lib\\ca_internals_test-bin-fmt.o",
             "crypto\\asn1\\ca_internals_test-bin-a_time.o",
             "crypto\\ca_internals_test-bin-ctype.o",
@@ -36815,12 +36440,6 @@ our %unified_info = (
         ],
         "test\\endecoder_legacy_test-bin-endecoder_legacy_test.o" => [
             ".\\test\\endecoder_legacy_test.c"
-        ],
-        "test\\enginetest" => [
-            "test\\enginetest-bin-enginetest.o"
-        ],
-        "test\\enginetest-bin-enginetest.o" => [
-            ".\\test\\enginetest.c"
         ],
         "test\\errtest" => [
             "test\\errtest-bin-errtest.o"
@@ -37201,6 +36820,12 @@ our %unified_info = (
         ],
         "test\\lhash_test-bin-lhash_test.o" => [
             ".\\test\\lhash_test.c"
+        ],
+        "test\\libctx_config_test" => [
+            "test\\libctx_config_test-bin-libctx_config_test.o"
+        ],
+        "test\\libctx_config_test-bin-libctx_config_test.o" => [
+            ".\\test\\libctx_config_test.c"
         ],
         "test\\libtestutil.a" => [
             "apps\\lib\\libtestutil-lib-opt.o",
@@ -38244,9 +37869,6 @@ my %disabled_info = (
     "acvp-tests" => {
         "macro" => "OPENSSL_NO_ACVP_TESTS"
     },
-    "afalgeng" => {
-        "macro" => "OPENSSL_NO_AFALGENG"
-    },
     "allocfail-tests" => {
         "macro" => "OPENSSL_NO_ALLOCFAIL_TESTS"
     },
@@ -38268,14 +37890,17 @@ my %disabled_info = (
     "demos" => {
         "macro" => "OPENSSL_NO_DEMOS"
     },
-    "devcryptoeng" => {
-        "macro" => "OPENSSL_NO_DEVCRYPTOENG"
+    "dynamic-engine" => {
+        "macro" => "OPENSSL_NO_DYNAMIC_ENGINE"
     },
     "ec_nistp_64_gcc_128" => {
         "macro" => "OPENSSL_NO_EC_NISTP_64_GCC_128"
     },
     "egd" => {
         "macro" => "OPENSSL_NO_EGD"
+    },
+    "engine" => {
+        "macro" => "OPENSSL_NO_ENGINE"
     },
     "external-tests" => {
         "macro" => "OPENSSL_NO_EXTERNAL_TESTS"
@@ -38313,9 +37938,6 @@ my %disabled_info = (
             "crypto\\lms"
         ]
     },
-    "loadereng" => {
-        "macro" => "OPENSSL_NO_LOADERENG"
-    },
     "md2" => {
         "macro" => "OPENSSL_NO_MD2",
         "skipped" => [
@@ -38345,6 +37967,9 @@ my %disabled_info = (
     },
     "sslkeylog" => {
         "macro" => "OPENSSL_NO_SSLKEYLOG"
+    },
+    "static-engine" => {
+        "macro" => "OPENSSL_NO_STATIC_ENGINE"
     },
     "tfo" => {
         "macro" => "OPENSSL_NO_TFO"

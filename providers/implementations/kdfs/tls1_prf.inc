@@ -35,7 +35,6 @@ static const OSSL_PARAM tls1prf_set_ctx_params_list[] = {
 #ifndef tls1prf_set_ctx_params_st
 struct tls1prf_set_ctx_params_st {
     OSSL_PARAM *digest;
-    OSSL_PARAM *engine;
 # if defined(FIPS_MODULE)
     OSSL_PARAM *ind_d;
 # endif
@@ -116,33 +115,17 @@ static int tls1prf_set_ctx_params_decoder
                 }
                 break;
             case 'e':
-                switch(s[1]) {
-                default:
-                    break;
-                case 'm':
 # if defined(FIPS_MODULE)
-                    if (ossl_likely(strcmp("s_check", s + 2) == 0)) {
-                        /* OSSL_KDF_PARAM_FIPS_EMS_CHECK */
-                        if (ossl_unlikely(r->ind_e != NULL)) {
-                            ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                           "param %s is repeated", s);
-                            return 0;
-                        }
-                        r->ind_e = (OSSL_PARAM *)p;
+                if (ossl_likely(strcmp("ms_check", s + 1) == 0)) {
+                    /* OSSL_KDF_PARAM_FIPS_EMS_CHECK */
+                    if (ossl_unlikely(r->ind_e != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
                     }
-# endif
-                    break;
-                case 'n':
-                    if (ossl_likely(strcmp("gine", s + 2) == 0)) {
-                        /* OSSL_ALG_PARAM_ENGINE */
-                        if (ossl_unlikely(r->engine != NULL)) {
-                            ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                           "param %s is repeated", s);
-                            return 0;
-                        }
-                        r->engine = (OSSL_PARAM *)p;
-                    }
+                    r->ind_e = (OSSL_PARAM *)p;
                 }
+# endif
                 break;
             case 'k':
 # if defined(FIPS_MODULE)

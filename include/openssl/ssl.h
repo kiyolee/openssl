@@ -773,9 +773,6 @@ void SSL_CTX_set_client_cert_cb(SSL_CTX *ctx,
                                                        EVP_PKEY **pkey));
 int (*SSL_CTX_get_client_cert_cb(SSL_CTX *ctx)) (SSL *ssl, X509 **x509,
                                                  EVP_PKEY **pkey);
-# ifndef OPENSSL_NO_ENGINE
-__owur int SSL_CTX_set_client_cert_engine(SSL_CTX *ctx, ENGINE *e);
-# endif
 void SSL_CTX_set_cookie_generate_cb(SSL_CTX *ctx,
                                     int (*app_gen_cookie_cb) (SSL *ssl,
                                                               unsigned char
@@ -2627,6 +2624,8 @@ void SSL_trace(int write_p, int version, int content_type,
 # ifndef OPENSSL_NO_SOCK
 int DTLSv1_listen(SSL *s, BIO_ADDR *client);
 # endif
+
+int SSL_listen_ex(SSL *listener, SSL *new_conn);
 
 # ifndef OPENSSL_NO_CT
 
