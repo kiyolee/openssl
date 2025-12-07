@@ -67,9 +67,6 @@
     <Filter Include="Source Files\crypto\ec">
       <UniqueIdentifier>{07cbc1ef-8347-422e-a291-6c87a8fcce14}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\crypto\engine">
-      <UniqueIdentifier>{be7d9210-be88-4f38-adc2-3c5cfa933371}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\crypto\err">
       <UniqueIdentifier>{32317ec8-7099-48b0-bfe3-4eb9c8a56370}</UniqueIdentifier>
     </Filter>
@@ -150,9 +147,6 @@
     </Filter>
     <Filter Include="Source Files\crypto\x509">
       <UniqueIdentifier>{d371f18a-3b37-4d27-83fe-c5f6f7573b1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engines">
-      <UniqueIdentifier>{31c3b336-f2af-42f3-b2a1-a0d729fdb286}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\asm">
       <UniqueIdentifier>{9cc240bd-2493-4942-bcb1-d8972c470e94}</UniqueIdentifier>
@@ -942,69 +936,6 @@
     <ClCompile Include="..\..\crypto\ec\eck_prn.c">
       <Filter>Source Files\crypto\ec</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_digest.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_dsa.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_pkmeth.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_rand.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_rsa.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_all.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_cnf.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_ctrl.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_dyn.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_err.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_fat.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_init.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_lib.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_list.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_openssl.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_pkey.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_rdrand.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\eng_table.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_asnmth.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_cipher.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_dh.c">
-      <Filter>Source Files\crypto\engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\crypto\err\err_all.c">
       <Filter>Source Files\crypto\err</Filter>
     </ClCompile>
@@ -1746,12 +1677,6 @@
     <ClCompile Include="..\..\crypto\x509\v3_pcons.c">
       <Filter>Source Files\crypto\x509</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engines\e_capi.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engines\e_padlock.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\crypto\bf\bf_enc.c">
       <Filter>Source Files\crypto\bf\x64</Filter>
     </ClCompile>
@@ -1922,9 +1847,6 @@
     </ClCompile>
     <ClCompile Include="..\..\crypto\ec\curve448\arch_32\f_impl32.c">
       <Filter>Source Files\crypto\ec\curve448\arch_32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\crypto\engine\tb_eckey.c">
-      <Filter>Source Files\crypto\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\crypto\evp\pbe_scrypt.c">
       <Filter>Source Files\crypto\evp</Filter>
@@ -2911,12 +2833,6 @@
     </CustomBuild>
     <CustomBuild Include="..\..\crypto\sm4\asm\sm4-x86_64.pl">
       <Filter>Source Files\asm\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\engines\asm\e_padlock-x86_64.pl">
-      <Filter>Source Files\asm\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\engines\asm\e_padlock-x86.pl">
-      <Filter>Source Files\asm\x86</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\ms\uplink-x86_64.pl">
       <Filter>Source Files\ms\x64</Filter>
