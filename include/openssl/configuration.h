@@ -11,32 +11,25 @@
  */
 
 #ifndef OPENSSL_CONFIGURATION_H
-# define OPENSSL_CONFIGURATION_H
-# pragma once
+#define OPENSSL_CONFIGURATION_H
+#pragma once
 
-# ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
-# endif
+#endif
 
-# ifdef OPENSSL_ALGORITHM_DEFINES
-#  error OPENSSL_ALGORITHM_DEFINES no longer supported
-# endif
+#ifdef OPENSSL_ALGORITHM_DEFINES
+#error OPENSSL_ALGORITHM_DEFINES no longer supported
+#endif
 
 /*
  * OpenSSL was configured with the following options:
  */
 
-#if !defined(_M_ARM) && !defined(_M_ARM64)
-#ifdef _WIN64
-# ifndef OPENSSL_SYS_WIN64A
-#  define OPENSSL_SYS_WIN64A 1
-# endif
-#else
+/* clang-format off */
 # ifndef OPENSSL_SYS_WIN32
 #  define OPENSSL_SYS_WIN32 1
 # endif
-#endif
-#endif
 # define OPENSSL_CONFIGURED_API 40000
 # ifndef OPENSSL_RAND_SEED_OS
 #  define OPENSSL_RAND_SEED_OS
@@ -53,11 +46,6 @@ extern "C" {
 # ifndef OPENSSL_NO_ASAN
 #  define OPENSSL_NO_ASAN
 # endif
-#if defined(_M_ARM) || defined(_M_ARM64)
-# ifndef OPENSSL_NO_ASM
-#  define OPENSSL_NO_ASM
-# endif
-#endif
 # ifndef OPENSSL_NO_BROTLI
 #  define OPENSSL_NO_BROTLI
 # endif
@@ -157,11 +145,6 @@ extern "C" {
 # ifndef OPENSSL_NO_UNIT_TEST
 #  define OPENSSL_NO_UNIT_TEST
 # endif
-#if defined(OPENSSL_STATIC_LIB) || defined(_M_ARM) || defined(_M_ARM64)
-# ifndef OPENSSL_NO_UPLINK
-#  define OPENSSL_NO_UPLINK
-# endif
-#endif
 # ifndef OPENSSL_NO_WEAK_SSL_CIPHERS
 #  define OPENSSL_NO_WEAK_SSL_CIPHERS
 # endif
@@ -175,9 +158,12 @@ extern "C" {
 #  define OPENSSL_NO_ZSTD_DYNAMIC
 # endif
 
+/* clang-format on */
 
 /* Generate 80386 code? */
+/* clang-format off */
 # undef I386_ONLY
+/* clang-format on */
 
 /*
  * The UEFI build supports both 32-bit and 64-bit builds from a single run
@@ -185,40 +171,37 @@ extern "C" {
  * SIXTY_FOUR_BIT appropriately for their builds, and we should not touch
  * them in that case.
  */
-# if !defined(OPENSSL_SYS_UEFI)
-#ifdef _WIN64
-#  undef BN_LLONG
-#else
+#if !defined(OPENSSL_SYS_UEFI)
+    /* clang-format off */
 #  define BN_LLONG
-#endif
-/* Only one for the following should be defined */
+    /* clang-format on */
+    /* Only one for the following should be defined */
+    /* clang-format off */
 #  undef SIXTY_FOUR_BIT_LONG
-#ifdef _WIN64
-#  define SIXTY_FOUR_BIT
-#  undef THIRTY_TWO_BIT
-#else
+    /* clang-format on */
+    /* clang-format off */
 #  undef SIXTY_FOUR_BIT
+    /* clang-format on */
+    /* clang-format off */
 #  define THIRTY_TWO_BIT
+/* clang-format on */
 #endif
-# endif
 
 /*
  * The following are cipher-specific, but are part of the public API.
  */
-#if defined(_M_ARM) || defined(_M_ARM64)
-# define RC4_INT unsigned char
-#else
+/* clang-format off */
 # define RC4_INT unsigned int
+/* clang-format on */
+
+#if defined(OPENSSL_NO_COMP) || (defined(OPENSSL_NO_BROTLI) && defined(OPENSSL_NO_ZSTD) && defined(OPENSSL_NO_ZLIB))
+#define OPENSSL_NO_COMP_ALG
+#else
+#undef OPENSSL_NO_COMP_ALG
 #endif
 
-# if defined(OPENSSL_NO_COMP) || (defined(OPENSSL_NO_BROTLI) && defined(OPENSSL_NO_ZSTD) && defined(OPENSSL_NO_ZLIB))
-#  define OPENSSL_NO_COMP_ALG
-# else
-#  undef  OPENSSL_NO_COMP_ALG
-# endif
-
-# ifdef  __cplusplus
+#ifdef __cplusplus
 }
-# endif
+#endif
 
-#endif                          /* OPENSSL_CONFIGURATION_H */
+#endif /* OPENSSL_CONFIGURATION_H */
