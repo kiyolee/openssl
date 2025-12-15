@@ -55,9 +55,6 @@ extern "C" {
 # ifndef OPENSSL_NO_CRYPTO_MDEBUG
 #  define OPENSSL_NO_CRYPTO_MDEBUG
 # endif
-# ifndef OPENSSL_NO_CRYPTO_MDEBUG_BACKTRACE
-#  define OPENSSL_NO_CRYPTO_MDEBUG_BACKTRACE
-# endif
 # ifndef OPENSSL_NO_DEMOS
 #  define OPENSSL_NO_DEMOS
 # endif

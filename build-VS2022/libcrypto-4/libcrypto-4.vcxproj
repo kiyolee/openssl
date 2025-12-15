@@ -481,7 +481,6 @@
     <ClCompile Include="..\..\crypto\evp\bio_enc.c" />
     <ClCompile Include="..\..\crypto\evp\bio_md.c" />
     <ClCompile Include="..\..\crypto\evp\bio_ok.c" />
-    <ClCompile Include="..\..\crypto\evp\cmeth_lib.c" />
     <ClCompile Include="..\..\crypto\evp\ctrl_params_translate.c" />
     <ClCompile Include="..\..\crypto\evp\c_allc.c" />
     <ClCompile Include="..\..\crypto\evp\c_alld.c" />

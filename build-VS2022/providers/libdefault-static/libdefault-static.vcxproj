@@ -200,6 +200,7 @@
     <ClCompile Include="..\..\..\providers\implementations\kdfs\pbkdf2.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\pkcs12kdf.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\scrypt.c" />
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\snmpkdf.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\sshkdf.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\sskdf.c" />
     <ClCompile Include="..\..\..\providers\implementations\kdfs\tls1_prf.c" />
