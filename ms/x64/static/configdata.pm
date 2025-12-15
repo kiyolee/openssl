@@ -199,7 +199,6 @@ our %config = (
         "OPENSSL_NO_BROTLI",
         "OPENSSL_NO_BROTLI_DYNAMIC",
         "OPENSSL_NO_CRYPTO_MDEBUG",
-        "OPENSSL_NO_CRYPTO_MDEBUG_BACKTRACE",
         "OPENSSL_NO_DEMOS",
         "OPENSSL_NO_DYNAMIC_ENGINE",
         "OPENSSL_NO_EC_NISTP_64_GCC_128",
@@ -242,7 +241,7 @@ our %config = (
         "OPENSSL_SYS_WIN64A"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-crypto-mdebug-backtrace no-demos no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-ssl3 no-ssl3-method no-sslkeylog no-static-engine no-tfo no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-demos no-dynamic-engine no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-ssl3 no-ssl3-method no-sslkeylog no-static-engine no-tfo no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -555,7 +554,6 @@ our %disabled = (
     "brotli-dynamic" => "default",
     "buildtest-c++" => "default",
     "crypto-mdebug" => "default",
-    "crypto-mdebug-backtrace" => "default",
     "demos" => "default",
     "dynamic-engine" => "cascade",
     "ec_nistp_64_gcc_128" => "default",
@@ -2123,6 +2121,7 @@ our %unified_info = (
             "providers\\implementations\\digests\\blake2_prov.inc",
             "providers\\implementations\\digests\\digestcommon.inc",
             "providers\\implementations\\digests\\mdc2_prov.inc",
+            "providers\\implementations\\digests\\sha2_prov.inc",
             "providers\\implementations\\digests\\sha3_prov.inc",
             "providers\\implementations\\encode_decode\\decode_der2key.inc",
             "providers\\implementations\\encode_decode\\decode_epki2pki.inc",
@@ -2145,6 +2144,7 @@ our %unified_info = (
             "providers\\implementations\\kdfs\\pkcs12kdf.inc",
             "providers\\implementations\\kdfs\\pvkkdf.inc",
             "providers\\implementations\\kdfs\\scrypt.inc",
+            "providers\\implementations\\kdfs\\snmpkdf.inc",
             "providers\\implementations\\kdfs\\sshkdf.inc",
             "providers\\implementations\\kdfs\\sskdf.inc",
             "providers\\implementations\\kdfs\\tls1_prf.inc",
@@ -3134,9 +3134,6 @@ our %unified_info = (
         "doc\\html\\man3\\EVP_CIPHER_CTX_get_original_iv.html" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_original_iv.pod"
         ],
-        "doc\\html\\man3\\EVP_CIPHER_meth_new.html" => [
-            ".\\doc\\man3\\EVP_CIPHER_meth_new.pod"
-        ],
         "doc\\html\\man3\\EVP_DigestInit.html" => [
             ".\\doc\\man3\\EVP_DigestInit.pod"
         ],
@@ -3484,6 +3481,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OPENSSL_malloc.html" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
+        ],
+        "doc\\html\\man3\\OPENSSL_ppccap.html" => [
+            ".\\doc\\man3\\OPENSSL_ppccap.pod"
         ],
         "doc\\html\\man3\\OPENSSL_riscvcap.html" => [
             ".\\doc\\man3\\OPENSSL_riscvcap.pod"
@@ -4744,6 +4744,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\EVP_KDF-SCRYPT.html" => [
             ".\\doc\\man7\\EVP_KDF-SCRYPT.pod"
+        ],
+        "doc\\html\\man7\\EVP_KDF-SNMPKDF.html" => [
+            ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
         ],
         "doc\\html\\man7\\EVP_KDF-SS.html" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
@@ -6047,9 +6050,6 @@ our %unified_info = (
         "doc\\man\\man3\\EVP_CIPHER_CTX_get_original_iv.3" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_original_iv.pod"
         ],
-        "doc\\man\\man3\\EVP_CIPHER_meth_new.3" => [
-            ".\\doc\\man3\\EVP_CIPHER_meth_new.pod"
-        ],
         "doc\\man\\man3\\EVP_DigestInit.3" => [
             ".\\doc\\man3\\EVP_DigestInit.pod"
         ],
@@ -6397,6 +6397,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\OPENSSL_malloc.3" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
+        ],
+        "doc\\man\\man3\\OPENSSL_ppccap.3" => [
+            ".\\doc\\man3\\OPENSSL_ppccap.pod"
         ],
         "doc\\man\\man3\\OPENSSL_riscvcap.3" => [
             ".\\doc\\man3\\OPENSSL_riscvcap.pod"
@@ -7658,6 +7661,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_KDF-SCRYPT.7" => [
             ".\\doc\\man7\\EVP_KDF-SCRYPT.pod"
         ],
+        "doc\\man\\man7\\EVP_KDF-SNMPKDF.7" => [
+            ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
+        ],
         "doc\\man\\man7\\EVP_KDF-SS.7" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
         ],
@@ -8425,6 +8431,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\mdc2_prov.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\digests\\sha2_prov.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\digests\\sha3_prov.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
@@ -8495,6 +8504,9 @@ our %unified_info = (
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\kdfs\\scrypt.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\snmpkdf.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\kdfs\\sshkdf.inc" => [
@@ -10746,7 +10758,6 @@ our %unified_info = (
                 "crypto\\evp\\libcrypto-lib-bio_ok.o",
                 "crypto\\evp\\libcrypto-lib-c_allc.o",
                 "crypto\\evp\\libcrypto-lib-c_alld.o",
-                "crypto\\evp\\libcrypto-lib-cmeth_lib.o",
                 "crypto\\evp\\libcrypto-lib-ctrl_params_translate.o",
                 "crypto\\evp\\libcrypto-lib-dh_ctrl.o",
                 "crypto\\evp\\libcrypto-lib-dh_support.o",
@@ -11827,6 +11838,7 @@ our %unified_info = (
                 "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-pkcs12kdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o",
+                "providers\\implementations\\kdfs\\libdefault-lib-snmpkdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-sskdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-tls1_prf.o",
@@ -13709,9 +13721,6 @@ our %unified_info = (
         "doc\\html\\man3\\EVP_CIPHER_CTX_get_original_iv.html" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_original_iv.pod"
         ],
-        "doc\\html\\man3\\EVP_CIPHER_meth_new.html" => [
-            ".\\doc\\man3\\EVP_CIPHER_meth_new.pod"
-        ],
         "doc\\html\\man3\\EVP_DigestInit.html" => [
             ".\\doc\\man3\\EVP_DigestInit.pod"
         ],
@@ -14059,6 +14068,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\OPENSSL_malloc.html" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
+        ],
+        "doc\\html\\man3\\OPENSSL_ppccap.html" => [
+            ".\\doc\\man3\\OPENSSL_ppccap.pod"
         ],
         "doc\\html\\man3\\OPENSSL_riscvcap.html" => [
             ".\\doc\\man3\\OPENSSL_riscvcap.pod"
@@ -15320,6 +15332,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_KDF-SCRYPT.html" => [
             ".\\doc\\man7\\EVP_KDF-SCRYPT.pod"
         ],
+        "doc\\html\\man7\\EVP_KDF-SNMPKDF.html" => [
+            ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
+        ],
         "doc\\html\\man7\\EVP_KDF-SS.html" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
         ],
@@ -16568,9 +16583,6 @@ our %unified_info = (
         "doc\\man\\man3\\EVP_CIPHER_CTX_get_original_iv.3" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_original_iv.pod"
         ],
-        "doc\\man\\man3\\EVP_CIPHER_meth_new.3" => [
-            ".\\doc\\man3\\EVP_CIPHER_meth_new.pod"
-        ],
         "doc\\man\\man3\\EVP_DigestInit.3" => [
             ".\\doc\\man3\\EVP_DigestInit.pod"
         ],
@@ -16918,6 +16930,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\OPENSSL_malloc.3" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
+        ],
+        "doc\\man\\man3\\OPENSSL_ppccap.3" => [
+            ".\\doc\\man3\\OPENSSL_ppccap.pod"
         ],
         "doc\\man\\man3\\OPENSSL_riscvcap.3" => [
             ".\\doc\\man3\\OPENSSL_riscvcap.pod"
@@ -18179,6 +18194,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_KDF-SCRYPT.7" => [
             ".\\doc\\man7\\EVP_KDF-SCRYPT.pod"
         ],
+        "doc\\man\\man7\\EVP_KDF-SNMPKDF.7" => [
+            ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
+        ],
         "doc\\man\\man7\\EVP_KDF-SS.7" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
         ],
@@ -18842,6 +18860,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\mdc2_prov.inc" => [
             ".\\providers\\implementations\\digests\\mdc2_prov.inc.in"
         ],
+        "providers\\implementations\\digests\\sha2_prov.inc" => [
+            ".\\providers\\implementations\\digests\\sha2_prov.inc.in"
+        ],
         "providers\\implementations\\digests\\sha3_prov.inc" => [
             ".\\providers\\implementations\\digests\\sha3_prov.inc.in"
         ],
@@ -18907,6 +18928,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\kdfs\\scrypt.inc" => [
             ".\\providers\\implementations\\kdfs\\scrypt.inc.in"
+        ],
+        "providers\\implementations\\kdfs\\snmpkdf.inc" => [
+            ".\\providers\\implementations\\kdfs\\snmpkdf.inc.in"
         ],
         "providers\\implementations\\kdfs\\sshkdf.inc" => [
             ".\\providers\\implementations\\kdfs\\sshkdf.inc.in"
@@ -19574,7 +19598,6 @@ our %unified_info = (
             "doc\\html\\man3\\EVP_BytesToKey.html",
             "doc\\html\\man3\\EVP_CIPHER_CTX_get_cipher_data.html",
             "doc\\html\\man3\\EVP_CIPHER_CTX_get_original_iv.html",
-            "doc\\html\\man3\\EVP_CIPHER_meth_new.html",
             "doc\\html\\man3\\EVP_DigestInit.html",
             "doc\\html\\man3\\EVP_DigestSignInit.html",
             "doc\\html\\man3\\EVP_DigestVerifyInit.html",
@@ -19691,6 +19714,7 @@ our %unified_info = (
             "doc\\html\\man3\\OPENSSL_load_builtin_modules.html",
             "doc\\html\\man3\\OPENSSL_load_u16_le.html",
             "doc\\html\\man3\\OPENSSL_malloc.html",
+            "doc\\html\\man3\\OPENSSL_ppccap.html",
             "doc\\html\\man3\\OPENSSL_riscvcap.html",
             "doc\\html\\man3\\OPENSSL_s390xcap.html",
             "doc\\html\\man3\\OPENSSL_secure_malloc.html",
@@ -20115,6 +20139,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_KDF-PKCS12KDF.html",
             "doc\\html\\man7\\EVP_KDF-PVKKDF.html",
             "doc\\html\\man7\\EVP_KDF-SCRYPT.html",
+            "doc\\html\\man7\\EVP_KDF-SNMPKDF.html",
             "doc\\html\\man7\\EVP_KDF-SS.html",
             "doc\\html\\man7\\EVP_KDF-SSHKDF.html",
             "doc\\html\\man7\\EVP_KDF-TLS13_KDF.html",
@@ -21762,6 +21787,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\mdc2_prov.inc" => [
             ".\\util\\perl"
         ],
+        "providers\\implementations\\digests\\sha2_prov.inc" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\digests\\sha3_prov.inc" => [
             ".\\util\\perl"
         ],
@@ -21835,6 +21863,9 @@ our %unified_info = (
             ".\\util\\perl"
         ],
         "providers\\implementations\\kdfs\\scrypt.inc" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\snmpkdf.inc" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\kdfs\\sshkdf.inc" => [
@@ -24494,7 +24525,6 @@ our %unified_info = (
             "doc\\man\\man3\\EVP_BytesToKey.3",
             "doc\\man\\man3\\EVP_CIPHER_CTX_get_cipher_data.3",
             "doc\\man\\man3\\EVP_CIPHER_CTX_get_original_iv.3",
-            "doc\\man\\man3\\EVP_CIPHER_meth_new.3",
             "doc\\man\\man3\\EVP_DigestInit.3",
             "doc\\man\\man3\\EVP_DigestSignInit.3",
             "doc\\man\\man3\\EVP_DigestVerifyInit.3",
@@ -24611,6 +24641,7 @@ our %unified_info = (
             "doc\\man\\man3\\OPENSSL_load_builtin_modules.3",
             "doc\\man\\man3\\OPENSSL_load_u16_le.3",
             "doc\\man\\man3\\OPENSSL_malloc.3",
+            "doc\\man\\man3\\OPENSSL_ppccap.3",
             "doc\\man\\man3\\OPENSSL_riscvcap.3",
             "doc\\man\\man3\\OPENSSL_s390xcap.3",
             "doc\\man\\man3\\OPENSSL_secure_malloc.3",
@@ -25035,6 +25066,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_KDF-PKCS12KDF.7",
             "doc\\man\\man7\\EVP_KDF-PVKKDF.7",
             "doc\\man\\man7\\EVP_KDF-SCRYPT.7",
+            "doc\\man\\man7\\EVP_KDF-SNMPKDF.7",
             "doc\\man\\man7\\EVP_KDF-SS.7",
             "doc\\man\\man7\\EVP_KDF-SSHKDF.7",
             "doc\\man\\man7\\EVP_KDF-TLS13_KDF.7",
@@ -26972,9 +27004,6 @@ our %unified_info = (
         ],
         "crypto\\evp\\libcrypto-lib-c_alld.o" => [
             ".\\crypto\\evp\\c_alld.c"
-        ],
-        "crypto\\evp\\libcrypto-lib-cmeth_lib.o" => [
-            ".\\crypto\\evp\\cmeth_lib.c"
         ],
         "crypto\\evp\\libcrypto-lib-ctrl_params_translate.o" => [
             ".\\crypto\\evp\\ctrl_params_translate.c"
@@ -29081,7 +29110,6 @@ our %unified_info = (
             "crypto\\evp\\libcrypto-lib-bio_ok.o",
             "crypto\\evp\\libcrypto-lib-c_allc.o",
             "crypto\\evp\\libcrypto-lib-c_alld.o",
-            "crypto\\evp\\libcrypto-lib-cmeth_lib.o",
             "crypto\\evp\\libcrypto-lib-ctrl_params_translate.o",
             "crypto\\evp\\libcrypto-lib-dh_ctrl.o",
             "crypto\\evp\\libcrypto-lib-dh_support.o",
@@ -30106,6 +30134,9 @@ our %unified_info = (
         "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o" => [
             ".\\providers\\implementations\\kdfs\\scrypt.c"
         ],
+        "providers\\implementations\\kdfs\\libdefault-lib-snmpkdf.o" => [
+            ".\\providers\\implementations\\kdfs\\snmpkdf.c"
+        ],
         "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o" => [
             ".\\providers\\implementations\\kdfs\\sshkdf.c"
         ],
@@ -30437,6 +30468,7 @@ our %unified_info = (
             "providers\\implementations\\kdfs\\libdefault-lib-pbkdf2.o",
             "providers\\implementations\\kdfs\\libdefault-lib-pkcs12kdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o",
+            "providers\\implementations\\kdfs\\libdefault-lib-snmpkdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-sskdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-tls1_prf.o",
@@ -33159,9 +33191,6 @@ my %disabled_info = (
     },
     "crypto-mdebug" => {
         "macro" => "OPENSSL_NO_CRYPTO_MDEBUG"
-    },
-    "crypto-mdebug-backtrace" => {
-        "macro" => "OPENSSL_NO_CRYPTO_MDEBUG_BACKTRACE"
     },
     "demos" => {
         "macro" => "OPENSSL_NO_DEMOS"

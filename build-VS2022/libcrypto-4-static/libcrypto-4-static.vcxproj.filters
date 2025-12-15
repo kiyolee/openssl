@@ -1839,9 +1839,6 @@
     <ClCompile Include="..\..\crypto\evp\pbe_scrypt.c">
       <Filter>Source Files\crypto\evp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\crypto\evp\cmeth_lib.c">
-      <Filter>Source Files\crypto\evp</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\crypto\evp\e_aria.c">
       <Filter>Source Files\crypto\evp</Filter>
     </ClCompile>
