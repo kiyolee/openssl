@@ -2804,6 +2804,9 @@ our %unified_info = (
         "doc\\html\\man3\\BIO_set_callback.html" => [
             ".\\doc\\man3\\BIO_set_callback.pod"
         ],
+        "doc\\html\\man3\\BIO_set_flags.html" => [
+            ".\\doc\\man3\\BIO_set_flags.pod"
+        ],
         "doc\\html\\man3\\BIO_should_retry.html" => [
             ".\\doc\\man3\\BIO_should_retry.pod"
         ],
@@ -5719,6 +5722,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\BIO_set_callback.3" => [
             ".\\doc\\man3\\BIO_set_callback.pod"
+        ],
+        "doc\\man\\man3\\BIO_set_flags.3" => [
+            ".\\doc\\man3\\BIO_set_flags.pod"
         ],
         "doc\\man\\man3\\BIO_should_retry.3" => [
             ".\\doc\\man3\\BIO_should_retry.pod"
@@ -13391,6 +13397,9 @@ our %unified_info = (
         "doc\\html\\man3\\BIO_set_callback.html" => [
             ".\\doc\\man3\\BIO_set_callback.pod"
         ],
+        "doc\\html\\man3\\BIO_set_flags.html" => [
+            ".\\doc\\man3\\BIO_set_flags.pod"
+        ],
         "doc\\html\\man3\\BIO_should_retry.html" => [
             ".\\doc\\man3\\BIO_should_retry.pod"
         ],
@@ -16252,6 +16261,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\BIO_set_callback.3" => [
             ".\\doc\\man3\\BIO_set_callback.pod"
+        ],
+        "doc\\man\\man3\\BIO_set_flags.3" => [
+            ".\\doc\\man3\\BIO_set_flags.pod"
         ],
         "doc\\man\\man3\\BIO_should_retry.3" => [
             ".\\doc\\man3\\BIO_should_retry.pod"
@@ -19488,6 +19500,7 @@ our %unified_info = (
             "doc\\html\\man3\\BIO_s_socket.html",
             "doc\\html\\man3\\BIO_sendmmsg.html",
             "doc\\html\\man3\\BIO_set_callback.html",
+            "doc\\html\\man3\\BIO_set_flags.html",
             "doc\\html\\man3\\BIO_should_retry.html",
             "doc\\html\\man3\\BIO_socket_wait.html",
             "doc\\html\\man3\\BN_BLINDING_new.html",
@@ -24415,6 +24428,7 @@ our %unified_info = (
             "doc\\man\\man3\\BIO_s_socket.3",
             "doc\\man\\man3\\BIO_sendmmsg.3",
             "doc\\man\\man3\\BIO_set_callback.3",
+            "doc\\man\\man3\\BIO_set_flags.3",
             "doc\\man\\man3\\BIO_should_retry.3",
             "doc\\man\\man3\\BIO_socket_wait.3",
             "doc\\man\\man3\\BN_BLINDING_new.3",
