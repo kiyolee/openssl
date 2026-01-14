@@ -63,6 +63,7 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\digests\blake2_prov.inc ^
   providers\implementations\digests\digestcommon.inc ^
   providers\implementations\digests\mdc2_prov.inc ^
+  providers\implementations\digests\ml_dsa_mu_prov.inc ^
   providers\implementations\digests\sha2_prov.inc ^
   providers\implementations\digests\sha3_prov.inc ^
   providers\implementations\encode_decode\decode_der2key.inc ^
