@@ -970,6 +970,9 @@ our %unified_info = (
             "fuzz\\pem-test" => {
                 "noinst" => "1"
             },
+            "fuzz\\pkcs12-test" => {
+                "noinst" => "1"
+            },
             "fuzz\\provider-test" => {
                 "noinst" => "1"
             },
@@ -1654,9 +1657,6 @@ our %unified_info = (
             "test\\pkey_meth_kdf_test" => {
                 "noinst" => "1"
             },
-            "test\\pkey_meth_test" => {
-                "noinst" => "1"
-            },
             "test\\poly1305_internal_test" => {
                 "noinst" => "1"
             },
@@ -2133,6 +2133,7 @@ our %unified_info = (
             "providers\\implementations\\digests\\blake2_prov.inc",
             "providers\\implementations\\digests\\digestcommon.inc",
             "providers\\implementations\\digests\\mdc2_prov.inc",
+            "providers\\implementations\\digests\\ml_dsa_mu_prov.inc",
             "providers\\implementations\\digests\\sha2_prov.inc",
             "providers\\implementations\\digests\\sha3_prov.inc",
             "providers\\implementations\\encode_decode\\decode_der2key.inc",
@@ -3197,9 +3198,6 @@ our %unified_info = (
         "doc\\html\\man3\\EVP_PKEY2PKCS8.html" => [
             ".\\doc\\man3\\EVP_PKEY2PKCS8.pod"
         ],
-        "doc\\html\\man3\\EVP_PKEY_ASN1_METHOD.html" => [
-            ".\\doc\\man3\\EVP_PKEY_ASN1_METHOD.pod"
-        ],
         "doc\\html\\man3\\EVP_PKEY_CTX_ctrl.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_ctrl.pod"
         ],
@@ -3232,9 +3230,6 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.pod"
-        ],
-        "doc\\html\\man3\\EVP_PKEY_asn1_get_count.html" => [
-            ".\\doc\\man3\\EVP_PKEY_asn1_get_count.pod"
         ],
         "doc\\html\\man3\\EVP_PKEY_check.html" => [
             ".\\doc\\man3\\EVP_PKEY_check.pod"
@@ -4847,6 +4842,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_MD-MDC2.html" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
         ],
+        "doc\\html\\man7\\EVP_MD-ML-DSA-MU.html" => [
+            ".\\doc\\man7\\EVP_MD-ML-DSA-MU.pod"
+        ],
         "doc\\html\\man7\\EVP_MD-NULL.html" => [
             ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
@@ -6110,9 +6108,6 @@ our %unified_info = (
         "doc\\man\\man3\\EVP_PKEY2PKCS8.3" => [
             ".\\doc\\man3\\EVP_PKEY2PKCS8.pod"
         ],
-        "doc\\man\\man3\\EVP_PKEY_ASN1_METHOD.3" => [
-            ".\\doc\\man3\\EVP_PKEY_ASN1_METHOD.pod"
-        ],
         "doc\\man\\man3\\EVP_PKEY_CTX_ctrl.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_ctrl.pod"
         ],
@@ -6145,9 +6140,6 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.pod"
-        ],
-        "doc\\man\\man3\\EVP_PKEY_asn1_get_count.3" => [
-            ".\\doc\\man3\\EVP_PKEY_asn1_get_count.pod"
         ],
         "doc\\man\\man3\\EVP_PKEY_check.3" => [
             ".\\doc\\man3\\EVP_PKEY_check.pod"
@@ -7760,6 +7752,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_MD-MDC2.7" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
         ],
+        "doc\\man\\man7\\EVP_MD-ML-DSA-MU.7" => [
+            ".\\doc\\man7\\EVP_MD-ML-DSA-MU.pod"
+        ],
         "doc\\man\\man7\\EVP_MD-NULL.7" => [
             ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
@@ -8154,6 +8149,9 @@ our %unified_info = (
         "fuzz\\pem-test" => [
             "libcrypto.a"
         ],
+        "fuzz\\pkcs12-test" => [
+            "libcrypto"
+        ],
         "fuzz\\provider-test" => [
             "libcrypto"
         ],
@@ -8441,6 +8439,9 @@ our %unified_info = (
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\digests\\mdc2_prov.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\digests\\ml_dsa_mu_prov.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\digests\\sha2_prov.inc" => [
@@ -9567,10 +9568,6 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\pkey_meth_kdf_test" => [
-            "libcrypto",
-            "test\\libtestutil.a"
-        ],
-        "test\\pkey_meth_test" => [
             "libcrypto",
             "test\\libtestutil.a"
         ],
@@ -12412,6 +12409,7 @@ our %unified_info = (
                     "fuzz\\ml-dsa-test",
                     "fuzz\\ml-kem-test",
                     "fuzz\\pem-test",
+                    "fuzz\\pkcs12-test",
                     "fuzz\\provider-test",
                     "fuzz\\punycode-test",
                     "fuzz\\quic-client-test",
@@ -12639,6 +12637,7 @@ our %unified_info = (
                 "providers\\implementations\\digests\\libdefault-lib-blake2s_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-md5_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-md5_sha1_prov.o",
+                "providers\\implementations\\digests\\libdefault-lib-ml_dsa_mu_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-null_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-ripemd_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-sha2_prov.o",
@@ -14729,9 +14728,6 @@ our %unified_info = (
         "doc\\html\\man3\\EVP_PKEY2PKCS8.html" => [
             ".\\doc\\man3\\EVP_PKEY2PKCS8.pod"
         ],
-        "doc\\html\\man3\\EVP_PKEY_ASN1_METHOD.html" => [
-            ".\\doc\\man3\\EVP_PKEY_ASN1_METHOD.pod"
-        ],
         "doc\\html\\man3\\EVP_PKEY_CTX_ctrl.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_ctrl.pod"
         ],
@@ -14764,9 +14760,6 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.html" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.pod"
-        ],
-        "doc\\html\\man3\\EVP_PKEY_asn1_get_count.html" => [
-            ".\\doc\\man3\\EVP_PKEY_asn1_get_count.pod"
         ],
         "doc\\html\\man3\\EVP_PKEY_check.html" => [
             ".\\doc\\man3\\EVP_PKEY_check.pod"
@@ -16379,6 +16372,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_MD-MDC2.html" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
         ],
+        "doc\\html\\man7\\EVP_MD-ML-DSA-MU.html" => [
+            ".\\doc\\man7\\EVP_MD-ML-DSA-MU.pod"
+        ],
         "doc\\html\\man7\\EVP_MD-NULL.html" => [
             ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
@@ -17588,9 +17584,6 @@ our %unified_info = (
         "doc\\man\\man3\\EVP_PKEY2PKCS8.3" => [
             ".\\doc\\man3\\EVP_PKEY2PKCS8.pod"
         ],
-        "doc\\man\\man3\\EVP_PKEY_ASN1_METHOD.3" => [
-            ".\\doc\\man3\\EVP_PKEY_ASN1_METHOD.pod"
-        ],
         "doc\\man\\man3\\EVP_PKEY_CTX_ctrl.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_ctrl.pod"
         ],
@@ -17623,9 +17616,6 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.3" => [
             ".\\doc\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.pod"
-        ],
-        "doc\\man\\man3\\EVP_PKEY_asn1_get_count.3" => [
-            ".\\doc\\man3\\EVP_PKEY_asn1_get_count.pod"
         ],
         "doc\\man\\man3\\EVP_PKEY_check.3" => [
             ".\\doc\\man3\\EVP_PKEY_check.pod"
@@ -19238,6 +19228,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_MD-MDC2.7" => [
             ".\\doc\\man7\\EVP_MD-MDC2.pod"
         ],
+        "doc\\man\\man7\\EVP_MD-ML-DSA-MU.7" => [
+            ".\\doc\\man7\\EVP_MD-ML-DSA-MU.pod"
+        ],
         "doc\\man\\man7\\EVP_MD-NULL.7" => [
             ".\\doc\\man7\\EVP_MD-NULL.pod"
         ],
@@ -19816,6 +19809,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\digests\\mdc2_prov.inc" => [
             ".\\providers\\implementations\\digests\\mdc2_prov.inc.in"
+        ],
+        "providers\\implementations\\digests\\ml_dsa_mu_prov.inc" => [
+            ".\\providers\\implementations\\digests\\ml_dsa_mu_prov.inc.in"
         ],
         "providers\\implementations\\digests\\sha2_prov.inc" => [
             ".\\providers\\implementations\\digests\\sha2_prov.inc.in"
@@ -20574,7 +20570,6 @@ our %unified_info = (
             "doc\\html\\man3\\EVP_OpenInit.html",
             "doc\\html\\man3\\EVP_PBE_CipherInit.html",
             "doc\\html\\man3\\EVP_PKEY2PKCS8.html",
-            "doc\\html\\man3\\EVP_PKEY_ASN1_METHOD.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_ctrl.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_get0_libctx.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_get0_pkey.html",
@@ -20586,7 +20581,6 @@ our %unified_info = (
             "doc\\html\\man3\\EVP_PKEY_CTX_set_rsa_pss_keygen_md.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_set_scrypt_N.html",
             "doc\\html\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.html",
-            "doc\\html\\man3\\EVP_PKEY_asn1_get_count.html",
             "doc\\html\\man3\\EVP_PKEY_check.html",
             "doc\\html\\man3\\EVP_PKEY_copy_parameters.html",
             "doc\\html\\man3\\EVP_PKEY_decapsulate.html",
@@ -21128,6 +21122,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_MD-MD5-SHA1.html",
             "doc\\html\\man7\\EVP_MD-MD5.html",
             "doc\\html\\man7\\EVP_MD-MDC2.html",
+            "doc\\html\\man7\\EVP_MD-ML-DSA-MU.html",
             "doc\\html\\man7\\EVP_MD-NULL.html",
             "doc\\html\\man7\\EVP_MD-RIPEMD160.html",
             "doc\\html\\man7\\EVP_MD-SHA1.html",
@@ -22385,6 +22380,10 @@ our %unified_info = (
             "include",
             ".\\include"
         ],
+        "fuzz\\pkcs12-test" => [
+            "include",
+            ".\\include"
+        ],
         "fuzz\\provider-test" => [
             "include",
             ".\\include"
@@ -22815,6 +22814,9 @@ our %unified_info = (
             ".\\util\\perl"
         ],
         "providers\\implementations\\digests\\mdc2_prov.inc" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\digests\\ml_dsa_mu_prov.inc" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\digests\\sha2_prov.inc" => [
@@ -24681,12 +24683,6 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
-        "test\\pkey_meth_test" => [
-            "include",
-            "apps\\include",
-            ".\\include",
-            ".\\apps\\include"
-        ],
         "test\\poly1305_internal_test" => [
             ".",
             "include",
@@ -25620,7 +25616,6 @@ our %unified_info = (
             "doc\\man\\man3\\EVP_OpenInit.3",
             "doc\\man\\man3\\EVP_PBE_CipherInit.3",
             "doc\\man\\man3\\EVP_PKEY2PKCS8.3",
-            "doc\\man\\man3\\EVP_PKEY_ASN1_METHOD.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_ctrl.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_get0_libctx.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_get0_pkey.3",
@@ -25632,7 +25627,6 @@ our %unified_info = (
             "doc\\man\\man3\\EVP_PKEY_CTX_set_rsa_pss_keygen_md.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_set_scrypt_N.3",
             "doc\\man\\man3\\EVP_PKEY_CTX_set_tls1_prf_md.3",
-            "doc\\man\\man3\\EVP_PKEY_asn1_get_count.3",
             "doc\\man\\man3\\EVP_PKEY_check.3",
             "doc\\man\\man3\\EVP_PKEY_copy_parameters.3",
             "doc\\man\\man3\\EVP_PKEY_decapsulate.3",
@@ -26174,6 +26168,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_MD-MD5-SHA1.7",
             "doc\\man\\man7\\EVP_MD-MD5.7",
             "doc\\man\\man7\\EVP_MD-MDC2.7",
+            "doc\\man\\man7\\EVP_MD-ML-DSA-MU.7",
             "doc\\man\\man7\\EVP_MD-NULL.7",
             "doc\\man\\man7\\EVP_MD-RIPEMD160.7",
             "doc\\man\\man7\\EVP_MD-SHA1.7",
@@ -26308,6 +26303,7 @@ our %unified_info = (
         "fuzz\\ml-dsa-test",
         "fuzz\\ml-kem-test",
         "fuzz\\pem-test",
+        "fuzz\\pkcs12-test",
         "fuzz\\provider-test",
         "fuzz\\punycode-test",
         "fuzz\\quic-client-test",
@@ -26536,7 +26532,6 @@ our %unified_info = (
         "test\\pkcs12_format_test",
         "test\\pkcs7_test",
         "test\\pkey_meth_kdf_test",
-        "test\\pkey_meth_test",
         "test\\poly1305_internal_test",
         "test\\priority_queue_test",
         "test\\property_test",
@@ -32970,6 +32965,16 @@ our %unified_info = (
         "fuzz\\pem-test-bin-test-corpus.o" => [
             ".\\fuzz\\test-corpus.c"
         ],
+        "fuzz\\pkcs12-test" => [
+            "fuzz\\pkcs12-test-bin-pkcs12.o",
+            "fuzz\\pkcs12-test-bin-test-corpus.o"
+        ],
+        "fuzz\\pkcs12-test-bin-pkcs12.o" => [
+            ".\\fuzz\\pkcs12.c"
+        ],
+        "fuzz\\pkcs12-test-bin-test-corpus.o" => [
+            ".\\fuzz\\test-corpus.c"
+        ],
         "fuzz\\provider-test" => [
             "fuzz\\provider-test-bin-provider.o",
             "fuzz\\provider-test-bin-test-corpus.o"
@@ -34402,6 +34407,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\libdefault-lib-md5_sha1_prov.o" => [
             ".\\providers\\implementations\\digests\\md5_sha1_prov.c"
         ],
+        "providers\\implementations\\digests\\libdefault-lib-ml_dsa_mu_prov.o" => [
+            ".\\providers\\implementations\\digests\\ml_dsa_mu_prov.c"
+        ],
         "providers\\implementations\\digests\\libdefault-lib-null_prov.o" => [
             ".\\providers\\implementations\\digests\\null_prov.c"
         ],
@@ -34825,6 +34833,7 @@ our %unified_info = (
             "providers\\implementations\\digests\\libdefault-lib-blake2s_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-md5_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-md5_sha1_prov.o",
+            "providers\\implementations\\digests\\libdefault-lib-ml_dsa_mu_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-null_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-ripemd_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-sha2_prov.o",
@@ -37108,12 +37117,6 @@ our %unified_info = (
         ],
         "test\\pkey_meth_kdf_test-bin-pkey_meth_kdf_test.o" => [
             ".\\test\\pkey_meth_kdf_test.c"
-        ],
-        "test\\pkey_meth_test" => [
-            "test\\pkey_meth_test-bin-pkey_meth_test.o"
-        ],
-        "test\\pkey_meth_test-bin-pkey_meth_test.o" => [
-            ".\\test\\pkey_meth_test.c"
         ],
         "test\\poly1305_internal_test" => [
             "test\\poly1305_internal_test-bin-poly1305_internal_test.o"
