@@ -386,6 +386,7 @@ extern "C" {
 # define OSSL_PKEY_PARAM_EC_COFACTOR "cofactor"
 # define OSSL_PKEY_PARAM_EC_DECODED_FROM_EXPLICIT_PARAMS "decoded-from-explicit"
 # define OSSL_PKEY_PARAM_EC_ENCODING "encoding"
+# define OSSL_PKEY_PARAM_EC_FIELD_DEGREE "field-degree"
 # define OSSL_PKEY_PARAM_EC_FIELD_TYPE "field-type"
 # define OSSL_PKEY_PARAM_EC_GENERATOR "generator"
 # define OSSL_PKEY_PARAM_EC_GROUP_CHECK_TYPE "group-check"
