@@ -10,7 +10,7 @@ use strict;
 use warnings;
 use OpenSSL::Test;
 use OpenSSL::Test::Utils;
-use OpenSSL::Test qw/:DEFAULT srctop_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT srctop_file bldtop_dir shlib_dir/;
 use Cwd qw(abs_path);
 
 plan tests => 5;
@@ -32,7 +32,8 @@ SKIP: {
     my @randdata;
     my $expected = '0102030405060708090a0b0c0d0e0f10';
 
-    $ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+    #$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+    $ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
     skip "provider modules are not supported by this OpenSSL build", 1
         if disabled("module");
 
