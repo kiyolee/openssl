@@ -2631,6 +2631,9 @@
     <ClCompile Include="..\..\crypto\evp\enc_b64_avx2.c">
       <Filter>Source Files\crypto\evp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\sha\sha3_encode.c">
+      <Filter>Source Files\crypto\sha</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
