@@ -753,6 +753,7 @@
     <ClCompile Include="..\..\crypto\sha\sha1_one.c" />
     <ClCompile Include="..\..\crypto\sha\sha256.c" />
     <ClCompile Include="..\..\crypto\sha\sha3.c" />
+    <ClCompile Include="..\..\crypto\sha\sha3_encode.c" />
     <ClCompile Include="..\..\crypto\sha\sha512.c" />
     <ClCompile Include="..\..\crypto\siphash\siphash.c" />
     <ClCompile Include="..\..\crypto\sleep.c" />
