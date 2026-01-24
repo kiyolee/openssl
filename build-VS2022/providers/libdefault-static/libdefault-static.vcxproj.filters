@@ -555,5 +555,11 @@
     <ClCompile Include="..\..\..\providers\implementations\digests\ml_dsa_mu_prov.c">
       <Filter>Source Files\providers\implementations\digests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\digests\cshake_prov.c">
+      <Filter>Source Files\providers\implementations\digests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\kdfs\srtpkdf.c">
+      <Filter>Source Files\providers\implementations\kdfs</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
