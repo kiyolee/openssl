@@ -61,6 +61,7 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\ciphers\ciphercommon_ccm.inc ^
   providers\implementations\ciphers\ciphercommon_gcm.inc ^
   providers\implementations\digests\blake2_prov.inc ^
+  providers\implementations\digests\cshake_prov.inc ^
   providers\implementations\digests\digestcommon.inc ^
   providers\implementations\digests\mdc2_prov.inc ^
   providers\implementations\digests\ml_dsa_mu_prov.inc ^
@@ -87,6 +88,7 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\kdfs\pvkkdf.inc ^
   providers\implementations\kdfs\scrypt.inc ^
   providers\implementations\kdfs\snmpkdf.inc ^
+  providers\implementations\kdfs\srtpkdf.inc ^
   providers\implementations\kdfs\sshkdf.inc ^
   providers\implementations\kdfs\sskdf.inc ^
   providers\implementations\kdfs\tls1_prf.inc ^

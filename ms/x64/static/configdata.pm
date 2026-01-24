@@ -223,6 +223,7 @@ our %config = (
         "OPENSSL_NO_SSLKEYLOG",
         "OPENSSL_NO_STATIC_ENGINE",
         "OPENSSL_NO_TFO",
+        "OPENSSL_NO_TLS_DEPRECATED_EC",
         "OPENSSL_NO_TRACE",
         "OPENSSL_NO_UBSAN",
         "OPENSSL_NO_UNIT_TEST",
@@ -239,7 +240,7 @@ our %config = (
         "OPENSSL_SYS_WIN64A"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-sslkeylog no-static-engine no-tfo no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-shared no-sslkeylog no-static-engine no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-uplink no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -510,6 +511,7 @@ our @disablables = (
     "sock",
     "srp",
     "srtp",
+    "srtpkdf",
     "sse2",
     "sshkdf",
     "sskdf",
@@ -586,6 +588,7 @@ our %disabled = (
     "sslkeylog" => "default",
     "static-engine" => "cascade",
     "tfo" => "default",
+    "tls-deprecated-ec" => "default",
     "trace" => "default",
     "ubsan" => "default",
     "unit-test" => "default",
@@ -2135,6 +2138,7 @@ our %unified_info = (
             "providers\\implementations\\ciphers\\ciphercommon_ccm.inc",
             "providers\\implementations\\ciphers\\ciphercommon_gcm.inc",
             "providers\\implementations\\digests\\blake2_prov.inc",
+            "providers\\implementations\\digests\\cshake_prov.inc",
             "providers\\implementations\\digests\\digestcommon.inc",
             "providers\\implementations\\digests\\mdc2_prov.inc",
             "providers\\implementations\\digests\\ml_dsa_mu_prov.inc",
@@ -2162,6 +2166,7 @@ our %unified_info = (
             "providers\\implementations\\kdfs\\pvkkdf.inc",
             "providers\\implementations\\kdfs\\scrypt.inc",
             "providers\\implementations\\kdfs\\snmpkdf.inc",
+            "providers\\implementations\\kdfs\\srtpkdf.inc",
             "providers\\implementations\\kdfs\\sshkdf.inc",
             "providers\\implementations\\kdfs\\sskdf.inc",
             "providers\\implementations\\kdfs\\tls1_prf.inc",
@@ -3151,6 +3156,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\EVP_BytesToKey.html" => [
             ".\\doc\\man3\\EVP_BytesToKey.pod"
+        ],
+        "doc\\html\\man3\\EVP_CIPHER_CTX_get_app_data.html" => [
+            ".\\doc\\man3\\EVP_CIPHER_CTX_get_app_data.pod"
         ],
         "doc\\html\\man3\\EVP_CIPHER_CTX_get_cipher_data.html" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_cipher_data.pod"
@@ -4757,6 +4765,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_KDF-SNMPKDF.html" => [
             ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
         ],
+        "doc\\html\\man7\\EVP_KDF-SRTPKDF.html" => [
+            ".\\doc\\man7\\EVP_KDF-SRTPKDF.pod"
+        ],
         "doc\\html\\man7\\EVP_KDF-SS.html" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
         ],
@@ -6061,6 +6072,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\EVP_BytesToKey.3" => [
             ".\\doc\\man3\\EVP_BytesToKey.pod"
+        ],
+        "doc\\man\\man3\\EVP_CIPHER_CTX_get_app_data.3" => [
+            ".\\doc\\man3\\EVP_CIPHER_CTX_get_app_data.pod"
         ],
         "doc\\man\\man3\\EVP_CIPHER_CTX_get_cipher_data.3" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_cipher_data.pod"
@@ -7667,6 +7681,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_KDF-SNMPKDF.7" => [
             ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
         ],
+        "doc\\man\\man7\\EVP_KDF-SRTPKDF.7" => [
+            ".\\doc\\man7\\EVP_KDF-SRTPKDF.pod"
+        ],
         "doc\\man\\man7\\EVP_KDF-SS.7" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
         ],
@@ -8434,6 +8451,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\blake2_prov.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\digests\\cshake_prov.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\digests\\digestcommon.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
@@ -8519,6 +8539,9 @@ our %unified_info = (
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\kdfs\\snmpkdf.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\kdfs\\srtpkdf.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\kdfs\\sshkdf.inc" => [
@@ -11279,6 +11302,7 @@ our %unified_info = (
                 "crypto\\sha\\libcrypto-lib-sha256-x86_64.o",
                 "crypto\\sha\\libcrypto-lib-sha256.o",
                 "crypto\\sha\\libcrypto-lib-sha3.o",
+                "crypto\\sha\\libcrypto-lib-sha3_encode.o",
                 "crypto\\sha\\libcrypto-lib-sha512-x86_64.o",
                 "crypto\\sha\\libcrypto-lib-sha512.o"
             ],
@@ -11797,6 +11821,7 @@ our %unified_info = (
                 "providers\\implementations\\digests\\libdefault-lib-blake2_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-blake2b_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-blake2s_prov.o",
+                "providers\\implementations\\digests\\libdefault-lib-cshake_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-md5_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-md5_sha1_prov.o",
                 "providers\\implementations\\digests\\libdefault-lib-ml_dsa_mu_prov.o",
@@ -11865,6 +11890,7 @@ our %unified_info = (
                 "providers\\implementations\\kdfs\\libdefault-lib-pkcs12kdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-snmpkdf.o",
+                "providers\\implementations\\kdfs\\libdefault-lib-srtpkdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-sskdf.o",
                 "providers\\implementations\\kdfs\\libdefault-lib-tls1_prf.o",
@@ -13746,6 +13772,9 @@ our %unified_info = (
         "doc\\html\\man3\\EVP_BytesToKey.html" => [
             ".\\doc\\man3\\EVP_BytesToKey.pod"
         ],
+        "doc\\html\\man3\\EVP_CIPHER_CTX_get_app_data.html" => [
+            ".\\doc\\man3\\EVP_CIPHER_CTX_get_app_data.pod"
+        ],
         "doc\\html\\man3\\EVP_CIPHER_CTX_get_cipher_data.html" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_cipher_data.pod"
         ],
@@ -15351,6 +15380,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_KDF-SNMPKDF.html" => [
             ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
         ],
+        "doc\\html\\man7\\EVP_KDF-SRTPKDF.html" => [
+            ".\\doc\\man7\\EVP_KDF-SRTPKDF.pod"
+        ],
         "doc\\html\\man7\\EVP_KDF-SS.html" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
         ],
@@ -16601,6 +16633,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\EVP_BytesToKey.3" => [
             ".\\doc\\man3\\EVP_BytesToKey.pod"
+        ],
+        "doc\\man\\man3\\EVP_CIPHER_CTX_get_app_data.3" => [
+            ".\\doc\\man3\\EVP_CIPHER_CTX_get_app_data.pod"
         ],
         "doc\\man\\man3\\EVP_CIPHER_CTX_get_cipher_data.3" => [
             ".\\doc\\man3\\EVP_CIPHER_CTX_get_cipher_data.pod"
@@ -18207,6 +18242,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_KDF-SNMPKDF.7" => [
             ".\\doc\\man7\\EVP_KDF-SNMPKDF.pod"
         ],
+        "doc\\man\\man7\\EVP_KDF-SRTPKDF.7" => [
+            ".\\doc\\man7\\EVP_KDF-SRTPKDF.pod"
+        ],
         "doc\\man\\man7\\EVP_KDF-SS.7" => [
             ".\\doc\\man7\\EVP_KDF-SS.pod"
         ],
@@ -18867,6 +18905,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\blake2_prov.inc" => [
             ".\\providers\\implementations\\digests\\blake2_prov.inc.in"
         ],
+        "providers\\implementations\\digests\\cshake_prov.inc" => [
+            ".\\providers\\implementations\\digests\\cshake_prov.inc.in"
+        ],
         "providers\\implementations\\digests\\digestcommon.inc" => [
             ".\\providers\\implementations\\digests\\digestcommon.inc.in"
         ],
@@ -18947,6 +18988,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\kdfs\\snmpkdf.inc" => [
             ".\\providers\\implementations\\kdfs\\snmpkdf.inc.in"
+        ],
+        "providers\\implementations\\kdfs\\srtpkdf.inc" => [
+            ".\\providers\\implementations\\kdfs\\srtpkdf.inc.in"
         ],
         "providers\\implementations\\kdfs\\sshkdf.inc" => [
             ".\\providers\\implementations\\kdfs\\sshkdf.inc.in"
@@ -19621,6 +19665,7 @@ our %unified_info = (
             "doc\\html\\man3\\ERR_set_mark.html",
             "doc\\html\\man3\\EVP_ASYM_CIPHER_free.html",
             "doc\\html\\man3\\EVP_BytesToKey.html",
+            "doc\\html\\man3\\EVP_CIPHER_CTX_get_app_data.html",
             "doc\\html\\man3\\EVP_CIPHER_CTX_get_cipher_data.html",
             "doc\\html\\man3\\EVP_CIPHER_CTX_get_original_iv.html",
             "doc\\html\\man3\\EVP_DigestInit.html",
@@ -20160,6 +20205,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_KDF-PVKKDF.html",
             "doc\\html\\man7\\EVP_KDF-SCRYPT.html",
             "doc\\html\\man7\\EVP_KDF-SNMPKDF.html",
+            "doc\\html\\man7\\EVP_KDF-SRTPKDF.html",
             "doc\\html\\man7\\EVP_KDF-SS.html",
             "doc\\html\\man7\\EVP_KDF-SSHKDF.html",
             "doc\\html\\man7\\EVP_KDF-TLS13_KDF.html",
@@ -21806,6 +21852,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\blake2_prov.inc" => [
             ".\\util\\perl"
         ],
+        "providers\\implementations\\digests\\cshake_prov.inc" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\digests\\digestcommon.inc" => [
             ".\\util\\perl"
         ],
@@ -21894,6 +21943,9 @@ our %unified_info = (
             ".\\util\\perl"
         ],
         "providers\\implementations\\kdfs\\snmpkdf.inc" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\kdfs\\srtpkdf.inc" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\kdfs\\sshkdf.inc" => [
@@ -24576,6 +24628,7 @@ our %unified_info = (
             "doc\\man\\man3\\ERR_set_mark.3",
             "doc\\man\\man3\\EVP_ASYM_CIPHER_free.3",
             "doc\\man\\man3\\EVP_BytesToKey.3",
+            "doc\\man\\man3\\EVP_CIPHER_CTX_get_app_data.3",
             "doc\\man\\man3\\EVP_CIPHER_CTX_get_cipher_data.3",
             "doc\\man\\man3\\EVP_CIPHER_CTX_get_original_iv.3",
             "doc\\man\\man3\\EVP_DigestInit.3",
@@ -25115,6 +25168,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_KDF-PVKKDF.7",
             "doc\\man\\man7\\EVP_KDF-SCRYPT.7",
             "doc\\man\\man7\\EVP_KDF-SNMPKDF.7",
+            "doc\\man\\man7\\EVP_KDF-SRTPKDF.7",
             "doc\\man\\man7\\EVP_KDF-SS.7",
             "doc\\man\\man7\\EVP_KDF-SSHKDF.7",
             "doc\\man\\man7\\EVP_KDF-TLS13_KDF.7",
@@ -27957,6 +28011,9 @@ our %unified_info = (
         "crypto\\sha\\libcrypto-lib-sha3.o" => [
             ".\\crypto\\sha\\sha3.c"
         ],
+        "crypto\\sha\\libcrypto-lib-sha3_encode.o" => [
+            ".\\crypto\\sha\\sha3_encode.c"
+        ],
         "crypto\\sha\\libcrypto-lib-sha512-x86_64.o" => [
             "crypto\\sha\\sha512-x86_64.s"
         ],
@@ -29462,6 +29519,7 @@ our %unified_info = (
             "crypto\\sha\\libcrypto-lib-sha256-x86_64.o",
             "crypto\\sha\\libcrypto-lib-sha256.o",
             "crypto\\sha\\libcrypto-lib-sha3.o",
+            "crypto\\sha\\libcrypto-lib-sha3_encode.o",
             "crypto\\sha\\libcrypto-lib-sha512-x86_64.o",
             "crypto\\sha\\libcrypto-lib-sha512.o",
             "crypto\\siphash\\libcrypto-lib-siphash.o",
@@ -30072,6 +30130,9 @@ our %unified_info = (
         "providers\\implementations\\digests\\libdefault-lib-blake2s_prov.o" => [
             ".\\providers\\implementations\\digests\\blake2s_prov.c"
         ],
+        "providers\\implementations\\digests\\libdefault-lib-cshake_prov.o" => [
+            ".\\providers\\implementations\\digests\\cshake_prov.c"
+        ],
         "providers\\implementations\\digests\\libdefault-lib-md5_prov.o" => [
             ".\\providers\\implementations\\digests\\md5_prov.c"
         ],
@@ -30188,6 +30249,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-snmpkdf.o" => [
             ".\\providers\\implementations\\kdfs\\snmpkdf.c"
+        ],
+        "providers\\implementations\\kdfs\\libdefault-lib-srtpkdf.o" => [
+            ".\\providers\\implementations\\kdfs\\srtpkdf.c"
         ],
         "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o" => [
             ".\\providers\\implementations\\kdfs\\sshkdf.c"
@@ -30487,6 +30551,7 @@ our %unified_info = (
             "providers\\implementations\\digests\\libdefault-lib-blake2_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-blake2b_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-blake2s_prov.o",
+            "providers\\implementations\\digests\\libdefault-lib-cshake_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-md5_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-md5_sha1_prov.o",
             "providers\\implementations\\digests\\libdefault-lib-ml_dsa_mu_prov.o",
@@ -30522,6 +30587,7 @@ our %unified_info = (
             "providers\\implementations\\kdfs\\libdefault-lib-pkcs12kdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-scrypt.o",
             "providers\\implementations\\kdfs\\libdefault-lib-snmpkdf.o",
+            "providers\\implementations\\kdfs\\libdefault-lib-srtpkdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-sshkdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-sskdf.o",
             "providers\\implementations\\kdfs\\libdefault-lib-tls1_prf.o",
@@ -33339,6 +33405,9 @@ my %disabled_info = (
     },
     "tfo" => {
         "macro" => "OPENSSL_NO_TFO"
+    },
+    "tls-deprecated-ec" => {
+        "macro" => "OPENSSL_NO_TLS_DEPRECATED_EC"
     },
     "trace" => {
         "macro" => "OPENSSL_NO_TRACE"

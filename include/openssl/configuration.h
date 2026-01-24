@@ -143,6 +143,9 @@ extern "C" {
 # ifndef OPENSSL_NO_TFO
 #  define OPENSSL_NO_TFO
 # endif
+# ifndef OPENSSL_NO_TLS_DEPRECATED_EC
+#  define OPENSSL_NO_TLS_DEPRECATED_EC
+# endif
 # ifndef OPENSSL_NO_TRACE
 #  define OPENSSL_NO_TRACE
 # endif
