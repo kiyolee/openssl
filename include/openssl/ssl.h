@@ -249,7 +249,7 @@ SKM_DEFINE_STACK_OF_INTERNAL(SRTP_PROTECTION_PROFILE, SRTP_PROTECTION_PROFILE, S
 #define sk_SRTP_PROTECTION_PROFILE_num(sk) OPENSSL_sk_num(ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(sk))
 #define sk_SRTP_PROTECTION_PROFILE_value(sk, idx) ((SRTP_PROTECTION_PROFILE *)OPENSSL_sk_value(ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(sk), (idx)))
 #define sk_SRTP_PROTECTION_PROFILE_new(cmp) ((STACK_OF(SRTP_PROTECTION_PROFILE) *)OPENSSL_sk_new(ossl_check_SRTP_PROTECTION_PROFILE_compfunc_type(cmp)))
-#define sk_SRTP_PROTECTION_PROFILE_new_null() ((STACK_OF(SRTP_PROTECTION_PROFILE) *)OPENSSL_sk_new_null())
+#define sk_SRTP_PROTECTION_PROFILE_new_null() ((STACK_OF(SRTP_PROTECTION_PROFILE) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_SRTP_PROTECTION_PROFILE_freefunc_thunk))
 #define sk_SRTP_PROTECTION_PROFILE_new_reserve(cmp, n) ((STACK_OF(SRTP_PROTECTION_PROFILE) *)OPENSSL_sk_new_reserve(ossl_check_SRTP_PROTECTION_PROFILE_compfunc_type(cmp), (n)))
 #define sk_SRTP_PROTECTION_PROFILE_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_SRTP_PROTECTION_PROFILE_sk_type(sk), (n))
 #define sk_SRTP_PROTECTION_PROFILE_free(sk) OPENSSL_sk_free(ossl_check_SRTP_PROTECTION_PROFILE_sk_type(sk))
@@ -848,6 +848,10 @@ void SSL_CTX_set_alpn_select_cb(SSL_CTX *ctx,
     void *arg);
 void SSL_get0_alpn_selected(const SSL *ssl, const unsigned char **data,
     unsigned int *len);
+void SSL_CTX_get0_alpn_protos(SSL_CTX *ctx, const unsigned char **protos,
+    unsigned int *protos_len);
+void SSL_get0_alpn_protos(SSL *ssl, const unsigned char **protos,
+    unsigned int *protos_len);
 
 #ifndef OPENSSL_NO_PSK
 /*
@@ -1001,7 +1005,7 @@ SKM_DEFINE_STACK_OF_INTERNAL(SSL_CIPHER, const SSL_CIPHER, SSL_CIPHER)
 #define sk_SSL_CIPHER_num(sk) OPENSSL_sk_num(ossl_check_const_SSL_CIPHER_sk_type(sk))
 #define sk_SSL_CIPHER_value(sk, idx) ((const SSL_CIPHER *)OPENSSL_sk_value(ossl_check_const_SSL_CIPHER_sk_type(sk), (idx)))
 #define sk_SSL_CIPHER_new(cmp) ((STACK_OF(SSL_CIPHER) *)OPENSSL_sk_new(ossl_check_SSL_CIPHER_compfunc_type(cmp)))
-#define sk_SSL_CIPHER_new_null() ((STACK_OF(SSL_CIPHER) *)OPENSSL_sk_new_null())
+#define sk_SSL_CIPHER_new_null() ((STACK_OF(SSL_CIPHER) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_SSL_CIPHER_freefunc_thunk))
 #define sk_SSL_CIPHER_new_reserve(cmp, n) ((STACK_OF(SSL_CIPHER) *)OPENSSL_sk_new_reserve(ossl_check_SSL_CIPHER_compfunc_type(cmp), (n)))
 #define sk_SSL_CIPHER_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_SSL_CIPHER_sk_type(sk), (n))
 #define sk_SSL_CIPHER_free(sk) OPENSSL_sk_free(ossl_check_SSL_CIPHER_sk_type(sk))
