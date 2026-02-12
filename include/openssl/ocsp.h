@@ -97,9 +97,9 @@ typedef struct ocsp_request_st OCSP_REQUEST;
 SKM_DEFINE_STACK_OF_INTERNAL(OCSP_CERTID, OCSP_CERTID, OCSP_CERTID)
 #define sk_OCSP_CERTID_num(sk) OPENSSL_sk_num(ossl_check_const_OCSP_CERTID_sk_type(sk))
 #define sk_OCSP_CERTID_value(sk, idx) ((OCSP_CERTID *)OPENSSL_sk_value(ossl_check_const_OCSP_CERTID_sk_type(sk), (idx)))
-#define sk_OCSP_CERTID_new(cmp) ((STACK_OF(OCSP_CERTID) *)OPENSSL_sk_new(ossl_check_OCSP_CERTID_compfunc_type(cmp)))
+#define sk_OCSP_CERTID_new(cmp) ((STACK_OF(OCSP_CERTID) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OCSP_CERTID_compfunc_type(cmp)), sk_OCSP_CERTID_cmpfunc_thunk))
 #define sk_OCSP_CERTID_new_null() ((STACK_OF(OCSP_CERTID) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_OCSP_CERTID_freefunc_thunk))
-#define sk_OCSP_CERTID_new_reserve(cmp, n) ((STACK_OF(OCSP_CERTID) *)OPENSSL_sk_new_reserve(ossl_check_OCSP_CERTID_compfunc_type(cmp), (n)))
+#define sk_OCSP_CERTID_new_reserve(cmp, n) ((STACK_OF(OCSP_CERTID) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new_reserve(ossl_check_OCSP_CERTID_compfunc_type(cmp), (n)), sk_OCSP_CERTID_cmpfunc_thunk))
 #define sk_OCSP_CERTID_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_OCSP_CERTID_sk_type(sk), (n))
 #define sk_OCSP_CERTID_free(sk) OPENSSL_sk_free(ossl_check_OCSP_CERTID_sk_type(sk))
 #define sk_OCSP_CERTID_zero(sk) OPENSSL_sk_zero(ossl_check_OCSP_CERTID_sk_type(sk))
@@ -123,9 +123,9 @@ SKM_DEFINE_STACK_OF_INTERNAL(OCSP_CERTID, OCSP_CERTID, OCSP_CERTID)
 SKM_DEFINE_STACK_OF_INTERNAL(OCSP_ONEREQ, OCSP_ONEREQ, OCSP_ONEREQ)
 #define sk_OCSP_ONEREQ_num(sk) OPENSSL_sk_num(ossl_check_const_OCSP_ONEREQ_sk_type(sk))
 #define sk_OCSP_ONEREQ_value(sk, idx) ((OCSP_ONEREQ *)OPENSSL_sk_value(ossl_check_const_OCSP_ONEREQ_sk_type(sk), (idx)))
-#define sk_OCSP_ONEREQ_new(cmp) ((STACK_OF(OCSP_ONEREQ) *)OPENSSL_sk_new(ossl_check_OCSP_ONEREQ_compfunc_type(cmp)))
+#define sk_OCSP_ONEREQ_new(cmp) ((STACK_OF(OCSP_ONEREQ) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OCSP_ONEREQ_compfunc_type(cmp)), sk_OCSP_ONEREQ_cmpfunc_thunk))
 #define sk_OCSP_ONEREQ_new_null() ((STACK_OF(OCSP_ONEREQ) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_OCSP_ONEREQ_freefunc_thunk))
-#define sk_OCSP_ONEREQ_new_reserve(cmp, n) ((STACK_OF(OCSP_ONEREQ) *)OPENSSL_sk_new_reserve(ossl_check_OCSP_ONEREQ_compfunc_type(cmp), (n)))
+#define sk_OCSP_ONEREQ_new_reserve(cmp, n) ((STACK_OF(OCSP_ONEREQ) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new_reserve(ossl_check_OCSP_ONEREQ_compfunc_type(cmp), (n)), sk_OCSP_ONEREQ_cmpfunc_thunk))
 #define sk_OCSP_ONEREQ_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_OCSP_ONEREQ_sk_type(sk), (n))
 #define sk_OCSP_ONEREQ_free(sk) OPENSSL_sk_free(ossl_check_OCSP_ONEREQ_sk_type(sk))
 #define sk_OCSP_ONEREQ_zero(sk) OPENSSL_sk_zero(ossl_check_OCSP_ONEREQ_sk_type(sk))
@@ -165,9 +165,9 @@ typedef struct ocsp_resp_bytes_st OCSP_RESPBYTES;
 SKM_DEFINE_STACK_OF_INTERNAL(OCSP_RESPID, OCSP_RESPID, OCSP_RESPID)
 #define sk_OCSP_RESPID_num(sk) OPENSSL_sk_num(ossl_check_const_OCSP_RESPID_sk_type(sk))
 #define sk_OCSP_RESPID_value(sk, idx) ((OCSP_RESPID *)OPENSSL_sk_value(ossl_check_const_OCSP_RESPID_sk_type(sk), (idx)))
-#define sk_OCSP_RESPID_new(cmp) ((STACK_OF(OCSP_RESPID) *)OPENSSL_sk_new(ossl_check_OCSP_RESPID_compfunc_type(cmp)))
+#define sk_OCSP_RESPID_new(cmp) ((STACK_OF(OCSP_RESPID) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OCSP_RESPID_compfunc_type(cmp)), sk_OCSP_RESPID_cmpfunc_thunk))
 #define sk_OCSP_RESPID_new_null() ((STACK_OF(OCSP_RESPID) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_OCSP_RESPID_freefunc_thunk))
-#define sk_OCSP_RESPID_new_reserve(cmp, n) ((STACK_OF(OCSP_RESPID) *)OPENSSL_sk_new_reserve(ossl_check_OCSP_RESPID_compfunc_type(cmp), (n)))
+#define sk_OCSP_RESPID_new_reserve(cmp, n) ((STACK_OF(OCSP_RESPID) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new_reserve(ossl_check_OCSP_RESPID_compfunc_type(cmp), (n)), sk_OCSP_RESPID_cmpfunc_thunk))
 #define sk_OCSP_RESPID_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_OCSP_RESPID_sk_type(sk), (n))
 #define sk_OCSP_RESPID_free(sk) OPENSSL_sk_free(ossl_check_OCSP_RESPID_sk_type(sk))
 #define sk_OCSP_RESPID_zero(sk) OPENSSL_sk_zero(ossl_check_OCSP_RESPID_sk_type(sk))
@@ -204,9 +204,9 @@ typedef struct ocsp_single_response_st OCSP_SINGLERESP;
 SKM_DEFINE_STACK_OF_INTERNAL(OCSP_SINGLERESP, OCSP_SINGLERESP, OCSP_SINGLERESP)
 #define sk_OCSP_SINGLERESP_num(sk) OPENSSL_sk_num(ossl_check_const_OCSP_SINGLERESP_sk_type(sk))
 #define sk_OCSP_SINGLERESP_value(sk, idx) ((OCSP_SINGLERESP *)OPENSSL_sk_value(ossl_check_const_OCSP_SINGLERESP_sk_type(sk), (idx)))
-#define sk_OCSP_SINGLERESP_new(cmp) ((STACK_OF(OCSP_SINGLERESP) *)OPENSSL_sk_new(ossl_check_OCSP_SINGLERESP_compfunc_type(cmp)))
+#define sk_OCSP_SINGLERESP_new(cmp) ((STACK_OF(OCSP_SINGLERESP) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OCSP_SINGLERESP_compfunc_type(cmp)), sk_OCSP_SINGLERESP_cmpfunc_thunk))
 #define sk_OCSP_SINGLERESP_new_null() ((STACK_OF(OCSP_SINGLERESP) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_OCSP_SINGLERESP_freefunc_thunk))
-#define sk_OCSP_SINGLERESP_new_reserve(cmp, n) ((STACK_OF(OCSP_SINGLERESP) *)OPENSSL_sk_new_reserve(ossl_check_OCSP_SINGLERESP_compfunc_type(cmp), (n)))
+#define sk_OCSP_SINGLERESP_new_reserve(cmp, n) ((STACK_OF(OCSP_SINGLERESP) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new_reserve(ossl_check_OCSP_SINGLERESP_compfunc_type(cmp), (n)), sk_OCSP_SINGLERESP_cmpfunc_thunk))
 #define sk_OCSP_SINGLERESP_reserve(sk, n) OPENSSL_sk_reserve(ossl_check_OCSP_SINGLERESP_sk_type(sk), (n))
 #define sk_OCSP_SINGLERESP_free(sk) OPENSSL_sk_free(ossl_check_OCSP_SINGLERESP_sk_type(sk))
 #define sk_OCSP_SINGLERESP_zero(sk) OPENSSL_sk_zero(ossl_check_OCSP_SINGLERESP_sk_type(sk))
@@ -320,7 +320,7 @@ int OCSP_request_sign(OCSP_REQUEST *req,
     X509 *signer,
     EVP_PKEY *key,
     const EVP_MD *dgst,
-    STACK_OF(X509) *certs, unsigned long flags);
+    const STACK_OF(X509) *certs, unsigned long flags);
 
 int OCSP_response_status(OCSP_RESPONSE *resp);
 OCSP_BASICRESP *OCSP_response_get1_basic(OCSP_RESPONSE *resp);
@@ -329,7 +329,7 @@ const ASN1_OCTET_STRING *OCSP_resp_get0_signature(const OCSP_BASICRESP *bs);
 const X509_ALGOR *OCSP_resp_get0_tbs_sigalg(const OCSP_BASICRESP *bs);
 const OCSP_RESPDATA *OCSP_resp_get0_respdata(const OCSP_BASICRESP *bs);
 int OCSP_resp_get0_signer(OCSP_BASICRESP *bs, X509 **signer,
-    STACK_OF(X509) *extra_certs);
+    const STACK_OF(X509) *extra_certs);
 
 int OCSP_resp_count(OCSP_BASICRESP *bs);
 OCSP_SINGLERESP *OCSP_resp_get0(OCSP_BASICRESP *bs, int idx);
@@ -355,7 +355,7 @@ int OCSP_resp_find_status(OCSP_BASICRESP *bs, OCSP_CERTID *id, int *status,
 int OCSP_check_validity(ASN1_GENERALIZEDTIME *thisupd,
     ASN1_GENERALIZEDTIME *nextupd, long sec, long maxsec);
 
-int OCSP_request_verify(OCSP_REQUEST *req, STACK_OF(X509) *certs,
+int OCSP_request_verify(OCSP_REQUEST *req, const STACK_OF(X509) *certs,
     X509_STORE *store, unsigned long flags);
 
 #define OCSP_parse_url(url, host, port, path, ssl) \
@@ -381,10 +381,10 @@ OCSP_SINGLERESP *OCSP_basic_add1_status(OCSP_BASICRESP *rsp,
 int OCSP_basic_add1_cert(OCSP_BASICRESP *resp, X509 *cert);
 int OCSP_basic_sign(OCSP_BASICRESP *brsp,
     X509 *signer, EVP_PKEY *key, const EVP_MD *dgst,
-    STACK_OF(X509) *certs, unsigned long flags);
+    const STACK_OF(X509) *certs, unsigned long flags);
 int OCSP_basic_sign_ctx(OCSP_BASICRESP *brsp,
     X509 *signer, EVP_MD_CTX *ctx,
-    STACK_OF(X509) *certs, unsigned long flags);
+    const STACK_OF(X509) *certs, unsigned long flags);
 int OCSP_RESPID_set_by_name(OCSP_RESPID *respid, X509 *cert);
 int OCSP_RESPID_set_by_key_ex(OCSP_RESPID *respid, X509 *cert,
     OSSL_LIB_CTX *libctx, const char *propq);
@@ -477,7 +477,7 @@ const char *OCSP_crl_reason_str(long s);
 int OCSP_REQUEST_print(BIO *bp, OCSP_REQUEST *a, unsigned long flags);
 int OCSP_RESPONSE_print(BIO *bp, OCSP_RESPONSE *o, unsigned long flags);
 
-int OCSP_basic_verify(OCSP_BASICRESP *bs, STACK_OF(X509) *certs,
+int OCSP_basic_verify(OCSP_BASICRESP *bs, const STACK_OF(X509) *certs,
     X509_STORE *st, unsigned long flags);
 
 #ifdef __cplusplus
