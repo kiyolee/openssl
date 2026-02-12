@@ -1038,6 +1038,9 @@ our %unified_info = (
             "test\\aesgcmtest" => {
                 "noinst" => "1"
             },
+            "test\\aeswrap_test" => {
+                "noinst" => "1"
+            },
             "test\\algorithmid_test" => {
                 "noinst" => "1"
             },
@@ -1099,6 +1102,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\bio_enc_test" => {
+                "noinst" => "1"
+            },
+            "test\\bio_eof_test" => {
                 "noinst" => "1"
             },
             "test\\bio_memleak_test" => {
@@ -8322,6 +8328,7 @@ our %unified_info = (
             "providers\\common\\include\\prov\\der_ml_dsa.h"
         ],
         "providers\\common\\der\\libcommon-lib-der_ml_dsa_key.o" => [
+            "providers\\common\\include\\prov\\der_digests.h",
             "providers\\common\\include\\prov\\der_ml_dsa.h"
         ],
         "providers\\common\\der\\libcommon-lib-der_rsa_gen.o" => [
@@ -8717,6 +8724,10 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\aeswrap_test" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
         "test\\algorithmid_test" => [
             "libcrypto.a",
             "test\\libtestutil.a"
@@ -8799,6 +8810,10 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\bio_enc_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
+        "test\\bio_eof_test" => [
             "libcrypto",
             "test\\libtestutil.a"
         ],
@@ -22220,6 +22235,12 @@ our %unified_info = (
             ".\\apps\\include",
             "."
         ],
+        "test\\aeswrap_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\algorithmid_test" => [
             "include",
             "apps\\include",
@@ -22351,6 +22372,12 @@ our %unified_info = (
             "."
         ],
         "test\\bio_enc_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\bio_eof_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -25347,6 +25374,7 @@ our %unified_info = (
         "fuzz\\x509-test",
         "test\\aborttest",
         "test\\aesgcmtest",
+        "test\\aeswrap_test",
         "test\\algorithmid_test",
         "test\\asn1_decode_test",
         "test\\asn1_dsa_internal_test",
@@ -25368,6 +25396,7 @@ our %unified_info = (
         "test\\bio_core_test",
         "test\\bio_dgram_test",
         "test\\bio_enc_test",
+        "test\\bio_eof_test",
         "test\\bio_memleak_test",
         "test\\bio_meth_test",
         "test\\bio_prefix_text",
@@ -30979,6 +31008,12 @@ our %unified_info = (
         "test\\aesgcmtest-bin-aesgcmtest.o" => [
             ".\\test\\aesgcmtest.c"
         ],
+        "test\\aeswrap_test" => [
+            "test\\aeswrap_test-bin-aeswrap_test.o"
+        ],
+        "test\\aeswrap_test-bin-aeswrap_test.o" => [
+            ".\\test\\aeswrap_test.c"
+        ],
         "test\\algorithmid_test" => [
             "test\\algorithmid_test-bin-algorithmid_test.o"
         ],
@@ -31107,6 +31142,12 @@ our %unified_info = (
         ],
         "test\\bio_enc_test-bin-bio_enc_test.o" => [
             ".\\test\\bio_enc_test.c"
+        ],
+        "test\\bio_eof_test" => [
+            "test\\bio_eof_test-bin-bio_eof_test.o"
+        ],
+        "test\\bio_eof_test-bin-bio_eof_test.o" => [
+            ".\\test\\bio_eof_test.c"
         ],
         "test\\bio_memleak_test" => [
             "test\\bio_memleak_test-bin-bio_memleak_test.o"
