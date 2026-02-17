@@ -140,6 +140,9 @@ extern "C" {
 # ifndef OPENSSL_NO_STATIC_ENGINE
 #  define OPENSSL_NO_STATIC_ENGINE
 # endif
+# ifndef OPENSSL_NO_STATIC_VCRUNTIME
+#  define OPENSSL_NO_STATIC_VCRUNTIME
+# endif
 # ifndef OPENSSL_NO_TFO
 #  define OPENSSL_NO_TFO
 # endif

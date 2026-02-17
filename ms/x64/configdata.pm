@@ -222,6 +222,7 @@ our %config = (
         "OPENSSL_NO_SCTP",
         "OPENSSL_NO_SSLKEYLOG",
         "OPENSSL_NO_STATIC_ENGINE",
+        "OPENSSL_NO_STATIC_VCRUNTIME",
         "OPENSSL_NO_TFO",
         "OPENSSL_NO_TLS_DEPRECATED_EC",
         "OPENSSL_NO_TRACE",
@@ -239,7 +240,7 @@ our %config = (
         "OPENSSL_SYS_WIN64A"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files\\OpenSSL-3 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-static-vcruntime no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -514,6 +515,7 @@ our @disablables = (
     "sshkdf",
     "sskdf",
     "ssl-trace",
+    "static-vcruntime",
     "stdio",
     "sslkeylog",
     "tests",
@@ -584,6 +586,7 @@ our %disabled = (
     "sctp" => "default",
     "sslkeylog" => "default",
     "static-engine" => "cascade",
+    "static-vcruntime" => "default",
     "tfo" => "default",
     "tls-deprecated-ec" => "default",
     "trace" => "default",
@@ -38340,6 +38343,9 @@ my %disabled_info = (
     },
     "static-engine" => {
         "macro" => "OPENSSL_NO_STATIC_ENGINE"
+    },
+    "static-vcruntime" => {
+        "macro" => "OPENSSL_NO_STATIC_VCRUNTIME"
     },
     "tfo" => {
         "macro" => "OPENSSL_NO_TFO"
