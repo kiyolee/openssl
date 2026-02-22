@@ -217,10 +217,11 @@ struct rsa_set_ctx_params_st {
 
 #ifndef rsa_set_ctx_params_decoder
 static int rsa_set_ctx_params_decoder
-    (const OSSL_PARAM *p, struct rsa_set_ctx_params_st *r)
+    (const OSSL_PARAM *p, struct rsa_set_ctx_params_st *r, int *count)
 {
     const char *s;
 
+    *count = 0;
     memset(r, 0, sizeof(*r));
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
@@ -259,6 +260,7 @@ static int rsa_set_ctx_params_decoder
                                                                "param %s is repeated", s);
                                                 return 0;
                                             }
+                                            ++*count;
                                             r->oaep_pq = (OSSL_PARAM *)p;
                                         }
                                         break;
@@ -268,6 +270,7 @@ static int rsa_set_ctx_params_decoder
                                                            "param %s is repeated", s);
                                             return 0;
                                         }
+                                        ++*count;
                                         r->oaep = (OSSL_PARAM *)p;
                                     }
                                 }
@@ -284,6 +287,7 @@ static int rsa_set_ctx_params_decoder
                                        "param %s is repeated", s);
                         return 0;
                     }
+                    ++*count;
                     r->imrej = (OSSL_PARAM *)p;
                 }
                 break;
@@ -296,6 +300,7 @@ static int rsa_set_ctx_params_decoder
                                        "param %s is repeated", s);
                         return 0;
                     }
+                    ++*count;
                     r->ind_k = (OSSL_PARAM *)p;
                 }
 # endif
@@ -328,6 +333,7 @@ static int rsa_set_ctx_params_decoder
                                                            "param %s is repeated", s);
                                             return 0;
                                         }
+                                        ++*count;
                                         r->mgf1 = (OSSL_PARAM *)p;
                                     }
                                     break;
@@ -339,6 +345,7 @@ static int rsa_set_ctx_params_decoder
                                                            "param %s is repeated", s);
                                             return 0;
                                         }
+                                        ++*count;
                                         r->mgf1_pq = (OSSL_PARAM *)p;
                                     }
                                 }
@@ -355,6 +362,7 @@ static int rsa_set_ctx_params_decoder
                                        "param %s is repeated", s);
                         return 0;
                     }
+                    ++*count;
                     r->label = (OSSL_PARAM *)p;
                 }
                 break;
@@ -366,6 +374,7 @@ static int rsa_set_ctx_params_decoder
                                        "param %s is repeated", s);
                         return 0;
                     }
+                    ++*count;
                     r->pad = (OSSL_PARAM *)p;
                 }
                 break;
@@ -378,6 +387,7 @@ static int rsa_set_ctx_params_decoder
                                        "param %s is repeated", s);
                         return 0;
                     }
+                    ++*count;
                     r->ind_pad = (OSSL_PARAM *)p;
                 }
 # endif
@@ -406,6 +416,7 @@ static int rsa_set_ctx_params_decoder
                                                        "param %s is repeated", s);
                                         return 0;
                                     }
+                                    ++*count;
                                     r->tlsver = (OSSL_PARAM *)p;
                                 }
                                 break;
@@ -417,6 +428,7 @@ static int rsa_set_ctx_params_decoder
                                                        "param %s is repeated", s);
                                         return 0;
                                     }
+                                    ++*count;
                                     r->negver = (OSSL_PARAM *)p;
                                 }
                             }

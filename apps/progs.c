@@ -40,6 +40,9 @@ FUNCTION functions[] = {
 #ifndef OPENSSL_NO_EC
     {FT_general, "ec", ec_main, ec_options, NULL, NULL},
 #endif
+#ifndef OPENSSL_NO_ECH
+    {FT_general, "ech", ech_main, ech_options, NULL, NULL},
+#endif
 #ifndef OPENSSL_NO_EC
     {FT_general, "ecparam", ecparam_main, ecparam_options, NULL, NULL},
 #endif

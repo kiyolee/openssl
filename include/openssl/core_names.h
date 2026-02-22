@@ -579,6 +579,7 @@ extern "C" {
 # define OSSL_SIGNATURE_PARAM_PSS_SALTLEN "saltlen"
 # define OSSL_SIGNATURE_PARAM_SIGNATURE "signature"
 # define OSSL_SIGNATURE_PARAM_TEST_ENTROPY "test-entropy"
+# define OSSL_SIGNATURE_PARAM_TLS_VERSION "tls-version"
 # define OSSL_SKEY_PARAM_KEY_LENGTH "key-length"
 # define OSSL_SKEY_PARAM_RAW_BYTES "raw-bytes"
 # define OSSL_STORE_PARAM_ALIAS "alias"

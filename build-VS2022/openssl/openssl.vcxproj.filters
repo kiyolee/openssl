@@ -195,6 +195,9 @@
     <ClCompile Include="..\..\apps\configutl.c">
       <Filter>Source Files\apps</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\apps\ech.c">
+      <Filter>Source Files\apps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\ms\openssl4.rc">

@@ -113,6 +113,7 @@ static const OSSL_PARAM sm2sig_set_ctx_params_list[] = {
     OSSL_PARAM_size_t(OSSL_SIGNATURE_PARAM_DIGEST_SIZE, NULL),
     OSSL_PARAM_utf8_string(OSSL_SIGNATURE_PARAM_DIGEST, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_PKEY_PARAM_DIST_ID, NULL, 0),
+    OSSL_PARAM_uint(OSSL_SIGNATURE_PARAM_TLS_VERSION, NULL),
     OSSL_PARAM_END
 };
 #endif
@@ -122,6 +123,7 @@ struct sm2sig_set_ctx_params_st {
     OSSL_PARAM *digest;
     OSSL_PARAM *distid;
     OSSL_PARAM *size;
+    OSSL_PARAM *tlsver;
 };
 #endif
 
@@ -195,6 +197,17 @@ static int sm2sig_set_ctx_params_decoder
                             r->distid = (OSSL_PARAM *)p;
                         }
                     }
+                }
+                break;
+            case 't':
+                if (ossl_likely(strcmp("ls-version", s + 1) == 0)) {
+                    /* OSSL_SIGNATURE_PARAM_TLS_VERSION */
+                    if (ossl_unlikely(r->tlsver != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->tlsver = (OSSL_PARAM *)p;
                 }
             }
     return 1;

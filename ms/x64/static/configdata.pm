@@ -139,6 +139,7 @@ our %config = (
         ".\\ssl\\record\\build.info",
         ".\\ssl\\rio\\build.info",
         ".\\ssl\\quic\\build.info",
+        ".\\ssl\\ech\\build.info",
         ".\\apps\\lib\\build.info",
         ".\\providers\\common\\build.info",
         ".\\providers\\implementations\\build.info",
@@ -449,6 +450,7 @@ our @disablables = (
     "ecdh",
     "ecdsa",
     "ecx",
+    "ech",
     "egd",
     "err",
     "external-tests",
@@ -660,6 +662,11 @@ our %unified_info = (
             },
             "doc\\man1\\openssl-ec.pod" => {
                 ".\\doc\\man1\\openssl-ec.pod.in" => {
+                    "pod" => "1"
+                }
+            },
+            "doc\\man1\\openssl-ech.pod" => {
+                ".\\doc\\man1\\openssl-ech.pod.in" => {
                     "pod" => "1"
                 }
             },
@@ -1181,6 +1188,9 @@ our %unified_info = (
             "test\\buildtest_c_ecdsa" => {
                 "noinst" => "1"
             },
+            "test\\buildtest_c_ech" => {
+                "noinst" => "1"
+            },
             "test\\buildtest_c_encoder" => {
                 "noinst" => "1"
             },
@@ -1449,6 +1459,12 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\ecdsatest" => {
+                "noinst" => "1"
+            },
+            "test\\ech_corrupt_test" => {
+                "noinst" => "1"
+            },
+            "test\\ech_test" => {
                 "noinst" => "1"
             },
             "test\\ecstresstest" => {
@@ -2264,6 +2280,9 @@ our %unified_info = (
         "apps\\openssl-bin-ec.o" => [
             "apps\\progs.h"
         ],
+        "apps\\openssl-bin-ech.o" => [
+            "apps\\progs.h"
+        ],
         "apps\\openssl-bin-ecparam.o" => [
             "apps\\progs.h"
         ],
@@ -2513,6 +2532,9 @@ our %unified_info = (
         ],
         "doc\\html\\man1\\openssl-ec.html" => [
             "doc\\man1\\openssl-ec.pod"
+        ],
+        "doc\\html\\man1\\openssl-ech.html" => [
+            "doc\\man1\\openssl-ech.pod"
         ],
         "doc\\html\\man1\\openssl-ecparam.html" => [
             "doc\\man1\\openssl-ecparam.pod"
@@ -4374,6 +4396,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_session_reused.html" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
         ],
+        "doc\\html\\man3\\SSL_set1_echstore.html" => [
+            ".\\doc\\man3\\SSL_set1_echstore.pod"
+        ],
         "doc\\html\\man3\\SSL_set1_host.html" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
@@ -4956,6 +4981,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_SIGNATURE-SLH-DSA.html" => [
             ".\\doc\\man7\\EVP_SIGNATURE-SLH-DSA.pod"
         ],
+        "doc\\html\\man7\\EVP_SIGNATURE-SM2.html" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-SM2.pod"
+        ],
         "doc\\html\\man7\\OSSL_PROVIDER-FIPS.html" => [
             ".\\doc\\man7\\OSSL_PROVIDER-FIPS.pod"
         ],
@@ -5207,6 +5235,10 @@ our %unified_info = (
             ".\\doc\\man1\\openssl-ec.pod.in",
             ".\\doc\\perlvars.pm"
         ],
+        "doc\\man1\\openssl-ech.pod" => [
+            ".\\doc\\man1\\openssl-ech.pod.in",
+            ".\\doc\\perlvars.pm"
+        ],
         "doc\\man1\\openssl-ecparam.pod" => [
             ".\\doc\\man1\\openssl-ecparam.pod.in",
             ".\\doc\\perlvars.pm"
@@ -5394,6 +5426,9 @@ our %unified_info = (
         ],
         "doc\\man\\man1\\openssl-ec.1" => [
             "doc\\man1\\openssl-ec.pod"
+        ],
+        "doc\\man\\man1\\openssl-ech.1" => [
+            "doc\\man1\\openssl-ech.pod"
         ],
         "doc\\man\\man1\\openssl-ecparam.1" => [
             "doc\\man1\\openssl-ecparam.pod"
@@ -7255,6 +7290,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_session_reused.3" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
         ],
+        "doc\\man\\man3\\SSL_set1_echstore.3" => [
+            ".\\doc\\man3\\SSL_set1_echstore.pod"
+        ],
         "doc\\man\\man3\\SSL_set1_host.3" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
@@ -7836,6 +7874,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\EVP_SIGNATURE-SLH-DSA.7" => [
             ".\\doc\\man7\\EVP_SIGNATURE-SLH-DSA.pod"
+        ],
+        "doc\\man\\man7\\EVP_SIGNATURE-SM2.7" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-SM2.pod"
         ],
         "doc\\man\\man7\\OSSL_PROVIDER-FIPS.7" => [
             ".\\doc\\man7\\OSSL_PROVIDER-FIPS.pod"
@@ -8914,6 +8955,10 @@ our %unified_info = (
             "libcrypto",
             "libssl"
         ],
+        "test\\buildtest_c_ech" => [
+            "libcrypto",
+            "libssl"
+        ],
         "test\\buildtest_c_encoder" => [
             "libcrypto",
             "libssl"
@@ -9280,6 +9325,16 @@ our %unified_info = (
         ],
         "test\\ecdsatest" => [
             "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\ech_corrupt_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\ech_test" => [
+            "libcrypto.a",
+            "libssl.a",
             "test\\libtestutil.a"
         ],
         "test\\ecstresstest" => [
@@ -12036,6 +12091,19 @@ our %unified_info = (
                 ]
             }
         },
+        "ssl\\ech" => {
+            "deps" => [
+                "ssl\\ech\\libssl-lib-ech_helper.o",
+                "ssl\\ech\\libssl-lib-ech_internal.o",
+                "ssl\\ech\\libssl-lib-ech_ssl_apis.o",
+                "ssl\\ech\\libssl-lib-ech_store.o"
+            ],
+            "products" => {
+                "lib" => [
+                    "libssl"
+                ]
+            }
+        },
         "ssl\\quic" => {
             "deps" => [
                 "ssl\\quic\\libssl-lib-cc_newreno.o",
@@ -12163,6 +12231,8 @@ our %unified_info = (
                 "test\\helpers\\dsa_no_digest_size_test-bin-predefined_dsaparams.o",
                 "test\\helpers\\dtls_mtu_test-bin-ssltestlib.o",
                 "test\\helpers\\dtlstest-bin-ssltestlib.o",
+                "test\\helpers\\ech_corrupt_test-bin-ssltestlib.o",
+                "test\\helpers\\ech_test-bin-ssltestlib.o",
                 "test\\helpers\\endecode_test-bin-predefined_dhparams.o",
                 "test\\helpers\\evp_extra_test-bin-predefined_dhparams.o",
                 "test\\helpers\\evp_extra_test-bin-predefined_dsaparams.o",
@@ -12228,6 +12298,8 @@ our %unified_info = (
                     "test\\dsa_no_digest_size_test",
                     "test\\dtls_mtu_test",
                     "test\\dtlstest",
+                    "test\\ech_corrupt_test",
+                    "test\\ech_test",
                     "test\\endecode_test",
                     "test\\evp_extra_test",
                     "test\\fatalerrtest",
@@ -13104,6 +13176,9 @@ our %unified_info = (
         ],
         "doc\\html\\man1\\openssl-ec.html" => [
             "doc\\man1\\openssl-ec.pod"
+        ],
+        "doc\\html\\man1\\openssl-ech.html" => [
+            "doc\\man1\\openssl-ech.pod"
         ],
         "doc\\html\\man1\\openssl-ecparam.html" => [
             "doc\\man1\\openssl-ecparam.pod"
@@ -14965,6 +15040,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_session_reused.html" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
         ],
+        "doc\\html\\man3\\SSL_set1_echstore.html" => [
+            ".\\doc\\man3\\SSL_set1_echstore.pod"
+        ],
         "doc\\html\\man3\\SSL_set1_host.html" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
@@ -15547,6 +15625,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_SIGNATURE-SLH-DSA.html" => [
             ".\\doc\\man7\\EVP_SIGNATURE-SLH-DSA.pod"
         ],
+        "doc\\html\\man7\\EVP_SIGNATURE-SM2.html" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-SM2.pod"
+        ],
         "doc\\html\\man7\\OSSL_PROVIDER-FIPS.html" => [
             ".\\doc\\man7\\OSSL_PROVIDER-FIPS.pod"
         ],
@@ -15787,6 +15868,9 @@ our %unified_info = (
         "doc\\man1\\openssl-ec.pod" => [
             ".\\doc\\man1\\openssl-ec.pod.in"
         ],
+        "doc\\man1\\openssl-ech.pod" => [
+            ".\\doc\\man1\\openssl-ech.pod.in"
+        ],
         "doc\\man1\\openssl-ecparam.pod" => [
             ".\\doc\\man1\\openssl-ecparam.pod.in"
         ],
@@ -15939,6 +16023,9 @@ our %unified_info = (
         ],
         "doc\\man\\man1\\openssl-ec.1" => [
             "doc\\man1\\openssl-ec.pod"
+        ],
+        "doc\\man\\man1\\openssl-ech.1" => [
+            "doc\\man1\\openssl-ech.pod"
         ],
         "doc\\man\\man1\\openssl-ecparam.1" => [
             "doc\\man1\\openssl-ecparam.pod"
@@ -17800,6 +17887,9 @@ our %unified_info = (
         "doc\\man\\man3\\SSL_session_reused.3" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
         ],
+        "doc\\man\\man3\\SSL_set1_echstore.3" => [
+            ".\\doc\\man3\\SSL_set1_echstore.pod"
+        ],
         "doc\\man\\man3\\SSL_set1_host.3" => [
             ".\\doc\\man3\\SSL_set1_host.pod"
         ],
@@ -18381,6 +18471,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\EVP_SIGNATURE-SLH-DSA.7" => [
             ".\\doc\\man7\\EVP_SIGNATURE-SLH-DSA.pod"
+        ],
+        "doc\\man\\man7\\EVP_SIGNATURE-SM2.7" => [
+            ".\\doc\\man7\\EVP_SIGNATURE-SM2.pod"
         ],
         "doc\\man\\man7\\OSSL_PROVIDER-FIPS.7" => [
             ".\\doc\\man7\\OSSL_PROVIDER-FIPS.pod"
@@ -19175,6 +19268,10 @@ our %unified_info = (
             ".\\test\\generate_buildtest.pl",
             "ecdsa"
         ],
+        "test\\buildtest_ech.c" => [
+            ".\\test\\generate_buildtest.pl",
+            "ech"
+        ],
         "test\\buildtest_encoder.c" => [
             ".\\test\\generate_buildtest.pl",
             "encoder"
@@ -19390,6 +19487,7 @@ our %unified_info = (
             "doc\\html\\man1\\openssl-dsa.html",
             "doc\\html\\man1\\openssl-dsaparam.html",
             "doc\\html\\man1\\openssl-ec.html",
+            "doc\\html\\man1\\openssl-ech.html",
             "doc\\html\\man1\\openssl-ecparam.html",
             "doc\\html\\man1\\openssl-enc.html",
             "doc\\html\\man1\\openssl-errstr.html",
@@ -20012,6 +20110,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_read_early_data.html",
             "doc\\html\\man3\\SSL_rstate_string.html",
             "doc\\html\\man3\\SSL_session_reused.html",
+            "doc\\html\\man3\\SSL_set1_echstore.html",
             "doc\\html\\man3\\SSL_set1_host.html",
             "doc\\html\\man3\\SSL_set1_initial_peer_addr.html",
             "doc\\html\\man3\\SSL_set1_server_cert_type.html",
@@ -20210,6 +20309,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_SIGNATURE-ML-DSA.html",
             "doc\\html\\man7\\EVP_SIGNATURE-RSA.html",
             "doc\\html\\man7\\EVP_SIGNATURE-SLH-DSA.html",
+            "doc\\html\\man7\\EVP_SIGNATURE-SM2.html",
             "doc\\html\\man7\\OSSL_PROVIDER-FIPS.html",
             "doc\\html\\man7\\OSSL_PROVIDER-base.html",
             "doc\\html\\man7\\OSSL_PROVIDER-default.html",
@@ -20364,6 +20464,9 @@ our %unified_info = (
         "apps\\ec.o" => [
             "apps"
         ],
+        "apps\\ech.o" => [
+            "apps"
+        ],
         "apps\\ecparam.o" => [
             "apps"
         ],
@@ -20465,6 +20568,9 @@ our %unified_info = (
             "apps"
         ],
         "apps\\openssl-bin-ec.o" => [
+            "apps"
+        ],
+        "apps\\openssl-bin-ech.o" => [
             "apps"
         ],
         "apps\\openssl-bin-ecparam.o" => [
@@ -21166,6 +21272,9 @@ our %unified_info = (
             ".\\doc"
         ],
         "doc\\man1\\openssl-ec.pod" => [
+            ".\\doc"
+        ],
+        "doc\\man1\\openssl-ech.pod" => [
             ".\\doc"
         ],
         "doc\\man1\\openssl-ecparam.pod" => [
@@ -22480,6 +22589,10 @@ our %unified_info = (
             "include",
             ".\\include"
         ],
+        "test\\buildtest_c_ech" => [
+            "include",
+            ".\\include"
+        ],
         "test\\buildtest_c_encoder" => [
             "include",
             ".\\include"
@@ -22970,6 +23083,18 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\ech_corrupt_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\ech_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\ecstresstest" => [
             "include",
             "apps\\include",
@@ -23247,6 +23372,18 @@ our %unified_info = (
             ".\\include"
         ],
         "test\\helpers\\dtlstest-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
+        "test\\helpers\\ech_corrupt_test-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
+        "test\\helpers\\ech_test-bin-ssltestlib.o" => [
             ".",
             "include",
             ".",
@@ -24364,6 +24501,7 @@ our %unified_info = (
             "doc\\man\\man1\\openssl-dsa.1",
             "doc\\man\\man1\\openssl-dsaparam.1",
             "doc\\man\\man1\\openssl-ec.1",
+            "doc\\man\\man1\\openssl-ech.1",
             "doc\\man\\man1\\openssl-ecparam.1",
             "doc\\man\\man1\\openssl-enc.1",
             "doc\\man\\man1\\openssl-errstr.1",
@@ -24986,6 +25124,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_read_early_data.3",
             "doc\\man\\man3\\SSL_rstate_string.3",
             "doc\\man\\man3\\SSL_session_reused.3",
+            "doc\\man\\man3\\SSL_set1_echstore.3",
             "doc\\man\\man3\\SSL_set1_host.3",
             "doc\\man\\man3\\SSL_set1_initial_peer_addr.3",
             "doc\\man\\man3\\SSL_set1_server_cert_type.3",
@@ -25184,6 +25323,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_SIGNATURE-ML-DSA.7",
             "doc\\man\\man7\\EVP_SIGNATURE-RSA.7",
             "doc\\man\\man7\\EVP_SIGNATURE-SLH-DSA.7",
+            "doc\\man\\man7\\EVP_SIGNATURE-SM2.7",
             "doc\\man\\man7\\OSSL_PROVIDER-FIPS.7",
             "doc\\man\\man7\\OSSL_PROVIDER-base.7",
             "doc\\man\\man7\\OSSL_PROVIDER-default.7",
@@ -25356,6 +25496,7 @@ our %unified_info = (
         "test\\buildtest_c_ec",
         "test\\buildtest_c_ecdh",
         "test\\buildtest_c_ecdsa",
+        "test\\buildtest_c_ech",
         "test\\buildtest_c_encoder",
         "test\\buildtest_c_evp",
         "test\\buildtest_c_fips_names",
@@ -25446,6 +25587,8 @@ our %unified_info = (
         "test\\dtlsv1listentest",
         "test\\ec_internal_test",
         "test\\ecdsatest",
+        "test\\ech_corrupt_test",
+        "test\\ech_test",
         "test\\ecstresstest",
         "test\\ectest",
         "test\\endecode_test",
@@ -25749,6 +25892,7 @@ our %unified_info = (
             "apps\\openssl-bin-dsa.o",
             "apps\\openssl-bin-dsaparam.o",
             "apps\\openssl-bin-ec.o",
+            "apps\\openssl-bin-ech.o",
             "apps\\openssl-bin-ecparam.o",
             "apps\\openssl-bin-enc.o",
             "apps\\openssl-bin-errstr.o",
@@ -25831,6 +25975,9 @@ our %unified_info = (
         ],
         "apps\\openssl-bin-ec.o" => [
             ".\\apps\\ec.c"
+        ],
+        "apps\\openssl-bin-ech.o" => [
+            ".\\apps\\ech.c"
         ],
         "apps\\openssl-bin-ecparam.o" => [
             ".\\apps\\ecparam.c"
@@ -29633,6 +29780,10 @@ our %unified_info = (
             "providers\\libdefault.a"
         ],
         "libssl" => [
+            "ssl\\ech\\libssl-lib-ech_helper.o",
+            "ssl\\ech\\libssl-lib-ech_internal.o",
+            "ssl\\ech\\libssl-lib-ech_ssl_apis.o",
+            "ssl\\ech\\libssl-lib-ech_store.o",
             "ssl\\libssl-lib-bio_ssl.o",
             "ssl\\libssl-lib-d1_lib.o",
             "ssl\\libssl-lib-d1_msg.o",
@@ -30633,6 +30784,18 @@ our %unified_info = (
         "providers\\p_ossltest-dso-prov_running.o" => [
             ".\\providers\\prov_running.c"
         ],
+        "ssl\\ech\\libssl-lib-ech_helper.o" => [
+            ".\\ssl\\ech\\ech_helper.c"
+        ],
+        "ssl\\ech\\libssl-lib-ech_internal.o" => [
+            ".\\ssl\\ech\\ech_internal.c"
+        ],
+        "ssl\\ech\\libssl-lib-ech_ssl_apis.o" => [
+            ".\\ssl\\ech\\ech_ssl_apis.c"
+        ],
+        "ssl\\ech\\libssl-lib-ech_store.o" => [
+            ".\\ssl\\ech\\ech_store.c"
+        ],
         "ssl\\libssl-lib-bio_ssl.o" => [
             ".\\ssl\\bio_ssl.c"
         ],
@@ -31293,6 +31456,12 @@ our %unified_info = (
         "test\\buildtest_c_ecdsa-bin-buildtest_ecdsa.o" => [
             "test\\buildtest_ecdsa.c"
         ],
+        "test\\buildtest_c_ech" => [
+            "test\\buildtest_c_ech-bin-buildtest_ech.o"
+        ],
+        "test\\buildtest_c_ech-bin-buildtest_ech.o" => [
+            "test\\buildtest_ech.c"
+        ],
         "test\\buildtest_c_encoder" => [
             "test\\buildtest_c_encoder-bin-buildtest_encoder.o"
         ],
@@ -31857,6 +32026,20 @@ our %unified_info = (
         "test\\ecdsatest-bin-ecdsatest.o" => [
             ".\\test\\ecdsatest.c"
         ],
+        "test\\ech_corrupt_test" => [
+            "test\\ech_corrupt_test-bin-ech_corrupt_test.o",
+            "test\\helpers\\ech_corrupt_test-bin-ssltestlib.o"
+        ],
+        "test\\ech_corrupt_test-bin-ech_corrupt_test.o" => [
+            ".\\test\\ech_corrupt_test.c"
+        ],
+        "test\\ech_test" => [
+            "test\\ech_test-bin-ech_test.o",
+            "test\\helpers\\ech_test-bin-ssltestlib.o"
+        ],
+        "test\\ech_test-bin-ech_test.o" => [
+            ".\\test\\ech_test.c"
+        ],
         "test\\ecstresstest" => [
             "test\\ecstresstest-bin-ecstresstest.o"
         ],
@@ -32075,6 +32258,12 @@ our %unified_info = (
             ".\\test\\helpers\\ssltestlib.c"
         ],
         "test\\helpers\\dtlstest-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
+        "test\\helpers\\ech_corrupt_test-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
+        "test\\helpers\\ech_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
         "test\\helpers\\endecode_test-bin-predefined_dhparams.o" => [

@@ -34,6 +34,9 @@
     <Filter Include="Source Files\ssl\rio">
       <UniqueIdentifier>{20010bcf-7168-4e51-ba73-81293249b877}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ssl\ech">
+      <UniqueIdentifier>{bb6873fb-3fd8-4921-a174-a588d522f5b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ssl\ssl_lib.c">
@@ -314,6 +317,18 @@
     </ClCompile>
     <ClCompile Include="..\..\ssl\rio\poll_builder.c">
       <Filter>Source Files\ssl\rio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\ech\ech_helper.c">
+      <Filter>Source Files\ssl\ech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\ech\ech_internal.c">
+      <Filter>Source Files\ssl\ech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\ech\ech_ssl_apis.c">
+      <Filter>Source Files\ssl\ech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ssl\ech\ech_store.c">
+      <Filter>Source Files\ssl\ech</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

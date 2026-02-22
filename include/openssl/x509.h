@@ -521,8 +521,8 @@ void *X509_CRL_get_meth_data(X509_CRL *crl);
 
 const char *X509_verify_cert_error_string(long n);
 
-int X509_verify(X509 *a, EVP_PKEY *r);
-int X509_self_signed(X509 *cert, int verify_signature);
+int X509_verify(const X509 *a, EVP_PKEY *r);
+int X509_self_signed(const X509 *cert, int verify_signature);
 
 int X509_REQ_verify_ex(X509_REQ *a, EVP_PKEY *r, OSSL_LIB_CTX *libctx,
     const char *propq);
@@ -690,7 +690,7 @@ DECLARE_ASN1_DUP_FUNCTION(X509_NAME)
 DECLARE_ASN1_DUP_FUNCTION(X509_NAME_ENTRY)
 
 #ifndef OPENSSL_NO_DEPRECATED_4_0
-OSSL_DEPRECATEDIN_4_0 int X509_cmp_time(const ASN1_TIME *s, time_t *t);
+OSSL_DEPRECATEDIN_4_0 int X509_cmp_time(const ASN1_TIME *s, const time_t *t);
 OSSL_DEPRECATEDIN_4_0 int X509_cmp_current_time(const ASN1_TIME *s);
 OSSL_DEPRECATEDIN_4_0 int X509_cmp_timeframe(const X509_VERIFY_PARAM *vpm,
     const ASN1_TIME *start,
@@ -698,9 +698,9 @@ OSSL_DEPRECATEDIN_4_0 int X509_cmp_timeframe(const X509_VERIFY_PARAM *vpm,
 #endif
 int X509_check_certificate_times(const X509_VERIFY_PARAM *vpm, const X509 *x,
     int *error);
-ASN1_TIME *X509_time_adj(ASN1_TIME *s, long adj, time_t *t);
+ASN1_TIME *X509_time_adj(ASN1_TIME *s, long adj, const time_t *t);
 ASN1_TIME *X509_time_adj_ex(ASN1_TIME *s,
-    int offset_day, long offset_sec, time_t *t);
+    int offset_day, long offset_sec, const time_t *t);
 ASN1_TIME *X509_gmtime_adj(ASN1_TIME *s, long adj);
 
 const char *X509_get_default_cert_area(void);
@@ -710,8 +710,8 @@ const char *X509_get_default_cert_dir_env(void);
 const char *X509_get_default_cert_file_env(void);
 const char *X509_get_default_private_dir(void);
 
-X509_REQ *X509_to_X509_REQ(X509 *x, EVP_PKEY *pkey, const EVP_MD *md);
-X509 *X509_REQ_to_X509(X509_REQ *r, int days, EVP_PKEY *pkey);
+X509_REQ *X509_to_X509_REQ(const X509 *x, EVP_PKEY *pkey, const EVP_MD *md);
+const X509 *X509_REQ_to_X509(X509_REQ *r, int days, EVP_PKEY *pkey);
 
 DECLARE_ASN1_FUNCTIONS(X509_ALGOR)
 DECLARE_ASN1_ENCODE_FUNCTIONS(X509_ALGORS, X509_ALGORS, X509_ALGORS)
@@ -983,7 +983,7 @@ void OSSL_STACK_OF_X509_free(STACK_OF(X509) *certs);
 STACK_OF(X509) *X509_chain_up_ref(STACK_OF(X509) *chain);
 
 int X509_issuer_and_serial_cmp(const X509 *a, const X509 *b);
-unsigned long X509_issuer_and_serial_hash(X509 *a);
+unsigned long X509_issuer_and_serial_hash(const X509 *a);
 
 int X509_issuer_name_cmp(const X509 *a, const X509 *b);
 unsigned long X509_issuer_name_hash(X509 *a);
@@ -1001,7 +1001,7 @@ unsigned long X509_subject_name_hash_old(X509 *x);
 #define X509_ADD_FLAG_PREPEND 0x2
 #define X509_ADD_FLAG_NO_DUP 0x4
 #define X509_ADD_FLAG_NO_SS 0x8
-int X509_add_cert(STACK_OF(X509) *sk, X509 *cert, int flags);
+int X509_add_cert(STACK_OF(X509) *sk, const X509 *cert, int flags);
 int X509_add_certs(STACK_OF(X509) *sk, const STACK_OF(X509) *certs, int flags);
 
 int X509_cmp(const X509 *a, const X509 *b);
@@ -1019,8 +1019,8 @@ int X509_CRL_cmp(const X509_CRL *a, const X509_CRL *b);
 int X509_CRL_match(const X509_CRL *a, const X509_CRL *b);
 int X509_aux_print(BIO *out, const X509 *x, int indent);
 #ifndef OPENSSL_NO_STDIO
-int X509_print_ex_fp(FILE *bp, X509 *x, unsigned long nmflag, unsigned long cflag);
-int X509_print_fp(FILE *bp, X509 *x);
+int X509_print_ex_fp(FILE *bp, const X509 *x, unsigned long nmflag, unsigned long cflag);
+int X509_print_fp(FILE *bp, const X509 *x);
 int X509_CRL_print_fp(FILE *bp, X509_CRL *x);
 int X509_REQ_print_fp(FILE *bp, const X509_REQ *req);
 int X509_NAME_print_ex_fp(FILE *fp, const X509_NAME *nm, int indent, unsigned long flags);
@@ -1037,10 +1037,12 @@ int X509_REQ_print_ex(BIO *bp, const X509_REQ *x, unsigned long nmflag, unsigned
 int X509_REQ_print(BIO *bp, const X509_REQ *req);
 
 int X509_NAME_entry_count(const X509_NAME *name);
-int X509_NAME_get_text_by_NID(const X509_NAME *name, int nid,
-    char *buf, int len);
-int X509_NAME_get_text_by_OBJ(const X509_NAME *name, const ASN1_OBJECT *obj,
-    char *buf, int len);
+#if !defined(OPENSSL_NO_DEPRECATED_4_0)
+OSSL_DEPRECATEDIN_4_0 int X509_NAME_get_text_by_NID(const X509_NAME *name,
+    int nid, char *buf, int len);
+OSSL_DEPRECATEDIN_4_0 int X509_NAME_get_text_by_OBJ(const X509_NAME *name,
+    const ASN1_OBJECT *obj, char *buf, int len);
+#endif /* !defined(OPENSSL_NO_DEPRECATED_4_0) */
 
 /*
  * NOTE: you should be passing -1, not 0 as lastpos. The functions that use
