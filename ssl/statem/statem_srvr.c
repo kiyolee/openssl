@@ -460,7 +460,7 @@ OCSP_RESPONSE *ossl_get_ocsp_response(SSL_CONNECTION *s, int chainidx)
     ASN1_OBJECT *cert_id_md_oid;
     char cert_id_md_txt[OSSL_MAX_NAME_SIZE];
     EVP_MD *cert_id_md;
-    ASN1_INTEGER *respSerial;
+    ASN1_INTEGER *respSerial = NULL;
     ASN1_OCTET_STRING *respIssuerNameHash = NULL;
     ASN1_OCTET_STRING *certIssuerNameHash = NULL;
     const X509_NAME *certIssuerName;
