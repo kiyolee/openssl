@@ -216,7 +216,46 @@ struct crypto_ex_data_st {
 };
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(void, void, void)
+STACK_OF(void);
+typedef int (*sk_void_compfunc)(const void *const *a, const void *const *b);
+typedef void (*sk_void_freefunc)(void *a);
+typedef void *(*sk_void_copyfunc)(const void *a);
+static ossl_inline void sk_void_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_void_freefunc freefunc = (sk_void_freefunc)freefunc_arg;
+    freefunc((void *)ptr);
+}
+static ossl_inline int sk_void_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const void *const *a, const void *const *b) = (int (*)(const void *const *a, const void *const *b))(cmp);
+    const void *const *at = (const void *const *)a;
+    const void *const *bt = (const void *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline void *ossl_check_void_type(void *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_void_sk_type(const STACK_OF(void) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_void_sk_type(STACK_OF(void) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_void_compfunc_type(sk_void_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_void_copyfunc_type(sk_void_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_void_freefunc_type(sk_void_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_void_num(sk) OPENSSL_sk_num(ossl_check_const_void_sk_type(sk))
 #define sk_void_value(sk, idx) ((void *)OPENSSL_sk_value(ossl_check_const_void_sk_type(sk), (idx)))
 #define sk_void_new(cmp) ((STACK_OF(void) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_void_compfunc_type(cmp)), sk_void_cmpfunc_thunk))

@@ -343,7 +343,6 @@ our %target = (
     "coutflag" => "/Fo",
     "cppflags" => "",
     "defines" => [
-        "OPENSSL_BUILDING_OPENSSL",
         "ZLIB",
         "OPENSSL_SYS_WIN32",
         "WIN32_LEAN_AND_MEAN",

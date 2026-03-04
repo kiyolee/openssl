@@ -46,7 +46,46 @@ typedef struct CMS_RecipientEncryptedKey_st CMS_RecipientEncryptedKey;
 typedef struct CMS_OtherKeyAttribute_st CMS_OtherKeyAttribute;
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(CMS_SignerInfo, CMS_SignerInfo, CMS_SignerInfo)
+STACK_OF(CMS_SignerInfo);
+typedef int (*sk_CMS_SignerInfo_compfunc)(const CMS_SignerInfo *const *a, const CMS_SignerInfo *const *b);
+typedef void (*sk_CMS_SignerInfo_freefunc)(CMS_SignerInfo *a);
+typedef CMS_SignerInfo *(*sk_CMS_SignerInfo_copyfunc)(const CMS_SignerInfo *a);
+static ossl_inline void sk_CMS_SignerInfo_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_CMS_SignerInfo_freefunc freefunc = (sk_CMS_SignerInfo_freefunc)freefunc_arg;
+    freefunc((CMS_SignerInfo *)ptr);
+}
+static ossl_inline int sk_CMS_SignerInfo_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const CMS_SignerInfo *const *a, const CMS_SignerInfo *const *b) = (int (*)(const CMS_SignerInfo *const *a, const CMS_SignerInfo *const *b))(cmp);
+    const CMS_SignerInfo *const *at = (const CMS_SignerInfo *const *)a;
+    const CMS_SignerInfo *const *bt = (const CMS_SignerInfo *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline CMS_SignerInfo *ossl_check_CMS_SignerInfo_type(CMS_SignerInfo *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_CMS_SignerInfo_sk_type(const STACK_OF(CMS_SignerInfo) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_CMS_SignerInfo_sk_type(STACK_OF(CMS_SignerInfo) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_CMS_SignerInfo_compfunc_type(sk_CMS_SignerInfo_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_CMS_SignerInfo_copyfunc_type(sk_CMS_SignerInfo_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_CMS_SignerInfo_freefunc_type(sk_CMS_SignerInfo_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_CMS_SignerInfo_num(sk) OPENSSL_sk_num(ossl_check_const_CMS_SignerInfo_sk_type(sk))
 #define sk_CMS_SignerInfo_value(sk, idx) ((CMS_SignerInfo *)OPENSSL_sk_value(ossl_check_const_CMS_SignerInfo_sk_type(sk), (idx)))
 #define sk_CMS_SignerInfo_new(cmp) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_CMS_SignerInfo_compfunc_type(cmp)), sk_CMS_SignerInfo_cmpfunc_thunk))
@@ -72,7 +111,46 @@ SKM_DEFINE_STACK_OF_INTERNAL(CMS_SignerInfo, CMS_SignerInfo, CMS_SignerInfo)
 #define sk_CMS_SignerInfo_dup(sk) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_dup(ossl_check_const_CMS_SignerInfo_sk_type(sk)))
 #define sk_CMS_SignerInfo_deep_copy(sk, copyfunc, freefunc) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_copyfunc_type(copyfunc), ossl_check_CMS_SignerInfo_freefunc_type(freefunc)))
 #define sk_CMS_SignerInfo_set_cmp_func(sk, cmp) ((sk_CMS_SignerInfo_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_compfunc_type(cmp)))
-SKM_DEFINE_STACK_OF_INTERNAL(CMS_RecipientEncryptedKey, CMS_RecipientEncryptedKey, CMS_RecipientEncryptedKey)
+STACK_OF(CMS_RecipientEncryptedKey);
+typedef int (*sk_CMS_RecipientEncryptedKey_compfunc)(const CMS_RecipientEncryptedKey *const *a, const CMS_RecipientEncryptedKey *const *b);
+typedef void (*sk_CMS_RecipientEncryptedKey_freefunc)(CMS_RecipientEncryptedKey *a);
+typedef CMS_RecipientEncryptedKey *(*sk_CMS_RecipientEncryptedKey_copyfunc)(const CMS_RecipientEncryptedKey *a);
+static ossl_inline void sk_CMS_RecipientEncryptedKey_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_CMS_RecipientEncryptedKey_freefunc freefunc = (sk_CMS_RecipientEncryptedKey_freefunc)freefunc_arg;
+    freefunc((CMS_RecipientEncryptedKey *)ptr);
+}
+static ossl_inline int sk_CMS_RecipientEncryptedKey_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const CMS_RecipientEncryptedKey *const *a, const CMS_RecipientEncryptedKey *const *b) = (int (*)(const CMS_RecipientEncryptedKey *const *a, const CMS_RecipientEncryptedKey *const *b))(cmp);
+    const CMS_RecipientEncryptedKey *const *at = (const CMS_RecipientEncryptedKey *const *)a;
+    const CMS_RecipientEncryptedKey *const *bt = (const CMS_RecipientEncryptedKey *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline CMS_RecipientEncryptedKey *ossl_check_CMS_RecipientEncryptedKey_type(CMS_RecipientEncryptedKey *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_CMS_RecipientEncryptedKey_sk_type(const STACK_OF(CMS_RecipientEncryptedKey) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_CMS_RecipientEncryptedKey_sk_type(STACK_OF(CMS_RecipientEncryptedKey) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_CMS_RecipientEncryptedKey_compfunc_type(sk_CMS_RecipientEncryptedKey_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_CMS_RecipientEncryptedKey_copyfunc_type(sk_CMS_RecipientEncryptedKey_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_CMS_RecipientEncryptedKey_freefunc_type(sk_CMS_RecipientEncryptedKey_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_CMS_RecipientEncryptedKey_num(sk) OPENSSL_sk_num(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk))
 #define sk_CMS_RecipientEncryptedKey_value(sk, idx) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_value(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk), (idx)))
 #define sk_CMS_RecipientEncryptedKey_new(cmp) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp)), sk_CMS_RecipientEncryptedKey_cmpfunc_thunk))
@@ -98,7 +176,46 @@ SKM_DEFINE_STACK_OF_INTERNAL(CMS_RecipientEncryptedKey, CMS_RecipientEncryptedKe
 #define sk_CMS_RecipientEncryptedKey_dup(sk) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_dup(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk)))
 #define sk_CMS_RecipientEncryptedKey_deep_copy(sk, copyfunc, freefunc) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_copyfunc_type(copyfunc), ossl_check_CMS_RecipientEncryptedKey_freefunc_type(freefunc)))
 #define sk_CMS_RecipientEncryptedKey_set_cmp_func(sk, cmp) ((sk_CMS_RecipientEncryptedKey_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp)))
-SKM_DEFINE_STACK_OF_INTERNAL(CMS_RecipientInfo, CMS_RecipientInfo, CMS_RecipientInfo)
+STACK_OF(CMS_RecipientInfo);
+typedef int (*sk_CMS_RecipientInfo_compfunc)(const CMS_RecipientInfo *const *a, const CMS_RecipientInfo *const *b);
+typedef void (*sk_CMS_RecipientInfo_freefunc)(CMS_RecipientInfo *a);
+typedef CMS_RecipientInfo *(*sk_CMS_RecipientInfo_copyfunc)(const CMS_RecipientInfo *a);
+static ossl_inline void sk_CMS_RecipientInfo_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_CMS_RecipientInfo_freefunc freefunc = (sk_CMS_RecipientInfo_freefunc)freefunc_arg;
+    freefunc((CMS_RecipientInfo *)ptr);
+}
+static ossl_inline int sk_CMS_RecipientInfo_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const CMS_RecipientInfo *const *a, const CMS_RecipientInfo *const *b) = (int (*)(const CMS_RecipientInfo *const *a, const CMS_RecipientInfo *const *b))(cmp);
+    const CMS_RecipientInfo *const *at = (const CMS_RecipientInfo *const *)a;
+    const CMS_RecipientInfo *const *bt = (const CMS_RecipientInfo *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline CMS_RecipientInfo *ossl_check_CMS_RecipientInfo_type(CMS_RecipientInfo *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_CMS_RecipientInfo_sk_type(const STACK_OF(CMS_RecipientInfo) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_CMS_RecipientInfo_sk_type(STACK_OF(CMS_RecipientInfo) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_CMS_RecipientInfo_compfunc_type(sk_CMS_RecipientInfo_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_CMS_RecipientInfo_copyfunc_type(sk_CMS_RecipientInfo_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_CMS_RecipientInfo_freefunc_type(sk_CMS_RecipientInfo_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_CMS_RecipientInfo_num(sk) OPENSSL_sk_num(ossl_check_const_CMS_RecipientInfo_sk_type(sk))
 #define sk_CMS_RecipientInfo_value(sk, idx) ((CMS_RecipientInfo *)OPENSSL_sk_value(ossl_check_const_CMS_RecipientInfo_sk_type(sk), (idx)))
 #define sk_CMS_RecipientInfo_new(cmp) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_CMS_RecipientInfo_compfunc_type(cmp)), sk_CMS_RecipientInfo_cmpfunc_thunk))
@@ -124,7 +241,46 @@ SKM_DEFINE_STACK_OF_INTERNAL(CMS_RecipientInfo, CMS_RecipientInfo, CMS_Recipient
 #define sk_CMS_RecipientInfo_dup(sk) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_dup(ossl_check_const_CMS_RecipientInfo_sk_type(sk)))
 #define sk_CMS_RecipientInfo_deep_copy(sk, copyfunc, freefunc) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_copyfunc_type(copyfunc), ossl_check_CMS_RecipientInfo_freefunc_type(freefunc)))
 #define sk_CMS_RecipientInfo_set_cmp_func(sk, cmp) ((sk_CMS_RecipientInfo_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_compfunc_type(cmp)))
-SKM_DEFINE_STACK_OF_INTERNAL(CMS_RevocationInfoChoice, CMS_RevocationInfoChoice, CMS_RevocationInfoChoice)
+STACK_OF(CMS_RevocationInfoChoice);
+typedef int (*sk_CMS_RevocationInfoChoice_compfunc)(const CMS_RevocationInfoChoice *const *a, const CMS_RevocationInfoChoice *const *b);
+typedef void (*sk_CMS_RevocationInfoChoice_freefunc)(CMS_RevocationInfoChoice *a);
+typedef CMS_RevocationInfoChoice *(*sk_CMS_RevocationInfoChoice_copyfunc)(const CMS_RevocationInfoChoice *a);
+static ossl_inline void sk_CMS_RevocationInfoChoice_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_CMS_RevocationInfoChoice_freefunc freefunc = (sk_CMS_RevocationInfoChoice_freefunc)freefunc_arg;
+    freefunc((CMS_RevocationInfoChoice *)ptr);
+}
+static ossl_inline int sk_CMS_RevocationInfoChoice_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const CMS_RevocationInfoChoice *const *a, const CMS_RevocationInfoChoice *const *b) = (int (*)(const CMS_RevocationInfoChoice *const *a, const CMS_RevocationInfoChoice *const *b))(cmp);
+    const CMS_RevocationInfoChoice *const *at = (const CMS_RevocationInfoChoice *const *)a;
+    const CMS_RevocationInfoChoice *const *bt = (const CMS_RevocationInfoChoice *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline CMS_RevocationInfoChoice *ossl_check_CMS_RevocationInfoChoice_type(CMS_RevocationInfoChoice *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_CMS_RevocationInfoChoice_sk_type(const STACK_OF(CMS_RevocationInfoChoice) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_CMS_RevocationInfoChoice_sk_type(STACK_OF(CMS_RevocationInfoChoice) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_CMS_RevocationInfoChoice_compfunc_type(sk_CMS_RevocationInfoChoice_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_CMS_RevocationInfoChoice_copyfunc_type(sk_CMS_RevocationInfoChoice_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_CMS_RevocationInfoChoice_freefunc_type(sk_CMS_RevocationInfoChoice_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_CMS_RevocationInfoChoice_num(sk) OPENSSL_sk_num(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk))
 #define sk_CMS_RevocationInfoChoice_value(sk, idx) ((CMS_RevocationInfoChoice *)OPENSSL_sk_value(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk), (idx)))
 #define sk_CMS_RevocationInfoChoice_new(cmp) ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_CMS_RevocationInfoChoice_compfunc_type(cmp)), sk_CMS_RevocationInfoChoice_cmpfunc_thunk))

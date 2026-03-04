@@ -33,7 +33,46 @@ typedef struct ESS_cert_id ESS_CERT_ID;
 typedef struct ESS_signing_cert ESS_SIGNING_CERT;
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(ESS_CERT_ID, ESS_CERT_ID, ESS_CERT_ID)
+STACK_OF(ESS_CERT_ID);
+typedef int (*sk_ESS_CERT_ID_compfunc)(const ESS_CERT_ID *const *a, const ESS_CERT_ID *const *b);
+typedef void (*sk_ESS_CERT_ID_freefunc)(ESS_CERT_ID *a);
+typedef ESS_CERT_ID *(*sk_ESS_CERT_ID_copyfunc)(const ESS_CERT_ID *a);
+static ossl_inline void sk_ESS_CERT_ID_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_ESS_CERT_ID_freefunc freefunc = (sk_ESS_CERT_ID_freefunc)freefunc_arg;
+    freefunc((ESS_CERT_ID *)ptr);
+}
+static ossl_inline int sk_ESS_CERT_ID_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const ESS_CERT_ID *const *a, const ESS_CERT_ID *const *b) = (int (*)(const ESS_CERT_ID *const *a, const ESS_CERT_ID *const *b))(cmp);
+    const ESS_CERT_ID *const *at = (const ESS_CERT_ID *const *)a;
+    const ESS_CERT_ID *const *bt = (const ESS_CERT_ID *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline ESS_CERT_ID *ossl_check_ESS_CERT_ID_type(ESS_CERT_ID *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_ESS_CERT_ID_sk_type(const STACK_OF(ESS_CERT_ID) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_ESS_CERT_ID_sk_type(STACK_OF(ESS_CERT_ID) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_ESS_CERT_ID_compfunc_type(sk_ESS_CERT_ID_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_ESS_CERT_ID_copyfunc_type(sk_ESS_CERT_ID_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_ESS_CERT_ID_freefunc_type(sk_ESS_CERT_ID_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_ESS_CERT_ID_num(sk) OPENSSL_sk_num(ossl_check_const_ESS_CERT_ID_sk_type(sk))
 #define sk_ESS_CERT_ID_value(sk, idx) ((ESS_CERT_ID *)OPENSSL_sk_value(ossl_check_const_ESS_CERT_ID_sk_type(sk), (idx)))
 #define sk_ESS_CERT_ID_new(cmp) ((STACK_OF(ESS_CERT_ID) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_ESS_CERT_ID_compfunc_type(cmp)), sk_ESS_CERT_ID_cmpfunc_thunk))
@@ -66,7 +105,46 @@ typedef struct ESS_signing_cert_v2_st ESS_SIGNING_CERT_V2;
 typedef struct ESS_cert_id_v2_st ESS_CERT_ID_V2;
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(ESS_CERT_ID_V2, ESS_CERT_ID_V2, ESS_CERT_ID_V2)
+STACK_OF(ESS_CERT_ID_V2);
+typedef int (*sk_ESS_CERT_ID_V2_compfunc)(const ESS_CERT_ID_V2 *const *a, const ESS_CERT_ID_V2 *const *b);
+typedef void (*sk_ESS_CERT_ID_V2_freefunc)(ESS_CERT_ID_V2 *a);
+typedef ESS_CERT_ID_V2 *(*sk_ESS_CERT_ID_V2_copyfunc)(const ESS_CERT_ID_V2 *a);
+static ossl_inline void sk_ESS_CERT_ID_V2_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_ESS_CERT_ID_V2_freefunc freefunc = (sk_ESS_CERT_ID_V2_freefunc)freefunc_arg;
+    freefunc((ESS_CERT_ID_V2 *)ptr);
+}
+static ossl_inline int sk_ESS_CERT_ID_V2_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const ESS_CERT_ID_V2 *const *a, const ESS_CERT_ID_V2 *const *b) = (int (*)(const ESS_CERT_ID_V2 *const *a, const ESS_CERT_ID_V2 *const *b))(cmp);
+    const ESS_CERT_ID_V2 *const *at = (const ESS_CERT_ID_V2 *const *)a;
+    const ESS_CERT_ID_V2 *const *bt = (const ESS_CERT_ID_V2 *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline ESS_CERT_ID_V2 *ossl_check_ESS_CERT_ID_V2_type(ESS_CERT_ID_V2 *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_ESS_CERT_ID_V2_sk_type(const STACK_OF(ESS_CERT_ID_V2) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_ESS_CERT_ID_V2_sk_type(STACK_OF(ESS_CERT_ID_V2) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_ESS_CERT_ID_V2_compfunc_type(sk_ESS_CERT_ID_V2_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_ESS_CERT_ID_V2_copyfunc_type(sk_ESS_CERT_ID_V2_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_ESS_CERT_ID_V2_freefunc_type(sk_ESS_CERT_ID_V2_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_ESS_CERT_ID_V2_num(sk) OPENSSL_sk_num(ossl_check_const_ESS_CERT_ID_V2_sk_type(sk))
 #define sk_ESS_CERT_ID_V2_value(sk, idx) ((ESS_CERT_ID_V2 *)OPENSSL_sk_value(ossl_check_const_ESS_CERT_ID_V2_sk_type(sk), (idx)))
 #define sk_ESS_CERT_ID_V2_new(cmp) ((STACK_OF(ESS_CERT_ID_V2) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_ESS_CERT_ID_V2_compfunc_type(cmp)), sk_ESS_CERT_ID_V2_cmpfunc_thunk))
