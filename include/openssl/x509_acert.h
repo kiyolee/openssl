@@ -135,7 +135,46 @@ int OSSL_ISSUER_SERIAL_set1_issuerUID(OSSL_ISSUER_SERIAL *isss,
 typedef struct OSSL_IETF_ATTR_SYNTAX_VALUE_st OSSL_IETF_ATTR_SYNTAX_VALUE;
 typedef struct OSSL_IETF_ATTR_SYNTAX_st OSSL_IETF_ATTR_SYNTAX;
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(OSSL_IETF_ATTR_SYNTAX_VALUE, OSSL_IETF_ATTR_SYNTAX_VALUE, OSSL_IETF_ATTR_SYNTAX_VALUE)
+STACK_OF(OSSL_IETF_ATTR_SYNTAX_VALUE);
+typedef int (*sk_OSSL_IETF_ATTR_SYNTAX_VALUE_compfunc)(const OSSL_IETF_ATTR_SYNTAX_VALUE *const *a, const OSSL_IETF_ATTR_SYNTAX_VALUE *const *b);
+typedef void (*sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc)(OSSL_IETF_ATTR_SYNTAX_VALUE *a);
+typedef OSSL_IETF_ATTR_SYNTAX_VALUE *(*sk_OSSL_IETF_ATTR_SYNTAX_VALUE_copyfunc)(const OSSL_IETF_ATTR_SYNTAX_VALUE *a);
+static ossl_inline void sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc freefunc = (sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc)freefunc_arg;
+    freefunc((OSSL_IETF_ATTR_SYNTAX_VALUE *)ptr);
+}
+static ossl_inline int sk_OSSL_IETF_ATTR_SYNTAX_VALUE_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const OSSL_IETF_ATTR_SYNTAX_VALUE *const *a, const OSSL_IETF_ATTR_SYNTAX_VALUE *const *b) = (int (*)(const OSSL_IETF_ATTR_SYNTAX_VALUE *const *a, const OSSL_IETF_ATTR_SYNTAX_VALUE *const *b))(cmp);
+    const OSSL_IETF_ATTR_SYNTAX_VALUE *const *at = (const OSSL_IETF_ATTR_SYNTAX_VALUE *const *)a;
+    const OSSL_IETF_ATTR_SYNTAX_VALUE *const *bt = (const OSSL_IETF_ATTR_SYNTAX_VALUE *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline OSSL_IETF_ATTR_SYNTAX_VALUE *ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_type(OSSL_IETF_ATTR_SYNTAX_VALUE *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(const STACK_OF(OSSL_IETF_ATTR_SYNTAX_VALUE) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(STACK_OF(OSSL_IETF_ATTR_SYNTAX_VALUE) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_compfunc_type(sk_OSSL_IETF_ATTR_SYNTAX_VALUE_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_copyfunc_type(sk_OSSL_IETF_ATTR_SYNTAX_VALUE_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc_type(sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_OSSL_IETF_ATTR_SYNTAX_VALUE_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(sk))
 #define sk_OSSL_IETF_ATTR_SYNTAX_VALUE_value(sk, idx) ((OSSL_IETF_ATTR_SYNTAX_VALUE *)OPENSSL_sk_value(ossl_check_const_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(sk), (idx)))
 #define sk_OSSL_IETF_ATTR_SYNTAX_VALUE_new(cmp) ((STACK_OF(OSSL_IETF_ATTR_SYNTAX_VALUE) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_compfunc_type(cmp)), sk_OSSL_IETF_ATTR_SYNTAX_VALUE_cmpfunc_thunk))
@@ -205,7 +244,46 @@ typedef STACK_OF(OSSL_TARGET) OSSL_TARGETS;
 typedef STACK_OF(OSSL_TARGETS) OSSL_TARGETING_INFORMATION;
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(OSSL_TARGET, OSSL_TARGET, OSSL_TARGET)
+STACK_OF(OSSL_TARGET);
+typedef int (*sk_OSSL_TARGET_compfunc)(const OSSL_TARGET *const *a, const OSSL_TARGET *const *b);
+typedef void (*sk_OSSL_TARGET_freefunc)(OSSL_TARGET *a);
+typedef OSSL_TARGET *(*sk_OSSL_TARGET_copyfunc)(const OSSL_TARGET *a);
+static ossl_inline void sk_OSSL_TARGET_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_OSSL_TARGET_freefunc freefunc = (sk_OSSL_TARGET_freefunc)freefunc_arg;
+    freefunc((OSSL_TARGET *)ptr);
+}
+static ossl_inline int sk_OSSL_TARGET_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const OSSL_TARGET *const *a, const OSSL_TARGET *const *b) = (int (*)(const OSSL_TARGET *const *a, const OSSL_TARGET *const *b))(cmp);
+    const OSSL_TARGET *const *at = (const OSSL_TARGET *const *)a;
+    const OSSL_TARGET *const *bt = (const OSSL_TARGET *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline OSSL_TARGET *ossl_check_OSSL_TARGET_type(OSSL_TARGET *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_OSSL_TARGET_sk_type(const STACK_OF(OSSL_TARGET) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_OSSL_TARGET_sk_type(STACK_OF(OSSL_TARGET) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_OSSL_TARGET_compfunc_type(sk_OSSL_TARGET_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_OSSL_TARGET_copyfunc_type(sk_OSSL_TARGET_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_OSSL_TARGET_freefunc_type(sk_OSSL_TARGET_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_OSSL_TARGET_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_TARGET_sk_type(sk))
 #define sk_OSSL_TARGET_value(sk, idx) ((OSSL_TARGET *)OPENSSL_sk_value(ossl_check_const_OSSL_TARGET_sk_type(sk), (idx)))
 #define sk_OSSL_TARGET_new(cmp) ((STACK_OF(OSSL_TARGET) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OSSL_TARGET_compfunc_type(cmp)), sk_OSSL_TARGET_cmpfunc_thunk))
@@ -235,7 +313,46 @@ SKM_DEFINE_STACK_OF_INTERNAL(OSSL_TARGET, OSSL_TARGET, OSSL_TARGET)
 /* clang-format on */
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(OSSL_TARGETS, OSSL_TARGETS, OSSL_TARGETS)
+STACK_OF(OSSL_TARGETS);
+typedef int (*sk_OSSL_TARGETS_compfunc)(const OSSL_TARGETS *const *a, const OSSL_TARGETS *const *b);
+typedef void (*sk_OSSL_TARGETS_freefunc)(OSSL_TARGETS *a);
+typedef OSSL_TARGETS *(*sk_OSSL_TARGETS_copyfunc)(const OSSL_TARGETS *a);
+static ossl_inline void sk_OSSL_TARGETS_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_OSSL_TARGETS_freefunc freefunc = (sk_OSSL_TARGETS_freefunc)freefunc_arg;
+    freefunc((OSSL_TARGETS *)ptr);
+}
+static ossl_inline int sk_OSSL_TARGETS_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const OSSL_TARGETS *const *a, const OSSL_TARGETS *const *b) = (int (*)(const OSSL_TARGETS *const *a, const OSSL_TARGETS *const *b))(cmp);
+    const OSSL_TARGETS *const *at = (const OSSL_TARGETS *const *)a;
+    const OSSL_TARGETS *const *bt = (const OSSL_TARGETS *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline OSSL_TARGETS *ossl_check_OSSL_TARGETS_type(OSSL_TARGETS *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_OSSL_TARGETS_sk_type(const STACK_OF(OSSL_TARGETS) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_OSSL_TARGETS_sk_type(STACK_OF(OSSL_TARGETS) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_OSSL_TARGETS_compfunc_type(sk_OSSL_TARGETS_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_OSSL_TARGETS_copyfunc_type(sk_OSSL_TARGETS_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_OSSL_TARGETS_freefunc_type(sk_OSSL_TARGETS_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_OSSL_TARGETS_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_TARGETS_sk_type(sk))
 #define sk_OSSL_TARGETS_value(sk, idx) ((OSSL_TARGETS *)OPENSSL_sk_value(ossl_check_const_OSSL_TARGETS_sk_type(sk), (idx)))
 #define sk_OSSL_TARGETS_new(cmp) ((STACK_OF(OSSL_TARGETS) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OSSL_TARGETS_compfunc_type(cmp)), sk_OSSL_TARGETS_cmpfunc_thunk))
@@ -272,7 +389,46 @@ typedef STACK_OF(OSSL_ISSUER_SERIAL) OSSL_AUTHORITY_ATTRIBUTE_ID_SYNTAX;
 DECLARE_ASN1_FUNCTIONS(OSSL_AUTHORITY_ATTRIBUTE_ID_SYNTAX)
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(OSSL_ISSUER_SERIAL, OSSL_ISSUER_SERIAL, OSSL_ISSUER_SERIAL)
+STACK_OF(OSSL_ISSUER_SERIAL);
+typedef int (*sk_OSSL_ISSUER_SERIAL_compfunc)(const OSSL_ISSUER_SERIAL *const *a, const OSSL_ISSUER_SERIAL *const *b);
+typedef void (*sk_OSSL_ISSUER_SERIAL_freefunc)(OSSL_ISSUER_SERIAL *a);
+typedef OSSL_ISSUER_SERIAL *(*sk_OSSL_ISSUER_SERIAL_copyfunc)(const OSSL_ISSUER_SERIAL *a);
+static ossl_inline void sk_OSSL_ISSUER_SERIAL_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_OSSL_ISSUER_SERIAL_freefunc freefunc = (sk_OSSL_ISSUER_SERIAL_freefunc)freefunc_arg;
+    freefunc((OSSL_ISSUER_SERIAL *)ptr);
+}
+static ossl_inline int sk_OSSL_ISSUER_SERIAL_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const OSSL_ISSUER_SERIAL *const *a, const OSSL_ISSUER_SERIAL *const *b) = (int (*)(const OSSL_ISSUER_SERIAL *const *a, const OSSL_ISSUER_SERIAL *const *b))(cmp);
+    const OSSL_ISSUER_SERIAL *const *at = (const OSSL_ISSUER_SERIAL *const *)a;
+    const OSSL_ISSUER_SERIAL *const *bt = (const OSSL_ISSUER_SERIAL *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline OSSL_ISSUER_SERIAL *ossl_check_OSSL_ISSUER_SERIAL_type(OSSL_ISSUER_SERIAL *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_OSSL_ISSUER_SERIAL_sk_type(const STACK_OF(OSSL_ISSUER_SERIAL) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_OSSL_ISSUER_SERIAL_sk_type(STACK_OF(OSSL_ISSUER_SERIAL) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_OSSL_ISSUER_SERIAL_compfunc_type(sk_OSSL_ISSUER_SERIAL_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_OSSL_ISSUER_SERIAL_copyfunc_type(sk_OSSL_ISSUER_SERIAL_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_OSSL_ISSUER_SERIAL_freefunc_type(sk_OSSL_ISSUER_SERIAL_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_OSSL_ISSUER_SERIAL_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_ISSUER_SERIAL_sk_type(sk))
 #define sk_OSSL_ISSUER_SERIAL_value(sk, idx) ((OSSL_ISSUER_SERIAL *)OPENSSL_sk_value(ossl_check_const_OSSL_ISSUER_SERIAL_sk_type(sk), (idx)))
 #define sk_OSSL_ISSUER_SERIAL_new(cmp) ((STACK_OF(OSSL_ISSUER_SERIAL) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OSSL_ISSUER_SERIAL_compfunc_type(cmp)), sk_OSSL_ISSUER_SERIAL_cmpfunc_thunk))

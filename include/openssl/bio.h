@@ -345,7 +345,46 @@ typedef int BIO_info_cb(BIO *, int, int);
 typedef BIO_info_cb bio_info_cb; /* backward compatibility */
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(BIO, BIO, BIO)
+STACK_OF(BIO);
+typedef int (*sk_BIO_compfunc)(const BIO *const *a, const BIO *const *b);
+typedef void (*sk_BIO_freefunc)(BIO *a);
+typedef BIO *(*sk_BIO_copyfunc)(const BIO *a);
+static ossl_inline void sk_BIO_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_BIO_freefunc freefunc = (sk_BIO_freefunc)freefunc_arg;
+    freefunc((BIO *)ptr);
+}
+static ossl_inline int sk_BIO_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const BIO *const *a, const BIO *const *b) = (int (*)(const BIO *const *a, const BIO *const *b))(cmp);
+    const BIO *const *at = (const BIO *const *)a;
+    const BIO *const *bt = (const BIO *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline BIO *ossl_check_BIO_type(BIO *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_BIO_sk_type(const STACK_OF(BIO) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_BIO_sk_type(STACK_OF(BIO) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_BIO_compfunc_type(sk_BIO_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_BIO_copyfunc_type(sk_BIO_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_BIO_freefunc_type(sk_BIO_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_BIO_num(sk) OPENSSL_sk_num(ossl_check_const_BIO_sk_type(sk))
 #define sk_BIO_value(sk, idx) ((BIO *)OPENSSL_sk_value(ossl_check_const_BIO_sk_type(sk), (idx)))
 #define sk_BIO_new(cmp) ((STACK_OF(BIO) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_BIO_compfunc_type(cmp)), sk_BIO_cmpfunc_thunk))

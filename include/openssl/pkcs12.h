@@ -71,7 +71,46 @@ typedef struct PKCS12_st PKCS12;
 typedef struct PKCS12_SAFEBAG_st PKCS12_SAFEBAG;
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(PKCS12_SAFEBAG, PKCS12_SAFEBAG, PKCS12_SAFEBAG)
+STACK_OF(PKCS12_SAFEBAG);
+typedef int (*sk_PKCS12_SAFEBAG_compfunc)(const PKCS12_SAFEBAG *const *a, const PKCS12_SAFEBAG *const *b);
+typedef void (*sk_PKCS12_SAFEBAG_freefunc)(PKCS12_SAFEBAG *a);
+typedef PKCS12_SAFEBAG *(*sk_PKCS12_SAFEBAG_copyfunc)(const PKCS12_SAFEBAG *a);
+static ossl_inline void sk_PKCS12_SAFEBAG_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_PKCS12_SAFEBAG_freefunc freefunc = (sk_PKCS12_SAFEBAG_freefunc)freefunc_arg;
+    freefunc((PKCS12_SAFEBAG *)ptr);
+}
+static ossl_inline int sk_PKCS12_SAFEBAG_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const PKCS12_SAFEBAG *const *a, const PKCS12_SAFEBAG *const *b) = (int (*)(const PKCS12_SAFEBAG *const *a, const PKCS12_SAFEBAG *const *b))(cmp);
+    const PKCS12_SAFEBAG *const *at = (const PKCS12_SAFEBAG *const *)a;
+    const PKCS12_SAFEBAG *const *bt = (const PKCS12_SAFEBAG *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline PKCS12_SAFEBAG *ossl_check_PKCS12_SAFEBAG_type(PKCS12_SAFEBAG *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_PKCS12_SAFEBAG_sk_type(const STACK_OF(PKCS12_SAFEBAG) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_PKCS12_SAFEBAG_sk_type(STACK_OF(PKCS12_SAFEBAG) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_PKCS12_SAFEBAG_compfunc_type(sk_PKCS12_SAFEBAG_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_PKCS12_SAFEBAG_copyfunc_type(sk_PKCS12_SAFEBAG_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_PKCS12_SAFEBAG_freefunc_type(sk_PKCS12_SAFEBAG_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_PKCS12_SAFEBAG_num(sk) OPENSSL_sk_num(ossl_check_const_PKCS12_SAFEBAG_sk_type(sk))
 #define sk_PKCS12_SAFEBAG_value(sk, idx) ((PKCS12_SAFEBAG *)OPENSSL_sk_value(ossl_check_const_PKCS12_SAFEBAG_sk_type(sk), (idx)))
 #define sk_PKCS12_SAFEBAG_new(cmp) ((STACK_OF(PKCS12_SAFEBAG) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_PKCS12_SAFEBAG_compfunc_type(cmp)), sk_PKCS12_SAFEBAG_cmpfunc_thunk))

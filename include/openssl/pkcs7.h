@@ -68,7 +68,46 @@ typedef struct pkcs7_signer_info_st {
     const PKCS7_CTX *ctx;
 } PKCS7_SIGNER_INFO;
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(PKCS7_SIGNER_INFO, PKCS7_SIGNER_INFO, PKCS7_SIGNER_INFO)
+STACK_OF(PKCS7_SIGNER_INFO);
+typedef int (*sk_PKCS7_SIGNER_INFO_compfunc)(const PKCS7_SIGNER_INFO *const *a, const PKCS7_SIGNER_INFO *const *b);
+typedef void (*sk_PKCS7_SIGNER_INFO_freefunc)(PKCS7_SIGNER_INFO *a);
+typedef PKCS7_SIGNER_INFO *(*sk_PKCS7_SIGNER_INFO_copyfunc)(const PKCS7_SIGNER_INFO *a);
+static ossl_inline void sk_PKCS7_SIGNER_INFO_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_PKCS7_SIGNER_INFO_freefunc freefunc = (sk_PKCS7_SIGNER_INFO_freefunc)freefunc_arg;
+    freefunc((PKCS7_SIGNER_INFO *)ptr);
+}
+static ossl_inline int sk_PKCS7_SIGNER_INFO_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const PKCS7_SIGNER_INFO *const *a, const PKCS7_SIGNER_INFO *const *b) = (int (*)(const PKCS7_SIGNER_INFO *const *a, const PKCS7_SIGNER_INFO *const *b))(cmp);
+    const PKCS7_SIGNER_INFO *const *at = (const PKCS7_SIGNER_INFO *const *)a;
+    const PKCS7_SIGNER_INFO *const *bt = (const PKCS7_SIGNER_INFO *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline PKCS7_SIGNER_INFO *ossl_check_PKCS7_SIGNER_INFO_type(PKCS7_SIGNER_INFO *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_PKCS7_SIGNER_INFO_sk_type(const STACK_OF(PKCS7_SIGNER_INFO) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_PKCS7_SIGNER_INFO_sk_type(STACK_OF(PKCS7_SIGNER_INFO) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_PKCS7_SIGNER_INFO_compfunc_type(sk_PKCS7_SIGNER_INFO_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_PKCS7_SIGNER_INFO_copyfunc_type(sk_PKCS7_SIGNER_INFO_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_PKCS7_SIGNER_INFO_freefunc_type(sk_PKCS7_SIGNER_INFO_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_PKCS7_SIGNER_INFO_num(sk) OPENSSL_sk_num(ossl_check_const_PKCS7_SIGNER_INFO_sk_type(sk))
 #define sk_PKCS7_SIGNER_INFO_value(sk, idx) ((PKCS7_SIGNER_INFO *)OPENSSL_sk_value(ossl_check_const_PKCS7_SIGNER_INFO_sk_type(sk), (idx)))
 #define sk_PKCS7_SIGNER_INFO_new(cmp) ((STACK_OF(PKCS7_SIGNER_INFO) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_PKCS7_SIGNER_INFO_compfunc_type(cmp)), sk_PKCS7_SIGNER_INFO_cmpfunc_thunk))
@@ -106,7 +145,46 @@ typedef struct pkcs7_recip_info_st {
     const PKCS7_CTX *ctx;
 } PKCS7_RECIP_INFO;
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(PKCS7_RECIP_INFO, PKCS7_RECIP_INFO, PKCS7_RECIP_INFO)
+STACK_OF(PKCS7_RECIP_INFO);
+typedef int (*sk_PKCS7_RECIP_INFO_compfunc)(const PKCS7_RECIP_INFO *const *a, const PKCS7_RECIP_INFO *const *b);
+typedef void (*sk_PKCS7_RECIP_INFO_freefunc)(PKCS7_RECIP_INFO *a);
+typedef PKCS7_RECIP_INFO *(*sk_PKCS7_RECIP_INFO_copyfunc)(const PKCS7_RECIP_INFO *a);
+static ossl_inline void sk_PKCS7_RECIP_INFO_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_PKCS7_RECIP_INFO_freefunc freefunc = (sk_PKCS7_RECIP_INFO_freefunc)freefunc_arg;
+    freefunc((PKCS7_RECIP_INFO *)ptr);
+}
+static ossl_inline int sk_PKCS7_RECIP_INFO_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const PKCS7_RECIP_INFO *const *a, const PKCS7_RECIP_INFO *const *b) = (int (*)(const PKCS7_RECIP_INFO *const *a, const PKCS7_RECIP_INFO *const *b))(cmp);
+    const PKCS7_RECIP_INFO *const *at = (const PKCS7_RECIP_INFO *const *)a;
+    const PKCS7_RECIP_INFO *const *bt = (const PKCS7_RECIP_INFO *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline PKCS7_RECIP_INFO *ossl_check_PKCS7_RECIP_INFO_type(PKCS7_RECIP_INFO *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_PKCS7_RECIP_INFO_sk_type(const STACK_OF(PKCS7_RECIP_INFO) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_PKCS7_RECIP_INFO_sk_type(STACK_OF(PKCS7_RECIP_INFO) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_PKCS7_RECIP_INFO_compfunc_type(sk_PKCS7_RECIP_INFO_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_PKCS7_RECIP_INFO_copyfunc_type(sk_PKCS7_RECIP_INFO_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_PKCS7_RECIP_INFO_freefunc_type(sk_PKCS7_RECIP_INFO_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_PKCS7_RECIP_INFO_num(sk) OPENSSL_sk_num(ossl_check_const_PKCS7_RECIP_INFO_sk_type(sk))
 #define sk_PKCS7_RECIP_INFO_value(sk, idx) ((PKCS7_RECIP_INFO *)OPENSSL_sk_value(ossl_check_const_PKCS7_RECIP_INFO_sk_type(sk), (idx)))
 #define sk_PKCS7_RECIP_INFO_new(cmp) ((STACK_OF(PKCS7_RECIP_INFO) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_PKCS7_RECIP_INFO_compfunc_type(cmp)), sk_PKCS7_RECIP_INFO_cmpfunc_thunk))
@@ -222,7 +300,46 @@ typedef struct pkcs7_st {
     PKCS7_CTX ctx;
 } PKCS7;
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(PKCS7, PKCS7, PKCS7)
+STACK_OF(PKCS7);
+typedef int (*sk_PKCS7_compfunc)(const PKCS7 *const *a, const PKCS7 *const *b);
+typedef void (*sk_PKCS7_freefunc)(PKCS7 *a);
+typedef PKCS7 *(*sk_PKCS7_copyfunc)(const PKCS7 *a);
+static ossl_inline void sk_PKCS7_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_PKCS7_freefunc freefunc = (sk_PKCS7_freefunc)freefunc_arg;
+    freefunc((PKCS7 *)ptr);
+}
+static ossl_inline int sk_PKCS7_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const PKCS7 *const *a, const PKCS7 *const *b) = (int (*)(const PKCS7 *const *a, const PKCS7 *const *b))(cmp);
+    const PKCS7 *const *at = (const PKCS7 *const *)a;
+    const PKCS7 *const *bt = (const PKCS7 *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline PKCS7 *ossl_check_PKCS7_type(PKCS7 *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_PKCS7_sk_type(const STACK_OF(PKCS7) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_PKCS7_sk_type(STACK_OF(PKCS7) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_PKCS7_compfunc_type(sk_PKCS7_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_PKCS7_copyfunc_type(sk_PKCS7_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_PKCS7_freefunc_type(sk_PKCS7_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_PKCS7_num(sk) OPENSSL_sk_num(ossl_check_const_PKCS7_sk_type(sk))
 #define sk_PKCS7_value(sk, idx) ((PKCS7 *)OPENSSL_sk_value(ossl_check_const_PKCS7_sk_type(sk), (idx)))
 #define sk_PKCS7_new(cmp) ((STACK_OF(PKCS7) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_PKCS7_compfunc_type(cmp)), sk_PKCS7_cmpfunc_thunk))

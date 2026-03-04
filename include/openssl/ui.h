@@ -293,7 +293,46 @@ const UI_METHOD *UI_null(void);
 typedef struct ui_string_st UI_STRING;
 
 /* clang-format off */
-SKM_DEFINE_STACK_OF_INTERNAL(UI_STRING, UI_STRING, UI_STRING)
+STACK_OF(UI_STRING);
+typedef int (*sk_UI_STRING_compfunc)(const UI_STRING *const *a, const UI_STRING *const *b);
+typedef void (*sk_UI_STRING_freefunc)(UI_STRING *a);
+typedef UI_STRING *(*sk_UI_STRING_copyfunc)(const UI_STRING *a);
+static ossl_inline void sk_UI_STRING_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
+{
+    sk_UI_STRING_freefunc freefunc = (sk_UI_STRING_freefunc)freefunc_arg;
+    freefunc((UI_STRING *)ptr);
+}
+static ossl_inline int sk_UI_STRING_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
+{
+    int (*realcmp)(const UI_STRING *const *a, const UI_STRING *const *b) = (int (*)(const UI_STRING *const *a, const UI_STRING *const *b))(cmp);
+    const UI_STRING *const *at = (const UI_STRING *const *)a;
+    const UI_STRING *const *bt = (const UI_STRING *const *)b;
+    return realcmp(at, bt);
+}
+static ossl_unused ossl_inline UI_STRING *ossl_check_UI_STRING_type(UI_STRING *ptr)
+{
+    return ptr;
+}
+static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_UI_STRING_sk_type(const STACK_OF(UI_STRING) *sk)
+{
+    return (const OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_UI_STRING_sk_type(STACK_OF(UI_STRING) *sk)
+{
+    return (OPENSSL_STACK *)sk;
+}
+static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_UI_STRING_compfunc_type(sk_UI_STRING_compfunc cmp)
+{
+    return (OPENSSL_sk_compfunc)cmp;
+}
+static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_UI_STRING_copyfunc_type(sk_UI_STRING_copyfunc cpy)
+{
+    return (OPENSSL_sk_copyfunc)cpy;
+}
+static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_UI_STRING_freefunc_type(sk_UI_STRING_freefunc fr)
+{
+    return (OPENSSL_sk_freefunc)fr;
+}
 #define sk_UI_STRING_num(sk) OPENSSL_sk_num(ossl_check_const_UI_STRING_sk_type(sk))
 #define sk_UI_STRING_value(sk, idx) ((UI_STRING *)OPENSSL_sk_value(ossl_check_const_UI_STRING_sk_type(sk), (idx)))
 #define sk_UI_STRING_new(cmp) ((STACK_OF(UI_STRING) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_UI_STRING_compfunc_type(cmp)), sk_UI_STRING_cmpfunc_thunk))
