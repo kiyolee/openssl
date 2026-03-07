@@ -44,46 +44,7 @@ typedef struct {
 } CONF_VALUE;
 
 /* clang-format off */
-STACK_OF(CONF_VALUE);
-typedef int (*sk_CONF_VALUE_compfunc)(const CONF_VALUE *const *a, const CONF_VALUE *const *b);
-typedef void (*sk_CONF_VALUE_freefunc)(CONF_VALUE *a);
-typedef CONF_VALUE *(*sk_CONF_VALUE_copyfunc)(const CONF_VALUE *a);
-static ossl_inline void sk_CONF_VALUE_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_CONF_VALUE_freefunc freefunc = (sk_CONF_VALUE_freefunc)freefunc_arg;
-    freefunc((CONF_VALUE *)ptr);
-}
-static ossl_inline int sk_CONF_VALUE_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const CONF_VALUE *const *a, const CONF_VALUE *const *b) = (int (*)(const CONF_VALUE *const *a, const CONF_VALUE *const *b))(cmp);
-    const CONF_VALUE *const *at = (const CONF_VALUE *const *)a;
-    const CONF_VALUE *const *bt = (const CONF_VALUE *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline CONF_VALUE *ossl_check_CONF_VALUE_type(CONF_VALUE *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_CONF_VALUE_sk_type(const STACK_OF(CONF_VALUE) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_CONF_VALUE_sk_type(STACK_OF(CONF_VALUE) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_CONF_VALUE_compfunc_type(sk_CONF_VALUE_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_CONF_VALUE_copyfunc_type(sk_CONF_VALUE_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_CONF_VALUE_freefunc_type(sk_CONF_VALUE_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(CONF_VALUE, CONF_VALUE, CONF_VALUE)
 #define sk_CONF_VALUE_num(sk) OPENSSL_sk_num(ossl_check_const_CONF_VALUE_sk_type(sk))
 #define sk_CONF_VALUE_value(sk, idx) ((CONF_VALUE *)OPENSSL_sk_value(ossl_check_const_CONF_VALUE_sk_type(sk), (idx)))
 #define sk_CONF_VALUE_new(cmp) ((STACK_OF(CONF_VALUE) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_CONF_VALUE_compfunc_type(cmp)), sk_CONF_VALUE_cmpfunc_thunk))

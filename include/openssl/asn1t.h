@@ -774,8 +774,6 @@ typedef struct ASN1_STREAM_ARG_st {
 
 #define IMPLEMENT_ASN1_FUNCTIONS(stname) IMPLEMENT_ASN1_FUNCTIONS_fname(stname, stname, stname)
 
-#define IMPLEMENT_ASN1_FUNCTIONS_CONSTFREE(stname) IMPLEMENT_ASN1_FUNCTIONS_fname_constfree(stname, stname, stname)
-
 #define IMPLEMENT_ASN1_FUNCTIONS_name(stname, itname) IMPLEMENT_ASN1_FUNCTIONS_fname(stname, itname, itname)
 
 #define IMPLEMENT_ASN1_FUNCTIONS_ENCODE_name(stname, itname) \
@@ -807,23 +805,9 @@ typedef struct ASN1_STREAM_ARG_st {
         ASN1_item_free((ASN1_VALUE *)a, ASN1_ITEM_rptr(itname));    \
     }
 
-#define IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname_constfree(stname, itname, fname) \
-    stname *fname##_new(void)                                                 \
-    {                                                                         \
-        return (stname *)ASN1_item_new(ASN1_ITEM_rptr(itname));               \
-    }                                                                         \
-    void fname##_free(const stname *a)                                        \
-    {                                                                         \
-        ASN1_item_free((ASN1_VALUE *)a, ASN1_ITEM_rptr(itname));              \
-    }
-
 #define IMPLEMENT_ASN1_FUNCTIONS_fname(stname, itname, fname)    \
     IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname, itname, fname) \
     IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname(stname, itname, fname)
-
-#define IMPLEMENT_ASN1_FUNCTIONS_fname_constfree(stname, itname, fname) \
-    IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname, itname, fname)        \
-    IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname_constfree(stname, itname, fname)
 
 #define IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname, itname, fname)                       \
     stname *d2i_##fname(stname **a, const unsigned char **in, long len)                    \
@@ -899,46 +883,7 @@ DECLARE_ASN1_ITEM(ZLONG)
 #endif
 
 /* clang-format off */
-STACK_OF(ASN1_VALUE);
-typedef int (*sk_ASN1_VALUE_compfunc)(const ASN1_VALUE *const *a, const ASN1_VALUE *const *b);
-typedef void (*sk_ASN1_VALUE_freefunc)(ASN1_VALUE *a);
-typedef ASN1_VALUE *(*sk_ASN1_VALUE_copyfunc)(const ASN1_VALUE *a);
-static ossl_inline void sk_ASN1_VALUE_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_ASN1_VALUE_freefunc freefunc = (sk_ASN1_VALUE_freefunc)freefunc_arg;
-    freefunc((ASN1_VALUE *)ptr);
-}
-static ossl_inline int sk_ASN1_VALUE_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const ASN1_VALUE *const *a, const ASN1_VALUE *const *b) = (int (*)(const ASN1_VALUE *const *a, const ASN1_VALUE *const *b))(cmp);
-    const ASN1_VALUE *const *at = (const ASN1_VALUE *const *)a;
-    const ASN1_VALUE *const *bt = (const ASN1_VALUE *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline ASN1_VALUE *ossl_check_ASN1_VALUE_type(ASN1_VALUE *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_ASN1_VALUE_sk_type(const STACK_OF(ASN1_VALUE) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_ASN1_VALUE_sk_type(STACK_OF(ASN1_VALUE) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_ASN1_VALUE_compfunc_type(sk_ASN1_VALUE_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_ASN1_VALUE_copyfunc_type(sk_ASN1_VALUE_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_ASN1_VALUE_freefunc_type(sk_ASN1_VALUE_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(ASN1_VALUE, ASN1_VALUE, ASN1_VALUE)
 #define sk_ASN1_VALUE_num(sk) OPENSSL_sk_num(ossl_check_const_ASN1_VALUE_sk_type(sk))
 #define sk_ASN1_VALUE_value(sk, idx) ((ASN1_VALUE *)OPENSSL_sk_value(ossl_check_const_ASN1_VALUE_sk_type(sk), (idx)))
 #define sk_ASN1_VALUE_new(cmp) ((STACK_OF(ASN1_VALUE) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_ASN1_VALUE_compfunc_type(cmp)), sk_ASN1_VALUE_cmpfunc_thunk))
