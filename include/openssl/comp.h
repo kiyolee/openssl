@@ -69,46 +69,7 @@ const BIO_METHOD *BIO_f_zstd(void);
 typedef struct ssl_comp_st SSL_COMP;
 
 /* clang-format off */
-STACK_OF(SSL_COMP);
-typedef int (*sk_SSL_COMP_compfunc)(const SSL_COMP *const *a, const SSL_COMP *const *b);
-typedef void (*sk_SSL_COMP_freefunc)(SSL_COMP *a);
-typedef SSL_COMP *(*sk_SSL_COMP_copyfunc)(const SSL_COMP *a);
-static ossl_inline void sk_SSL_COMP_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_SSL_COMP_freefunc freefunc = (sk_SSL_COMP_freefunc)freefunc_arg;
-    freefunc((SSL_COMP *)ptr);
-}
-static ossl_inline int sk_SSL_COMP_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const SSL_COMP *const *a, const SSL_COMP *const *b) = (int (*)(const SSL_COMP *const *a, const SSL_COMP *const *b))(cmp);
-    const SSL_COMP *const *at = (const SSL_COMP *const *)a;
-    const SSL_COMP *const *bt = (const SSL_COMP *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline SSL_COMP *ossl_check_SSL_COMP_type(SSL_COMP *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_SSL_COMP_sk_type(const STACK_OF(SSL_COMP) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_SSL_COMP_sk_type(STACK_OF(SSL_COMP) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_SSL_COMP_compfunc_type(sk_SSL_COMP_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_SSL_COMP_copyfunc_type(sk_SSL_COMP_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_SSL_COMP_freefunc_type(sk_SSL_COMP_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(SSL_COMP, SSL_COMP, SSL_COMP)
 #define sk_SSL_COMP_num(sk) OPENSSL_sk_num(ossl_check_const_SSL_COMP_sk_type(sk))
 #define sk_SSL_COMP_value(sk, idx) ((SSL_COMP *)OPENSSL_sk_value(ossl_check_const_SSL_COMP_sk_type(sk), (idx)))
 #define sk_SSL_COMP_new(cmp) ((STACK_OF(SSL_COMP) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_SSL_COMP_compfunc_type(cmp)), sk_SSL_COMP_cmpfunc_thunk))

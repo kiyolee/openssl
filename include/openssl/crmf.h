@@ -56,46 +56,7 @@ typedef struct ossl_crmf_msg_st OSSL_CRMF_MSG;
 DECLARE_ASN1_FUNCTIONS(OSSL_CRMF_MSG)
 DECLARE_ASN1_DUP_FUNCTION(OSSL_CRMF_MSG)
 /* clang-format off */
-STACK_OF(OSSL_CRMF_MSG);
-typedef int (*sk_OSSL_CRMF_MSG_compfunc)(const OSSL_CRMF_MSG *const *a, const OSSL_CRMF_MSG *const *b);
-typedef void (*sk_OSSL_CRMF_MSG_freefunc)(OSSL_CRMF_MSG *a);
-typedef OSSL_CRMF_MSG *(*sk_OSSL_CRMF_MSG_copyfunc)(const OSSL_CRMF_MSG *a);
-static ossl_inline void sk_OSSL_CRMF_MSG_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_OSSL_CRMF_MSG_freefunc freefunc = (sk_OSSL_CRMF_MSG_freefunc)freefunc_arg;
-    freefunc((OSSL_CRMF_MSG *)ptr);
-}
-static ossl_inline int sk_OSSL_CRMF_MSG_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const OSSL_CRMF_MSG *const *a, const OSSL_CRMF_MSG *const *b) = (int (*)(const OSSL_CRMF_MSG *const *a, const OSSL_CRMF_MSG *const *b))(cmp);
-    const OSSL_CRMF_MSG *const *at = (const OSSL_CRMF_MSG *const *)a;
-    const OSSL_CRMF_MSG *const *bt = (const OSSL_CRMF_MSG *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline OSSL_CRMF_MSG *ossl_check_OSSL_CRMF_MSG_type(OSSL_CRMF_MSG *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_OSSL_CRMF_MSG_sk_type(const STACK_OF(OSSL_CRMF_MSG) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_OSSL_CRMF_MSG_sk_type(STACK_OF(OSSL_CRMF_MSG) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_OSSL_CRMF_MSG_compfunc_type(sk_OSSL_CRMF_MSG_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_OSSL_CRMF_MSG_copyfunc_type(sk_OSSL_CRMF_MSG_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_OSSL_CRMF_MSG_freefunc_type(sk_OSSL_CRMF_MSG_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(OSSL_CRMF_MSG, OSSL_CRMF_MSG, OSSL_CRMF_MSG)
 #define sk_OSSL_CRMF_MSG_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_CRMF_MSG_sk_type(sk))
 #define sk_OSSL_CRMF_MSG_value(sk, idx) ((OSSL_CRMF_MSG *)OPENSSL_sk_value(ossl_check_const_OSSL_CRMF_MSG_sk_type(sk), (idx)))
 #define sk_OSSL_CRMF_MSG_new(cmp) ((STACK_OF(OSSL_CRMF_MSG) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OSSL_CRMF_MSG_compfunc_type(cmp)), sk_OSSL_CRMF_MSG_cmpfunc_thunk))
@@ -127,46 +88,7 @@ typedef struct ossl_crmf_attributetypeandvalue_st OSSL_CRMF_ATTRIBUTETYPEANDVALU
 void OSSL_CRMF_ATTRIBUTETYPEANDVALUE_free(OSSL_CRMF_ATTRIBUTETYPEANDVALUE *v);
 DECLARE_ASN1_DUP_FUNCTION(OSSL_CRMF_ATTRIBUTETYPEANDVALUE)
 /* clang-format off */
-STACK_OF(OSSL_CRMF_ATTRIBUTETYPEANDVALUE);
-typedef int (*sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_compfunc)(const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *a, const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *b);
-typedef void (*sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc)(OSSL_CRMF_ATTRIBUTETYPEANDVALUE *a);
-typedef OSSL_CRMF_ATTRIBUTETYPEANDVALUE *(*sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_copyfunc)(const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *a);
-static ossl_inline void sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc freefunc = (sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc)freefunc_arg;
-    freefunc((OSSL_CRMF_ATTRIBUTETYPEANDVALUE *)ptr);
-}
-static ossl_inline int sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *a, const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *b) = (int (*)(const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *a, const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *b))(cmp);
-    const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *at = (const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *)a;
-    const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *bt = (const OSSL_CRMF_ATTRIBUTETYPEANDVALUE *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline OSSL_CRMF_ATTRIBUTETYPEANDVALUE *ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_type(OSSL_CRMF_ATTRIBUTETYPEANDVALUE *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_sk_type(const STACK_OF(OSSL_CRMF_ATTRIBUTETYPEANDVALUE) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_sk_type(STACK_OF(OSSL_CRMF_ATTRIBUTETYPEANDVALUE) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_compfunc_type(sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_copyfunc_type(sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc_type(sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(OSSL_CRMF_ATTRIBUTETYPEANDVALUE, OSSL_CRMF_ATTRIBUTETYPEANDVALUE, OSSL_CRMF_ATTRIBUTETYPEANDVALUE)
 #define sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_sk_type(sk))
 #define sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_value(sk, idx) ((OSSL_CRMF_ATTRIBUTETYPEANDVALUE *)OPENSSL_sk_value(ossl_check_const_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_sk_type(sk), (idx)))
 #define sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_new(cmp) ((STACK_OF(OSSL_CRMF_ATTRIBUTETYPEANDVALUE) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_compfunc_type(cmp)), sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_cmpfunc_thunk))
@@ -203,46 +125,7 @@ typedef struct ossl_crmf_certid_st OSSL_CRMF_CERTID;
 DECLARE_ASN1_FUNCTIONS(OSSL_CRMF_CERTID)
 DECLARE_ASN1_DUP_FUNCTION(OSSL_CRMF_CERTID)
 /* clang-format off */
-STACK_OF(OSSL_CRMF_CERTID);
-typedef int (*sk_OSSL_CRMF_CERTID_compfunc)(const OSSL_CRMF_CERTID *const *a, const OSSL_CRMF_CERTID *const *b);
-typedef void (*sk_OSSL_CRMF_CERTID_freefunc)(OSSL_CRMF_CERTID *a);
-typedef OSSL_CRMF_CERTID *(*sk_OSSL_CRMF_CERTID_copyfunc)(const OSSL_CRMF_CERTID *a);
-static ossl_inline void sk_OSSL_CRMF_CERTID_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_OSSL_CRMF_CERTID_freefunc freefunc = (sk_OSSL_CRMF_CERTID_freefunc)freefunc_arg;
-    freefunc((OSSL_CRMF_CERTID *)ptr);
-}
-static ossl_inline int sk_OSSL_CRMF_CERTID_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const OSSL_CRMF_CERTID *const *a, const OSSL_CRMF_CERTID *const *b) = (int (*)(const OSSL_CRMF_CERTID *const *a, const OSSL_CRMF_CERTID *const *b))(cmp);
-    const OSSL_CRMF_CERTID *const *at = (const OSSL_CRMF_CERTID *const *)a;
-    const OSSL_CRMF_CERTID *const *bt = (const OSSL_CRMF_CERTID *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline OSSL_CRMF_CERTID *ossl_check_OSSL_CRMF_CERTID_type(OSSL_CRMF_CERTID *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_OSSL_CRMF_CERTID_sk_type(const STACK_OF(OSSL_CRMF_CERTID) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_OSSL_CRMF_CERTID_sk_type(STACK_OF(OSSL_CRMF_CERTID) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_OSSL_CRMF_CERTID_compfunc_type(sk_OSSL_CRMF_CERTID_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_OSSL_CRMF_CERTID_copyfunc_type(sk_OSSL_CRMF_CERTID_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_OSSL_CRMF_CERTID_freefunc_type(sk_OSSL_CRMF_CERTID_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(OSSL_CRMF_CERTID, OSSL_CRMF_CERTID, OSSL_CRMF_CERTID)
 #define sk_OSSL_CRMF_CERTID_num(sk) OPENSSL_sk_num(ossl_check_const_OSSL_CRMF_CERTID_sk_type(sk))
 #define sk_OSSL_CRMF_CERTID_value(sk, idx) ((OSSL_CRMF_CERTID *)OPENSSL_sk_value(ossl_check_const_OSSL_CRMF_CERTID_sk_type(sk), (idx)))
 #define sk_OSSL_CRMF_CERTID_new(cmp) ((STACK_OF(OSSL_CRMF_CERTID) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_OSSL_CRMF_CERTID_compfunc_type(cmp)), sk_OSSL_CRMF_CERTID_cmpfunc_thunk))

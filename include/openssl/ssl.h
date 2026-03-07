@@ -247,46 +247,7 @@ typedef struct srtp_protection_profile_st {
     unsigned long id;
 } SRTP_PROTECTION_PROFILE;
 /* clang-format off */
-STACK_OF(SRTP_PROTECTION_PROFILE);
-typedef int (*sk_SRTP_PROTECTION_PROFILE_compfunc)(const SRTP_PROTECTION_PROFILE *const *a, const SRTP_PROTECTION_PROFILE *const *b);
-typedef void (*sk_SRTP_PROTECTION_PROFILE_freefunc)(SRTP_PROTECTION_PROFILE *a);
-typedef SRTP_PROTECTION_PROFILE *(*sk_SRTP_PROTECTION_PROFILE_copyfunc)(const SRTP_PROTECTION_PROFILE *a);
-static ossl_inline void sk_SRTP_PROTECTION_PROFILE_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_SRTP_PROTECTION_PROFILE_freefunc freefunc = (sk_SRTP_PROTECTION_PROFILE_freefunc)freefunc_arg;
-    freefunc((SRTP_PROTECTION_PROFILE *)ptr);
-}
-static ossl_inline int sk_SRTP_PROTECTION_PROFILE_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const SRTP_PROTECTION_PROFILE *const *a, const SRTP_PROTECTION_PROFILE *const *b) = (int (*)(const SRTP_PROTECTION_PROFILE *const *a, const SRTP_PROTECTION_PROFILE *const *b))(cmp);
-    const SRTP_PROTECTION_PROFILE *const *at = (const SRTP_PROTECTION_PROFILE *const *)a;
-    const SRTP_PROTECTION_PROFILE *const *bt = (const SRTP_PROTECTION_PROFILE *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline SRTP_PROTECTION_PROFILE *ossl_check_SRTP_PROTECTION_PROFILE_type(SRTP_PROTECTION_PROFILE *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(const STACK_OF(SRTP_PROTECTION_PROFILE) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_SRTP_PROTECTION_PROFILE_sk_type(STACK_OF(SRTP_PROTECTION_PROFILE) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_SRTP_PROTECTION_PROFILE_compfunc_type(sk_SRTP_PROTECTION_PROFILE_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_SRTP_PROTECTION_PROFILE_copyfunc_type(sk_SRTP_PROTECTION_PROFILE_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_SRTP_PROTECTION_PROFILE_freefunc_type(sk_SRTP_PROTECTION_PROFILE_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(SRTP_PROTECTION_PROFILE, SRTP_PROTECTION_PROFILE, SRTP_PROTECTION_PROFILE)
 #define sk_SRTP_PROTECTION_PROFILE_num(sk) OPENSSL_sk_num(ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(sk))
 #define sk_SRTP_PROTECTION_PROFILE_value(sk, idx) ((SRTP_PROTECTION_PROFILE *)OPENSSL_sk_value(ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(sk), (idx)))
 #define sk_SRTP_PROTECTION_PROFILE_new(cmp) ((STACK_OF(SRTP_PROTECTION_PROFILE) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_SRTP_PROTECTION_PROFILE_compfunc_type(cmp)), sk_SRTP_PROTECTION_PROFILE_cmpfunc_thunk))
@@ -1063,46 +1024,7 @@ extern "C" {
  * in VisualStudio 2015
  */
 /* clang-format off */
-STACK_OF(SSL_CIPHER);
-typedef int (*sk_SSL_CIPHER_compfunc)(const SSL_CIPHER *const *a, const SSL_CIPHER *const *b);
-typedef void (*sk_SSL_CIPHER_freefunc)(SSL_CIPHER *a);
-typedef SSL_CIPHER *(*sk_SSL_CIPHER_copyfunc)(const SSL_CIPHER *a);
-static ossl_inline void sk_SSL_CIPHER_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg, void *ptr)
-{
-    sk_SSL_CIPHER_freefunc freefunc = (sk_SSL_CIPHER_freefunc)freefunc_arg;
-    freefunc((SSL_CIPHER *)ptr);
-}
-static ossl_inline int sk_SSL_CIPHER_cmpfunc_thunk(int (*cmp)(const void *, const void *), const void *a, const void *b)
-{
-    int (*realcmp)(const SSL_CIPHER *const *a, const SSL_CIPHER *const *b) = (int (*)(const SSL_CIPHER *const *a, const SSL_CIPHER *const *b))(cmp);
-    const SSL_CIPHER *const *at = (const SSL_CIPHER *const *)a;
-    const SSL_CIPHER *const *bt = (const SSL_CIPHER *const *)b;
-    return realcmp(at, bt);
-}
-static ossl_unused ossl_inline const SSL_CIPHER *ossl_check_SSL_CIPHER_type(const SSL_CIPHER *ptr)
-{
-    return ptr;
-}
-static ossl_unused ossl_inline const OPENSSL_STACK *ossl_check_const_SSL_CIPHER_sk_type(const STACK_OF(SSL_CIPHER) *sk)
-{
-    return (const OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_STACK *ossl_check_SSL_CIPHER_sk_type(STACK_OF(SSL_CIPHER) *sk)
-{
-    return (OPENSSL_STACK *)sk;
-}
-static ossl_unused ossl_inline OPENSSL_sk_compfunc ossl_check_SSL_CIPHER_compfunc_type(sk_SSL_CIPHER_compfunc cmp)
-{
-    return (OPENSSL_sk_compfunc)cmp;
-}
-static ossl_unused ossl_inline OPENSSL_sk_copyfunc ossl_check_SSL_CIPHER_copyfunc_type(sk_SSL_CIPHER_copyfunc cpy)
-{
-    return (OPENSSL_sk_copyfunc)cpy;
-}
-static ossl_unused ossl_inline OPENSSL_sk_freefunc ossl_check_SSL_CIPHER_freefunc_type(sk_SSL_CIPHER_freefunc fr)
-{
-    return (OPENSSL_sk_freefunc)fr;
-}
+SKM_DEFINE_STACK_OF_INTERNAL(SSL_CIPHER, const SSL_CIPHER, SSL_CIPHER)
 #define sk_SSL_CIPHER_num(sk) OPENSSL_sk_num(ossl_check_const_SSL_CIPHER_sk_type(sk))
 #define sk_SSL_CIPHER_value(sk, idx) ((const SSL_CIPHER *)OPENSSL_sk_value(ossl_check_const_SSL_CIPHER_sk_type(sk), (idx)))
 #define sk_SSL_CIPHER_new(cmp) ((STACK_OF(SSL_CIPHER) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_SSL_CIPHER_compfunc_type(cmp)), sk_SSL_CIPHER_cmpfunc_thunk))
