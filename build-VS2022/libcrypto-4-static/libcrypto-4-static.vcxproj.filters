@@ -2810,5 +2810,8 @@
     <CustomBuild Include="..\..\crypto\sm4\asm\sm4-x86_64.pl">
       <Filter>Source Files\asm\x64</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\crypto\ml_dsa\asm\ml_dsa_ntt-x86_64.pl">
+      <Filter>Source Files\asm\x64</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

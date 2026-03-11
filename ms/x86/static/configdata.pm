@@ -44,7 +44,7 @@ our %config = (
     "PERL" => "C:\\Strawberry\\perl\\bin\\perl.exe",
     "RC" => "rc",
     "RCFLAGS" => [],
-    "api" => "40000",
+    "api" => "40100",
     "b32" => "1",
     "b64" => "0",
     "b64l" => "0",
@@ -173,7 +173,7 @@ our %config = (
         "NDEBUG"
     ],
     "ex_libs" => [],
-    "full_version" => "4.0.0-dev",
+    "full_version" => "4.1.0-dev",
     "includes" => [],
     "lflags" => [],
     "lib_defines" => [
@@ -183,9 +183,9 @@ our %config = (
     "major" => "4",
     "makedep_scheme" => "VC",
     "makedepcmd" => "\$(CC) /Zs /showIncludes",
-    "minor" => "0",
+    "minor" => "1",
     "openssl_api_defines" => [
-        "OPENSSL_CONFIGURED_API=40000"
+        "OPENSSL_CONFIGURED_API=40100"
     ],
     "openssl_feature_defines" => [
         "OPENSSL_RAND_SEED_OS",
@@ -298,7 +298,7 @@ our %config = (
     "shlib_version" => "4",
     "sourcedir" => ".",
     "target" => "VC-WIN32",
-    "version" => "4.0.0"
+    "version" => "4.1.0"
 );
 our %target = (
     "AR" => "lib",
@@ -12739,6 +12739,9 @@ our %unified_info = (
         "crypto\\md5\\md5-x86_64.s" => [
             ".\\crypto\\md5\\asm\\md5-x86_64.pl"
         ],
+        "crypto\\ml_dsa\\ml_dsa_ntt-x86_64.s" => [
+            ".\\crypto\\ml_dsa\\asm\\ml_dsa_ntt-x86_64.pl"
+        ],
         "crypto\\modes\\aes-gcm-armv8-unroll8_64.S" => [
             ".\\crypto\\modes\\asm\\aes-gcm-armv8-unroll8_64.pl"
         ],
@@ -12964,6 +12967,10 @@ our %unified_info = (
         "crypto\\sha\\sha256-ia64.s" => [
             ".\\crypto\\sha\\asm\\sha512-ia64.pl"
         ],
+        "crypto\\sha\\sha256-loongarch64-lsx.S" => [
+            ".\\crypto\\sha\\asm\\sha256-loongarch64.pl",
+            "lsx"
+        ],
         "crypto\\sha\\sha256-loongarch64.S" => [
             ".\\crypto\\sha\\asm\\sha256-loongarch64.pl"
         ],
@@ -13015,6 +13022,10 @@ our %unified_info = (
         ],
         "crypto\\sha\\sha512-ia64.s" => [
             ".\\crypto\\sha\\asm\\sha512-ia64.pl"
+        ],
+        "crypto\\sha\\sha512-loongarch64-lsx.S" => [
+            ".\\crypto\\sha\\asm\\sha512-loongarch64.pl",
+            "lsx"
         ],
         "crypto\\sha\\sha512-loongarch64.S" => [
             ".\\crypto\\sha\\asm\\sha512-loongarch64.pl"
@@ -21147,6 +21158,10 @@ our %unified_info = (
             "crypto",
             ".\\crypto"
         ],
+        "crypto\\sha\\sha256-loongarch64-lsx.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
         "crypto\\sha\\sha256-loongarch64.o" => [
             "crypto",
             ".\\crypto"
@@ -21168,6 +21183,10 @@ our %unified_info = (
             ".\\crypto"
         ],
         "crypto\\sha\\sha512-armv8.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
+        "crypto\\sha\\sha512-loongarch64-lsx.o" => [
             "crypto",
             ".\\crypto"
         ],

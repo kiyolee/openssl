@@ -38,7 +38,7 @@ extern "C" {
 # endif
 #endif
 #endif
-# define OPENSSL_CONFIGURED_API 40000
+# define OPENSSL_CONFIGURED_API 40100
 # ifndef OPENSSL_RAND_SEED_OS
 #  define OPENSSL_RAND_SEED_OS
 # endif
