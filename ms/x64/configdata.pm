@@ -1955,6 +1955,9 @@ our %unified_info = (
             "test\\tls13secretstest" => {
                 "noinst" => "1"
             },
+            "test\\tls13ticket_test" => {
+                "noinst" => "1"
+            },
             "test\\trace_api_test" => {
                 "noinst" => "1"
             },
@@ -10078,6 +10081,11 @@ our %unified_info = (
             "libssl",
             "test\\libtestutil.a"
         ],
+        "test\\tls13ticket_test" => [
+            "libcrypto",
+            "libssl",
+            "test\\libtestutil.a"
+        ],
         "test\\trace_api_test" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -13373,7 +13381,8 @@ our %unified_info = (
                 "test\\helpers\\sslbuffertest-bin-ssltestlib.o",
                 "test\\helpers\\sslcorrupttest-bin-ssltestlib.o",
                 "test\\helpers\\tls13ccstest-bin-ssltestlib.o",
-                "test\\helpers\\tls13groupselection_test-bin-ssltestlib.o"
+                "test\\helpers\\tls13groupselection_test-bin-ssltestlib.o",
+                "test\\helpers\\tls13ticket_test-bin-ssltestlib.o"
             ],
             "products" => {
                 "bin" => [
@@ -13417,7 +13426,8 @@ our %unified_info = (
                     "test\\sslbuffertest",
                     "test\\sslcorrupttest",
                     "test\\tls13ccstest",
-                    "test\\tls13groupselection_test"
+                    "test\\tls13groupselection_test",
+                    "test\\tls13ticket_test"
                 ]
             }
         },
@@ -24756,6 +24766,12 @@ our %unified_info = (
             ".",
             ".\\include"
         ],
+        "test\\helpers\\tls13ticket_test-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
         "test\\hexstr_test" => [
             ".",
             "include",
@@ -25577,6 +25593,12 @@ our %unified_info = (
             "include",
             "apps\\include",
             ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\tls13ticket_test" => [
+            "include",
+            "apps\\include",
             ".\\include",
             ".\\apps\\include"
         ],
@@ -26973,6 +26995,7 @@ our %unified_info = (
         "test\\tls13encryptiontest",
         "test\\tls13groupselection_test",
         "test\\tls13secretstest",
+        "test\\tls13ticket_test",
         "test\\trace_api_test",
         "test\\uitest",
         "test\\upcallstest",
@@ -37497,6 +37520,9 @@ our %unified_info = (
         "test\\helpers\\tls13groupselection_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
+        "test\\helpers\\tls13ticket_test-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
         "test\\hexstr_test" => [
             "test\\hexstr_test-bin-hexstr_test.o"
         ],
@@ -38430,6 +38456,13 @@ our %unified_info = (
         ],
         "test\\tls13secretstest-bin-tls13secretstest.o" => [
             ".\\test\\tls13secretstest.c"
+        ],
+        "test\\tls13ticket_test" => [
+            "test\\helpers\\tls13ticket_test-bin-ssltestlib.o",
+            "test\\tls13ticket_test-bin-tls13tickettest.o"
+        ],
+        "test\\tls13ticket_test-bin-tls13tickettest.o" => [
+            ".\\test\\tls13tickettest.c"
         ],
         "test\\trace_api_test" => [
             "test\\trace_api_test-bin-trace_api_test.o"
