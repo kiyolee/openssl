@@ -374,7 +374,7 @@ our %target = (
     "asflags" => "/c /Cp /Cx",
     "asm_arch" => "x86_64",
     "asoutflag" => "/Fo",
-    "bin_cflags" => "/Zi /Fdapp.pdb",
+    "bin_cflags" => "/Z7",
     "bin_lflags" => "setargv.obj /subsystem:console /opt:ref",
     "bn_ops" => "SIXTY_FOUR_BIT",
     "build_file" => "makefile",
@@ -396,7 +396,7 @@ our %target = (
         "_WINSOCK_DEPRECATED_NO_WARNINGS"
     ],
     "disable" => [],
-    "dso_cflags" => "/Zi /Fddso.pdb",
+    "dso_cflags" => "/Z7",
     "dso_scheme" => "win32",
     "enable" => [],
     "ex_libs" => "..\\zlib\\build\\x64\\Release\\libz-static.lib ws2_32.lib gdi32.lib advapi32.lib crypt32.lib user32.lib",
@@ -411,7 +411,7 @@ our %target = (
     "ldpostoutflag" => "",
     "ldresflag" => " ",
     "lflags" => "",
-    "lib_cflags" => "/Zi /Fdossl_static.pdb",
+    "lib_cflags" => "/Z7",
     "lib_cppflags" => "",
     "lib_defines" => [
         "L_ENDIAN"
@@ -2753,6 +2753,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\ASN1_BIT_STRING_get_length.html" => [
             ".\\doc\\man3\\ASN1_BIT_STRING_get_length.pod"
+        ],
+        "doc\\html\\man3\\ASN1_BIT_STRING_new.html" => [
+            ".\\doc\\man3\\ASN1_BIT_STRING_new.pod"
         ],
         "doc\\html\\man3\\ASN1_EXTERN_FUNCS.html" => [
             ".\\doc\\man3\\ASN1_EXTERN_FUNCS.pod"
@@ -5653,6 +5656,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\ASN1_BIT_STRING_get_length.3" => [
             ".\\doc\\man3\\ASN1_BIT_STRING_get_length.pod"
+        ],
+        "doc\\man\\man3\\ASN1_BIT_STRING_new.3" => [
+            ".\\doc\\man3\\ASN1_BIT_STRING_new.pod"
         ],
         "doc\\man\\man3\\ASN1_EXTERN_FUNCS.3" => [
             ".\\doc\\man3\\ASN1_EXTERN_FUNCS.pod"
@@ -14439,6 +14445,9 @@ our %unified_info = (
         "doc\\html\\man3\\ASN1_BIT_STRING_get_length.html" => [
             ".\\doc\\man3\\ASN1_BIT_STRING_get_length.pod"
         ],
+        "doc\\html\\man3\\ASN1_BIT_STRING_new.html" => [
+            ".\\doc\\man3\\ASN1_BIT_STRING_new.pod"
+        ],
         "doc\\html\\man3\\ASN1_EXTERN_FUNCS.html" => [
             ".\\doc\\man3\\ASN1_EXTERN_FUNCS.pod"
         ],
@@ -17292,6 +17301,9 @@ our %unified_info = (
         "doc\\man\\man3\\ASN1_BIT_STRING_get_length.3" => [
             ".\\doc\\man3\\ASN1_BIT_STRING_get_length.pod"
         ],
+        "doc\\man\\man3\\ASN1_BIT_STRING_new.3" => [
+            ".\\doc\\man3\\ASN1_BIT_STRING_new.pod"
+        ],
         "doc\\man\\man3\\ASN1_EXTERN_FUNCS.3" => [
             ".\\doc\\man3\\ASN1_EXTERN_FUNCS.pod"
         ],
@@ -19913,6 +19925,13 @@ our %unified_info = (
         ],
         "installdata.pm" => [
             ".\\util\\mkinstallvars.pl",
+            "COMMENT=\"This",
+            "file",
+            "provides",
+            "configuration",
+            "information",
+            "for",
+            "OpenSSL\"",
             "\"PREFIX=\$(INSTALLTOP)\"",
             "BINDIR=bin",
             "\"LIBDIR=\$(LIBDIR)\"",
@@ -20668,6 +20687,7 @@ our %unified_info = (
         "man3" => [
             "doc\\html\\man3\\ADMISSIONS.html",
             "doc\\html\\man3\\ASN1_BIT_STRING_get_length.html",
+            "doc\\html\\man3\\ASN1_BIT_STRING_new.html",
             "doc\\html\\man3\\ASN1_EXTERN_FUNCS.html",
             "doc\\html\\man3\\ASN1_INTEGER_get_int64.html",
             "doc\\html\\man3\\ASN1_INTEGER_new.html",
@@ -25763,6 +25783,7 @@ our %unified_info = (
         "man3" => [
             "doc\\man\\man3\\ADMISSIONS.3",
             "doc\\man\\man3\\ASN1_BIT_STRING_get_length.3",
+            "doc\\man\\man3\\ASN1_BIT_STRING_new.3",
             "doc\\man\\man3\\ASN1_EXTERN_FUNCS.3",
             "doc\\man\\man3\\ASN1_INTEGER_get_int64.3",
             "doc\\man\\man3\\ASN1_INTEGER_new.3",

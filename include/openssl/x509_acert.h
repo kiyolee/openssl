@@ -22,6 +22,10 @@
 #include <openssl/x509.h>
 #include <openssl/pem.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct X509_acert_st X509_ACERT;
 typedef struct X509_acert_info_st X509_ACERT_INFO;
 typedef struct ossl_object_digest_info_st OSSL_OBJECT_DIGEST_INFO;
@@ -300,5 +304,9 @@ SKM_DEFINE_STACK_OF_INTERNAL(OSSL_ISSUER_SERIAL, OSSL_ISSUER_SERIAL, OSSL_ISSUER
 #define sk_OSSL_ISSUER_SERIAL_set_cmp_func(sk, cmp) ((sk_OSSL_ISSUER_SERIAL_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_OSSL_ISSUER_SERIAL_sk_type(sk), ossl_check_OSSL_ISSUER_SERIAL_compfunc_type(cmp)))
 
 /* clang-format on */
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
