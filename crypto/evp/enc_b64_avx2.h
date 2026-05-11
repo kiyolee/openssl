@@ -8,7 +8,7 @@
 #define HAVE_AVX2_INTRINSICS 1
 #elif defined(__GNUC__) && (__GNUC__ >= 8)
 #define HAVE_AVX2_INTRINSICS 1
-#elif defined(_MSC_VER) && (_MSC_VER >= 1920) /* MSVC 2019 */
+#elif defined(_MSC_VER) && (_MSC_VER >= 1920) /* MSVC 2019 */ && (defined(__x86_64) || defined(__x86_64__) || defined(_M_AMD64) || defined(_M_X64))
 #define HAVE_AVX2_INTRINSICS 1
 #endif
 
