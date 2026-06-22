@@ -12,7 +12,7 @@ use warnings;
 
 use File::Spec;
 use File::Basename;
-use OpenSSL::Test qw/:DEFAULT with srctop_file srctop_dir data_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT with srctop_file srctop_dir data_file bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use Cwd qw(abs_path);
 
@@ -225,7 +225,8 @@ subtest "SHA1 generation by provider with `dgst` CLI" => sub {
     }
     plan tests => 1;
 
-    $ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+    #$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+    $ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
         my $testdata = srctop_file('test', 'data.bin');
         my @macdata = run(app(['openssl', 'dgst', '-sha1',
                                '-provider', "p_ossltest",

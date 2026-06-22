@@ -9,7 +9,7 @@
 use strict;
 use feature 'state';
 
-use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use TLSProxy::Proxy;
 use TLSProxy::Message;
@@ -18,7 +18,8 @@ use Cwd qw(abs_path);
 my $test_name = "test_sslrecords";
 setup($test_name);
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 plan skip_all => "TLSProxy isn't usable on $^O"
     if $^O =~ /^(VMS)$/;
