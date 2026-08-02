@@ -236,7 +236,7 @@ subtest "Check ecparam -inform and -outform handling" => sub {
     my $pem = 'param-der.pem';
     ok(run(app(['openssl', 'ecparam', '-inform', 'DER', '-in', $der,
                 '-out', $pem]))
-       && !compare($pem, $named),
+       && !compare_text($pem, $named),
        "parameters survive a PEM -> DER -> PEM roundtrip");
 
     ok(!run(app(['openssl', 'ecparam', '-in', $der, '-noout'])),
@@ -265,13 +265,13 @@ subtest "Check ecparam -conv_form selects the generator point encoding" => sub {
     my $back = 'param-unc.pem';
     ok(run(app(['openssl', 'ecparam', '-in', $comp, '-conv_form',
                 'uncompressed', '-out', $back]))
-       && !compare($back, $explicit),
+       && !compare_text($back, $explicit),
        "converting back to uncompressed matches the reference file");
 
     my $namedout = 'param-named-conv.pem';
     ok(run(app(['openssl', 'ecparam', '-in', $named, '-conv_form',
                 'compressed', '-out', $namedout]))
-       && !compare($namedout, $named),
+       && !compare_text($namedout, $named),
        "-conv_form does not change named curve parameters");
 
     ok(!run(app(['openssl', 'ecparam', '-in', $named, '-noout',
