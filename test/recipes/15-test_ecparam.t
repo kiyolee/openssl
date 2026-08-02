@@ -210,13 +210,13 @@ subtest "Check ecparam -param_enc converts between named and explicit" => sub {
     my $to_explicit = 'param-explicit.tst';
     ok(run(app(['openssl', 'ecparam', '-in', $named, '-param_enc', 'explicit',
                 '-out', $to_explicit]))
-       && !compare($to_explicit, $explicit),
+       && !compare_text($to_explicit, $explicit),
        "named_curve params re-encoded as explicit match the reference file");
 
     my $to_named = 'param-named.tst';
     ok(run(app(['openssl', 'ecparam', '-in', $explicit, '-param_enc',
                 'named_curve', '-out', $to_named]))
-       && !compare($to_named, $named),
+       && !compare_text($to_named, $named),
        "explicit params re-encoded as named_curve match the reference file");
 
     ok(!run(app(['openssl', 'ecparam', '-in', $named, '-noout',
