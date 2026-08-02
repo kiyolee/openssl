@@ -7,7 +7,7 @@
 # https://www.openssl.org/source/license.html
 
 use strict;
-use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use Cwd qw(abs_path);
 use TLSProxy::Proxy;
@@ -15,7 +15,8 @@ use TLSProxy::Proxy;
 my $test_name = "test_npn";
 setup($test_name);
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 plan skip_all => "TLSProxy isn't usable on $^O"
     if $^O =~ /^(VMS)$/;

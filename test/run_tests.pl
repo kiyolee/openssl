@@ -30,8 +30,11 @@ use Scalar::Util qw(looks_like_number);
 
 my $srctop = $ENV{SRCTOP} || $ENV{TOP};
 my $bldtop = $ENV{BLDTOP} || $ENV{TOP};
+my $cfgtop = $ENV{CFGTOP} || $ENV{BLDTOP} || $ENV{TOP};
+my $shlibdir = $ENV{SHLIB_D} || $ENV{BIN_D} || catdir($bldtop, "providers");
 my $recipesdir = catdir($srctop, "test", "recipes");
 my $libdir = rel2abs(catdir($srctop, "util", "perl"));
+my $cfgdir = rel2abs($cfgtop);
 
 my $jobs = $ENV{HARNESS_JOBS};
 if (!defined($jobs)) {
@@ -70,7 +73,8 @@ if (!defined($jobs)) {
 
 $ENV{OPENSSL_CONF} = rel2abs(catfile($srctop, "apps", "openssl.cnf"));
 $ENV{OPENSSL_CONF_INCLUDE} = rel2abs(catdir($bldtop, "test"));
-$ENV{OPENSSL_MODULES} = rel2abs(catdir($bldtop, "providers"));
+#$ENV{OPENSSL_MODULES} = rel2abs(catdir($bldtop, "providers"));
+$ENV{OPENSSL_MODULES} = rel2abs(catdir($shlibdir));
 $ENV{CTLOG_FILE} = rel2abs(catfile($srctop, "test", "ct", "log_list.cnf"));
 
 # On platforms that support this, this will ensure malloc returns data that is
@@ -92,7 +96,7 @@ $tap_timer = exists $ENV{'HARNESS_TIMER'} ? $ENV{'HARNESS_TIMER'} : $tap_timer;
 
 my %tapargs =
     ( verbosity         => $tap_verbosity,
-      lib               => [ $libdir ],
+      lib               => [ $libdir, $cfgdir ],
       switches          => '-w',
       merge             => 1,
       timer             => $tap_timer,

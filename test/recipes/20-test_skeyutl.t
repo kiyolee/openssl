@@ -9,8 +9,9 @@
 use strict;
 use warnings;
 
-use OpenSSL::Test qw/:DEFAULT bldtop_dir with/;
+use OpenSSL::Test qw/:DEFAULT bldtop_dir with shlib_dir/;
 use OpenSSL::Test::Utils;
+use Cwd qw(abs_path);
 
 setup("test_skeyutl");
 
@@ -86,8 +87,10 @@ skeyutl_fails("skeyutl with an unknown option fails",
 # Success path: load the fake-cipher provider, which implements opaque key
 # generation, and generate a key with it.
 if ($fake_cipher) {
-    $ENV{OPENSSL_MODULES} = bldtop_dir("test");
-    my @prov = ('-provider-path', bldtop_dir("test"), '-provider', 'fake-cipher');
+    #$ENV{OPENSSL_MODULES} = bldtop_dir("test");
+    $ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
+    #my @prov = ('-provider-path', bldtop_dir("test"), '-provider', 'fake-cipher');
+    my @prov = ('-provider-path', abs_path(shlib_dir()), '-provider', 'fake-cipher');
 
     my $status;
     my @out = run(app(['openssl', 'skeyutl', @prov,
