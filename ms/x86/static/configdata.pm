@@ -1020,6 +1020,9 @@ our %unified_info = (
             "fuzz\\pkcs12-test" => {
                 "noinst" => "1"
             },
+            "fuzz\\pkcs7_verify-test" => {
+                "noinst" => "1"
+            },
             "fuzz\\provider-test" => {
                 "noinst" => "1"
             },
@@ -1396,6 +1399,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\chacha_internal_test" => {
+                "noinst" => "1"
+            },
+            "test\\cipher_dupctx_test" => {
                 "noinst" => "1"
             },
             "test\\cipher_overhead_test" => {
@@ -2277,6 +2283,8 @@ our %unified_info = (
             "providers\\implementations\\storemgmt\\file_store.inc",
             "providers\\implementations\\storemgmt\\file_store_any2obj.inc",
             "providers\\implementations\\storemgmt\\winstore_store.inc",
+            "test\\nocache-and-default.cnf",
+            "test\\pathed.cnf",
             "test\\provider_internal_test.cnf"
         ],
         ".\\doc\\man1\\openssl-asn1parse.pod" => [
@@ -3025,6 +3033,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\CMS_add1_signer.html" => [
             ".\\doc\\man3\\CMS_add1_signer.pod"
+        ],
+        "doc\\html\\man3\\CMS_add_standard_smimecap_ex.html" => [
+            ".\\doc\\man3\\CMS_add_standard_smimecap_ex.pod"
         ],
         "doc\\html\\man3\\CMS_compress.html" => [
             ".\\doc\\man3\\CMS_compress.pod"
@@ -5941,6 +5952,9 @@ our %unified_info = (
         "doc\\man\\man3\\CMS_add1_signer.3" => [
             ".\\doc\\man3\\CMS_add1_signer.pod"
         ],
+        "doc\\man\\man3\\CMS_add_standard_smimecap_ex.3" => [
+            ".\\doc\\man3\\CMS_add_standard_smimecap_ex.pod"
+        ],
         "doc\\man\\man3\\CMS_compress.3" => [
             ".\\doc\\man3\\CMS_compress.pod"
         ],
@@ -8292,6 +8306,9 @@ our %unified_info = (
         "fuzz\\pkcs12-test" => [
             "libcrypto.a"
         ],
+        "fuzz\\pkcs7_verify-test" => [
+            "libcrypto.a"
+        ],
         "fuzz\\provider-test" => [
             "libcrypto.a"
         ],
@@ -9297,6 +9314,10 @@ our %unified_info = (
         ],
         "test\\chacha_internal_test" => [
             "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\cipher_dupctx_test" => [
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\cipher_overhead_test" => [
@@ -11811,6 +11832,7 @@ our %unified_info = (
                     "fuzz\\ml-kem-test",
                     "fuzz\\pem-test",
                     "fuzz\\pkcs12-test",
+                    "fuzz\\pkcs7_verify-test",
                     "fuzz\\provider-test",
                     "fuzz\\punycode-test",
                     "fuzz\\quic-client-test",
@@ -12534,6 +12556,7 @@ our %unified_info = (
                 "test\\mfail\\ml-kem-test-bin-mfail.o",
                 "test\\mfail\\pem-test-bin-mfail.o",
                 "test\\mfail\\pkcs12-test-bin-mfail.o",
+                "test\\mfail\\pkcs7_verify-test-bin-mfail.o",
                 "test\\mfail\\provider-test-bin-mfail.o",
                 "test\\mfail\\punycode-test-bin-mfail.o",
                 "test\\mfail\\quic-client-test-bin-mfail.o",
@@ -12570,6 +12593,7 @@ our %unified_info = (
                     "fuzz\\ml-kem-test",
                     "fuzz\\pem-test",
                     "fuzz\\pkcs12-test",
+                    "fuzz\\pkcs7_verify-test",
                     "fuzz\\provider-test",
                     "fuzz\\punycode-test",
                     "fuzz\\quic-client-test",
@@ -13875,6 +13899,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\CMS_add1_signer.html" => [
             ".\\doc\\man3\\CMS_add1_signer.pod"
+        ],
+        "doc\\html\\man3\\CMS_add_standard_smimecap_ex.html" => [
+            ".\\doc\\man3\\CMS_add_standard_smimecap_ex.pod"
         ],
         "doc\\html\\man3\\CMS_compress.html" => [
             ".\\doc\\man3\\CMS_compress.pod"
@@ -16743,6 +16770,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\CMS_add1_signer.3" => [
             ".\\doc\\man3\\CMS_add1_signer.pod"
+        ],
+        "doc\\man\\man3\\CMS_add_standard_smimecap_ex.3" => [
+            ".\\doc\\man3\\CMS_add_standard_smimecap_ex.pod"
         ],
         "doc\\man\\man3\\CMS_compress.3" => [
             ".\\doc\\man3\\CMS_compress.pod"
@@ -19806,11 +19836,17 @@ our %unified_info = (
         "test\\fake-cipher.ld" => [
             ".\\util\\providers.num"
         ],
+        "test\\nocache-and-default.cnf" => [
+            ".\\test\\nocache-and-default.cnf.in"
+        ],
         "test\\p_minimal.ld" => [
             ".\\util\\providers.num"
         ],
         "test\\p_test.ld" => [
             ".\\util\\providers.num"
+        ],
+        "test\\pathed.cnf" => [
+            ".\\test\\pathed.cnf.in"
         ],
         "test\\provider_internal_test.cnf" => [
             ".\\test\\provider_internal_test.cnf.in"
@@ -19972,6 +20008,7 @@ our %unified_info = (
             "doc\\html\\man3\\CMS_add0_cert.html",
             "doc\\html\\man3\\CMS_add1_recipient_cert.html",
             "doc\\html\\man3\\CMS_add1_signer.html",
+            "doc\\html\\man3\\CMS_add_standard_smimecap_ex.html",
             "doc\\html\\man3\\CMS_compress.html",
             "doc\\html\\man3\\CMS_data_create.html",
             "doc\\html\\man3\\CMS_decrypt.html",
@@ -21870,6 +21907,12 @@ our %unified_info = (
             ".\\include",
             ".\\test\\mfail"
         ],
+        "fuzz\\pkcs7_verify-test" => [
+            "include",
+            "test\\mfail",
+            ".\\include",
+            ".\\test\\mfail"
+        ],
         "fuzz\\provider-test" => [
             "include",
             "test\\mfail",
@@ -23229,6 +23272,12 @@ our %unified_info = (
             "include",
             "apps\\include",
             ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\cipher_dupctx_test" => [
+            "include",
+            "apps\\include",
             ".\\include",
             ".\\apps\\include"
         ],
@@ -25163,6 +25212,7 @@ our %unified_info = (
             "doc\\man\\man3\\CMS_add0_cert.3",
             "doc\\man\\man3\\CMS_add1_recipient_cert.3",
             "doc\\man\\man3\\CMS_add1_signer.3",
+            "doc\\man\\man3\\CMS_add_standard_smimecap_ex.3",
             "doc\\man\\man3\\CMS_compress.3",
             "doc\\man\\man3\\CMS_data_create.3",
             "doc\\man\\man3\\CMS_decrypt.3",
@@ -25954,6 +26004,7 @@ our %unified_info = (
         "fuzz\\ml-kem-test",
         "fuzz\\pem-test",
         "fuzz\\pkcs12-test",
+        "fuzz\\pkcs7_verify-test",
         "fuzz\\provider-test",
         "fuzz\\punycode-test",
         "fuzz\\quic-client-test",
@@ -26080,6 +26131,7 @@ our %unified_info = (
         "test\\casttest",
         "test\\cert_comp_test",
         "test\\chacha_internal_test",
+        "test\\cipher_dupctx_test",
         "test\\cipher_overhead_test",
         "test\\cipherbytes_test",
         "test\\cipherlist_test",
@@ -29302,6 +29354,17 @@ our %unified_info = (
         "fuzz\\pkcs12-test-bin-test-corpus.o" => [
             ".\\fuzz\\test-corpus.c"
         ],
+        "fuzz\\pkcs7_verify-test" => [
+            "fuzz\\pkcs7_verify-test-bin-pkcs7_verify.o",
+            "fuzz\\pkcs7_verify-test-bin-test-corpus.o",
+            "test\\mfail\\pkcs7_verify-test-bin-mfail.o"
+        ],
+        "fuzz\\pkcs7_verify-test-bin-pkcs7_verify.o" => [
+            ".\\fuzz\\pkcs7_verify.c"
+        ],
+        "fuzz\\pkcs7_verify-test-bin-test-corpus.o" => [
+            ".\\fuzz\\test-corpus.c"
+        ],
         "fuzz\\provider-test" => [
             "fuzz\\provider-test-bin-provider.o",
             "fuzz\\provider-test-bin-test-corpus.o",
@@ -32296,6 +32359,12 @@ our %unified_info = (
         "test\\chacha_internal_test-bin-chacha_internal_test.o" => [
             ".\\test\\chacha_internal_test.c"
         ],
+        "test\\cipher_dupctx_test" => [
+            "test\\cipher_dupctx_test-bin-cipher_dupctx_test.o"
+        ],
+        "test\\cipher_dupctx_test-bin-cipher_dupctx_test.o" => [
+            ".\\test\\cipher_dupctx_test.c"
+        ],
         "test\\cipher_overhead_test" => [
             "test\\cipher_overhead_test-bin-cipher_overhead_test.o"
         ],
@@ -33161,6 +33230,9 @@ our %unified_info = (
             ".\\test\\mfail\\mfail.c"
         ],
         "test\\mfail\\pkcs12-test-bin-mfail.o" => [
+            ".\\test\\mfail\\mfail.c"
+        ],
+        "test\\mfail\\pkcs7_verify-test-bin-mfail.o" => [
             ".\\test\\mfail\\mfail.c"
         ],
         "test\\mfail\\provider-test-bin-mfail.o" => [
