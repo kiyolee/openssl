@@ -134,6 +134,7 @@ our %config = (
         ".\\crypto\\thread\\build.info",
         ".\\crypto\\ml_dsa\\build.info",
         ".\\crypto\\slh_dsa\\build.info",
+        ".\\crypto\\rbtree\\build.info",
         ".\\ssl\\record\\build.info",
         ".\\ssl\\rio\\build.info",
         ".\\ssl\\quic\\build.info",
@@ -1692,6 +1693,9 @@ our %unified_info = (
             "test\\ocsptest" => {
                 "noinst" => "1"
             },
+            "test\\ossl_rbtree_test" => {
+                "noinst" => "1"
+            },
             "test\\ossl_store_test" => {
                 "noinst" => "1"
             },
@@ -1864,6 +1868,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\rio_notifier_test" => {
+                "noinst" => "1"
+            },
+            "test\\rio_poll_builder_test" => {
                 "noinst" => "1"
             },
             "test\\rpktest" => {
@@ -9737,6 +9744,10 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\ossl_rbtree_test" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
         "test\\ossl_store_test" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -9996,6 +10007,11 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\rio_notifier_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\rio_poll_builder_test" => [
             "libcrypto.a",
             "libssl.a",
             "test\\libtestutil.a"
@@ -11412,6 +11428,16 @@ our %unified_info = (
                 "crypto\\rand\\libcrypto-lib-rand_pool.o",
                 "crypto\\rand\\libcrypto-lib-rand_uniform.o",
                 "crypto\\rand\\libcrypto-lib-randfile.o"
+            ],
+            "products" => {
+                "lib" => [
+                    "libcrypto"
+                ]
+            }
+        },
+        "crypto\\rbtree" => {
+            "deps" => [
+                "crypto\\rbtree\\libcrypto-lib-rbtree.o"
             ],
             "products" => {
                 "lib" => [
@@ -24241,6 +24267,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\ossl_rbtree_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\ossl_store_test" => [
             "include",
             "apps\\include",
@@ -24618,6 +24650,14 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\rio_notifier_test" => [
+            ".",
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\rio_poll_builder_test" => [
             ".",
             "include",
             "apps\\include",
@@ -26228,6 +26268,7 @@ our %unified_info = (
         "test\\nodefltctxtest",
         "test\\ocspapitest",
         "test\\ocsptest",
+        "test\\ossl_rbtree_test",
         "test\\ossl_store_test",
         "test\\packettest",
         "test\\pairwise_fail_test",
@@ -26286,6 +26327,7 @@ our %unified_info = (
         "test\\rdcpu_sanitytest",
         "test\\recordlentest",
         "test\\rio_notifier_test",
+        "test\\rio_poll_builder_test",
         "test\\rpktest",
         "test\\rsa_complex",
         "test\\rsa_mp_test",
@@ -28503,6 +28545,9 @@ our %unified_info = (
         "crypto\\rand\\libcrypto-lib-randfile.o" => [
             ".\\crypto\\rand\\randfile.c"
         ],
+        "crypto\\rbtree\\libcrypto-lib-rbtree.o" => [
+            ".\\crypto\\rbtree\\rbtree.c"
+        ],
         "crypto\\rc2\\libcrypto-lib-rc2_cbc.o" => [
             ".\\crypto\\rc2\\rc2_cbc.c"
         ],
@@ -30124,6 +30169,7 @@ our %unified_info = (
             "crypto\\rand\\libcrypto-lib-rand_pool.o",
             "crypto\\rand\\libcrypto-lib-rand_uniform.o",
             "crypto\\rand\\libcrypto-lib-randfile.o",
+            "crypto\\rbtree\\libcrypto-lib-rbtree.o",
             "crypto\\rc2\\libcrypto-lib-rc2_cbc.o",
             "crypto\\rc2\\libcrypto-lib-rc2_ecb.o",
             "crypto\\rc2\\libcrypto-lib-rc2_skey.o",
@@ -33325,6 +33371,12 @@ our %unified_info = (
         "test\\ocsptest-bin-ocsptest.o" => [
             ".\\test\\ocsptest.c"
         ],
+        "test\\ossl_rbtree_test" => [
+            "test\\ossl_rbtree_test-bin-ossl_rbtree_test.o"
+        ],
+        "test\\ossl_rbtree_test-bin-ossl_rbtree_test.o" => [
+            ".\\test\\ossl_rbtree_test.c"
+        ],
         "test\\ossl_store_test" => [
             "test\\ossl_store_test-bin-ossl_store_test.o"
         ],
@@ -33746,6 +33798,12 @@ our %unified_info = (
         ],
         "test\\rio_notifier_test-bin-rio_notifier_test.o" => [
             ".\\test\\rio_notifier_test.c"
+        ],
+        "test\\rio_poll_builder_test" => [
+            "test\\rio_poll_builder_test-bin-rio_poll_builder_test.o"
+        ],
+        "test\\rio_poll_builder_test-bin-rio_poll_builder_test.o" => [
+            ".\\test\\rio_poll_builder_test.c"
         ],
         "test\\rpktest" => [
             "test\\helpers\\rpktest-bin-ssltestlib.o",
