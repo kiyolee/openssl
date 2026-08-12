@@ -367,7 +367,9 @@ static int drbg_ctr_get_ctx_params_decoder
 static const OSSL_PARAM drbg_ctr_set_ctx_params_list[] = {
     OSSL_PARAM_utf8_string(OSSL_DRBG_PARAM_PROPERTIES, NULL, 0),
     OSSL_PARAM_utf8_string(OSSL_DRBG_PARAM_CIPHER, NULL, 0),
+# if !defined(FIPS_MODULE)
     OSSL_PARAM_int(OSSL_DRBG_PARAM_USE_DF, NULL),
+# endif
     OSSL_PARAM_utf8_string(OSSL_PROV_PARAM_CORE_PROV_NAME, NULL, 0),
     OSSL_PARAM_uint(OSSL_DRBG_PARAM_RESEED_REQUESTS, NULL),
     OSSL_PARAM_uint64(OSSL_DRBG_PARAM_RESEED_TIME_INTERVAL, NULL),
@@ -378,7 +380,9 @@ static const OSSL_PARAM drbg_ctr_set_ctx_params_list[] = {
 #ifndef drbg_ctr_set_ctx_params_st
 struct drbg_ctr_set_ctx_params_st {
     OSSL_PARAM *cipher;
+# if !defined(FIPS_MODULE)
     OSSL_PARAM *df;
+# endif
     OSSL_PARAM *propq;
     OSSL_PARAM *prov;
     OSSL_PARAM *reseed_req;
@@ -504,6 +508,7 @@ static int drbg_ctr_set_ctx_params_decoder
                 }
                 break;
             case 'u':
+# if !defined(FIPS_MODULE)
                 if (ossl_likely(strcmp("se_derivation_function", s + 1) == 0)) {
                     /* OSSL_DRBG_PARAM_USE_DF */
                     if (ossl_unlikely(r->df != NULL)) {
@@ -513,6 +518,8 @@ static int drbg_ctr_set_ctx_params_decoder
                     }
                     r->df = (OSSL_PARAM *)p;
                 }
+# endif
+                break;
             }
     return 1;
 }
