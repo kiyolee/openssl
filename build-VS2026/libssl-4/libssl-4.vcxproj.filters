@@ -52,6 +52,9 @@
     <Filter Include="Source Files\ssl\ech">
       <UniqueIdentifier>{bb6873fb-3fd8-4921-a174-a588d522f5b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypto\rbtree">
+      <UniqueIdentifier>{eec5effa-7f5d-46b8-b695-d27cbbf301eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ssl\ssl_lib.c">
@@ -383,6 +386,9 @@
     </ClCompile>
     <ClCompile Include="..\..\ssl\ech\ech_store.c">
       <Filter>Source Files\ssl\ech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\crypto\rbtree\rbtree.c">
+      <Filter>Source Files\crypto\rbtree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

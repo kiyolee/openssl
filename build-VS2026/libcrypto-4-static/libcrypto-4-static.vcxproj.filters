@@ -271,6 +271,9 @@
     <Filter Include="Source Files\crypto\sha\x64">
       <UniqueIdentifier>{996aa452-15a6-4947-bb3b-3ec6f25a97c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypto\rbtree">
+      <UniqueIdentifier>{263e942f-bd31-4bd6-aba2-1639d2c6dc87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\crypto\aes\aes_cfb.c">
@@ -2627,6 +2630,9 @@
     </ClCompile>
     <ClCompile Include="..\..\crypto\aes\aes_cbc_vaes_intrinsic.c">
       <Filter>Source Files\crypto\aes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\crypto\rbtree\rbtree.c">
+      <Filter>Source Files\crypto\rbtree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
