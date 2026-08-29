@@ -24,6 +24,9 @@ BEGIN {
 use lib bldtop_dir('.');
 use configdata;
 
+plan skip_all => "This test is not applicable for openssl-win-build"
+    unless 0;
+
 # Every file the build generates must be absent from the index and covered
 # by .gitignore.  The generated files that are deliberately committed --
 # doc/build.info, util/libcrypto.num and the like -- come from explicit
