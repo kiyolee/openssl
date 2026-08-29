@@ -485,6 +485,7 @@ our @disablables = (
     "dtls1-method",
     "dtls1_2",
     "dtls1_2-method",
+    "dtls1_3",
     "ec",
     "ec2m",
     "ec_explicit_curves",
@@ -1055,6 +1056,9 @@ our %unified_info = (
             "fuzz\\x509-test" => {
                 "noinst" => "1"
             },
+            "fuzz\\x509v3-test" => {
+                "noinst" => "1"
+            },
             "test\\aborttest" => {
                 "noinst" => "1"
             },
@@ -1427,6 +1431,9 @@ our %unified_info = (
             "test\\cmp_ctx_test" => {
                 "noinst" => "1"
             },
+            "test\\cmp_extracerts_dos_test" => {
+                "noinst" => "1"
+            },
             "test\\cmp_hdr_test" => {
                 "noinst" => "1"
             },
@@ -1505,10 +1512,19 @@ our %unified_info = (
             "test\\dtls12psk_test" => {
                 "noinst" => "1"
             },
+            "test\\dtls13_internal_test" => {
+                "noinst" => "1"
+            },
             "test\\dtls_ccs_reorder_test" => {
                 "noinst" => "1"
             },
             "test\\dtls_mtu_test" => {
+                "noinst" => "1"
+            },
+            "test\\dtls_multithread_test" => {
+                "noinst" => "1"
+            },
+            "test\\dtlsssllistenertest" => {
                 "noinst" => "1"
             },
             "test\\dtlstest" => {
@@ -1533,6 +1549,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\ectest" => {
+                "noinst" => "1"
+            },
+            "test\\endecode_api_test" => {
                 "noinst" => "1"
             },
             "test\\endecode_test" => {
@@ -4718,8 +4737,14 @@ our %unified_info = (
         "doc\\html\\man3\\X509_STORE_set_verify_cb_func.html" => [
             ".\\doc\\man3\\X509_STORE_set_verify_cb_func.pod"
         ],
+        "doc\\html\\man3\\X509_VERIFY_PARAM_set1_host.html" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set1_host.pod"
+        ],
         "doc\\html\\man3\\X509_VERIFY_PARAM_set_flags.html" => [
             ".\\doc\\man3\\X509_VERIFY_PARAM_set_flags.pod"
+        ],
+        "doc\\html\\man3\\X509_VERIFY_PARAM_set_hostflags.html" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set_hostflags.pod"
         ],
         "doc\\html\\man3\\X509_add_cert.html" => [
             ".\\doc\\man3\\X509_add_cert.pod"
@@ -4817,11 +4842,8 @@ our %unified_info = (
         "doc\\html\\man3\\d2i_X509.html" => [
             ".\\doc\\man3\\d2i_X509.pod"
         ],
-        "doc\\html\\man3\\i2d_CMS_bio_stream.html" => [
-            ".\\doc\\man3\\i2d_CMS_bio_stream.pod"
-        ],
-        "doc\\html\\man3\\i2d_PKCS7_bio_stream.html" => [
-            ".\\doc\\man3\\i2d_PKCS7_bio_stream.pod"
+        "doc\\html\\man3\\i2d_ASN1_bio_stream.html" => [
+            ".\\doc\\man3\\i2d_ASN1_bio_stream.pod"
         ],
         "doc\\html\\man3\\i2d_re_X509_tbs.html" => [
             ".\\doc\\man3\\i2d_re_X509_tbs.pod"
@@ -5221,6 +5243,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\openssl_user_macros.html" => [
             "doc\\man7\\openssl_user_macros.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-dtlsv13.html" => [
+            ".\\doc\\man7\\ossl-guide-dtlsv13.pod"
         ],
         "doc\\html\\man7\\ossl-guide-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-introduction.pod"
@@ -7636,8 +7661,14 @@ our %unified_info = (
         "doc\\man\\man3\\X509_STORE_set_verify_cb_func.3" => [
             ".\\doc\\man3\\X509_STORE_set_verify_cb_func.pod"
         ],
+        "doc\\man\\man3\\X509_VERIFY_PARAM_set1_host.3" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set1_host.pod"
+        ],
         "doc\\man\\man3\\X509_VERIFY_PARAM_set_flags.3" => [
             ".\\doc\\man3\\X509_VERIFY_PARAM_set_flags.pod"
+        ],
+        "doc\\man\\man3\\X509_VERIFY_PARAM_set_hostflags.3" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set_hostflags.pod"
         ],
         "doc\\man\\man3\\X509_add_cert.3" => [
             ".\\doc\\man3\\X509_add_cert.pod"
@@ -7735,11 +7766,8 @@ our %unified_info = (
         "doc\\man\\man3\\d2i_X509.3" => [
             ".\\doc\\man3\\d2i_X509.pod"
         ],
-        "doc\\man\\man3\\i2d_CMS_bio_stream.3" => [
-            ".\\doc\\man3\\i2d_CMS_bio_stream.pod"
-        ],
-        "doc\\man\\man3\\i2d_PKCS7_bio_stream.3" => [
-            ".\\doc\\man3\\i2d_PKCS7_bio_stream.pod"
+        "doc\\man\\man3\\i2d_ASN1_bio_stream.3" => [
+            ".\\doc\\man3\\i2d_ASN1_bio_stream.pod"
         ],
         "doc\\man\\man3\\i2d_re_X509_tbs.3" => [
             ".\\doc\\man3\\i2d_re_X509_tbs.pod"
@@ -8140,6 +8168,9 @@ our %unified_info = (
         "doc\\man\\man7\\openssl_user_macros.7" => [
             "doc\\man7\\openssl_user_macros.pod"
         ],
+        "doc\\man\\man7\\ossl-guide-dtlsv13.7" => [
+            ".\\doc\\man7\\ossl-guide-dtlsv13.pod"
+        ],
         "doc\\man\\man7\\ossl-guide-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-introduction.pod"
         ],
@@ -8384,6 +8415,9 @@ our %unified_info = (
             "libcrypto.a"
         ],
         "fuzz\\x509-test" => [
+            "libcrypto.a"
+        ],
+        "fuzz\\x509v3-test" => [
             "libcrypto.a"
         ],
         "include\\openssl\\core_names.h" => [
@@ -9395,6 +9429,10 @@ our %unified_info = (
             "libcrypto.a",
             "test\\libtestutil.a"
         ],
+        "test\\cmp_extracerts_dos_test" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
         "test\\cmp_hdr_test" => [
             "libcrypto.a",
             "test\\libtestutil.a"
@@ -9500,6 +9538,11 @@ our %unified_info = (
             "libssl.a",
             "test\\libtestutil.a"
         ],
+        "test\\dtls13_internal_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
         "test\\dtls_ccs_reorder_test" => [
             "libcrypto",
             "libssl",
@@ -9510,12 +9553,23 @@ our %unified_info = (
             "libssl",
             "test\\libtestutil.a"
         ],
+        "test\\dtls_multithread_test" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\dtlsssllistenertest" => [
+            "libcrypto.a",
+            "libssl.a",
+            "test\\libtestutil.a"
+        ],
         "test\\dtlstest" => [
             "libcrypto",
             "libssl",
             "test\\libtestutil.a"
         ],
         "test\\dtlsv1listentest" => [
+            "libcrypto",
             "libssl",
             "test\\libtestutil.a"
         ],
@@ -9543,6 +9597,10 @@ our %unified_info = (
         ],
         "test\\ectest" => [
             "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\endecode_api_test" => [
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\endecode_test" => [
@@ -12739,7 +12797,8 @@ our %unified_info = (
                     "fuzz\\slh-dsa-test",
                     "fuzz\\smime-test",
                     "fuzz\\v3name-test",
-                    "fuzz\\x509-test"
+                    "fuzz\\x509-test",
+                    "fuzz\\x509v3-test"
                 ]
             }
         },
@@ -12747,6 +12806,7 @@ our %unified_info = (
             "deps" => [
                 "ms\\openssl-bin-applink.o",
                 "ms\\ec_internal_test-bin-applink.o",
+                "ms\\endecode_api_test-bin-applink.o",
                 "ms\\evp_extra_test2-bin-applink.o",
                 "ms\\libcrypto-lib-uplink.o",
                 "ms\\libcrypto-shlib-uplink.o"
@@ -12755,6 +12815,7 @@ our %unified_info = (
                 "bin" => [
                     "apps\\openssl",
                     "test\\ec_internal_test",
+                    "test\\endecode_api_test",
                     "test\\evp_extra_test2"
                 ],
                 "lib" => [
@@ -13173,11 +13234,16 @@ our %unified_info = (
         },
         "ssl" => {
             "deps" => [
+                "ssl\\tls13secretstest-bin-d1_transcript.o",
                 "ssl\\tls13secretstest-bin-tls13_enc.o",
                 "ssl\\libssl-lib-bio_ssl.o",
                 "ssl\\libssl-lib-d1_lib.o",
                 "ssl\\libssl-lib-d1_msg.o",
                 "ssl\\libssl-lib-d1_srtp.o",
+                "ssl\\libssl-lib-d1_transcript.o",
+                "ssl\\libssl-lib-dgram_demux.o",
+                "ssl\\libssl-lib-dtls_conn_lookup.o",
+                "ssl\\libssl-lib-dtls_record_rx.o",
                 "ssl\\libssl-lib-methods.o",
                 "ssl\\libssl-lib-pqueue.o",
                 "ssl\\libssl-lib-priority_queue.o",
@@ -13209,6 +13275,10 @@ our %unified_info = (
                 "ssl\\libssl-shlib-d1_lib.o",
                 "ssl\\libssl-shlib-d1_msg.o",
                 "ssl\\libssl-shlib-d1_srtp.o",
+                "ssl\\libssl-shlib-d1_transcript.o",
+                "ssl\\libssl-shlib-dgram_demux.o",
+                "ssl\\libssl-shlib-dtls_conn_lookup.o",
+                "ssl\\libssl-shlib-dtls_record_rx.o",
                 "ssl\\libssl-shlib-methods.o",
                 "ssl\\libssl-shlib-pqueue.o",
                 "ssl\\libssl-shlib-priority_queue.o",
@@ -13445,6 +13515,7 @@ our %unified_info = (
                 "test\\helpers\\cmp_asn_test-bin-cmp_testlib.o",
                 "test\\helpers\\cmp_client_test-bin-cmp_testlib.o",
                 "test\\helpers\\cmp_ctx_test-bin-cmp_testlib.o",
+                "test\\helpers\\cmp_extracerts_dos_test-bin-cmp_testlib.o",
                 "test\\helpers\\cmp_hdr_test-bin-cmp_testlib.o",
                 "test\\helpers\\cmp_msg_test-bin-cmp_testlib.o",
                 "test\\helpers\\cmp_protect_test-bin-cmp_testlib.o",
@@ -13455,7 +13526,10 @@ our %unified_info = (
                 "test\\helpers\\dtls12psk_test-bin-ssltestlib.o",
                 "test\\helpers\\dtls_ccs_reorder_test-bin-ssltestlib.o",
                 "test\\helpers\\dtls_mtu_test-bin-ssltestlib.o",
+                "test\\helpers\\dtls_multithread_test-bin-ssltestlib.o",
+                "test\\helpers\\dtlsssllistenertest-bin-ssltestlib.o",
                 "test\\helpers\\dtlstest-bin-ssltestlib.o",
+                "test\\helpers\\dtlsv1listentest-bin-ssltestlib.o",
                 "test\\helpers\\ech_corrupt_test-bin-ssltestlib.o",
                 "test\\helpers\\ech_test-bin-ssltestlib.o",
                 "test\\helpers\\endecode_test-bin-predefined_dhparams.o",
@@ -13516,6 +13590,7 @@ our %unified_info = (
                     "test\\cmp_asn_test",
                     "test\\cmp_client_test",
                     "test\\cmp_ctx_test",
+                    "test\\cmp_extracerts_dos_test",
                     "test\\cmp_hdr_test",
                     "test\\cmp_msg_test",
                     "test\\cmp_protect_test",
@@ -13526,7 +13601,10 @@ our %unified_info = (
                     "test\\dtls12psk_test",
                     "test\\dtls_ccs_reorder_test",
                     "test\\dtls_mtu_test",
+                    "test\\dtls_multithread_test",
+                    "test\\dtlsssllistenertest",
                     "test\\dtlstest",
+                    "test\\dtlsv1listentest",
                     "test\\ech_corrupt_test",
                     "test\\ech_test",
                     "test\\endecode_test",
@@ -13593,6 +13671,7 @@ our %unified_info = (
                 "test\\mfail\\smime-test-bin-mfail.o",
                 "test\\mfail\\v3name-test-bin-mfail.o",
                 "test\\mfail\\x509-test-bin-mfail.o",
+                "test\\mfail\\x509v3-test-bin-mfail.o",
                 "test\\mfail\\libtestutil-lib-mfail.o"
             ],
             "products" => {
@@ -13629,7 +13708,8 @@ our %unified_info = (
                     "fuzz\\slh-dsa-test",
                     "fuzz\\smime-test",
                     "fuzz\\v3name-test",
-                    "fuzz\\x509-test"
+                    "fuzz\\x509-test",
+                    "fuzz\\x509v3-test"
                 ],
                 "lib" => [
                     "test\\libtestutil.a"
@@ -13735,6 +13815,9 @@ our %unified_info = (
         ],
         "crypto\\aes\\aes-c64xplus.S" => [
             ".\\crypto\\aes\\asm\\aes-c64xplus.pl"
+        ],
+        "crypto\\aes\\aes-cbc-vaes-x86_64.s" => [
+            ".\\crypto\\aes\\asm\\aes-cbc-vaes-x86_64.pl"
         ],
         "crypto\\aes\\aes-cfb-avx512.s" => [
             ".\\crypto\\aes\\asm\\aes-cfb-avx512.pl"
@@ -16574,8 +16657,14 @@ our %unified_info = (
         "doc\\html\\man3\\X509_STORE_set_verify_cb_func.html" => [
             ".\\doc\\man3\\X509_STORE_set_verify_cb_func.pod"
         ],
+        "doc\\html\\man3\\X509_VERIFY_PARAM_set1_host.html" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set1_host.pod"
+        ],
         "doc\\html\\man3\\X509_VERIFY_PARAM_set_flags.html" => [
             ".\\doc\\man3\\X509_VERIFY_PARAM_set_flags.pod"
+        ],
+        "doc\\html\\man3\\X509_VERIFY_PARAM_set_hostflags.html" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set_hostflags.pod"
         ],
         "doc\\html\\man3\\X509_add_cert.html" => [
             ".\\doc\\man3\\X509_add_cert.pod"
@@ -16673,11 +16762,8 @@ our %unified_info = (
         "doc\\html\\man3\\d2i_X509.html" => [
             ".\\doc\\man3\\d2i_X509.pod"
         ],
-        "doc\\html\\man3\\i2d_CMS_bio_stream.html" => [
-            ".\\doc\\man3\\i2d_CMS_bio_stream.pod"
-        ],
-        "doc\\html\\man3\\i2d_PKCS7_bio_stream.html" => [
-            ".\\doc\\man3\\i2d_PKCS7_bio_stream.pod"
+        "doc\\html\\man3\\i2d_ASN1_bio_stream.html" => [
+            ".\\doc\\man3\\i2d_ASN1_bio_stream.pod"
         ],
         "doc\\html\\man3\\i2d_re_X509_tbs.html" => [
             ".\\doc\\man3\\i2d_re_X509_tbs.pod"
@@ -17077,6 +17163,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\openssl_user_macros.html" => [
             "doc\\man7\\openssl_user_macros.pod"
+        ],
+        "doc\\html\\man7\\ossl-guide-dtlsv13.html" => [
+            ".\\doc\\man7\\ossl-guide-dtlsv13.pod"
         ],
         "doc\\html\\man7\\ossl-guide-introduction.html" => [
             ".\\doc\\man7\\ossl-guide-introduction.pod"
@@ -19445,8 +19534,14 @@ our %unified_info = (
         "doc\\man\\man3\\X509_STORE_set_verify_cb_func.3" => [
             ".\\doc\\man3\\X509_STORE_set_verify_cb_func.pod"
         ],
+        "doc\\man\\man3\\X509_VERIFY_PARAM_set1_host.3" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set1_host.pod"
+        ],
         "doc\\man\\man3\\X509_VERIFY_PARAM_set_flags.3" => [
             ".\\doc\\man3\\X509_VERIFY_PARAM_set_flags.pod"
+        ],
+        "doc\\man\\man3\\X509_VERIFY_PARAM_set_hostflags.3" => [
+            ".\\doc\\man3\\X509_VERIFY_PARAM_set_hostflags.pod"
         ],
         "doc\\man\\man3\\X509_add_cert.3" => [
             ".\\doc\\man3\\X509_add_cert.pod"
@@ -19544,11 +19639,8 @@ our %unified_info = (
         "doc\\man\\man3\\d2i_X509.3" => [
             ".\\doc\\man3\\d2i_X509.pod"
         ],
-        "doc\\man\\man3\\i2d_CMS_bio_stream.3" => [
-            ".\\doc\\man3\\i2d_CMS_bio_stream.pod"
-        ],
-        "doc\\man\\man3\\i2d_PKCS7_bio_stream.3" => [
-            ".\\doc\\man3\\i2d_PKCS7_bio_stream.pod"
+        "doc\\man\\man3\\i2d_ASN1_bio_stream.3" => [
+            ".\\doc\\man3\\i2d_ASN1_bio_stream.pod"
         ],
         "doc\\man\\man3\\i2d_re_X509_tbs.3" => [
             ".\\doc\\man3\\i2d_re_X509_tbs.pod"
@@ -19948,6 +20040,9 @@ our %unified_info = (
         ],
         "doc\\man\\man7\\openssl_user_macros.7" => [
             "doc\\man7\\openssl_user_macros.pod"
+        ],
+        "doc\\man\\man7\\ossl-guide-dtlsv13.7" => [
+            ".\\doc\\man7\\ossl-guide-dtlsv13.pod"
         ],
         "doc\\man\\man7\\ossl-guide-introduction.7" => [
             ".\\doc\\man7\\ossl-guide-introduction.pod"
@@ -21582,7 +21677,9 @@ our %unified_info = (
             "doc\\html\\man3\\X509_STORE_get0_param.html",
             "doc\\html\\man3\\X509_STORE_new.html",
             "doc\\html\\man3\\X509_STORE_set_verify_cb_func.html",
+            "doc\\html\\man3\\X509_VERIFY_PARAM_set1_host.html",
             "doc\\html\\man3\\X509_VERIFY_PARAM_set_flags.html",
+            "doc\\html\\man3\\X509_VERIFY_PARAM_set_hostflags.html",
             "doc\\html\\man3\\X509_add_cert.html",
             "doc\\html\\man3\\X509_check_ca.html",
             "doc\\html\\man3\\X509_check_certificate_times.html",
@@ -21615,8 +21712,7 @@ our %unified_info = (
             "doc\\html\\man3\\d2i_RSAPrivateKey.html",
             "doc\\html\\man3\\d2i_SSL_SESSION.html",
             "doc\\html\\man3\\d2i_X509.html",
-            "doc\\html\\man3\\i2d_CMS_bio_stream.html",
-            "doc\\html\\man3\\i2d_PKCS7_bio_stream.html",
+            "doc\\html\\man3\\i2d_ASN1_bio_stream.html",
             "doc\\html\\man3\\i2d_re_X509_tbs.html",
             "doc\\html\\man3\\o2i_SCT_LIST.html",
             "doc\\html\\man3\\s2i_ASN1_IA5STRING.html"
@@ -21754,6 +21850,7 @@ our %unified_info = (
             "doc\\html\\man7\\openssl-quic.html",
             "doc\\html\\man7\\openssl-threads.html",
             "doc\\html\\man7\\openssl_user_macros.html",
+            "doc\\html\\man7\\ossl-guide-dtlsv13.html",
             "doc\\html\\man7\\ossl-guide-introduction.html",
             "doc\\html\\man7\\ossl-guide-libcrypto-introduction.html",
             "doc\\html\\man7\\ossl-guide-libraries-introduction.html",
@@ -23066,6 +23163,12 @@ our %unified_info = (
             ".\\test\\mfail"
         ],
         "fuzz\\x509-test" => [
+            "include",
+            "test\\mfail",
+            ".\\include",
+            ".\\test\\mfail"
+        ],
+        "fuzz\\x509v3-test" => [
             "include",
             "test\\mfail",
             ".\\include",
@@ -24429,6 +24532,14 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\cmp_extracerts_dos_test" => [
+            ".",
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\cmp_hdr_test" => [
             ".",
             "include",
@@ -24613,6 +24724,14 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\dtls13_internal_test" => [
+            ".",
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\dtls_ccs_reorder_test" => [
             "include",
             "apps\\include",
@@ -24624,6 +24743,18 @@ our %unified_info = (
             "include",
             "apps\\include",
             ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\dtls_multithread_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\dtlsssllistenertest" => [
+            "include",
+            "apps\\include",
             ".\\include",
             ".\\apps\\include"
         ],
@@ -24672,6 +24803,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\ectest" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\endecode_api_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -24883,6 +25020,14 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\helpers\\cmp_extracerts_dos_test-bin-cmp_testlib.o" => [
+            ".",
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\helpers\\cmp_hdr_test-bin-cmp_testlib.o" => [
             ".",
             "include",
@@ -24957,7 +25102,25 @@ our %unified_info = (
             ".",
             ".\\include"
         ],
+        "test\\helpers\\dtls_multithread_test-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
+        "test\\helpers\\dtlsssllistenertest-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
         "test\\helpers\\dtlstest-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
+        "test\\helpers\\dtlsv1listentest-bin-ssltestlib.o" => [
             ".",
             "include",
             ".",
@@ -26886,7 +27049,9 @@ our %unified_info = (
             "doc\\man\\man3\\X509_STORE_get0_param.3",
             "doc\\man\\man3\\X509_STORE_new.3",
             "doc\\man\\man3\\X509_STORE_set_verify_cb_func.3",
+            "doc\\man\\man3\\X509_VERIFY_PARAM_set1_host.3",
             "doc\\man\\man3\\X509_VERIFY_PARAM_set_flags.3",
+            "doc\\man\\man3\\X509_VERIFY_PARAM_set_hostflags.3",
             "doc\\man\\man3\\X509_add_cert.3",
             "doc\\man\\man3\\X509_check_ca.3",
             "doc\\man\\man3\\X509_check_certificate_times.3",
@@ -26919,8 +27084,7 @@ our %unified_info = (
             "doc\\man\\man3\\d2i_RSAPrivateKey.3",
             "doc\\man\\man3\\d2i_SSL_SESSION.3",
             "doc\\man\\man3\\d2i_X509.3",
-            "doc\\man\\man3\\i2d_CMS_bio_stream.3",
-            "doc\\man\\man3\\i2d_PKCS7_bio_stream.3",
+            "doc\\man\\man3\\i2d_ASN1_bio_stream.3",
             "doc\\man\\man3\\i2d_re_X509_tbs.3",
             "doc\\man\\man3\\o2i_SCT_LIST.3",
             "doc\\man\\man3\\s2i_ASN1_IA5STRING.3"
@@ -27058,6 +27222,7 @@ our %unified_info = (
             "doc\\man\\man7\\openssl-quic.7",
             "doc\\man\\man7\\openssl-threads.7",
             "doc\\man\\man7\\openssl_user_macros.7",
+            "doc\\man\\man7\\ossl-guide-dtlsv13.7",
             "doc\\man\\man7\\ossl-guide-introduction.7",
             "doc\\man\\man7\\ossl-guide-libcrypto-introduction.7",
             "doc\\man\\man7\\ossl-guide-libraries-introduction.7",
@@ -27141,6 +27306,7 @@ our %unified_info = (
         "fuzz\\smime-test",
         "fuzz\\v3name-test",
         "fuzz\\x509-test",
+        "fuzz\\x509v3-test",
         "test\\aborttest",
         "test\\aesgcmtest",
         "test\\aeswrap_test",
@@ -27265,6 +27431,7 @@ our %unified_info = (
         "test\\cmp_asn_test",
         "test\\cmp_client_test",
         "test\\cmp_ctx_test",
+        "test\\cmp_extracerts_dos_test",
         "test\\cmp_hdr_test",
         "test\\cmp_msg_test",
         "test\\cmp_protect_test",
@@ -27291,8 +27458,11 @@ our %unified_info = (
         "test\\dsa_no_digest_size_test",
         "test\\dsatest",
         "test\\dtls12psk_test",
+        "test\\dtls13_internal_test",
         "test\\dtls_ccs_reorder_test",
         "test\\dtls_mtu_test",
+        "test\\dtls_multithread_test",
+        "test\\dtlsssllistenertest",
         "test\\dtlstest",
         "test\\dtlsv1listentest",
         "test\\ec_internal_test",
@@ -27301,6 +27471,7 @@ our %unified_info = (
         "test\\ech_test",
         "test\\ecstresstest",
         "test\\ectest",
+        "test\\endecode_api_test",
         "test\\endecode_test",
         "test\\endecoder_legacy_test",
         "test\\engine_stubs_test",
@@ -28315,6 +28486,10 @@ our %unified_info = (
             "ssl\\libssl-shlib-d1_lib.o",
             "ssl\\libssl-shlib-d1_msg.o",
             "ssl\\libssl-shlib-d1_srtp.o",
+            "ssl\\libssl-shlib-d1_transcript.o",
+            "ssl\\libssl-shlib-dgram_demux.o",
+            "ssl\\libssl-shlib-dtls_conn_lookup.o",
+            "ssl\\libssl-shlib-dtls_record_rx.o",
             "ssl\\libssl-shlib-methods.o",
             "ssl\\libssl-shlib-pqueue.o",
             "ssl\\libssl-shlib-priority_queue.o",
@@ -34049,6 +34224,17 @@ our %unified_info = (
         "fuzz\\x509-test-bin-x509.o" => [
             ".\\fuzz\\x509.c"
         ],
+        "fuzz\\x509v3-test" => [
+            "fuzz\\x509v3-test-bin-test-corpus.o",
+            "fuzz\\x509v3-test-bin-x509v3.o",
+            "test\\mfail\\x509v3-test-bin-mfail.o"
+        ],
+        "fuzz\\x509v3-test-bin-test-corpus.o" => [
+            ".\\fuzz\\test-corpus.c"
+        ],
+        "fuzz\\x509v3-test-bin-x509v3.o" => [
+            ".\\fuzz\\x509v3.c"
+        ],
         "libcrypto" => [
             "crypto\\aes\\libcrypto-lib-aes-586.o",
             "crypto\\aes\\libcrypto-lib-aes_cbc_vaes_intrinsic.o",
@@ -34865,6 +35051,10 @@ our %unified_info = (
             "ssl\\libssl-lib-d1_lib.o",
             "ssl\\libssl-lib-d1_msg.o",
             "ssl\\libssl-lib-d1_srtp.o",
+            "ssl\\libssl-lib-d1_transcript.o",
+            "ssl\\libssl-lib-dgram_demux.o",
+            "ssl\\libssl-lib-dtls_conn_lookup.o",
+            "ssl\\libssl-lib-dtls_record_rx.o",
             "ssl\\libssl-lib-methods.o",
             "ssl\\libssl-lib-pqueue.o",
             "ssl\\libssl-lib-priority_queue.o",
@@ -34959,6 +35149,9 @@ our %unified_info = (
             "libssl.rc"
         ],
         "ms\\ec_internal_test-bin-applink.o" => [
+            ".\\ms\\applink.c"
+        ],
+        "ms\\endecode_api_test-bin-applink.o" => [
             ".\\ms\\applink.c"
         ],
         "ms\\evp_extra_test2-bin-applink.o" => [
@@ -35969,6 +36162,18 @@ our %unified_info = (
         "ssl\\libssl-lib-d1_srtp.o" => [
             ".\\ssl\\d1_srtp.c"
         ],
+        "ssl\\libssl-lib-d1_transcript.o" => [
+            ".\\ssl\\d1_transcript.c"
+        ],
+        "ssl\\libssl-lib-dgram_demux.o" => [
+            ".\\ssl\\dgram_demux.c"
+        ],
+        "ssl\\libssl-lib-dtls_conn_lookup.o" => [
+            ".\\ssl\\dtls_conn_lookup.c"
+        ],
+        "ssl\\libssl-lib-dtls_record_rx.o" => [
+            ".\\ssl\\dtls_record_rx.c"
+        ],
         "ssl\\libssl-lib-methods.o" => [
             ".\\ssl\\methods.c"
         ],
@@ -36061,6 +36266,18 @@ our %unified_info = (
         ],
         "ssl\\libssl-shlib-d1_srtp.o" => [
             ".\\ssl\\d1_srtp.c"
+        ],
+        "ssl\\libssl-shlib-d1_transcript.o" => [
+            ".\\ssl\\d1_transcript.c"
+        ],
+        "ssl\\libssl-shlib-dgram_demux.o" => [
+            ".\\ssl\\dgram_demux.c"
+        ],
+        "ssl\\libssl-shlib-dtls_conn_lookup.o" => [
+            ".\\ssl\\dtls_conn_lookup.c"
+        ],
+        "ssl\\libssl-shlib-dtls_record_rx.o" => [
+            ".\\ssl\\dtls_record_rx.c"
         ],
         "ssl\\libssl-shlib-methods.o" => [
             ".\\ssl\\methods.c"
@@ -36526,6 +36743,9 @@ our %unified_info = (
         ],
         "ssl\\statem\\libssl-shlib-statem_srvr.o" => [
             ".\\ssl\\statem\\statem_srvr.c"
+        ],
+        "ssl\\tls13secretstest-bin-d1_transcript.o" => [
+            ".\\ssl\\d1_transcript.c"
         ],
         "ssl\\tls13secretstest-bin-tls13_enc.o" => [
             ".\\ssl\\tls13_enc.c"
@@ -37292,6 +37512,13 @@ our %unified_info = (
         "test\\cmp_ctx_test-bin-cmp_ctx_test.o" => [
             ".\\test\\cmp_ctx_test.c"
         ],
+        "test\\cmp_extracerts_dos_test" => [
+            "test\\cmp_extracerts_dos_test-bin-cmp_extracerts_dos_test.o",
+            "test\\helpers\\cmp_extracerts_dos_test-bin-cmp_testlib.o"
+        ],
+        "test\\cmp_extracerts_dos_test-bin-cmp_extracerts_dos_test.o" => [
+            ".\\test\\cmp_extracerts_dos_test.c"
+        ],
         "test\\cmp_hdr_test" => [
             "test\\cmp_hdr_test-bin-cmp_hdr_test.o",
             "test\\helpers\\cmp_hdr_test-bin-cmp_testlib.o"
@@ -37456,6 +37683,12 @@ our %unified_info = (
         "test\\dtls12psk_test-bin-dtls12psk.o" => [
             ".\\test\\dtls12psk.c"
         ],
+        "test\\dtls13_internal_test" => [
+            "test\\dtls13_internal_test-bin-dtls13_internal_test.o"
+        ],
+        "test\\dtls13_internal_test-bin-dtls13_internal_test.o" => [
+            ".\\test\\dtls13_internal_test.c"
+        ],
         "test\\dtls_ccs_reorder_test" => [
             "test\\dtls_ccs_reorder_test-bin-dtls_ccs_reorder_test.o",
             "test\\helpers\\dtls_ccs_reorder_test-bin-ssltestlib.o"
@@ -37470,6 +37703,20 @@ our %unified_info = (
         "test\\dtls_mtu_test-bin-dtls_mtu_test.o" => [
             ".\\test\\dtls_mtu_test.c"
         ],
+        "test\\dtls_multithread_test" => [
+            "test\\dtls_multithread_test-bin-dtls_multithread_test.o",
+            "test\\helpers\\dtls_multithread_test-bin-ssltestlib.o"
+        ],
+        "test\\dtls_multithread_test-bin-dtls_multithread_test.o" => [
+            ".\\test\\dtls_multithread_test.c"
+        ],
+        "test\\dtlsssllistenertest" => [
+            "test\\dtlsssllistenertest-bin-dtlsssllistenertest.o",
+            "test\\helpers\\dtlsssllistenertest-bin-ssltestlib.o"
+        ],
+        "test\\dtlsssllistenertest-bin-dtlsssllistenertest.o" => [
+            ".\\test\\dtlsssllistenertest.c"
+        ],
         "test\\dtlstest" => [
             "test\\dtlstest-bin-dtlstest.o",
             "test\\helpers\\dtlstest-bin-ssltestlib.o"
@@ -37478,7 +37725,8 @@ our %unified_info = (
             ".\\test\\dtlstest.c"
         ],
         "test\\dtlsv1listentest" => [
-            "test\\dtlsv1listentest-bin-dtlsv1listentest.o"
+            "test\\dtlsv1listentest-bin-dtlsv1listentest.o",
+            "test\\helpers\\dtlsv1listentest-bin-ssltestlib.o"
         ],
         "test\\dtlsv1listentest-bin-dtlsv1listentest.o" => [
             ".\\test\\dtlsv1listentest.c"
@@ -37521,6 +37769,13 @@ our %unified_info = (
         ],
         "test\\ectest-bin-ectest.o" => [
             ".\\test\\ectest.c"
+        ],
+        "test\\endecode_api_test" => [
+            "ms\\endecode_api_test-bin-applink.o",
+            "test\\endecode_api_test-bin-endecode_api_test.o"
+        ],
+        "test\\endecode_api_test-bin-endecode_api_test.o" => [
+            ".\\test\\endecode_api_test.c"
         ],
         "test\\endecode_test" => [
             "providers\\endecode_test-bin-legacyprov.o",
@@ -37715,6 +37970,9 @@ our %unified_info = (
         "test\\helpers\\cmp_ctx_test-bin-cmp_testlib.o" => [
             ".\\test\\helpers\\cmp_testlib.c"
         ],
+        "test\\helpers\\cmp_extracerts_dos_test-bin-cmp_testlib.o" => [
+            ".\\test\\helpers\\cmp_testlib.c"
+        ],
         "test\\helpers\\cmp_hdr_test-bin-cmp_testlib.o" => [
             ".\\test\\helpers\\cmp_testlib.c"
         ],
@@ -37745,7 +38003,16 @@ our %unified_info = (
         "test\\helpers\\dtls_mtu_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
+        "test\\helpers\\dtls_multithread_test-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
+        "test\\helpers\\dtlsssllistenertest-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
         "test\\helpers\\dtlstest-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
+        "test\\helpers\\dtlsv1listentest-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
         "test\\helpers\\ech_corrupt_test-bin-ssltestlib.o" => [
@@ -38140,6 +38407,9 @@ our %unified_info = (
             ".\\test\\mfail\\mfail.c"
         ],
         "test\\mfail\\x509-test-bin-mfail.o" => [
+            ".\\test\\mfail\\mfail.c"
+        ],
+        "test\\mfail\\x509v3-test-bin-mfail.o" => [
             ".\\test\\mfail\\mfail.c"
         ],
         "test\\ml_dsa_internal_test" => [
@@ -38990,6 +39260,7 @@ our %unified_info = (
         "test\\tls13secretstest" => [
             "crypto\\tls13secretstest-bin-packet.o",
             "crypto\\tls13secretstest-bin-quic_vlint.o",
+            "ssl\\tls13secretstest-bin-d1_transcript.o",
             "ssl\\tls13secretstest-bin-tls13_enc.o",
             "test\\tls13secretstest-bin-tls13secretstest.o"
         ],
@@ -39135,7 +39406,8 @@ our %available_protocols = (
 ],
     dtls => [
     "dtls1",
-    "dtls1_2"
+    "dtls1_2",
+    "dtls1_3"
 ],
 );
 
