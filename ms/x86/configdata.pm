@@ -44,7 +44,7 @@ our %config = (
     "PERL" => "C:\\Strawberry\\perl\\bin\\perl.exe",
     "RC" => "rc",
     "RCFLAGS" => [],
-    "api" => "40100",
+    "api" => "40200",
     "b32" => "1",
     "b64" => "0",
     "b64l" => "0",
@@ -56,6 +56,7 @@ our %config = (
     ],
     "build_infos" => [
         ".\\build.info",
+        ".\\crypto\\err\\openssl.ec",
         ".\\crypto\\build.info",
         ".\\ssl\\build.info",
         ".\\apps\\build.info",
@@ -174,7 +175,7 @@ our %config = (
         "NDEBUG"
     ],
     "ex_libs" => [],
-    "full_version" => "4.1.0-dev",
+    "full_version" => "4.2.0-dev",
     "includes" => [],
     "lflags" => [],
     "lib_defines" => [
@@ -185,9 +186,9 @@ our %config = (
     "makedep_scheme" => "VC",
     "makedepcmd" => "\$(CC) /Zs /showIncludes",
     "manpage_format" => "roff",
-    "minor" => "1",
+    "minor" => "2",
     "openssl_api_defines" => [
-        "OPENSSL_CONFIGURED_API=40100"
+        "OPENSSL_CONFIGURED_API=40200"
     ],
     "openssl_disabled_algorithms" => [
         "BROTLI",
@@ -345,7 +346,7 @@ our %config = (
     "shlib_version" => "4",
     "sourcedir" => ".",
     "target" => "VC-WIN32",
-    "version" => "4.1.0"
+    "version" => "4.2.0"
 );
 our %target = (
     "AR" => "lib",
@@ -1140,6 +1141,9 @@ our %unified_info = (
             "test\\bio_meth_test" => {
                 "noinst" => "1"
             },
+            "test\\bio_ndef_test" => {
+                "noinst" => "1"
+            },
             "test\\bio_prefix_text" => {
                 "noinst" => "1"
             },
@@ -1288,9 +1292,6 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\buildtest_c_modes" => {
-                "noinst" => "1"
-            },
-            "test\\buildtest_c_obj_mac" => {
                 "noinst" => "1"
             },
             "test\\buildtest_c_objects" => {
@@ -1476,6 +1477,9 @@ our %unified_info = (
             "test\\ct_test" => {
                 "noinst" => "1"
             },
+            "test\\ct_validation_helpers_test" => {
+                "noinst" => "1"
+            },
             "test\\ctype_internal_test" => {
                 "noinst" => "1"
             },
@@ -1543,6 +1547,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\ech_test" => {
+                "noinst" => "1"
+            },
+            "test\\ecparam_test" => {
                 "noinst" => "1"
             },
             "test\\ecstresstest" => {
@@ -1621,6 +1628,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\fips_version_test" => {
+                "noinst" => "1"
+            },
+            "test\\genec_test" => {
                 "noinst" => "1"
             },
             "test\\gmdifftest" => {
@@ -2207,37 +2217,111 @@ our %unified_info = (
     "depends" => {
         "" => [
             "OpenSSLConfigVersion.cmake",
+            "crypto\\sslerr.h",
             "exporters\\OpenSSLConfigVersion.cmake",
             "exporters\\openssl.pc",
+            "include\\crypto\\asn1err.h",
+            "include\\crypto\\asyncerr.h",
+            "include\\crypto\\bioerr.h",
+            "include\\crypto\\bnerr.h",
+            "include\\crypto\\buffererr.h",
+            "include\\crypto\\cmperr.h",
+            "include\\crypto\\cmserr.h",
+            "include\\crypto\\comperr.h",
+            "include\\crypto\\conferr.h",
+            "include\\crypto\\crmferr.h",
+            "include\\crypto\\cryptoerr.h",
+            "include\\crypto\\cterr.h",
+            "include\\crypto\\decodererr.h",
+            "include\\crypto\\dherr.h",
+            "include\\crypto\\dsaerr.h",
             "include\\crypto\\dso_conf.h",
+            "include\\crypto\\ec_params.h",
+            "include\\crypto\\ecerr.h",
+            "include\\crypto\\encodererr.h",
+            "include\\crypto\\esserr.h",
+            "include\\crypto\\evperr.h",
+            "include\\crypto\\httperr.h",
+            "include\\crypto\\objectserr.h",
+            "include\\crypto\\ocsperr.h",
+            "include\\crypto\\pemerr.h",
+            "include\\crypto\\pkcs12err.h",
+            "include\\crypto\\pkcs7err.h",
+            "include\\crypto\\randerr.h",
+            "include\\crypto\\rsa_params.h",
+            "include\\crypto\\rsaerr.h",
+            "include\\crypto\\sm2err.h",
+            "include\\crypto\\storeerr.h",
+            "include\\crypto\\tserr.h",
+            "include\\crypto\\uierr.h",
+            "include\\crypto\\x509err.h",
+            "include\\crypto\\x509v3err.h",
+            "include\\internal\\dsoerr.h",
+            "include\\internal\\propertyerr.h",
             "include\\openssl\\asn1.h",
+            "include\\openssl\\asn1err.h",
             "include\\openssl\\asn1t.h",
+            "include\\openssl\\asyncerr.h",
             "include\\openssl\\bio.h",
+            "include\\openssl\\bioerr.h",
+            "include\\openssl\\bnerr.h",
+            "include\\openssl\\buffererr.h",
             "include\\openssl\\cmp.h",
+            "include\\openssl\\cmperr.h",
             "include\\openssl\\cms.h",
+            "include\\openssl\\cmserr.h",
             "include\\openssl\\comp.h",
+            "include\\openssl\\comperr.h",
             "include\\openssl\\conf.h",
+            "include\\openssl\\conferr.h",
             "include\\openssl\\core_names.h",
             "include\\openssl\\crmf.h",
+            "include\\openssl\\crmferr.h",
             "include\\openssl\\crypto.h",
+            "include\\openssl\\cryptoerr.h",
             "include\\openssl\\ct.h",
+            "include\\openssl\\cterr.h",
+            "include\\openssl\\decodererr.h",
+            "include\\openssl\\dherr.h",
+            "include\\openssl\\dsaerr.h",
+            "include\\openssl\\ecerr.h",
+            "include\\openssl\\encodererr.h",
             "include\\openssl\\err.h",
             "include\\openssl\\ess.h",
+            "include\\openssl\\esserr.h",
+            "include\\openssl\\evperr.h",
             "include\\openssl\\fipskey.h",
+            "include\\openssl\\httperr.h",
             "include\\openssl\\lhash.h",
+            "include\\openssl\\obj_mac.h",
+            "include\\openssl\\objectserr.h",
             "include\\openssl\\ocsp.h",
+            "include\\openssl\\ocsperr.h",
             "include\\openssl\\opensslv.h",
+            "include\\openssl\\pemerr.h",
             "include\\openssl\\pkcs12.h",
+            "include\\openssl\\pkcs12err.h",
             "include\\openssl\\pkcs7.h",
+            "include\\openssl\\pkcs7err.h",
+            "include\\openssl\\proverr.h",
+            "include\\openssl\\randerr.h",
+            "include\\openssl\\rsaerr.h",
             "include\\openssl\\safestack.h",
             "include\\openssl\\srp.h",
             "include\\openssl\\ssl.h",
+            "include\\openssl\\sslerr.h",
+            "include\\openssl\\storeerr.h",
+            "include\\openssl\\tserr.h",
             "include\\openssl\\ui.h",
+            "include\\openssl\\uierr.h",
             "include\\openssl\\x509.h",
             "include\\openssl\\x509_acert.h",
             "include\\openssl\\x509_vfy.h",
+            "include\\openssl\\x509err.h",
             "include\\openssl\\x509v3.h",
+            "include\\openssl\\x509v3err.h",
             "openssl.pc",
+            "providers\\common\\include\\prov\\proverr.h",
             "providers\\implementations\\asymciphers\\rsa_enc.inc",
             "providers\\implementations\\asymciphers\\sm2_enc.inc",
             "providers\\implementations\\ciphers\\cipher_aes_cbc_hmac_sha.inc",
@@ -2249,9 +2333,14 @@ our %unified_info = (
             "providers\\implementations\\ciphers\\cipher_aes_xts.inc",
             "providers\\implementations\\ciphers\\cipher_chacha20.inc",
             "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.inc",
+            "providers\\implementations\\ciphers\\cipher_cts.inc",
+            "providers\\implementations\\ciphers\\cipher_des.inc",
             "providers\\implementations\\ciphers\\cipher_null.inc",
+            "providers\\implementations\\ciphers\\cipher_rc2.inc",
             "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.inc",
+            "providers\\implementations\\ciphers\\cipher_rc5.inc",
             "providers\\implementations\\ciphers\\cipher_sm4_xts.inc",
+            "providers\\implementations\\ciphers\\cipher_tdes.inc",
             "providers\\implementations\\ciphers\\ciphercommon.inc",
             "providers\\implementations\\ciphers\\ciphercommon_ccm.inc",
             "providers\\implementations\\ciphers\\ciphercommon_gcm.inc",
@@ -2564,21 +2653,53 @@ our %unified_info = (
         "crypto\\aes\\vpaes-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
+        "crypto\\asn1\\asn1_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\asn1\\libcrypto-lib-a_strex.o" => [
+            "crypto\\asn1\\charmap.h"
+        ],
+        "crypto\\asn1\\libcrypto-shlib-a_strex.o" => [
+            "crypto\\asn1\\charmap.h"
+        ],
+        "crypto\\async\\async_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "crypto\\bf\\bf-586.S" => [
             ".\\crypto\\perlasm\\cbc.pl",
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
+        "crypto\\bio\\bio_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "crypto\\bn\\bn-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
+        "crypto\\bn\\bn_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "crypto\\bn\\co-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
+        ],
+        "crypto\\bn\\libcrypto-lib-bn_prime.o" => [
+            "crypto\\bn\\bn_prime.h"
+        ],
+        "crypto\\bn\\libcrypto-shlib-bn_prime.o" => [
+            "crypto\\bn\\bn_prime.h"
         ],
         "crypto\\bn\\x86-gf2m.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
         "crypto\\bn\\x86-mont.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
+        ],
+        "crypto\\buffer\\buf_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
         ],
         "crypto\\camellia\\cmll-x86.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
@@ -2590,6 +2711,40 @@ our %unified_info = (
             ".\\crypto\\perlasm\\cbc.pl",
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
+        "crypto\\cmp\\cmp_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\cms\\cms_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\comp\\comp_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\conf\\conf_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\conf\\libcrypto-lib-conf_def.o" => [
+            "crypto\\conf\\conf_def.h"
+        ],
+        "crypto\\conf\\libcrypto-shlib-conf_def.o" => [
+            "crypto\\conf\\conf_def.h"
+        ],
+        "crypto\\cpt_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\crmf\\crmf_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\ct\\ct_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "crypto\\des\\crypt586.S" => [
             ".\\crypto\\perlasm\\cbc.pl",
             ".\\crypto\\perlasm\\x86asm.pl"
@@ -2597,6 +2752,42 @@ our %unified_info = (
         "crypto\\des\\des-586.S" => [
             ".\\crypto\\perlasm\\cbc.pl",
             ".\\crypto\\perlasm\\x86asm.pl"
+        ],
+        "crypto\\dh\\dh_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\dsa\\dsa_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\dso\\dso_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\ec\\ec_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\encode_decode\\decoder_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\encode_decode\\encoder_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\ess\\ess_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\evp\\evp_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\http\\http_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
         ],
         "crypto\\libcrypto-lib-cversion.o" => [
             "crypto\\buildinf.h"
@@ -2610,11 +2801,62 @@ our %unified_info = (
         "crypto\\libcrypto-shlib-info.o" => [
             "crypto\\buildinf.h"
         ],
+        "crypto\\objects\\libcrypto-lib-obj_dat.o" => [
+            "crypto\\objects\\obj_dat.h"
+        ],
+        "crypto\\objects\\libcrypto-lib-obj_xref.o" => [
+            "crypto\\objects\\obj_xref.h"
+        ],
+        "crypto\\objects\\libcrypto-shlib-obj_dat.o" => [
+            "crypto\\objects\\obj_dat.h"
+        ],
+        "crypto\\objects\\libcrypto-shlib-obj_xref.o" => [
+            "crypto\\objects\\obj_xref.h"
+        ],
+        "crypto\\objects\\obj_dat.h" => [
+            "include\\openssl\\obj_mac.h"
+        ],
+        "crypto\\objects\\obj_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\objects\\obj_xref.h" => [
+            ".\\crypto\\objects\\obj_mac.num",
+            ".\\crypto\\objects\\obj_xref.txt"
+        ],
+        "crypto\\ocsp\\ocsp_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\pem\\pem_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\pkcs12\\pk12err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\pkcs7\\pkcs7err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\property\\property_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\rand\\rand_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "crypto\\rc4\\rc4-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
         "crypto\\ripemd\\rmd-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
+        ],
+        "crypto\\rsa\\rsa_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
         ],
         "crypto\\sha\\sha1-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
@@ -2625,8 +2867,46 @@ our %unified_info = (
         "crypto\\sha\\sha512-586.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
         ],
+        "crypto\\sm2\\sm2_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\ssl_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\sslerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\store\\store_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\ts\\ts_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\ui\\ui_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "crypto\\whrlpool\\wp-mmx.S" => [
             ".\\crypto\\perlasm\\x86asm.pl"
+        ],
+        "crypto\\x509\\libcrypto-lib-v3_purp.o" => [
+            "crypto\\objects\\obj_dat.h"
+        ],
+        "crypto\\x509\\libcrypto-shlib-v3_purp.o" => [
+            "crypto\\objects\\obj_dat.h"
+        ],
+        "crypto\\x509\\v3err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "crypto\\x509\\x509_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
         ],
         "crypto\\x86cpuid.s" => [
             ".\\crypto\\perlasm\\x86asm.pl"
@@ -4640,6 +4920,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\UI_new.html" => [
             ".\\doc\\man3\\UI_new.pod"
+        ],
+        "doc\\html\\man3\\X509V3_EXT_nconf_nid.html" => [
+            ".\\doc\\man3\\X509V3_EXT_nconf_nid.pod"
         ],
         "doc\\html\\man3\\X509V3_EXT_print.html" => [
             ".\\doc\\man3\\X509V3_EXT_print.pod"
@@ -7565,6 +7848,9 @@ our %unified_info = (
         "doc\\man\\man3\\UI_new.3" => [
             ".\\doc\\man3\\UI_new.pod"
         ],
+        "doc\\man\\man3\\X509V3_EXT_nconf_nid.3" => [
+            ".\\doc\\man3\\X509V3_EXT_nconf_nid.pod"
+        ],
         "doc\\man\\man3\\X509V3_EXT_print.3" => [
             ".\\doc\\man3\\X509V3_EXT_print.pod"
         ],
@@ -8420,8 +8706,295 @@ our %unified_info = (
         "fuzz\\x509v3-test" => [
             "libcrypto.a"
         ],
+        "include\\crypto\\asn1err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\asyncerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\bioerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\bnerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\buffererr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\cmperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\cmserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\comperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\conferr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\crmferr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\cryptoerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\cterr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\decodererr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\dherr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\dsaerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\ec_params.h" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "include\\crypto\\ecerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\encodererr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\esserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\evperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\httperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\objectserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\ocsperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\pemerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\pkcs12err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\pkcs7err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\randerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\rsa_params.h" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "include\\crypto\\rsaerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\sm2err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\storeerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\tserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\uierr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\x509err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\crypto\\x509v3err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\internal\\dsoerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\internal\\propertyerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\asn1err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\asyncerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\bioerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\bnerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\buffererr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\cmperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\cmserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\comperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\conferr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "include\\openssl\\core_names.h" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "include\\openssl\\crmferr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\cryptoerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\cterr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\decodererr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\dherr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\dsaerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\ecerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\encodererr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\esserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\evperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\httperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\obj_mac.h" => [
+            ".\\crypto\\objects\\obj_compat.h",
+            ".\\crypto\\objects\\obj_mac.num",
+            ".\\crypto\\objects\\objects.txt"
+        ],
+        "include\\openssl\\objectserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\ocsperr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\pemerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\pkcs12err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\pkcs7err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\proverr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\randerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\rsaerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\sslerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\storeerr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\tserr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\uierr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\x509err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "include\\openssl\\x509v3err.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
         ],
         "libcrypto.ld" => [
             ".\\util\\perl\\OpenSSL\\Ordinals.pm",
@@ -8607,6 +9180,14 @@ our %unified_info = (
             ".\\providers\\common\\der\\oids_to_c.pm",
             ".\\providers\\common\\der\\wrap.asn1"
         ],
+        "providers\\common\\include\\prov\\proverr.h" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
+        "providers\\common\\provider_err.c" => [
+            ".\\crypto\\err\\openssl.ec",
+            ".\\crypto\\err\\openssl.txt"
+        ],
         "providers\\implementations\\asymciphers\\rsa_enc.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
@@ -8640,13 +9221,28 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\ciphers\\cipher_cts.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_des.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\ciphers\\cipher_null.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_rc2.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\ciphers\\cipher_rc5.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\ciphers\\cipher_sm4_xts.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "providers\\implementations\\ciphers\\cipher_tdes.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
         "providers\\implementations\\ciphers\\ciphercommon.inc" => [
@@ -9035,6 +9631,10 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\bio_ndef_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
         "test\\bio_prefix_text" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -9054,6 +9654,9 @@ our %unified_info = (
         "test\\bn_internal_test" => [
             "libcrypto.a",
             "test\\libtestutil.a"
+        ],
+        "test\\bn_internal_test-bin-bn_internal_test.o" => [
+            "crypto\\bn\\bn_prime.h"
         ],
         "test\\bntest" => [
             "libcrypto",
@@ -9232,10 +9835,6 @@ our %unified_info = (
             "libssl"
         ],
         "test\\buildtest_c_modes" => [
-            "libcrypto",
-            "libssl"
-        ],
-        "test\\buildtest_c_obj_mac" => [
             "libcrypto",
             "libssl"
         ],
@@ -9488,6 +10087,10 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\ct_validation_helpers_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
         "test\\ctype_internal_test" => [
             "libcrypto.a",
             "test\\libtestutil.a"
@@ -9589,6 +10192,10 @@ our %unified_info = (
         "test\\ech_test" => [
             "libcrypto.a",
             "libssl.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\ecparam_test" => [
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\ecstresstest" => [
@@ -9700,6 +10307,10 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\fips_version_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
+        "test\\genec_test" => [
             "libcrypto",
             "test\\libtestutil.a"
         ],
@@ -13524,6 +14135,7 @@ our %unified_info = (
                 "test\\helpers\\cmp_vfy_test-bin-cmp_testlib.o",
                 "test\\helpers\\dsa_no_digest_size_test-bin-predefined_dsaparams.o",
                 "test\\helpers\\dtls12psk_test-bin-ssltestlib.o",
+                "test\\helpers\\dtls13_internal_test-bin-ssltestlib.o",
                 "test\\helpers\\dtls_ccs_reorder_test-bin-ssltestlib.o",
                 "test\\helpers\\dtls_mtu_test-bin-ssltestlib.o",
                 "test\\helpers\\dtls_multithread_test-bin-ssltestlib.o",
@@ -13599,6 +14211,7 @@ our %unified_info = (
                     "test\\cmp_vfy_test",
                     "test\\dsa_no_digest_size_test",
                     "test\\dtls12psk_test",
+                    "test\\dtls13_internal_test",
                     "test\\dtls_ccs_reorder_test",
                     "test\\dtls_mtu_test",
                     "test\\dtls_multithread_test",
@@ -13933,8 +14546,35 @@ our %unified_info = (
         "crypto\\armv4cpuid.S" => [
             ".\\crypto\\armv4cpuid.pl"
         ],
+        "crypto\\asn1\\asn1_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/asn1/asn1_err.c"
+        ],
+        "crypto\\asn1\\charmap.h" => [
+            ".\\crypto\\asn1\\charmap.pl"
+        ],
+        "crypto\\async\\async_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/async/async_err.c"
+        ],
         "crypto\\bf\\bf-586.S" => [
             ".\\crypto\\bf\\asm\\bf-586.pl"
+        ],
+        "crypto\\bio\\bio_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/bio/bio_err.c"
         ],
         "crypto\\bn\\alpha-mont.S" => [
             ".\\crypto\\bn\\asm\\alpha-mont.pl"
@@ -13959,6 +14599,17 @@ our %unified_info = (
         ],
         "crypto\\bn\\bn-ppc.s" => [
             ".\\crypto\\bn\\asm\\ppc.pl"
+        ],
+        "crypto\\bn\\bn_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/bn/bn_err.c"
+        ],
+        "crypto\\bn\\bn_prime.h" => [
+            ".\\crypto\\bn\\bn_prime.pl"
         ],
         "crypto\\bn\\co-586.S" => [
             ".\\crypto\\bn\\asm\\co-586.pl"
@@ -14044,6 +14695,14 @@ our %unified_info = (
         "crypto\\bn\\x86_64-mont5.s" => [
             ".\\crypto\\bn\\asm\\x86_64-mont5.pl"
         ],
+        "crypto\\buffer\\buf_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/buffer/buf_err.c"
+        ],
         "crypto\\buildinf.h" => [
             ".\\util\\mkbuildinf.pl",
             "\"\$(CC)",
@@ -14106,6 +14765,65 @@ our %unified_info = (
         "crypto\\chacha\\chachap10-ppc.s" => [
             ".\\crypto\\chacha\\asm\\chachap10-ppc.pl"
         ],
+        "crypto\\cmp\\cmp_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/cmp/cmp_err.c"
+        ],
+        "crypto\\cms\\cms_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/cms/cms_err.c"
+        ],
+        "crypto\\comp\\comp_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/comp/comp_err.c"
+        ],
+        "crypto\\conf\\conf_def.h" => [
+            ".\\crypto\\conf\\keysets.pl"
+        ],
+        "crypto\\conf\\conf_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/conf/conf_err.c"
+        ],
+        "crypto\\cpt_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/cpt_err.c"
+        ],
+        "crypto\\crmf\\crmf_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/crmf/crmf_err.c"
+        ],
+        "crypto\\ct\\ct_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/ct/ct_err.c"
+        ],
         "crypto\\des\\crypt586.S" => [
             ".\\crypto\\des\\asm\\crypt586.pl"
         ],
@@ -14117,6 +14835,38 @@ our %unified_info = (
         ],
         "crypto\\des\\dest4-sparcv9.S" => [
             ".\\crypto\\des\\asm\\dest4-sparcv9.pl"
+        ],
+        "crypto\\dh\\dh_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/dh/dh_err.c"
+        ],
+        "crypto\\dsa\\dsa_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/dsa/dsa_err.c"
+        ],
+        "crypto\\dso\\dso_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/dso/dso_err.c"
+        ],
+        "crypto\\ec\\ec_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/ec/ec_err.c"
         ],
         "crypto\\ec\\ecp_nistp384-ppc64.s" => [
             ".\\crypto\\ec\\asm\\ecp_nistp384-ppc64.pl"
@@ -14156,6 +14906,46 @@ our %unified_info = (
         ],
         "crypto\\ec\\x25519-x86_64.s" => [
             ".\\crypto\\ec\\asm\\x25519-x86_64.pl"
+        ],
+        "crypto\\encode_decode\\decoder_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/encode_decode/decoder_err.c"
+        ],
+        "crypto\\encode_decode\\encoder_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/encode_decode/encoder_err.c"
+        ],
+        "crypto\\ess\\ess_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/ess/ess_err.c"
+        ],
+        "crypto\\evp\\evp_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/evp/evp_err.c"
+        ],
+        "crypto\\http\\http_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/http/http_err.c"
         ],
         "crypto\\ia64cpuid.s" => [
             ".\\crypto\\ia64cpuid.S"
@@ -14248,8 +15038,57 @@ our %unified_info = (
         "crypto\\modes\\ghashv8-armx.S" => [
             ".\\crypto\\modes\\asm\\ghashv8-armx.pl"
         ],
+        "crypto\\objects\\obj_dat.h" => [
+            ".\\crypto\\objects\\obj_dat.pl",
+            "\$(BLDDIR)/include/openssl/obj_mac.h"
+        ],
+        "crypto\\objects\\obj_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/objects/obj_err.c"
+        ],
+        "crypto\\objects\\obj_xref.h" => [
+            ".\\crypto\\objects\\objxref.pl",
+            "\$(SRCDIR)/crypto/objects/obj_mac.num",
+            "\$(SRCDIR)/crypto/objects/obj_xref.txt"
+        ],
+        "crypto\\ocsp\\ocsp_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/ocsp/ocsp_err.c"
+        ],
         "crypto\\pariscid.s" => [
             ".\\crypto\\pariscid.pl"
+        ],
+        "crypto\\pem\\pem_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/pem/pem_err.c"
+        ],
+        "crypto\\pkcs12\\pk12err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/pkcs12/pk12err.c"
+        ],
+        "crypto\\pkcs7\\pkcs7err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/pkcs7/pkcs7err.c"
         ],
         "crypto\\poly1305\\poly1305-armv4.S" => [
             ".\\crypto\\poly1305\\asm\\poly1305-armv4.pl"
@@ -14290,6 +15129,22 @@ our %unified_info = (
         "crypto\\ppccpuid.s" => [
             ".\\crypto\\ppccpuid.pl"
         ],
+        "crypto\\property\\property_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/property/property_err.c"
+        ],
+        "crypto\\rand\\rand_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/rand/rand_err.c"
+        ],
         "crypto\\rc4\\rc4-586.S" => [
             ".\\crypto\\rc4\\asm\\rc4-586.pl"
         ],
@@ -14316,6 +15171,14 @@ our %unified_info = (
         ],
         "crypto\\riscv64cpuid.s" => [
             ".\\crypto\\riscv64cpuid.pl"
+        ],
+        "crypto\\rsa\\rsa_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/rsa/rsa_err.c"
         ],
         "crypto\\s390xcpuid.S" => [
             ".\\crypto\\s390xcpuid.pl"
@@ -14506,6 +15369,14 @@ our %unified_info = (
         "crypto\\sha\\sha512p8-ppc.s" => [
             ".\\crypto\\sha\\asm\\sha512p8-ppc.pl"
         ],
+        "crypto\\sm2\\sm2_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/sm2/sm2_err.c"
+        ],
         "crypto\\sm3\\sm3-armv8.S" => [
             ".\\crypto\\sm3\\asm\\sm3-armv8.pl"
         ],
@@ -14533,6 +15404,46 @@ our %unified_info = (
         "crypto\\sm4\\vpsm4_ex-armv8.S" => [
             ".\\crypto\\sm4\\asm\\vpsm4_ex-armv8.pl"
         ],
+        "crypto\\ssl_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/ssl_err.c"
+        ],
+        "crypto\\sslerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/sslerr.h"
+        ],
+        "crypto\\store\\store_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/store/store_err.c"
+        ],
+        "crypto\\ts\\ts_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/ts/ts_err.c"
+        ],
+        "crypto\\ui\\ui_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/ui/ui_err.c"
+        ],
         "crypto\\uplink-x86.S" => [
             ".\\ms\\uplink-x86.pl"
         ],
@@ -14544,6 +15455,22 @@ our %unified_info = (
         ],
         "crypto\\whrlpool\\wp-x86_64.s" => [
             ".\\crypto\\whrlpool\\asm\\wp-x86_64.pl"
+        ],
+        "crypto\\x509\\v3err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/x509/v3err.c"
+        ],
+        "crypto\\x509\\x509_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "crypto/x509/x509_err.c"
         ],
         "crypto\\x86_64cpuid.s" => [
             ".\\crypto\\x86_64cpuid.pl"
@@ -16560,6 +17487,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\UI_new.html" => [
             ".\\doc\\man3\\UI_new.pod"
+        ],
+        "doc\\html\\man3\\X509V3_EXT_nconf_nid.html" => [
+            ".\\doc\\man3\\X509V3_EXT_nconf_nid.pod"
         ],
         "doc\\html\\man3\\X509V3_EXT_print.html" => [
             ".\\doc\\man3\\X509V3_EXT_print.pod"
@@ -19438,6 +20368,9 @@ our %unified_info = (
         "doc\\man\\man3\\UI_new.3" => [
             ".\\doc\\man3\\UI_new.pod"
         ],
+        "doc\\man\\man3\\X509V3_EXT_nconf_nid.3" => [
+            ".\\doc\\man3\\X509V3_EXT_nconf_nid.pod"
+        ],
         "doc\\man\\man3\\X509V3_EXT_print.3" => [
             ".\\doc\\man3\\X509V3_EXT_print.pod"
         ],
@@ -20176,29 +21109,387 @@ our %unified_info = (
         "exporters\\openssl.pc" => [
             ".\\exporters\\pkg-config\\openssl.pc.in"
         ],
+        "include\\crypto\\asn1err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/asn1err.h"
+        ],
+        "include\\crypto\\asyncerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/asyncerr.h"
+        ],
+        "include\\crypto\\bioerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/bioerr.h"
+        ],
+        "include\\crypto\\bnerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/bnerr.h"
+        ],
+        "include\\crypto\\buffererr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/buffererr.h"
+        ],
+        "include\\crypto\\cmperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/cmperr.h"
+        ],
+        "include\\crypto\\cmserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/cmserr.h"
+        ],
+        "include\\crypto\\comperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/comperr.h"
+        ],
+        "include\\crypto\\conferr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/conferr.h"
+        ],
+        "include\\crypto\\crmferr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/crmferr.h"
+        ],
+        "include\\crypto\\cryptoerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/cryptoerr.h"
+        ],
+        "include\\crypto\\cterr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/cterr.h"
+        ],
+        "include\\crypto\\decodererr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/decodererr.h"
+        ],
+        "include\\crypto\\dherr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/dherr.h"
+        ],
+        "include\\crypto\\dsaerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/dsaerr.h"
+        ],
         "include\\crypto\\dso_conf.h" => [
             ".\\include\\crypto\\dso_conf.h.in"
+        ],
+        "include\\crypto\\ec_params.h" => [
+            ".\\include\\crypto\\ec_params.h.in"
+        ],
+        "include\\crypto\\ecerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/ecerr.h"
+        ],
+        "include\\crypto\\encodererr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/encodererr.h"
+        ],
+        "include\\crypto\\esserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/esserr.h"
+        ],
+        "include\\crypto\\evperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/evperr.h"
+        ],
+        "include\\crypto\\httperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/httperr.h"
+        ],
+        "include\\crypto\\objectserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/objectserr.h"
+        ],
+        "include\\crypto\\ocsperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/ocsperr.h"
+        ],
+        "include\\crypto\\pemerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/pemerr.h"
+        ],
+        "include\\crypto\\pkcs12err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/pkcs12err.h"
+        ],
+        "include\\crypto\\pkcs7err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/pkcs7err.h"
+        ],
+        "include\\crypto\\randerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/randerr.h"
+        ],
+        "include\\crypto\\rsa_params.h" => [
+            ".\\include\\crypto\\rsa_params.h.in"
+        ],
+        "include\\crypto\\rsaerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/rsaerr.h"
+        ],
+        "include\\crypto\\sm2err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/sm2err.h"
+        ],
+        "include\\crypto\\storeerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/storeerr.h"
+        ],
+        "include\\crypto\\tserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/tserr.h"
+        ],
+        "include\\crypto\\uierr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/uierr.h"
+        ],
+        "include\\crypto\\x509err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/x509err.h"
+        ],
+        "include\\crypto\\x509v3err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/crypto/x509v3err.h"
+        ],
+        "include\\internal\\dsoerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/internal/dsoerr.h"
+        ],
+        "include\\internal\\propertyerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/internal/propertyerr.h"
         ],
         "include\\openssl\\asn1.h" => [
             ".\\include\\openssl\\asn1.h.in"
         ],
+        "include\\openssl\\asn1err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/asn1err.h"
+        ],
         "include\\openssl\\asn1t.h" => [
             ".\\include\\openssl\\asn1t.h.in"
+        ],
+        "include\\openssl\\asyncerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/asyncerr.h"
         ],
         "include\\openssl\\bio.h" => [
             ".\\include\\openssl\\bio.h.in"
         ],
+        "include\\openssl\\bioerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/bioerr.h"
+        ],
+        "include\\openssl\\bnerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/bnerr.h"
+        ],
+        "include\\openssl\\buffererr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/buffererr.h"
+        ],
         "include\\openssl\\cmp.h" => [
             ".\\include\\openssl\\cmp.h.in"
+        ],
+        "include\\openssl\\cmperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/cmperr.h"
         ],
         "include\\openssl\\cms.h" => [
             ".\\include\\openssl\\cms.h.in"
         ],
+        "include\\openssl\\cmserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/cmserr.h"
+        ],
         "include\\openssl\\comp.h" => [
             ".\\include\\openssl\\comp.h.in"
         ],
+        "include\\openssl\\comperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/comperr.h"
+        ],
         "include\\openssl\\conf.h" => [
             ".\\include\\openssl\\conf.h.in"
+        ],
+        "include\\openssl\\conferr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/conferr.h"
         ],
         "include\\openssl\\configuration.h" => [
             ".\\include\\openssl\\configuration.h.in"
@@ -20209,11 +21500,75 @@ our %unified_info = (
         "include\\openssl\\crmf.h" => [
             ".\\include\\openssl\\crmf.h.in"
         ],
+        "include\\openssl\\crmferr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/crmferr.h"
+        ],
         "include\\openssl\\crypto.h" => [
             ".\\include\\openssl\\crypto.h.in"
         ],
+        "include\\openssl\\cryptoerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/cryptoerr.h"
+        ],
         "include\\openssl\\ct.h" => [
             ".\\include\\openssl\\ct.h.in"
+        ],
+        "include\\openssl\\cterr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/cterr.h"
+        ],
+        "include\\openssl\\decodererr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/decodererr.h"
+        ],
+        "include\\openssl\\dherr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/dherr.h"
+        ],
+        "include\\openssl\\dsaerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/dsaerr.h"
+        ],
+        "include\\openssl\\ecerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/ecerr.h"
+        ],
+        "include\\openssl\\encodererr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/encodererr.h"
         ],
         "include\\openssl\\err.h" => [
             ".\\include\\openssl\\err.h.in"
@@ -20221,23 +21576,118 @@ our %unified_info = (
         "include\\openssl\\ess.h" => [
             ".\\include\\openssl\\ess.h.in"
         ],
+        "include\\openssl\\esserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/esserr.h"
+        ],
+        "include\\openssl\\evperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/evperr.h"
+        ],
         "include\\openssl\\fipskey.h" => [
             ".\\include\\openssl\\fipskey.h.in"
+        ],
+        "include\\openssl\\httperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/httperr.h"
         ],
         "include\\openssl\\lhash.h" => [
             ".\\include\\openssl\\lhash.h.in"
         ],
+        "include\\openssl\\obj_mac.h" => [
+            ".\\crypto\\objects\\objects.pl",
+            "-a",
+            "\$(SRCDIR)/crypto/objects/obj_compat.h",
+            "\$(SRCDIR)/crypto/objects/objects.txt",
+            "\$(SRCDIR)/crypto/objects/obj_mac.num"
+        ],
+        "include\\openssl\\objectserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/objectserr.h"
+        ],
         "include\\openssl\\ocsp.h" => [
             ".\\include\\openssl\\ocsp.h.in"
+        ],
+        "include\\openssl\\ocsperr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/ocsperr.h"
         ],
         "include\\openssl\\opensslv.h" => [
             ".\\include\\openssl\\opensslv.h.in"
         ],
+        "include\\openssl\\pemerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/pemerr.h"
+        ],
         "include\\openssl\\pkcs12.h" => [
             ".\\include\\openssl\\pkcs12.h.in"
         ],
+        "include\\openssl\\pkcs12err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/pkcs12err.h"
+        ],
         "include\\openssl\\pkcs7.h" => [
             ".\\include\\openssl\\pkcs7.h.in"
+        ],
+        "include\\openssl\\pkcs7err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/pkcs7err.h"
+        ],
+        "include\\openssl\\proverr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/proverr.h"
+        ],
+        "include\\openssl\\randerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/randerr.h"
+        ],
+        "include\\openssl\\rsaerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/rsaerr.h"
         ],
         "include\\openssl\\safestack.h" => [
             ".\\include\\openssl\\safestack.h.in"
@@ -20248,8 +21698,40 @@ our %unified_info = (
         "include\\openssl\\ssl.h" => [
             ".\\include\\openssl\\ssl.h.in"
         ],
+        "include\\openssl\\sslerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/sslerr.h"
+        ],
+        "include\\openssl\\storeerr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/storeerr.h"
+        ],
+        "include\\openssl\\tserr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/tserr.h"
+        ],
         "include\\openssl\\ui.h" => [
             ".\\include\\openssl\\ui.h.in"
+        ],
+        "include\\openssl\\uierr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/uierr.h"
         ],
         "include\\openssl\\x509.h" => [
             ".\\include\\openssl\\x509.h.in"
@@ -20260,8 +21742,24 @@ our %unified_info = (
         "include\\openssl\\x509_vfy.h" => [
             ".\\include\\openssl\\x509_vfy.h.in"
         ],
+        "include\\openssl\\x509err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/x509err.h"
+        ],
         "include\\openssl\\x509v3.h" => [
             ".\\include\\openssl\\x509v3.h.in"
+        ],
+        "include\\openssl\\x509v3err.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "include/openssl/x509v3err.h"
         ],
         "installdata.pm" => [
             ".\\util\\mkinstallvars.pl",
@@ -20369,6 +21867,22 @@ our %unified_info = (
         "providers\\common\\include\\prov\\der_wrap.h" => [
             ".\\providers\\common\\include\\prov\\der_wrap.h.in"
         ],
+        "providers\\common\\include\\prov\\proverr.h" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "providers/common/include/prov/proverr.h"
+        ],
+        "providers\\common\\provider_err.c" => [
+            ".\\util\\mkerr.pl",
+            "-internal",
+            "-conf",
+            "\$(SRCDIR)/crypto/err/openssl.ec",
+            "-emit",
+            "providers/common/provider_err.c"
+        ],
         "providers\\implementations\\asymciphers\\rsa_enc.inc" => [
             ".\\providers\\implementations\\asymciphers\\rsa_enc.inc.in"
         ],
@@ -20402,14 +21916,29 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.inc" => [
             ".\\providers\\implementations\\ciphers\\cipher_chacha20_poly1305.inc.in"
         ],
+        "providers\\implementations\\ciphers\\cipher_cts.inc" => [
+            ".\\providers\\implementations\\ciphers\\cipher_cts.inc.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_des.inc" => [
+            ".\\providers\\implementations\\ciphers\\cipher_des.inc.in"
+        ],
         "providers\\implementations\\ciphers\\cipher_null.inc" => [
             ".\\providers\\implementations\\ciphers\\cipher_null.inc.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_rc2.inc" => [
+            ".\\providers\\implementations\\ciphers\\cipher_rc2.inc.in"
         ],
         "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.inc" => [
             ".\\providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.inc.in"
         ],
+        "providers\\implementations\\ciphers\\cipher_rc5.inc" => [
+            ".\\providers\\implementations\\ciphers\\cipher_rc5.inc.in"
+        ],
         "providers\\implementations\\ciphers\\cipher_sm4_xts.inc" => [
             ".\\providers\\implementations\\ciphers\\cipher_sm4_xts.inc.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_tdes.inc" => [
+            ".\\providers\\implementations\\ciphers\\cipher_tdes.inc.in"
         ],
         "providers\\implementations\\ciphers\\ciphercommon.inc" => [
             ".\\providers\\implementations\\ciphers\\ciphercommon.inc.in"
@@ -20823,10 +22352,6 @@ our %unified_info = (
         "test\\buildtest_modes.c" => [
             ".\\test\\generate_buildtest.pl",
             "modes"
-        ],
-        "test\\buildtest_obj_mac.c" => [
-            ".\\test\\generate_buildtest.pl",
-            "obj_mac"
         ],
         "test\\buildtest_objects.c" => [
             ".\\test\\generate_buildtest.pl",
@@ -21645,6 +23170,7 @@ our %unified_info = (
             "doc\\html\\man3\\UI_UTIL_read_pw.html",
             "doc\\html\\man3\\UI_create_method.html",
             "doc\\html\\man3\\UI_new.html",
+            "doc\\html\\man3\\X509V3_EXT_nconf_nid.html",
             "doc\\html\\man3\\X509V3_EXT_print.html",
             "doc\\html\\man3\\X509V3_get_d2i.html",
             "doc\\html\\man3\\X509V3_set_ctx.html",
@@ -22360,6 +23886,18 @@ our %unified_info = (
             "crypto",
             ".\\crypto"
         ],
+        "crypto\\asn1\\a_strex.o" => [
+            "crypto\\asn1",
+            ".\\crypto\\asn1"
+        ],
+        "crypto\\asn1\\libcrypto-lib-a_strex.o" => [
+            "crypto\\asn1",
+            ".\\crypto\\asn1"
+        ],
+        "crypto\\asn1\\libcrypto-shlib-a_strex.o" => [
+            "crypto\\asn1",
+            ".\\crypto\\asn1"
+        ],
         "crypto\\bn\\armv4-gf2m.o" => [
             "crypto",
             ".\\crypto"
@@ -22380,13 +23918,25 @@ our %unified_info = (
             "crypto",
             ".\\crypto"
         ],
+        "crypto\\bn\\bn_prime.o" => [
+            "crypto\\bn",
+            ".\\crypto\\bn"
+        ],
         "crypto\\bn\\libcrypto-lib-bn_exp.o" => [
             "crypto",
             ".\\crypto"
         ],
+        "crypto\\bn\\libcrypto-lib-bn_prime.o" => [
+            "crypto\\bn",
+            ".\\crypto\\bn"
+        ],
         "crypto\\bn\\libcrypto-shlib-bn_exp.o" => [
             "crypto",
             ".\\crypto"
+        ],
+        "crypto\\bn\\libcrypto-shlib-bn_prime.o" => [
+            "crypto\\bn",
+            ".\\crypto\\bn"
         ],
         "crypto\\bn\\mips-mont.o" => [
             "crypto",
@@ -22439,6 +23989,18 @@ our %unified_info = (
         "crypto\\chacha\\chacha-s390x.o" => [
             "crypto",
             ".\\crypto"
+        ],
+        "crypto\\conf\\conf_def.o" => [
+            "crypto\\conf",
+            ".\\crypto\\conf"
+        ],
+        "crypto\\conf\\libcrypto-lib-conf_def.o" => [
+            "crypto\\conf",
+            ".\\crypto\\conf"
+        ],
+        "crypto\\conf\\libcrypto-shlib-conf_def.o" => [
+            "crypto\\conf",
+            ".\\crypto\\conf"
         ],
         "crypto\\cversion.o" => [
             "crypto"
@@ -22622,17 +24184,29 @@ our %unified_info = (
         "crypto\\info.o" => [
             "crypto"
         ],
+        "crypto\\init.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
         "crypto\\libcrypto-lib-cversion.o" => [
             "crypto"
         ],
         "crypto\\libcrypto-lib-info.o" => [
             "crypto"
         ],
+        "crypto\\libcrypto-lib-init.o" => [
+            "crypto",
+            ".\\crypto"
+        ],
         "crypto\\libcrypto-shlib-cversion.o" => [
             "crypto"
         ],
         "crypto\\libcrypto-shlib-info.o" => [
             "crypto"
+        ],
+        "crypto\\libcrypto-shlib-init.o" => [
+            "crypto",
+            ".\\crypto"
         ],
         "crypto\\md5\\md5-aarch64.o" => [
             "crypto",
@@ -22685,6 +24259,33 @@ our %unified_info = (
         "crypto\\modes\\libcrypto-shlib-gcm128.o" => [
             "crypto",
             ".\\crypto"
+        ],
+        "crypto\\objects\\libcrypto-lib-obj_dat.o" => [
+            "crypto\\objects",
+            ".\\crypto\\objects"
+        ],
+        "crypto\\objects\\libcrypto-lib-obj_xref.o" => [
+            "crypto\\objects",
+            ".\\crypto\\objects"
+        ],
+        "crypto\\objects\\libcrypto-shlib-obj_dat.o" => [
+            "crypto\\objects",
+            ".\\crypto\\objects"
+        ],
+        "crypto\\objects\\libcrypto-shlib-obj_xref.o" => [
+            "crypto\\objects",
+            ".\\crypto\\objects"
+        ],
+        "crypto\\objects\\obj_dat.h" => [
+            "include\\openssl"
+        ],
+        "crypto\\objects\\obj_dat.o" => [
+            "crypto\\objects",
+            ".\\crypto\\objects"
+        ],
+        "crypto\\objects\\obj_xref.o" => [
+            "crypto\\objects",
+            ".\\crypto\\objects"
         ],
         "crypto\\poly1305\\poly1305-armv4.o" => [
             "crypto",
@@ -22813,6 +24414,15 @@ our %unified_info = (
         "crypto\\sm4\\vpsm4_ex-armv8.o" => [
             "crypto",
             ".\\crypto"
+        ],
+        "crypto\\x509\\libcrypto-lib-v3_purp.o" => [
+            "crypto\\objects"
+        ],
+        "crypto\\x509\\libcrypto-shlib-v3_purp.o" => [
+            "crypto\\objects"
+        ],
+        "crypto\\x509\\v3_purp.o" => [
+            "crypto\\objects"
         ],
         "doc\\man1\\openssl-ca.pod" => [
             ".\\doc"
@@ -23174,8 +24784,17 @@ our %unified_info = (
             ".\\include",
             ".\\test\\mfail"
         ],
+        "include\\crypto\\ec_params.h" => [
+            ".\\util\\perl"
+        ],
+        "include\\crypto\\rsa_params.h" => [
+            ".\\util\\perl"
+        ],
         "include\\openssl\\core_names.h" => [
             ".\\util\\perl"
+        ],
+        "include\\openssl\\obj_mac.h" => [
+            ".\\crypto\\objects"
         ],
         "libcrypto" => [
             ".",
@@ -23471,7 +25090,16 @@ our %unified_info = (
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
+        "providers\\implementations\\ciphers\\cipher_cts.inc" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_des.inc" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\ciphers\\cipher_null.inc" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_rc2.inc" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\ciphers\\cipher_rc4_hmac_md5.inc" => [
@@ -23481,12 +25109,18 @@ our %unified_info = (
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
+        "providers\\implementations\\ciphers\\cipher_rc5.inc" => [
+            ".\\util\\perl"
+        ],
         "providers\\implementations\\ciphers\\cipher_sm4_xts.inc" => [
             ".\\util\\perl"
         ],
         "providers\\implementations\\ciphers\\cipher_sm4_xts.o" => [
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\cipher_tdes.inc" => [
+            ".\\util\\perl"
         ],
         "providers\\implementations\\ciphers\\ciphercommon.inc" => [
             ".\\util\\perl"
@@ -24082,6 +25716,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\bio_ndef_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\bio_prefix_text" => [
             ".",
             "include",
@@ -24117,6 +25757,12 @@ our %unified_info = (
             ".\\include",
             ".\\crypto\\bn",
             ".\\apps\\include"
+        ],
+        "test\\bn_internal_test-bin-bn_internal_test.o" => [
+            "crypto\\bn"
+        ],
+        "test\\bn_internal_test.o" => [
+            "crypto\\bn"
         ],
         "test\\bntest" => [
             "include",
@@ -24297,10 +25943,6 @@ our %unified_info = (
             ".\\include"
         ],
         "test\\buildtest_c_modes" => [
-            "include",
-            ".\\include"
-        ],
-        "test\\buildtest_c_obj_mac" => [
             "include",
             ".\\include"
         ],
@@ -24638,6 +26280,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\ct_validation_helpers_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\ctype_internal_test" => [
             ".",
             "include",
@@ -24759,8 +26407,10 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\dtlstest" => [
+            ".",
             "include",
             "apps\\include",
+            ".",
             ".\\include",
             ".\\apps\\include"
         ],
@@ -24791,6 +26441,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\ech_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\ecparam_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -24972,6 +26628,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\genec_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\gmdifftest" => [
             "include",
             "apps\\include",
@@ -25085,6 +26747,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\helpers\\dtls12psk_test-bin-ssltestlib.o" => [
+            ".",
+            "include",
+            ".",
+            ".\\include"
+        ],
+        "test\\helpers\\dtls13_internal_test-bin-ssltestlib.o" => [
             ".",
             "include",
             ".",
@@ -27017,6 +28685,7 @@ our %unified_info = (
             "doc\\man\\man3\\UI_UTIL_read_pw.3",
             "doc\\man\\man3\\UI_create_method.3",
             "doc\\man\\man3\\UI_new.3",
+            "doc\\man\\man3\\X509V3_EXT_nconf_nid.3",
             "doc\\man\\man3\\X509V3_EXT_print.3",
             "doc\\man\\man3\\X509V3_get_d2i.3",
             "doc\\man\\man3\\X509V3_set_ctx.3",
@@ -27334,6 +29003,7 @@ our %unified_info = (
         "test\\bio_eof_test",
         "test\\bio_memleak_test",
         "test\\bio_meth_test",
+        "test\\bio_ndef_test",
         "test\\bio_prefix_text",
         "test\\bio_pw_callback_test",
         "test\\bio_readbuffer_test",
@@ -27384,7 +29054,6 @@ our %unified_info = (
         "test\\buildtest_c_mdc2",
         "test\\buildtest_c_ml_kem",
         "test\\buildtest_c_modes",
-        "test\\buildtest_c_obj_mac",
         "test\\buildtest_c_objects",
         "test\\buildtest_c_ossl_typ",
         "test\\buildtest_c_param_build",
@@ -27446,6 +29115,7 @@ our %unified_info = (
         "test\\crltest",
         "test\\crypto_memcmp_test",
         "test\\ct_test",
+        "test\\ct_validation_helpers_test",
         "test\\ctype_internal_test",
         "test\\curve448_internal_test",
         "test\\d2i_test",
@@ -27469,6 +29139,7 @@ our %unified_info = (
         "test\\ecdsatest",
         "test\\ech_corrupt_test",
         "test\\ech_test",
+        "test\\ecparam_test",
         "test\\ecstresstest",
         "test\\ectest",
         "test\\endecode_api_test",
@@ -27495,6 +29166,7 @@ our %unified_info = (
         "test\\fatalerrtest",
         "test\\ffc_internal_test",
         "test\\fips_version_test",
+        "test\\genec_test",
         "test\\gmdifftest",
         "test\\hexstr_test",
         "test\\hmactest",
@@ -29071,7 +30743,7 @@ our %unified_info = (
             ".\\crypto\\asn1\\ameth_lib.c"
         ],
         "crypto\\asn1\\libcrypto-lib-asn1_err.o" => [
-            ".\\crypto\\asn1\\asn1_err.c"
+            "crypto\\asn1\\asn1_err.c"
         ],
         "crypto\\asn1\\libcrypto-lib-asn1_gen.o" => [
             ".\\crypto\\asn1\\asn1_gen.c"
@@ -29266,7 +30938,7 @@ our %unified_info = (
             ".\\crypto\\asn1\\ameth_lib.c"
         ],
         "crypto\\asn1\\libcrypto-shlib-asn1_err.o" => [
-            ".\\crypto\\asn1\\asn1_err.c"
+            "crypto\\asn1\\asn1_err.c"
         ],
         "crypto\\asn1\\libcrypto-shlib-asn1_gen.o" => [
             ".\\crypto\\asn1\\asn1_gen.c"
@@ -29422,7 +31094,7 @@ our %unified_info = (
             ".\\crypto\\async\\async.c"
         ],
         "crypto\\async\\libcrypto-lib-async_err.o" => [
-            ".\\crypto\\async\\async_err.c"
+            "crypto\\async\\async_err.c"
         ],
         "crypto\\async\\libcrypto-lib-async_wait.o" => [
             ".\\crypto\\async\\async_wait.c"
@@ -29431,7 +31103,7 @@ our %unified_info = (
             ".\\crypto\\async\\async.c"
         ],
         "crypto\\async\\libcrypto-shlib-async_err.o" => [
-            ".\\crypto\\async\\async_err.c"
+            "crypto\\async\\async_err.c"
         ],
         "crypto\\async\\libcrypto-shlib-async_wait.o" => [
             ".\\crypto\\async\\async_wait.c"
@@ -29494,7 +31166,7 @@ our %unified_info = (
             ".\\crypto\\bio\\bio_dump.c"
         ],
         "crypto\\bio\\libcrypto-lib-bio_err.o" => [
-            ".\\crypto\\bio\\bio_err.c"
+            "crypto\\bio\\bio_err.c"
         ],
         "crypto\\bio\\libcrypto-lib-bio_lib.o" => [
             ".\\crypto\\bio\\bio_lib.c"
@@ -29578,7 +31250,7 @@ our %unified_info = (
             ".\\crypto\\bio\\bio_dump.c"
         ],
         "crypto\\bio\\libcrypto-shlib-bio_err.o" => [
-            ".\\crypto\\bio\\bio_err.c"
+            "crypto\\bio\\bio_err.c"
         ],
         "crypto\\bio\\libcrypto-shlib-bio_lib.o" => [
             ".\\crypto\\bio\\bio_lib.c"
@@ -29662,7 +31334,7 @@ our %unified_info = (
             ".\\crypto\\bn\\bn_div.c"
         ],
         "crypto\\bn\\libcrypto-lib-bn_err.o" => [
-            ".\\crypto\\bn\\bn_err.c"
+            "crypto\\bn\\bn_err.c"
         ],
         "crypto\\bn\\libcrypto-lib-bn_exp.o" => [
             ".\\crypto\\bn\\bn_exp.c"
@@ -29770,7 +31442,7 @@ our %unified_info = (
             ".\\crypto\\bn\\bn_div.c"
         ],
         "crypto\\bn\\libcrypto-shlib-bn_err.o" => [
-            ".\\crypto\\bn\\bn_err.c"
+            "crypto\\bn\\bn_err.c"
         ],
         "crypto\\bn\\libcrypto-shlib-bn_exp.o" => [
             ".\\crypto\\bn\\bn_exp.c"
@@ -29851,13 +31523,13 @@ our %unified_info = (
             "crypto\\bn\\x86-mont.S"
         ],
         "crypto\\buffer\\libcrypto-lib-buf_err.o" => [
-            ".\\crypto\\buffer\\buf_err.c"
+            "crypto\\buffer\\buf_err.c"
         ],
         "crypto\\buffer\\libcrypto-lib-buffer.o" => [
             ".\\crypto\\buffer\\buffer.c"
         ],
         "crypto\\buffer\\libcrypto-shlib-buf_err.o" => [
-            ".\\crypto\\buffer\\buf_err.c"
+            "crypto\\buffer\\buf_err.c"
         ],
         "crypto\\buffer\\libcrypto-shlib-buffer.o" => [
             ".\\crypto\\buffer\\buffer.c"
@@ -29947,7 +31619,7 @@ our %unified_info = (
             ".\\crypto\\cmp\\cmp_ctx.c"
         ],
         "crypto\\cmp\\libcrypto-lib-cmp_err.o" => [
-            ".\\crypto\\cmp\\cmp_err.c"
+            "crypto\\cmp\\cmp_err.c"
         ],
         "crypto\\cmp\\libcrypto-lib-cmp_genm.o" => [
             ".\\crypto\\cmp\\cmp_genm.c"
@@ -29986,7 +31658,7 @@ our %unified_info = (
             ".\\crypto\\cmp\\cmp_ctx.c"
         ],
         "crypto\\cmp\\libcrypto-shlib-cmp_err.o" => [
-            ".\\crypto\\cmp\\cmp_err.c"
+            "crypto\\cmp\\cmp_err.c"
         ],
         "crypto\\cmp\\libcrypto-shlib-cmp_genm.o" => [
             ".\\crypto\\cmp\\cmp_genm.c"
@@ -30040,7 +31712,7 @@ our %unified_info = (
             ".\\crypto\\cms\\cms_env.c"
         ],
         "crypto\\cms\\libcrypto-lib-cms_err.o" => [
-            ".\\crypto\\cms\\cms_err.c"
+            "crypto\\cms\\cms_err.c"
         ],
         "crypto\\cms\\libcrypto-lib-cms_ess.o" => [
             ".\\crypto\\cms\\cms_ess.c"
@@ -30097,7 +31769,7 @@ our %unified_info = (
             ".\\crypto\\cms\\cms_env.c"
         ],
         "crypto\\cms\\libcrypto-shlib-cms_err.o" => [
-            ".\\crypto\\cms\\cms_err.c"
+            "crypto\\cms\\cms_err.c"
         ],
         "crypto\\cms\\libcrypto-shlib-cms_ess.o" => [
             ".\\crypto\\cms\\cms_ess.c"
@@ -30139,7 +31811,7 @@ our %unified_info = (
             ".\\crypto\\comp\\c_zstd.c"
         ],
         "crypto\\comp\\libcrypto-lib-comp_err.o" => [
-            ".\\crypto\\comp\\comp_err.c"
+            "crypto\\comp\\comp_err.c"
         ],
         "crypto\\comp\\libcrypto-lib-comp_lib.o" => [
             ".\\crypto\\comp\\comp_lib.c"
@@ -30154,7 +31826,7 @@ our %unified_info = (
             ".\\crypto\\comp\\c_zstd.c"
         ],
         "crypto\\comp\\libcrypto-shlib-comp_err.o" => [
-            ".\\crypto\\comp\\comp_err.c"
+            "crypto\\comp\\comp_err.c"
         ],
         "crypto\\comp\\libcrypto-shlib-comp_lib.o" => [
             ".\\crypto\\comp\\comp_lib.c"
@@ -30166,7 +31838,7 @@ our %unified_info = (
             ".\\crypto\\conf\\conf_def.c"
         ],
         "crypto\\conf\\libcrypto-lib-conf_err.o" => [
-            ".\\crypto\\conf\\conf_err.c"
+            "crypto\\conf\\conf_err.c"
         ],
         "crypto\\conf\\libcrypto-lib-conf_lib.o" => [
             ".\\crypto\\conf\\conf_lib.c"
@@ -30190,7 +31862,7 @@ our %unified_info = (
             ".\\crypto\\conf\\conf_def.c"
         ],
         "crypto\\conf\\libcrypto-shlib-conf_err.o" => [
-            ".\\crypto\\conf\\conf_err.c"
+            "crypto\\conf\\conf_err.c"
         ],
         "crypto\\conf\\libcrypto-shlib-conf_lib.o" => [
             ".\\crypto\\conf\\conf_lib.c"
@@ -30211,7 +31883,7 @@ our %unified_info = (
             ".\\crypto\\crmf\\crmf_asn.c"
         ],
         "crypto\\crmf\\libcrypto-lib-crmf_err.o" => [
-            ".\\crypto\\crmf\\crmf_err.c"
+            "crypto\\crmf\\crmf_err.c"
         ],
         "crypto\\crmf\\libcrypto-lib-crmf_lib.o" => [
             ".\\crypto\\crmf\\crmf_lib.c"
@@ -30223,7 +31895,7 @@ our %unified_info = (
             ".\\crypto\\crmf\\crmf_asn.c"
         ],
         "crypto\\crmf\\libcrypto-shlib-crmf_err.o" => [
-            ".\\crypto\\crmf\\crmf_err.c"
+            "crypto\\crmf\\crmf_err.c"
         ],
         "crypto\\crmf\\libcrypto-shlib-crmf_lib.o" => [
             ".\\crypto\\crmf\\crmf_lib.c"
@@ -30235,7 +31907,7 @@ our %unified_info = (
             ".\\crypto\\ct\\ct_b64.c"
         ],
         "crypto\\ct\\libcrypto-lib-ct_err.o" => [
-            ".\\crypto\\ct\\ct_err.c"
+            "crypto\\ct\\ct_err.c"
         ],
         "crypto\\ct\\libcrypto-lib-ct_log.o" => [
             ".\\crypto\\ct\\ct_log.c"
@@ -30265,7 +31937,7 @@ our %unified_info = (
             ".\\crypto\\ct\\ct_b64.c"
         ],
         "crypto\\ct\\libcrypto-shlib-ct_err.o" => [
-            ".\\crypto\\ct\\ct_err.c"
+            "crypto\\ct\\ct_err.c"
         ],
         "crypto\\ct\\libcrypto-shlib-ct_log.o" => [
             ".\\crypto\\ct\\ct_log.c"
@@ -30427,7 +32099,7 @@ our %unified_info = (
             ".\\crypto\\dh\\dh_depr.c"
         ],
         "crypto\\dh\\libcrypto-lib-dh_err.o" => [
-            ".\\crypto\\dh\\dh_err.c"
+            "crypto\\dh\\dh_err.c"
         ],
         "crypto\\dh\\libcrypto-lib-dh_gen.o" => [
             ".\\crypto\\dh\\dh_gen.c"
@@ -30469,7 +32141,7 @@ our %unified_info = (
             ".\\crypto\\dh\\dh_depr.c"
         ],
         "crypto\\dh\\libcrypto-shlib-dh_err.o" => [
-            ".\\crypto\\dh\\dh_err.c"
+            "crypto\\dh\\dh_err.c"
         ],
         "crypto\\dh\\libcrypto-shlib-dh_gen.o" => [
             ".\\crypto\\dh\\dh_gen.c"
@@ -30511,7 +32183,7 @@ our %unified_info = (
             ".\\crypto\\dsa\\dsa_depr.c"
         ],
         "crypto\\dsa\\libcrypto-lib-dsa_err.o" => [
-            ".\\crypto\\dsa\\dsa_err.c"
+            "crypto\\dsa\\dsa_err.c"
         ],
         "crypto\\dsa\\libcrypto-lib-dsa_gen.o" => [
             ".\\crypto\\dsa\\dsa_gen.c"
@@ -30553,7 +32225,7 @@ our %unified_info = (
             ".\\crypto\\dsa\\dsa_depr.c"
         ],
         "crypto\\dsa\\libcrypto-shlib-dsa_err.o" => [
-            ".\\crypto\\dsa\\dsa_err.c"
+            "crypto\\dsa\\dsa_err.c"
         ],
         "crypto\\dsa\\libcrypto-shlib-dsa_gen.o" => [
             ".\\crypto\\dsa\\dsa_gen.c"
@@ -30586,7 +32258,7 @@ our %unified_info = (
             ".\\crypto\\dso\\dso_dlfcn.c"
         ],
         "crypto\\dso\\libcrypto-lib-dso_err.o" => [
-            ".\\crypto\\dso\\dso_err.c"
+            "crypto\\dso\\dso_err.c"
         ],
         "crypto\\dso\\libcrypto-lib-dso_lib.o" => [
             ".\\crypto\\dso\\dso_lib.c"
@@ -30607,7 +32279,7 @@ our %unified_info = (
             ".\\crypto\\dso\\dso_dlfcn.c"
         ],
         "crypto\\dso\\libcrypto-shlib-dso_err.o" => [
-            ".\\crypto\\dso\\dso_err.c"
+            "crypto\\dso\\dso_err.c"
         ],
         "crypto\\dso\\libcrypto-shlib-dso_lib.o" => [
             ".\\crypto\\dso\\dso_lib.c"
@@ -30694,7 +32366,7 @@ our %unified_info = (
             ".\\crypto\\ec\\ec_deprecated.c"
         ],
         "crypto\\ec\\libcrypto-lib-ec_err.o" => [
-            ".\\crypto\\ec\\ec_err.c"
+            "crypto\\ec\\ec_err.c"
         ],
         "crypto\\ec\\libcrypto-lib-ec_key.o" => [
             ".\\crypto\\ec\\ec_key.c"
@@ -30790,7 +32462,7 @@ our %unified_info = (
             ".\\crypto\\ec\\ec_deprecated.c"
         ],
         "crypto\\ec\\libcrypto-shlib-ec_err.o" => [
-            ".\\crypto\\ec\\ec_err.c"
+            "crypto\\ec\\ec_err.c"
         ],
         "crypto\\ec\\libcrypto-shlib-ec_key.o" => [
             ".\\crypto\\ec\\ec_key.c"
@@ -30856,7 +32528,7 @@ our %unified_info = (
             ".\\crypto\\ec\\ecx_meth.c"
         ],
         "crypto\\encode_decode\\libcrypto-lib-decoder_err.o" => [
-            ".\\crypto\\encode_decode\\decoder_err.c"
+            "crypto\\encode_decode\\decoder_err.c"
         ],
         "crypto\\encode_decode\\libcrypto-lib-decoder_lib.o" => [
             ".\\crypto\\encode_decode\\decoder_lib.c"
@@ -30868,7 +32540,7 @@ our %unified_info = (
             ".\\crypto\\encode_decode\\decoder_pkey.c"
         ],
         "crypto\\encode_decode\\libcrypto-lib-encoder_err.o" => [
-            ".\\crypto\\encode_decode\\encoder_err.c"
+            "crypto\\encode_decode\\encoder_err.c"
         ],
         "crypto\\encode_decode\\libcrypto-lib-encoder_lib.o" => [
             ".\\crypto\\encode_decode\\encoder_lib.c"
@@ -30880,7 +32552,7 @@ our %unified_info = (
             ".\\crypto\\encode_decode\\encoder_pkey.c"
         ],
         "crypto\\encode_decode\\libcrypto-shlib-decoder_err.o" => [
-            ".\\crypto\\encode_decode\\decoder_err.c"
+            "crypto\\encode_decode\\decoder_err.c"
         ],
         "crypto\\encode_decode\\libcrypto-shlib-decoder_lib.o" => [
             ".\\crypto\\encode_decode\\decoder_lib.c"
@@ -30892,7 +32564,7 @@ our %unified_info = (
             ".\\crypto\\encode_decode\\decoder_pkey.c"
         ],
         "crypto\\encode_decode\\libcrypto-shlib-encoder_err.o" => [
-            ".\\crypto\\encode_decode\\encoder_err.c"
+            "crypto\\encode_decode\\encoder_err.c"
         ],
         "crypto\\encode_decode\\libcrypto-shlib-encoder_lib.o" => [
             ".\\crypto\\encode_decode\\encoder_lib.c"
@@ -30949,7 +32621,7 @@ our %unified_info = (
             ".\\crypto\\ess\\ess_asn1.c"
         ],
         "crypto\\ess\\libcrypto-lib-ess_err.o" => [
-            ".\\crypto\\ess\\ess_err.c"
+            "crypto\\ess\\ess_err.c"
         ],
         "crypto\\ess\\libcrypto-lib-ess_lib.o" => [
             ".\\crypto\\ess\\ess_lib.c"
@@ -30958,7 +32630,7 @@ our %unified_info = (
             ".\\crypto\\ess\\ess_asn1.c"
         ],
         "crypto\\ess\\libcrypto-shlib-ess_err.o" => [
-            ".\\crypto\\ess\\ess_err.c"
+            "crypto\\ess\\ess_err.c"
         ],
         "crypto\\ess\\libcrypto-shlib-ess_lib.o" => [
             ".\\crypto\\ess\\ess_lib.c"
@@ -31078,7 +32750,7 @@ our %unified_info = (
             ".\\crypto\\evp\\evp_enc.c"
         ],
         "crypto\\evp\\libcrypto-lib-evp_err.o" => [
-            ".\\crypto\\evp\\evp_err.c"
+            "crypto\\evp\\evp_err.c"
         ],
         "crypto\\evp\\libcrypto-lib-evp_fetch.o" => [
             ".\\crypto\\evp\\evp_fetch.c"
@@ -31327,7 +32999,7 @@ our %unified_info = (
             ".\\crypto\\evp\\evp_enc.c"
         ],
         "crypto\\evp\\libcrypto-shlib-evp_err.o" => [
-            ".\\crypto\\evp\\evp_err.c"
+            "crypto\\evp\\evp_err.c"
         ],
         "crypto\\evp\\libcrypto-shlib-evp_fetch.o" => [
             ".\\crypto\\evp\\evp_fetch.c"
@@ -31540,7 +33212,7 @@ our %unified_info = (
             ".\\crypto\\http\\http_client.c"
         ],
         "crypto\\http\\libcrypto-lib-http_err.o" => [
-            ".\\crypto\\http\\http_err.c"
+            "crypto\\http\\http_err.c"
         ],
         "crypto\\http\\libcrypto-lib-http_lib.o" => [
             ".\\crypto\\http\\http_lib.c"
@@ -31549,7 +33221,7 @@ our %unified_info = (
             ".\\crypto\\http\\http_client.c"
         ],
         "crypto\\http\\libcrypto-shlib-http_err.o" => [
-            ".\\crypto\\http\\http_err.c"
+            "crypto\\http\\http_err.c"
         ],
         "crypto\\http\\libcrypto-shlib-http_lib.o" => [
             ".\\crypto\\http\\http_lib.c"
@@ -31639,7 +33311,7 @@ our %unified_info = (
             ".\\crypto\\core_namemap.c"
         ],
         "crypto\\libcrypto-lib-cpt_err.o" => [
-            ".\\crypto\\cpt_err.c"
+            "crypto\\cpt_err.c"
         ],
         "crypto\\libcrypto-lib-cpuid.o" => [
             ".\\crypto\\cpuid.c"
@@ -31753,7 +33425,7 @@ our %unified_info = (
             ".\\crypto\\sparse_array.c"
         ],
         "crypto\\libcrypto-lib-ssl_err.o" => [
-            ".\\crypto\\ssl_err.c"
+            "crypto\\ssl_err.c"
         ],
         "crypto\\libcrypto-lib-threads_common.o" => [
             ".\\crypto\\threads_common.c"
@@ -31810,7 +33482,7 @@ our %unified_info = (
             ".\\crypto\\core_namemap.c"
         ],
         "crypto\\libcrypto-shlib-cpt_err.o" => [
-            ".\\crypto\\cpt_err.c"
+            "crypto\\cpt_err.c"
         ],
         "crypto\\libcrypto-shlib-cpuid.o" => [
             ".\\crypto\\cpuid.c"
@@ -31927,7 +33599,7 @@ our %unified_info = (
             ".\\crypto\\sparse_array.c"
         ],
         "crypto\\libcrypto-shlib-ssl_err.o" => [
-            ".\\crypto\\ssl_err.c"
+            "crypto\\ssl_err.c"
         ],
         "crypto\\libcrypto-shlib-threads_common.o" => [
             ".\\crypto\\threads_common.c"
@@ -32170,7 +33842,7 @@ our %unified_info = (
             ".\\crypto\\objects\\obj_dat.c"
         ],
         "crypto\\objects\\libcrypto-lib-obj_err.o" => [
-            ".\\crypto\\objects\\obj_err.c"
+            "crypto\\objects\\obj_err.c"
         ],
         "crypto\\objects\\libcrypto-lib-obj_lib.o" => [
             ".\\crypto\\objects\\obj_lib.c"
@@ -32185,7 +33857,7 @@ our %unified_info = (
             ".\\crypto\\objects\\obj_dat.c"
         ],
         "crypto\\objects\\libcrypto-shlib-obj_err.o" => [
-            ".\\crypto\\objects\\obj_err.c"
+            "crypto\\objects\\obj_err.c"
         ],
         "crypto\\objects\\libcrypto-shlib-obj_lib.o" => [
             ".\\crypto\\objects\\obj_lib.c"
@@ -32200,7 +33872,7 @@ our %unified_info = (
             ".\\crypto\\ocsp\\ocsp_cl.c"
         ],
         "crypto\\ocsp\\libcrypto-lib-ocsp_err.o" => [
-            ".\\crypto\\ocsp\\ocsp_err.c"
+            "crypto\\ocsp\\ocsp_err.c"
         ],
         "crypto\\ocsp\\libcrypto-lib-ocsp_ext.o" => [
             ".\\crypto\\ocsp\\ocsp_ext.c"
@@ -32230,7 +33902,7 @@ our %unified_info = (
             ".\\crypto\\ocsp\\ocsp_cl.c"
         ],
         "crypto\\ocsp\\libcrypto-shlib-ocsp_err.o" => [
-            ".\\crypto\\ocsp\\ocsp_err.c"
+            "crypto\\ocsp\\ocsp_err.c"
         ],
         "crypto\\ocsp\\libcrypto-shlib-ocsp_ext.o" => [
             ".\\crypto\\ocsp\\ocsp_ext.c"
@@ -32260,7 +33932,7 @@ our %unified_info = (
             ".\\crypto\\pem\\pem_all.c"
         ],
         "crypto\\pem\\libcrypto-lib-pem_err.o" => [
-            ".\\crypto\\pem\\pem_err.c"
+            "crypto\\pem\\pem_err.c"
         ],
         "crypto\\pem\\libcrypto-lib-pem_info.o" => [
             ".\\crypto\\pem\\pem_info.c"
@@ -32293,7 +33965,7 @@ our %unified_info = (
             ".\\crypto\\pem\\pem_all.c"
         ],
         "crypto\\pem\\libcrypto-shlib-pem_err.o" => [
-            ".\\crypto\\pem\\pem_err.c"
+            "crypto\\pem\\pem_err.c"
         ],
         "crypto\\pem\\libcrypto-shlib-pem_info.o" => [
             ".\\crypto\\pem\\pem_info.c"
@@ -32368,7 +34040,7 @@ our %unified_info = (
             ".\\crypto\\pkcs12\\p12_utl.c"
         ],
         "crypto\\pkcs12\\libcrypto-lib-pk12err.o" => [
-            ".\\crypto\\pkcs12\\pk12err.c"
+            "crypto\\pkcs12\\pk12err.c"
         ],
         "crypto\\pkcs12\\libcrypto-shlib-p12_add.o" => [
             ".\\crypto\\pkcs12\\p12_add.c"
@@ -32416,7 +34088,7 @@ our %unified_info = (
             ".\\crypto\\pkcs12\\p12_utl.c"
         ],
         "crypto\\pkcs12\\libcrypto-shlib-pk12err.o" => [
-            ".\\crypto\\pkcs12\\pk12err.c"
+            "crypto\\pkcs12\\pk12err.c"
         ],
         "crypto\\pkcs7\\libcrypto-lib-bio_pk7.o" => [
             ".\\crypto\\pkcs7\\bio_pk7.c"
@@ -32440,7 +34112,7 @@ our %unified_info = (
             ".\\crypto\\pkcs7\\pk7_smime.c"
         ],
         "crypto\\pkcs7\\libcrypto-lib-pkcs7err.o" => [
-            ".\\crypto\\pkcs7\\pkcs7err.c"
+            "crypto\\pkcs7\\pkcs7err.c"
         ],
         "crypto\\pkcs7\\libcrypto-shlib-bio_pk7.o" => [
             ".\\crypto\\pkcs7\\bio_pk7.c"
@@ -32464,7 +34136,7 @@ our %unified_info = (
             ".\\crypto\\pkcs7\\pk7_smime.c"
         ],
         "crypto\\pkcs7\\libcrypto-shlib-pkcs7err.o" => [
-            ".\\crypto\\pkcs7\\pkcs7err.c"
+            "crypto\\pkcs7\\pkcs7err.c"
         ],
         "crypto\\poly1305\\libcrypto-lib-poly1305-x86.o" => [
             "crypto\\poly1305\\poly1305-x86.S"
@@ -32485,7 +34157,7 @@ our %unified_info = (
             ".\\crypto\\property\\property.c"
         ],
         "crypto\\property\\libcrypto-lib-property_err.o" => [
-            ".\\crypto\\property\\property_err.c"
+            "crypto\\property\\property_err.c"
         ],
         "crypto\\property\\libcrypto-lib-property_parse.o" => [
             ".\\crypto\\property\\property_parse.c"
@@ -32503,7 +34175,7 @@ our %unified_info = (
             ".\\crypto\\property\\property.c"
         ],
         "crypto\\property\\libcrypto-shlib-property_err.o" => [
-            ".\\crypto\\property\\property_err.c"
+            "crypto\\property\\property_err.c"
         ],
         "crypto\\property\\libcrypto-shlib-property_parse.o" => [
             ".\\crypto\\property\\property_parse.c"
@@ -32521,7 +34193,7 @@ our %unified_info = (
             ".\\crypto\\rand\\rand_deprecated.c"
         ],
         "crypto\\rand\\libcrypto-lib-rand_err.o" => [
-            ".\\crypto\\rand\\rand_err.c"
+            "crypto\\rand\\rand_err.c"
         ],
         "crypto\\rand\\libcrypto-lib-rand_lib.o" => [
             ".\\crypto\\rand\\rand_lib.c"
@@ -32545,7 +34217,7 @@ our %unified_info = (
             ".\\crypto\\rand\\rand_deprecated.c"
         ],
         "crypto\\rand\\libcrypto-shlib-rand_err.o" => [
-            ".\\crypto\\rand\\rand_err.c"
+            "crypto\\rand\\rand_err.c"
         ],
         "crypto\\rand\\libcrypto-shlib-rand_lib.o" => [
             ".\\crypto\\rand\\rand_lib.c"
@@ -32647,7 +34319,7 @@ our %unified_info = (
             ".\\crypto\\rsa\\rsa_depr.c"
         ],
         "crypto\\rsa\\libcrypto-lib-rsa_err.o" => [
-            ".\\crypto\\rsa\\rsa_err.c"
+            "crypto\\rsa\\rsa_err.c"
         ],
         "crypto\\rsa\\libcrypto-lib-rsa_gen.o" => [
             ".\\crypto\\rsa\\rsa_gen.c"
@@ -32722,7 +34394,7 @@ our %unified_info = (
             ".\\crypto\\rsa\\rsa_depr.c"
         ],
         "crypto\\rsa\\libcrypto-shlib-rsa_err.o" => [
-            ".\\crypto\\rsa\\rsa_err.c"
+            "crypto\\rsa\\rsa_err.c"
         ],
         "crypto\\rsa\\libcrypto-shlib-rsa_gen.o" => [
             ".\\crypto\\rsa\\rsa_gen.c"
@@ -32941,7 +34613,7 @@ our %unified_info = (
             ".\\crypto\\sm2\\sm2_crypt.c"
         ],
         "crypto\\sm2\\libcrypto-lib-sm2_err.o" => [
-            ".\\crypto\\sm2\\sm2_err.c"
+            "crypto\\sm2\\sm2_err.c"
         ],
         "crypto\\sm2\\libcrypto-lib-sm2_key.o" => [
             ".\\crypto\\sm2\\sm2_key.c"
@@ -32953,7 +34625,7 @@ our %unified_info = (
             ".\\crypto\\sm2\\sm2_crypt.c"
         ],
         "crypto\\sm2\\libcrypto-shlib-sm2_err.o" => [
-            ".\\crypto\\sm2\\sm2_err.c"
+            "crypto\\sm2\\sm2_err.c"
         ],
         "crypto\\sm2\\libcrypto-shlib-sm2_key.o" => [
             ".\\crypto\\sm2\\sm2_key.c"
@@ -32998,7 +34670,7 @@ our %unified_info = (
             ".\\crypto\\stack\\stack.c"
         ],
         "crypto\\store\\libcrypto-lib-store_err.o" => [
-            ".\\crypto\\store\\store_err.c"
+            "crypto\\store\\store_err.c"
         ],
         "crypto\\store\\libcrypto-lib-store_init.o" => [
             ".\\crypto\\store\\store_init.c"
@@ -33019,7 +34691,7 @@ our %unified_info = (
             ".\\crypto\\store\\store_strings.c"
         ],
         "crypto\\store\\libcrypto-shlib-store_err.o" => [
-            ".\\crypto\\store\\store_err.c"
+            "crypto\\store\\store_err.c"
         ],
         "crypto\\store\\libcrypto-shlib-store_init.o" => [
             ".\\crypto\\store\\store_init.c"
@@ -33100,7 +34772,7 @@ our %unified_info = (
             ".\\crypto\\ts\\ts_conf.c"
         ],
         "crypto\\ts\\libcrypto-lib-ts_err.o" => [
-            ".\\crypto\\ts\\ts_err.c"
+            "crypto\\ts\\ts_err.c"
         ],
         "crypto\\ts\\libcrypto-lib-ts_lib.o" => [
             ".\\crypto\\ts\\ts_lib.c"
@@ -33133,7 +34805,7 @@ our %unified_info = (
             ".\\crypto\\ts\\ts_conf.c"
         ],
         "crypto\\ts\\libcrypto-shlib-ts_err.o" => [
-            ".\\crypto\\ts\\ts_err.c"
+            "crypto\\ts\\ts_err.c"
         ],
         "crypto\\ts\\libcrypto-shlib-ts_lib.o" => [
             ".\\crypto\\ts\\ts_lib.c"
@@ -33166,7 +34838,7 @@ our %unified_info = (
             ".\\crypto\\txt_db\\txt_db.c"
         ],
         "crypto\\ui\\libcrypto-lib-ui_err.o" => [
-            ".\\crypto\\ui\\ui_err.c"
+            "crypto\\ui\\ui_err.c"
         ],
         "crypto\\ui\\libcrypto-lib-ui_lib.o" => [
             ".\\crypto\\ui\\ui_lib.c"
@@ -33181,7 +34853,7 @@ our %unified_info = (
             ".\\crypto\\ui\\ui_util.c"
         ],
         "crypto\\ui\\libcrypto-shlib-ui_err.o" => [
-            ".\\crypto\\ui\\ui_err.c"
+            "crypto\\ui\\ui_err.c"
         ],
         "crypto\\ui\\libcrypto-shlib-ui_lib.o" => [
             ".\\crypto\\ui\\ui_lib.c"
@@ -33403,7 +35075,7 @@ our %unified_info = (
             ".\\crypto\\x509\\v3_utl.c"
         ],
         "crypto\\x509\\libcrypto-lib-v3err.o" => [
-            ".\\crypto\\x509\\v3err.c"
+            "crypto\\x509\\v3err.c"
         ],
         "crypto\\x509\\libcrypto-lib-x509_acert.o" => [
             ".\\crypto\\x509\\x509_acert.c"
@@ -33421,7 +35093,7 @@ our %unified_info = (
             ".\\crypto\\x509\\x509_def.c"
         ],
         "crypto\\x509\\libcrypto-lib-x509_err.o" => [
-            ".\\crypto\\x509\\x509_err.c"
+            "crypto\\x509\\x509_err.c"
         ],
         "crypto\\x509\\libcrypto-lib-x509_ext.o" => [
             ".\\crypto\\x509\\x509_ext.c"
@@ -33697,7 +35369,7 @@ our %unified_info = (
             ".\\crypto\\x509\\v3_utl.c"
         ],
         "crypto\\x509\\libcrypto-shlib-v3err.o" => [
-            ".\\crypto\\x509\\v3err.c"
+            "crypto\\x509\\v3err.c"
         ],
         "crypto\\x509\\libcrypto-shlib-x509_acert.o" => [
             ".\\crypto\\x509\\x509_acert.c"
@@ -33715,7 +35387,7 @@ our %unified_info = (
             ".\\crypto\\x509\\x509_def.c"
         ],
         "crypto\\x509\\libcrypto-shlib-x509_err.o" => [
-            ".\\crypto\\x509\\x509_err.c"
+            "crypto\\x509\\x509_err.c"
         ],
         "crypto\\x509\\libcrypto-shlib-x509_ext.o" => [
             ".\\crypto\\x509\\x509_ext.c"
@@ -35233,7 +36905,7 @@ our %unified_info = (
             ".\\providers\\common\\provider_ctx.c"
         ],
         "providers\\common\\libcommon-lib-provider_err.o" => [
-            ".\\providers\\common\\provider_err.c"
+            "providers\\common\\provider_err.c"
         ],
         "providers\\common\\libdefault-lib-bio_prov.o" => [
             ".\\providers\\common\\bio_prov.c"
@@ -36915,6 +38587,12 @@ our %unified_info = (
         "test\\bio_meth_test-bin-bio_meth_test.o" => [
             ".\\test\\bio_meth_test.c"
         ],
+        "test\\bio_ndef_test" => [
+            "test\\bio_ndef_test-bin-bio_ndef_test.o"
+        ],
+        "test\\bio_ndef_test-bin-bio_ndef_test.o" => [
+            ".\\test\\bio_ndef_test.c"
+        ],
         "test\\bio_prefix_text" => [
             "test\\bio_prefix_text-bin-bio_prefix_text.o"
         ],
@@ -37214,12 +38892,6 @@ our %unified_info = (
         ],
         "test\\buildtest_c_modes-bin-buildtest_modes.o" => [
             "test\\buildtest_modes.c"
-        ],
-        "test\\buildtest_c_obj_mac" => [
-            "test\\buildtest_c_obj_mac-bin-buildtest_obj_mac.o"
-        ],
-        "test\\buildtest_c_obj_mac-bin-buildtest_obj_mac.o" => [
-            "test\\buildtest_obj_mac.c"
         ],
         "test\\buildtest_c_objects" => [
             "test\\buildtest_c_objects-bin-buildtest_objects.o"
@@ -37609,6 +39281,12 @@ our %unified_info = (
         "test\\ct_test-bin-ct_test.o" => [
             ".\\test\\ct_test.c"
         ],
+        "test\\ct_validation_helpers_test" => [
+            "test\\ct_validation_helpers_test-bin-ct_validation_helpers_test.o"
+        ],
+        "test\\ct_validation_helpers_test-bin-ct_validation_helpers_test.o" => [
+            ".\\test\\ct_validation_helpers_test.c"
+        ],
         "test\\ctype_internal_test" => [
             "test\\ctype_internal_test-bin-ctype_internal_test.o"
         ],
@@ -37684,7 +39362,8 @@ our %unified_info = (
             ".\\test\\dtls12psk.c"
         ],
         "test\\dtls13_internal_test" => [
-            "test\\dtls13_internal_test-bin-dtls13_internal_test.o"
+            "test\\dtls13_internal_test-bin-dtls13_internal_test.o",
+            "test\\helpers\\dtls13_internal_test-bin-ssltestlib.o"
         ],
         "test\\dtls13_internal_test-bin-dtls13_internal_test.o" => [
             ".\\test\\dtls13_internal_test.c"
@@ -37757,6 +39436,12 @@ our %unified_info = (
         ],
         "test\\ech_test-bin-ech_test.o" => [
             ".\\test\\ech_test.c"
+        ],
+        "test\\ecparam_test" => [
+            "test\\ecparam_test-bin-ecparam_test.o"
+        ],
+        "test\\ecparam_test-bin-ecparam_test.o" => [
+            ".\\test\\ecparam_test.c"
         ],
         "test\\ecstresstest" => [
             "test\\ecstresstest-bin-ecstresstest.o"
@@ -37949,6 +39634,12 @@ our %unified_info = (
         "test\\fips_version_test-bin-fips_version_test.o" => [
             ".\\test\\fips_version_test.c"
         ],
+        "test\\genec_test" => [
+            "test\\genec_test-bin-genec_test.o"
+        ],
+        "test\\genec_test-bin-genec_test.o" => [
+            ".\\test\\genec_test.c"
+        ],
         "test\\gmdifftest" => [
             "test\\gmdifftest-bin-gmdifftest.o"
         ],
@@ -37995,6 +39686,9 @@ our %unified_info = (
             ".\\test\\helpers\\predefined_dsaparams.c"
         ],
         "test\\helpers\\dtls12psk_test-bin-ssltestlib.o" => [
+            ".\\test\\helpers\\ssltestlib.c"
+        ],
+        "test\\helpers\\dtls13_internal_test-bin-ssltestlib.o" => [
             ".\\test\\helpers\\ssltestlib.c"
         ],
         "test\\helpers\\dtls_ccs_reorder_test-bin-ssltestlib.o" => [

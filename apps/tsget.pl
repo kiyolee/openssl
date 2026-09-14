@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# Copyright 2002-2018 The OpenSSL Project Authors. All Rights Reserved.
+# Copyright 2002-2026 The OpenSSL Project Authors. All Rights Reserved.
 # Copyright (c) 2002 The OpenTSA Project. All rights reserved.
 #
 # Licensed under the Apache License 2.0 (the "License").  You may not use
@@ -39,7 +39,7 @@ sub create_curl {
     $curl->setopt(CURLOPT_VERBOSE, 1) if $options{d};
     $curl->setopt(CURLOPT_FAILONERROR, 1);
     $curl->setopt(CURLOPT_USERAGENT,
-        "OpenTSA tsget.pl/openssl-4.1.0-dev");
+        "OpenTSA tsget.pl/openssl-4.2.0-dev");
 
     $curl->setopt(CURLOPT_HTTPHEADER,
         ["Content-Type: application/timestamp-query",
