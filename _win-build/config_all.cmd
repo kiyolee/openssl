@@ -11,6 +11,8 @@ set ZLIB_DIR=..\zlib
 
 set _GEN_LIST_INCL=^
   include\crypto\dso_conf.h ^
+  include\crypto\ec_params.h ^
+  include\crypto\rsa_params.h ^
   include\openssl\asn1.h ^
   include\openssl\asn1t.h ^
   include\openssl\bio.h ^
@@ -284,6 +286,11 @@ set _GEN_LIST=^
   %_GEN_LIST_PROV_INCL% ^
   %_GEN_LIST_PROV_CSRC% ^
   include\openssl\obj_mac.h ^
+  crypto\asn1\charmap.h ^
+  crypto\bn\bn_prime.h ^
+  crypto\conf\conf_def.h ^
+  crypto\objects\obj_dat.h ^
+  crypto\objects\obj_xref.h ^
   apps\progs.c apps\progs.h ^
   apps\include\configuration.h ^
   apps\CA.pl apps\tsget.pl util\wrap.pl
@@ -359,6 +366,11 @@ for %%f in ( %_GEN_LIST_ERR_INCL% %_GEN_LIST_ERR_CSRC% ) do (
 )
 set SRCTOP=
 perl %OPENSSL_DIR%\crypto\objects\objects.pl -a %OPENSSL_DIR%\crypto\objects\obj_compat.h %OPENSSL_DIR%\crypto\objects\objects.txt %OPENSSL_DIR%\crypto\objects\obj_mac.num > include\openssl\obj_mac.h
+perl %OPENSSL_DIR%\crypto\asn1\charmap.pl > crypto\asn1\charmap.h
+perl %OPENSSL_DIR%\crypto\bn\bn_prime.pl > crypto\bn\bn_prime.h
+perl %OPENSSL_DIR%\crypto\conf\keysets.pl > crypto\conf\conf_def.h
+perl %OPENSSL_DIR%\crypto\objects\obj_dat.pl include\openssl\obj_mac.h > crypto\objects\obj_dat.h
+perl %OPENSSL_DIR%\crypto\objects\objxref.pl %OPENSSL_DIR%\crypto\objects\obj_mac.num %OPENSSL_DIR%\crypto\objects\obj_xref.txt > crypto\objects\obj_xref.h
 perl %OPENSSL_DIR%\apps\progs.pl -C apps\openssl > apps\progs.c
 perl %OPENSSL_DIR%\apps\progs.pl -H apps\openssl > apps\progs.h
 perl -I. -Mconfigdata %OPENSSL_DIR%\util\dofile.pl -omakefile %OPENSSL_DIR%\apps\CA.pl.in > apps\CA.pl
