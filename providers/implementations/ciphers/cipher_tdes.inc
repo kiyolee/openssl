@@ -26,8 +26,12 @@ static ossl_unused const OSSL_PARAM tdes_get_params_list[] = {
     OSSL_PARAM_size_t(OSSL_CIPHER_PARAM_KEYLEN, NULL),
     OSSL_PARAM_size_t(OSSL_CIPHER_PARAM_IVLEN, NULL),
     OSSL_PARAM_size_t(OSSL_CIPHER_PARAM_BLOCK_SIZE, NULL),
+    OSSL_PARAM_int(OSSL_CIPHER_PARAM_AEAD, NULL),
     OSSL_PARAM_int(OSSL_CIPHER_PARAM_CUSTOM_IV, NULL),
+    OSSL_PARAM_int(OSSL_CIPHER_PARAM_CTS, NULL),
+    OSSL_PARAM_int(OSSL_CIPHER_PARAM_TLS1_MULTIBLOCK, NULL),
     OSSL_PARAM_int(OSSL_CIPHER_PARAM_HAS_RAND_KEY, NULL),
+    OSSL_PARAM_int(OSSL_CIPHER_PARAM_ENCRYPT_THEN_MAC, NULL),
     OSSL_PARAM_int(OSSL_CIPHER_PARAM_DECRYPT_ONLY, NULL),
     OSSL_PARAM_END
 };
@@ -35,10 +39,14 @@ static ossl_unused const OSSL_PARAM tdes_get_params_list[] = {
 
 #ifndef tdes_get_params_st
 struct tdes_get_params_st {
+    OSSL_PARAM *common.aead;
     OSSL_PARAM *common.bsize;
+    OSSL_PARAM *common.cts;
     OSSL_PARAM *common.custiv;
+    OSSL_PARAM *common.etm;
     OSSL_PARAM *common.ivlen;
     OSSL_PARAM *common.keylen;
+    OSSL_PARAM *common.mb;
     OSSL_PARAM *common.mode;
     OSSL_PARAM *common.rand;
     OSSL_PARAM *decrypt;
@@ -57,6 +65,17 @@ static ossl_unused int tdes_get_params_decoder
             switch(s[0]) {
             default:
                 break;
+            case 'a':
+                if (ossl_likely(strcmp("ead", s + 1) == 0)) {
+                    /* OSSL_CIPHER_PARAM_AEAD */
+                    if (ossl_unlikely(r->common.aead != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->common.aead = (OSSL_PARAM *)p;
+                }
+                break;
             case 'b':
                 if (ossl_likely(strcmp("locksize", s + 1) == 0)) {
                     /* OSSL_CIPHER_PARAM_BLOCK_SIZE */
@@ -69,14 +88,30 @@ static ossl_unused int tdes_get_params_decoder
                 }
                 break;
             case 'c':
-                if (ossl_likely(strcmp("ustom-iv", s + 1) == 0)) {
-                    /* OSSL_CIPHER_PARAM_CUSTOM_IV */
-                    if (ossl_unlikely(r->common.custiv != NULL)) {
-                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                       "param %s is repeated", s);
-                        return 0;
+                switch(s[1]) {
+                default:
+                    break;
+                case 't':
+                    if (ossl_likely(strcmp("s", s + 2) == 0)) {
+                        /* OSSL_CIPHER_PARAM_CTS */
+                        if (ossl_unlikely(r->common.cts != NULL)) {
+                            ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                           "param %s is repeated", s);
+                            return 0;
+                        }
+                        r->common.cts = (OSSL_PARAM *)p;
                     }
-                    r->common.custiv = (OSSL_PARAM *)p;
+                    break;
+                case 'u':
+                    if (ossl_likely(strcmp("stom-iv", s + 2) == 0)) {
+                        /* OSSL_CIPHER_PARAM_CUSTOM_IV */
+                        if (ossl_unlikely(r->common.custiv != NULL)) {
+                            ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                           "param %s is repeated", s);
+                            return 0;
+                        }
+                        r->common.custiv = (OSSL_PARAM *)p;
+                    }
                 }
                 break;
             case 'd':
@@ -88,6 +123,17 @@ static ossl_unused int tdes_get_params_decoder
                         return 0;
                     }
                     r->decrypt = (OSSL_PARAM *)p;
+                }
+                break;
+            case 'e':
+                if (ossl_likely(strcmp("ncrypt-then-mac", s + 1) == 0)) {
+                    /* OSSL_CIPHER_PARAM_ENCRYPT_THEN_MAC */
+                    if (ossl_unlikely(r->common.etm != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->common.etm = (OSSL_PARAM *)p;
                 }
                 break;
             case 'h':
@@ -132,6 +178,17 @@ static ossl_unused int tdes_get_params_decoder
                         return 0;
                     }
                     r->common.mode = (OSSL_PARAM *)p;
+                }
+                break;
+            case 't':
+                if (ossl_likely(strcmp("ls-multi", s + 1) == 0)) {
+                    /* OSSL_CIPHER_PARAM_TLS1_MULTIBLOCK */
+                    if (ossl_unlikely(r->common.mb != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->common.mb = (OSSL_PARAM *)p;
                 }
             }
     return 1;

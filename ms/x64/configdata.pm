@@ -986,6 +986,9 @@ our %unified_info = (
             "fuzz\\cms-test" => {
                 "noinst" => "1"
             },
+            "fuzz\\cms_verify-test" => {
+                "noinst" => "1"
+            },
             "fuzz\\conf-test" => {
                 "noinst" => "1"
             },
@@ -8635,6 +8638,9 @@ our %unified_info = (
         "fuzz\\cms-test" => [
             "libcrypto.a"
         ],
+        "fuzz\\cms_verify-test" => [
+            "libcrypto.a"
+        ],
         "fuzz\\conf-test" => [
             "libcrypto.a"
         ],
@@ -13458,6 +13464,7 @@ our %unified_info = (
                     "fuzz\\client-test",
                     "fuzz\\cmp-test",
                     "fuzz\\cms-test",
+                    "fuzz\\cms_verify-test",
                     "fuzz\\conf-test",
                     "fuzz\\crl-test",
                     "fuzz\\ct-test",
@@ -14333,6 +14340,7 @@ our %unified_info = (
                 "test\\mfail\\client-test-bin-mfail.o",
                 "test\\mfail\\cmp-test-bin-mfail.o",
                 "test\\mfail\\cms-test-bin-mfail.o",
+                "test\\mfail\\cms_verify-test-bin-mfail.o",
                 "test\\mfail\\conf-test-bin-mfail.o",
                 "test\\mfail\\crl-test-bin-mfail.o",
                 "test\\mfail\\ct-test-bin-mfail.o",
@@ -14371,6 +14379,7 @@ our %unified_info = (
                     "fuzz\\client-test",
                     "fuzz\\cmp-test",
                     "fuzz\\cms-test",
+                    "fuzz\\cms_verify-test",
                     "fuzz\\conf-test",
                     "fuzz\\crl-test",
                     "fuzz\\ct-test",
@@ -24702,6 +24711,12 @@ our %unified_info = (
             ".\\include",
             ".\\test\\mfail"
         ],
+        "fuzz\\cms_verify-test" => [
+            "include",
+            "test\\mfail",
+            ".\\include",
+            ".\\test\\mfail"
+        ],
         "fuzz\\conf-test" => [
             "include",
             "test\\mfail",
@@ -29024,6 +29039,7 @@ our %unified_info = (
         "fuzz\\client-test",
         "fuzz\\cmp-test",
         "fuzz\\cms-test",
+        "fuzz\\cms_verify-test",
         "fuzz\\conf-test",
         "fuzz\\crl-test",
         "fuzz\\ct-test",
@@ -35846,6 +35862,17 @@ our %unified_info = (
         "fuzz\\cms-test-bin-test-corpus.o" => [
             ".\\fuzz\\test-corpus.c"
         ],
+        "fuzz\\cms_verify-test" => [
+            "fuzz\\cms_verify-test-bin-cms_verify.o",
+            "fuzz\\cms_verify-test-bin-test-corpus.o",
+            "test\\mfail\\cms_verify-test-bin-mfail.o"
+        ],
+        "fuzz\\cms_verify-test-bin-cms_verify.o" => [
+            ".\\fuzz\\cms_verify.c"
+        ],
+        "fuzz\\cms_verify-test-bin-test-corpus.o" => [
+            ".\\fuzz\\test-corpus.c"
+        ],
         "fuzz\\conf-test" => [
             "fuzz\\conf-test-bin-conf.o",
             "fuzz\\conf-test-bin-test-corpus.o",
@@ -40325,6 +40352,9 @@ our %unified_info = (
             ".\\test\\mfail\\mfail.c"
         ],
         "test\\mfail\\cms-test-bin-mfail.o" => [
+            ".\\test\\mfail\\mfail.c"
+        ],
+        "test\\mfail\\cms_verify-test-bin-mfail.o" => [
             ".\\test\\mfail\\mfail.c"
         ],
         "test\\mfail\\conf-test-bin-mfail.o" => [
