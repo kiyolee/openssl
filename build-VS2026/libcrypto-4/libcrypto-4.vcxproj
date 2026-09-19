@@ -114,7 +114,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\crypto\aes\aes_cbc_vaes_intrinsic.c" />
+    <ClCompile Include="..\..\crypto\aes\aes_vaes512_intrinsics.c" />
     <ClCompile Include="..\..\crypto\aes\aes_cfb.c" />
     <ClCompile Include="..\..\crypto\aes\aes_ecb.c" />
     <ClCompile Include="..\..\crypto\aes\aes_ige.c" />
@@ -124,6 +124,7 @@
     <ClCompile Include="..\..\crypto\aligned_alloc.c" />
     <ClCompile Include="..\..\crypto\aria\aria.c" />
     <ClCompile Include="..\..\crypto\array_alloc.c" />
+    <ClCompile Include="..\..\crypto\ascon\ascon_aead128.c" />
     <ClCompile Include="..\..\crypto\asn1\ameth_lib.c" />
     <ClCompile Include="..\..\crypto\asn1\asn1_err.c" />
     <ClCompile Include="..\..\crypto\asn1\asn1_gen.c" />

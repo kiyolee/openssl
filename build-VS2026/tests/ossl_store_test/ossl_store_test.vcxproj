@@ -94,6 +94,7 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\test\fake_storeprov.c" />
     <ClCompile Include="..\..\..\test\ossl_store_test.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

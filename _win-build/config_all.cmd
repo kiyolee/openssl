@@ -54,6 +54,7 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\ciphers\cipher_aes_siv.inc ^
   providers\implementations\ciphers\cipher_aes_wrp.inc ^
   providers\implementations\ciphers\cipher_aes_xts.inc ^
+  providers\implementations\ciphers\cipher_ascon_aead128.inc ^
   providers\implementations\ciphers\cipher_chacha20.inc ^
   providers\implementations\ciphers\cipher_chacha20_poly1305.inc ^
   providers\implementations\ciphers\cipher_cts.inc ^

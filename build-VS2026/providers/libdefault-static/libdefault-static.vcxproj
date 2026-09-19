@@ -147,6 +147,7 @@
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_gcm.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_gcm_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aria_hw.c" />
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_ascon_aead128.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_camellia.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_camellia_hw.c" />
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_chacha20.c" />

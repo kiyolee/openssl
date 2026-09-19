@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{8EA809C0-1737-4F13-806D-B9F3F995414E}</ProjectGuid>
-    <RootNamespace>ca_internals_test</RootNamespace>
+    <ProjectGuid>{6BDEA84E-D1F5-4DC5-A2BC-E898A42F686D}</ProjectGuid>
+    <RootNamespace>asn1_string_poison_test</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -94,15 +94,7 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\apps\ca.c" />
-    <ClCompile Include="..\..\..\apps\lib\apps.c" />
-    <ClCompile Include="..\..\..\apps\lib\apps_ui.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_libctx.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_provider.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_rand.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_x509.c" />
-    <ClCompile Include="..\..\..\apps\lib\fmt.c" />
-    <ClCompile Include="..\..\..\test\ca_internals_test.c" />
+    <ClCompile Include="..\..\..\test\asn1_string_poison_test.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

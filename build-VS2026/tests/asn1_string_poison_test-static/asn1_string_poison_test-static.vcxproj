@@ -20,8 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{8EA809C0-1737-4F13-806D-B9F3F995414E}</ProjectGuid>
-    <RootNamespace>ca_internals_test</RootNamespace>
+    <ProjectGuid>{856FD76A-6BCD-45E3-BACB-8D4375E99710}</ProjectGuid>
+    <RootNamespace>asn1_string_poison_test-static</RootNamespace>
+    <ProjectName>asn1_string_poison_test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -53,19 +54,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testapp.props" />
+    <Import Project="..\..\_props\testapp-static.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testapp.props" />
+    <Import Project="..\..\_props\testapp-static.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testapp.props" />
+    <Import Project="..\..\_props\testapp-static.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testapp.props" />
+    <Import Project="..\..\_props\testapp-static.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -94,15 +95,7 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\apps\ca.c" />
-    <ClCompile Include="..\..\..\apps\lib\apps.c" />
-    <ClCompile Include="..\..\..\apps\lib\apps_ui.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_libctx.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_provider.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_rand.c" />
-    <ClCompile Include="..\..\..\apps\lib\app_x509.c" />
-    <ClCompile Include="..\..\..\apps\lib\fmt.c" />
-    <ClCompile Include="..\..\..\test\ca_internals_test.c" />
+    <ClCompile Include="..\..\..\test\asn1_string_poison_test.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

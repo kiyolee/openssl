@@ -102,6 +102,7 @@ our %config = (
         ".\\crypto\\rc4\\build.info",
         ".\\crypto\\idea\\build.info",
         ".\\crypto\\aria\\build.info",
+        ".\\crypto\\ascon\\build.info",
         ".\\crypto\\bf\\build.info",
         ".\\crypto\\cast\\build.info",
         ".\\crypto\\camellia\\build.info",
@@ -453,6 +454,7 @@ our @disablables = (
     "argon2",
     "aria",
     "asan",
+    "ascon128",
     "asm",
     "async",
     "autoalginit",
@@ -1093,6 +1095,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\asn1_stable_parse_test" => {
+                "noinst" => "1"
+            },
+            "test\\asn1_string_poison_test" => {
                 "noinst" => "1"
             },
             "test\\asn1_string_table_test" => {
@@ -2313,6 +2318,7 @@ our %unified_info = (
             "providers\\implementations\\ciphers\\cipher_aes_siv.inc",
             "providers\\implementations\\ciphers\\cipher_aes_wrp.inc",
             "providers\\implementations\\ciphers\\cipher_aes_xts.inc",
+            "providers\\implementations\\ciphers\\cipher_ascon_aead128.inc",
             "providers\\implementations\\ciphers\\cipher_chacha20.inc",
             "providers\\implementations\\ciphers\\cipher_chacha20_poly1305.inc",
             "providers\\implementations\\ciphers\\cipher_cts.inc",
@@ -5115,6 +5121,9 @@ our %unified_info = (
         ],
         "doc\\html\\man7\\EVP_CIPHER-ARIA.html" => [
             ".\\doc\\man7\\EVP_CIPHER-ARIA.pod"
+        ],
+        "doc\\html\\man7\\EVP_CIPHER-ASCON-AEAD128.html" => [
+            ".\\doc\\man7\\EVP_CIPHER-ASCON-AEAD128.pod"
         ],
         "doc\\html\\man7\\EVP_CIPHER-BLOWFISH.html" => [
             ".\\doc\\man7\\EVP_CIPHER-BLOWFISH.pod"
@@ -8043,6 +8052,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_CIPHER-ARIA.7" => [
             ".\\doc\\man7\\EVP_CIPHER-ARIA.pod"
         ],
+        "doc\\man\\man7\\EVP_CIPHER-ASCON-AEAD128.7" => [
+            ".\\doc\\man7\\EVP_CIPHER-ASCON-AEAD128.pod"
+        ],
         "doc\\man\\man7\\EVP_CIPHER-BLOWFISH.7" => [
             ".\\doc\\man7\\EVP_CIPHER-BLOWFISH.pod"
         ],
@@ -9176,6 +9188,9 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\cipher_aes_xts.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
+        "providers\\implementations\\ciphers\\cipher_ascon_aead128.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "providers\\implementations\\ciphers\\cipher_chacha20.inc" => [
             ".\\util\\perl|OpenSSL/paramnames.pm"
         ],
@@ -9519,6 +9534,10 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\asn1_string_poison_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
         "test\\asn1_string_table_test" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -9528,7 +9547,7 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\asn1_time_test" => [
-            "libcrypto",
+            "libcrypto.a",
             "test\\libtestutil.a"
         ],
         "test\\asynciotest" => [
@@ -9928,7 +9947,8 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\ca_internals_test" => [
-            "libssl",
+            "libcrypto.a",
+            "libssl.a",
             "test\\libtestutil.a"
         ],
         "test\\casttest" => [
@@ -11000,8 +11020,6 @@ our %unified_info = (
         },
         "crypto" => {
             "deps" => [
-                "crypto\\asn1_time_test-bin-ctype.o",
-                "crypto\\ca_internals_test-bin-ctype.o",
                 "crypto\\packettest-bin-quic_vlint.o",
                 "crypto\\libcrypto-lib-aligned_alloc.o",
                 "crypto\\libcrypto-lib-array_alloc.o",
@@ -11063,8 +11081,6 @@ our %unified_info = (
             ],
             "products" => {
                 "bin" => [
-                    "test\\asn1_time_test",
-                    "test\\ca_internals_test",
                     "test\\packettest"
                 ],
                 "lib" => [
@@ -11075,12 +11091,12 @@ our %unified_info = (
         "crypto\\aes" => {
             "deps" => [
                 "crypto\\aes\\libcrypto-lib-aes-586.o",
-                "crypto\\aes\\libcrypto-lib-aes_cbc_vaes_intrinsic.o",
                 "crypto\\aes\\libcrypto-lib-aes_cfb.o",
                 "crypto\\aes\\libcrypto-lib-aes_ecb.o",
                 "crypto\\aes\\libcrypto-lib-aes_ige.o",
                 "crypto\\aes\\libcrypto-lib-aes_misc.o",
                 "crypto\\aes\\libcrypto-lib-aes_ofb.o",
+                "crypto\\aes\\libcrypto-lib-aes_vaes512_intrinsics.o",
                 "crypto\\aes\\libcrypto-lib-aes_wrap.o",
                 "crypto\\aes\\libcrypto-lib-aesni-x86.o",
                 "crypto\\aes\\libcrypto-lib-vpaes-x86.o"
@@ -11101,10 +11117,18 @@ our %unified_info = (
                 ]
             }
         },
+        "crypto\\ascon" => {
+            "deps" => [
+                "crypto\\ascon\\libcrypto-lib-ascon_aead128.o"
+            ],
+            "products" => {
+                "lib" => [
+                    "libcrypto"
+                ]
+            }
+        },
         "crypto\\asn1" => {
             "deps" => [
-                "crypto\\asn1\\asn1_time_test-bin-a_time.o",
-                "crypto\\asn1\\ca_internals_test-bin-a_time.o",
                 "crypto\\asn1\\libcrypto-lib-a_bitstr.o",
                 "crypto\\asn1\\libcrypto-lib-a_d2i_fp.o",
                 "crypto\\asn1\\libcrypto-lib-a_digest.o",
@@ -11172,10 +11196,6 @@ our %unified_info = (
                 "crypto\\asn1\\libcrypto-lib-x_val.o"
             ],
             "products" => {
-                "bin" => [
-                    "test\\asn1_time_test",
-                    "test\\ca_internals_test"
-                ],
                 "lib" => [
                     "libcrypto"
                 ]
@@ -12666,6 +12686,7 @@ our %unified_info = (
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aria_gcm.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aria_gcm_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_aria_hw.o",
+                "providers\\implementations\\ciphers\\libdefault-lib-cipher_ascon_aead128.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_camellia.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_camellia_hw.o",
                 "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20.o",
@@ -13415,9 +13436,6 @@ our %unified_info = (
         "crypto\\aes\\aes-c64xplus.S" => [
             ".\\crypto\\aes\\asm\\aes-c64xplus.pl"
         ],
-        "crypto\\aes\\aes-cbc-vaes-x86_64.s" => [
-            ".\\crypto\\aes\\asm\\aes-cbc-vaes-x86_64.pl"
-        ],
         "crypto\\aes\\aes-cfb-avx512.s" => [
             ".\\crypto\\aes\\asm\\aes-cfb-avx512.pl"
         ],
@@ -13465,6 +13483,9 @@ our %unified_info = (
         ],
         "crypto\\aes\\aes-sparcv9.S" => [
             ".\\crypto\\aes\\asm\\aes-sparcv9.pl"
+        ],
+        "crypto\\aes\\aes-vaes-x86_64.s" => [
+            ".\\crypto\\aes\\asm\\aes-vaes-x86_64.pl"
         ],
         "crypto\\aes\\aes-x86_64.s" => [
             ".\\crypto\\aes\\asm\\aes-x86_64.pl"
@@ -16711,6 +16732,9 @@ our %unified_info = (
         "doc\\html\\man7\\EVP_CIPHER-ARIA.html" => [
             ".\\doc\\man7\\EVP_CIPHER-ARIA.pod"
         ],
+        "doc\\html\\man7\\EVP_CIPHER-ASCON-AEAD128.html" => [
+            ".\\doc\\man7\\EVP_CIPHER-ASCON-AEAD128.pod"
+        ],
         "doc\\html\\man7\\EVP_CIPHER-BLOWFISH.html" => [
             ".\\doc\\man7\\EVP_CIPHER-BLOWFISH.pod"
         ],
@@ -19591,6 +19615,9 @@ our %unified_info = (
         "doc\\man\\man7\\EVP_CIPHER-ARIA.7" => [
             ".\\doc\\man7\\EVP_CIPHER-ARIA.pod"
         ],
+        "doc\\man\\man7\\EVP_CIPHER-ASCON-AEAD128.7" => [
+            ".\\doc\\man7\\EVP_CIPHER-ASCON-AEAD128.pod"
+        ],
         "doc\\man\\man7\\EVP_CIPHER-BLOWFISH.7" => [
             ".\\doc\\man7\\EVP_CIPHER-BLOWFISH.pod"
         ],
@@ -20895,6 +20922,9 @@ our %unified_info = (
         ],
         "providers\\implementations\\ciphers\\cipher_aes_xts.inc" => [
             ".\\providers\\implementations\\ciphers\\cipher_aes_xts.inc.in"
+        ],
+        "providers\\implementations\\ciphers\\cipher_ascon_aead128.inc" => [
+            ".\\providers\\implementations\\ciphers\\cipher_ascon_aead128.inc.in"
         ],
         "providers\\implementations\\ciphers\\cipher_chacha20.inc" => [
             ".\\providers\\implementations\\ciphers\\cipher_chacha20.inc.in"
@@ -22239,6 +22269,7 @@ our %unified_info = (
             "doc\\html\\man7\\EVP_ASYM_CIPHER-SM2.html",
             "doc\\html\\man7\\EVP_CIPHER-AES.html",
             "doc\\html\\man7\\EVP_CIPHER-ARIA.html",
+            "doc\\html\\man7\\EVP_CIPHER-ASCON-AEAD128.html",
             "doc\\html\\man7\\EVP_CIPHER-BLOWFISH.html",
             "doc\\html\\man7\\EVP_CIPHER-CAMELLIA.html",
             "doc\\html\\man7\\EVP_CIPHER-CAST.html",
@@ -23704,10 +23735,12 @@ our %unified_info = (
             "include",
             "providers\\common\\include",
             "providers\\implementations\\include",
+            "crypto\\include",
             ".",
             ".\\include",
             ".\\providers\\common\\include",
-            ".\\providers\\implementations\\include"
+            ".\\providers\\implementations\\include",
+            ".\\crypto\\include"
         ],
         "libcrypto.ld" => [
             ".",
@@ -23979,6 +24012,13 @@ our %unified_info = (
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
+        "providers\\implementations\\ciphers\\cipher_ascon_aead128.inc" => [
+            ".\\util\\perl"
+        ],
+        "providers\\implementations\\ciphers\\cipher_ascon_aead128.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
         "providers\\implementations\\ciphers\\cipher_chacha20.inc" => [
             ".\\util\\perl"
         ],
@@ -24067,6 +24107,10 @@ our %unified_info = (
             ".\\providers\\implementations\\ciphers"
         ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aes_xts.o" => [
+            "providers\\implementations\\ciphers",
+            ".\\providers\\implementations\\ciphers"
+        ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_ascon_aead128.o" => [
             "providers\\implementations\\ciphers",
             ".\\providers\\implementations\\ciphers"
         ],
@@ -24502,6 +24546,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\asn1_stable_parse_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\asn1_string_poison_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -27647,6 +27697,7 @@ our %unified_info = (
             "doc\\man\\man7\\EVP_ASYM_CIPHER-SM2.7",
             "doc\\man\\man7\\EVP_CIPHER-AES.7",
             "doc\\man\\man7\\EVP_CIPHER-ARIA.7",
+            "doc\\man\\man7\\EVP_CIPHER-ASCON-AEAD128.7",
             "doc\\man\\man7\\EVP_CIPHER-BLOWFISH.7",
             "doc\\man\\man7\\EVP_CIPHER-CAMELLIA.7",
             "doc\\man\\man7\\EVP_CIPHER-CAST.7",
@@ -27865,6 +27916,7 @@ our %unified_info = (
         "test\\asn1_encode_test",
         "test\\asn1_internal_test",
         "test\\asn1_stable_parse_test",
+        "test\\asn1_string_poison_test",
         "test\\asn1_string_table_test",
         "test\\asn1_string_test",
         "test\\asn1_time_test",
@@ -28558,9 +28610,6 @@ our %unified_info = (
         "crypto\\aes\\libcrypto-lib-aes-586.o" => [
             "crypto\\aes\\aes-586.S"
         ],
-        "crypto\\aes\\libcrypto-lib-aes_cbc_vaes_intrinsic.o" => [
-            ".\\crypto\\aes\\aes_cbc_vaes_intrinsic.c"
-        ],
         "crypto\\aes\\libcrypto-lib-aes_cfb.o" => [
             ".\\crypto\\aes\\aes_cfb.c"
         ],
@@ -28576,6 +28625,9 @@ our %unified_info = (
         "crypto\\aes\\libcrypto-lib-aes_ofb.o" => [
             ".\\crypto\\aes\\aes_ofb.c"
         ],
+        "crypto\\aes\\libcrypto-lib-aes_vaes512_intrinsics.o" => [
+            ".\\crypto\\aes\\aes_vaes512_intrinsics.c"
+        ],
         "crypto\\aes\\libcrypto-lib-aes_wrap.o" => [
             ".\\crypto\\aes\\aes_wrap.c"
         ],
@@ -28588,11 +28640,8 @@ our %unified_info = (
         "crypto\\aria\\libcrypto-lib-aria.o" => [
             ".\\crypto\\aria\\aria.c"
         ],
-        "crypto\\asn1\\asn1_time_test-bin-a_time.o" => [
-            ".\\crypto\\asn1\\a_time.c"
-        ],
-        "crypto\\asn1\\ca_internals_test-bin-a_time.o" => [
-            ".\\crypto\\asn1\\a_time.c"
+        "crypto\\ascon\\libcrypto-lib-ascon_aead128.o" => [
+            ".\\crypto\\ascon\\ascon_aead128.c"
         ],
         "crypto\\asn1\\libcrypto-lib-a_bitstr.o" => [
             ".\\crypto\\asn1\\a_bitstr.c"
@@ -28788,9 +28837,6 @@ our %unified_info = (
         ],
         "crypto\\asn1\\libcrypto-lib-x_val.o" => [
             ".\\crypto\\asn1\\x_val.c"
-        ],
-        "crypto\\asn1_time_test-bin-ctype.o" => [
-            ".\\crypto\\ctype.c"
         ],
         "crypto\\async\\arch\\libcrypto-lib-async_null.o" => [
             ".\\crypto\\async\\arch\\async_null.c"
@@ -29022,9 +29068,6 @@ our %unified_info = (
         ],
         "crypto\\buffer\\libcrypto-lib-buffer.o" => [
             ".\\crypto\\buffer\\buffer.c"
-        ],
-        "crypto\\ca_internals_test-bin-ctype.o" => [
-            ".\\crypto\\ctype.c"
         ],
         "crypto\\camellia\\libcrypto-lib-cmll-x86.o" => [
             "crypto\\camellia\\cmll-x86.S"
@@ -31405,16 +31448,17 @@ our %unified_info = (
         ],
         "libcrypto" => [
             "crypto\\aes\\libcrypto-lib-aes-586.o",
-            "crypto\\aes\\libcrypto-lib-aes_cbc_vaes_intrinsic.o",
             "crypto\\aes\\libcrypto-lib-aes_cfb.o",
             "crypto\\aes\\libcrypto-lib-aes_ecb.o",
             "crypto\\aes\\libcrypto-lib-aes_ige.o",
             "crypto\\aes\\libcrypto-lib-aes_misc.o",
             "crypto\\aes\\libcrypto-lib-aes_ofb.o",
+            "crypto\\aes\\libcrypto-lib-aes_vaes512_intrinsics.o",
             "crypto\\aes\\libcrypto-lib-aes_wrap.o",
             "crypto\\aes\\libcrypto-lib-aesni-x86.o",
             "crypto\\aes\\libcrypto-lib-vpaes-x86.o",
             "crypto\\aria\\libcrypto-lib-aria.o",
+            "crypto\\ascon\\libcrypto-lib-ascon_aead128.o",
             "crypto\\asn1\\libcrypto-lib-a_bitstr.o",
             "crypto\\asn1\\libcrypto-lib-a_d2i_fp.o",
             "crypto\\asn1\\libcrypto-lib-a_digest.o",
@@ -32543,6 +32587,9 @@ our %unified_info = (
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_aria_hw.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_aria_hw.c"
         ],
+        "providers\\implementations\\ciphers\\libdefault-lib-cipher_ascon_aead128.o" => [
+            ".\\providers\\implementations\\ciphers\\cipher_ascon_aead128.c"
+        ],
         "providers\\implementations\\ciphers\\libdefault-lib-cipher_camellia.o" => [
             ".\\providers\\implementations\\ciphers\\cipher_camellia.c"
         ],
@@ -33085,6 +33132,7 @@ our %unified_info = (
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aria_gcm.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aria_gcm_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_aria_hw.o",
+            "providers\\implementations\\ciphers\\libdefault-lib-cipher_ascon_aead128.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_camellia.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_camellia_hw.o",
             "providers\\implementations\\ciphers\\libdefault-lib-cipher_chacha20.o",
@@ -33606,6 +33654,12 @@ our %unified_info = (
         "test\\asn1_stable_parse_test-bin-asn1_stable_parse_test.o" => [
             ".\\test\\asn1_stable_parse_test.c"
         ],
+        "test\\asn1_string_poison_test" => [
+            "test\\asn1_string_poison_test-bin-asn1_string_poison_test.o"
+        ],
+        "test\\asn1_string_poison_test-bin-asn1_string_poison_test.o" => [
+            ".\\test\\asn1_string_poison_test.c"
+        ],
         "test\\asn1_string_table_test" => [
             "test\\asn1_string_table_test-bin-asn1_string_table_test.o"
         ],
@@ -33619,8 +33673,6 @@ our %unified_info = (
             ".\\test\\asn1_string_test.c"
         ],
         "test\\asn1_time_test" => [
-            "crypto\\asn1\\asn1_time_test-bin-a_time.o",
-            "crypto\\asn1_time_test-bin-ctype.o",
             "test\\asn1_time_test-bin-asn1_time_test.o"
         ],
         "test\\asn1_time_test-bin-asn1_time_test.o" => [
@@ -34224,8 +34276,6 @@ our %unified_info = (
             "apps\\lib\\ca_internals_test-bin-apps.o",
             "apps\\lib\\ca_internals_test-bin-apps_ui.o",
             "apps\\lib\\ca_internals_test-bin-fmt.o",
-            "crypto\\asn1\\ca_internals_test-bin-a_time.o",
-            "crypto\\ca_internals_test-bin-ctype.o",
             "test\\ca_internals_test-bin-ca_internals_test.o"
         ],
         "test\\ca_internals_test-bin-ca_internals_test.o" => [
@@ -35297,7 +35347,11 @@ our %unified_info = (
             ".\\test\\ossl_rbtree_test.c"
         ],
         "test\\ossl_store_test" => [
+            "test\\ossl_store_test-bin-fake_storeprov.o",
             "test\\ossl_store_test-bin-ossl_store_test.o"
+        ],
+        "test\\ossl_store_test-bin-fake_storeprov.o" => [
+            ".\\test\\fake_storeprov.c"
         ],
         "test\\ossl_store_test-bin-ossl_store_test.o" => [
             ".\\test\\ossl_store_test.c"

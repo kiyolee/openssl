@@ -582,5 +582,8 @@
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_aes_hw_t4.c">
       <Filter>Source Files\providers\implementations\ciphers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_ascon_aead128.c">
+      <Filter>Source Files\providers\implementations\ciphers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
