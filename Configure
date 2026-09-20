@@ -2103,6 +2103,7 @@ if ($builder eq "unified") {
         my $f = basename($file);
 
         # Make sure the directories we're building in exists
+        $d =~ s/\|/\//;
         mkpath($d) unless $no_mkpath;
 
         my $res = abs2rel(catfile(absolutedir($d), $f), rel2abs($relativeto));
