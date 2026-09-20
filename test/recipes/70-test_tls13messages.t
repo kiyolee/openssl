@@ -7,7 +7,7 @@
 # https://www.openssl.org/source/license.html
 
 use strict;
-use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file srctop_dir bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file srctop_dir bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use File::Temp qw(tempfile);
 use TLSProxy::Proxy;
@@ -206,7 +206,8 @@ sub setup_extensions
     );
 }
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 my $testcount = 19;
 my $fatal_alert = 0;

@@ -7,7 +7,7 @@
 # https://www.openssl.org/source/license.html
 
 use strict;
-use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use TLSProxy::Proxy;
 use File::Temp qw(tempfile);
@@ -38,7 +38,8 @@ my $cextms = 0;
 my $sextms = 0;
 my $fullhand = 0;
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 my $proxy = TLSProxy::Proxy->new(
     \&extms_filter,
