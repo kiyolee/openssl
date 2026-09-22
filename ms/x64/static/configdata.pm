@@ -394,7 +394,7 @@ our %target = (
         "windows",
         "VC-common"
     ],
-    "cflags" => "/Gs0 /GF /Gy",
+    "cflags" => "/GF /Gy",
     "coutflag" => "/Fo",
     "cppflags" => "",
     "defines" => [
