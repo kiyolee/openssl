@@ -154,13 +154,13 @@ subtest "Check ecparam -param_enc converts between named and explicit" => sub {
     my $to_explicit = 'param-explicit.tst';
     ok(run(app(['openssl', 'ecparam', '-in', $named, '-param_enc', 'explicit',
                 '-out', $to_explicit]))
-       && !compare($to_explicit, $explicit),
+       && !compare_text($to_explicit, $explicit),
        "named_curve params re-encoded as explicit match the reference file");
 
     my $to_named = 'param-named.tst';
     ok(run(app(['openssl', 'ecparam', '-in', $explicit, '-param_enc',
                 'named_curve', '-out', $to_named]))
-       && !compare($to_named, $named),
+       && !compare_text($to_named, $named),
        "explicit params re-encoded as named_curve match the reference file");
 
     ok(!run(app(['openssl', 'ecparam', '-in', $named, '-noout',
@@ -178,7 +178,7 @@ subtest "Check ecparam -inform and -outform handling" => sub {
     my $pem = 'param-der.pem';
     ok(run(app(['openssl', 'ecparam', '-inform', 'DER', '-in', $der,
                 '-out', $pem]))
-       && !compare($pem, $named),
+       && !compare_text($pem, $named),
        "parameters survive a PEM -> DER -> PEM roundtrip");
 
     ok(!run(app(['openssl', 'ecparam', '-in', $der, '-noout'])),
@@ -204,13 +204,13 @@ subtest "Check ecparam -conv_form selects the generator point encoding" => sub {
     my $back = 'param-unc.pem';
     ok(run(app(['openssl', 'ecparam', '-in', $comp, '-conv_form',
                 'uncompressed', '-out', $back]))
-       && !compare($back, $explicit),
+       && !compare_text($back, $explicit),
        "converting back to uncompressed matches the reference file");
 
     my $namedout = 'param-named-conv.pem';
     ok(run(app(['openssl', 'ecparam', '-in', $named, '-conv_form',
                 'compressed', '-out', $namedout]))
-       && !compare($namedout, $named),
+       && !compare_text($namedout, $named),
        "-conv_form does not change named curve parameters");
 
     ok(!run(app(['openssl', 'ecparam', '-in', $named, '-noout',
