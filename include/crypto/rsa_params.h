@@ -8712,6 +8712,7 @@ static ossl_unused const OSSL_PARAM rsa_other_import_types_list[] = {
 
 #ifndef rsa_other_import_types_st
 struct rsa_other_import_types_st {
+    int dummy; /* unused */
 };
 #endif
 
@@ -8744,6 +8745,7 @@ static ossl_unused const OSSL_PARAM rsa_other_export_types_list[] = {
 
 #ifndef rsa_other_export_types_st
 struct rsa_other_export_types_st {
+    int dummy; /* unused */
 };
 #endif
 
