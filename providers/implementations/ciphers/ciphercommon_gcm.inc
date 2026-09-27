@@ -31,6 +31,9 @@ static ossl_unused const OSSL_PARAM ossl_cipher_gcm_get_ctx_params_list[] = {
     OSSL_PARAM_size_t(OSSL_CIPHER_PARAM_AEAD_TLS1_AAD_PAD, NULL),
     OSSL_PARAM_octet_string(OSSL_CIPHER_PARAM_AEAD_TLS1_GET_IV_GEN, NULL, 0),
     OSSL_PARAM_uint(OSSL_CIPHER_PARAM_AEAD_IV_GENERATED, NULL),
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_CIPHER_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
     OSSL_PARAM_END
 };
 #endif
@@ -38,6 +41,9 @@ static ossl_unused const OSSL_PARAM ossl_cipher_gcm_get_ctx_params_list[] = {
 #ifndef ossl_cipher_gcm_get_ctx_params_st
 struct ossl_cipher_gcm_get_ctx_params_st {
     OSSL_PARAM *gen;
+# if defined(FIPS_MODULE)
+    OSSL_PARAM *ind;
+# endif
     OSSL_PARAM *iv;
     OSSL_PARAM *ivgen;
     OSSL_PARAM *ivlen;
@@ -60,6 +66,19 @@ static ossl_unused int ossl_cipher_gcm_get_ctx_params_decoder
         for (; (s = p->key) != NULL; p++)
             switch(s[0]) {
             default:
+                break;
+            case 'f':
+# if defined(FIPS_MODULE)
+                if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* OSSL_CIPHER_PARAM_FIPS_APPROVED_INDICATOR */
+                    if (ossl_unlikely(r->ind != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->ind = (OSSL_PARAM *)p;
+                }
+# endif
                 break;
             case 'i':
                 switch(s[1]) {

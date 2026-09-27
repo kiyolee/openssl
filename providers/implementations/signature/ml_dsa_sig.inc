@@ -238,6 +238,9 @@ static ossl_unused int ml_dsa_verifymsg_set_ctx_params_decoder
 #ifndef ml_dsa_get_ctx_params_list
 static ossl_unused const OSSL_PARAM ml_dsa_get_ctx_params_list[] = {
     OSSL_PARAM_octet_string(OSSL_SIGNATURE_PARAM_ALGORITHM_ID, NULL, 0),
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_SIGNATURE_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
     OSSL_PARAM_END
 };
 #endif
@@ -245,6 +248,9 @@ static ossl_unused const OSSL_PARAM ml_dsa_get_ctx_params_list[] = {
 #ifndef ml_dsa_get_ctx_params_st
 struct ml_dsa_get_ctx_params_st {
     OSSL_PARAM *id;
+# if defined(FIPS_MODULE)
+    OSSL_PARAM *ind;
+# endif
 };
 #endif
 
@@ -257,14 +263,33 @@ static ossl_unused int ml_dsa_get_ctx_params_decoder
     memset(r, 0, sizeof(*r));
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
-            if (ossl_likely(strcmp("algorithm-id", s + 0) == 0)) {
-                /* OSSL_SIGNATURE_PARAM_ALGORITHM_ID */
-                if (ossl_unlikely(r->id != NULL)) {
-                    ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                   "param %s is repeated", s);
-                    return 0;
+            switch(s[0]) {
+            default:
+                break;
+            case 'a':
+                if (ossl_likely(strcmp("lgorithm-id", s + 1) == 0)) {
+                    /* OSSL_SIGNATURE_PARAM_ALGORITHM_ID */
+                    if (ossl_unlikely(r->id != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->id = (OSSL_PARAM *)p;
                 }
-                r->id = (OSSL_PARAM *)p;
+                break;
+            case 'f':
+# if defined(FIPS_MODULE)
+                if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* OSSL_SIGNATURE_PARAM_FIPS_APPROVED_INDICATOR */
+                    if (ossl_unlikely(r->ind != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->ind = (OSSL_PARAM *)p;
+                }
+# endif
+                break;
             }
     return 1;
 }

@@ -116,6 +116,9 @@ static ossl_unused int cshake_set_ctx_params_decoder
 static ossl_unused const OSSL_PARAM cshake_get_ctx_params_list[] = {
     OSSL_PARAM_size_t(OSSL_DIGEST_PARAM_XOFLEN, NULL),
     OSSL_PARAM_size_t(OSSL_DIGEST_PARAM_SIZE, NULL),
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_DIGEST_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
     OSSL_PARAM_END
 };
 #endif
@@ -138,6 +141,15 @@ static ossl_unused int cshake_get_ctx_params_decoder
         for (; (s = p->key) != NULL; p++)
             switch(s[0]) {
             default:
+                break;
+            case 'f':
+# if defined(FIPS_MODULE)
+                if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* OSSL_DIGEST_PARAM_FIPS_APPROVED_INDICATOR */
+                    if (!OSSL_PARAM_set_int((OSSL_PARAM *)p, 1))
+                        return 0;
+                }
+# endif
                 break;
             case 's':
                 if (ossl_likely(strcmp("ize", s + 1) == 0)) {

@@ -25,6 +25,9 @@ static ossl_unused const OSSL_PARAM jitter_get_ctx_params_list[] = {
     OSSL_PARAM_int(OSSL_RAND_PARAM_STATE, NULL),
     OSSL_PARAM_uint(OSSL_RAND_PARAM_STRENGTH, NULL),
     OSSL_PARAM_size_t(OSSL_RAND_PARAM_MAX_REQUEST, NULL),
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_RAND_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
     OSSL_PARAM_END
 };
 #endif
@@ -48,6 +51,15 @@ static ossl_unused int jitter_get_ctx_params_decoder
         for (; (s = p->key) != NULL; p++)
             switch(s[0]) {
             default:
+                break;
+            case 'f':
+# if defined(FIPS_MODULE)
+                if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* OSSL_RAND_PARAM_FIPS_APPROVED_INDICATOR */
+                    if (!OSSL_PARAM_set_int((OSSL_PARAM *)p, 1))
+                        return 0;
+                }
+# endif
                 break;
             case 'm':
                 if (ossl_likely(strcmp("ax_request", s + 1) == 0)) {
