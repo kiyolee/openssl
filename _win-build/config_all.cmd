@@ -26,6 +26,7 @@ set _GEN_LIST_INCL=^
   include\openssl\ct.h ^
   include\openssl\err.h ^
   include\openssl\ess.h ^
+  include\openssl\evp.h ^
   include\openssl\fipskey.h ^
   include\openssl\lhash.h ^
   include\openssl\ocsp.h ^
@@ -106,10 +107,12 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\kem\ec_kem.inc ^
   providers\implementations\kem\ecx_kem.inc ^
   providers\implementations\kem\ml_kem_kem.inc ^
+  providers\implementations\kem\mlx_kem.inc ^
   providers\implementations\kem\rsa_kem.inc ^
   providers\implementations\keymgmt\dh_kmgmt.inc ^
   providers\implementations\keymgmt\dsa_kmgmt.inc ^
   providers\implementations\keymgmt\ecx_kmgmt.inc ^
+  providers\implementations\keymgmt\keymgmtcommon.inc ^
   providers\implementations\keymgmt\lms_kmgmt.inc ^
   providers\implementations\keymgmt\mac_legacy_kmgmt.inc ^
   providers\implementations\keymgmt\ml_dsa_kmgmt.inc ^
@@ -133,6 +136,7 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\signature\dsa_sig.inc ^
   providers\implementations\signature\ecdsa_sig.inc ^
   providers\implementations\signature\eddsa_sig.inc ^
+  providers\implementations\signature\lms_signature.inc ^
   providers\implementations\signature\mac_legacy_sig.inc ^
   providers\implementations\signature\ml_dsa_sig.inc ^
   providers\implementations\signature\rsa_sig.inc ^

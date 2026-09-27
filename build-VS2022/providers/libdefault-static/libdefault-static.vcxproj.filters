@@ -585,5 +585,17 @@
     <ClCompile Include="..\..\..\providers\implementations\ciphers\cipher_ascon_aead128.c">
       <Filter>Source Files\providers\implementations\ciphers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\ciphercommon.c">
+      <Filter>Source Files\providers\implementations\ciphers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\ciphercommon_ccm.c">
+      <Filter>Source Files\providers\implementations\ciphers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\ciphers\ciphercommon_gcm.c">
+      <Filter>Source Files\providers\implementations\ciphers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\providers\implementations\digests\digestcommon.c">
+      <Filter>Source Files\providers\implementations\digests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
