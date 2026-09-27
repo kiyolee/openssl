@@ -55,3 +55,50 @@ static ossl_unused int ml_kem_set_ctx_params_decoder
 }
 #endif
 /* End of machine generated */
+
+/* Machine generated */
+#ifndef ml_kem_get_ctx_params_list
+static ossl_unused const OSSL_PARAM ml_kem_get_ctx_params_list[] = {
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_KEM_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
+    OSSL_PARAM_END
+};
+#endif
+
+#ifndef ml_kem_get_ctx_params_st
+struct ml_kem_get_ctx_params_st {
+# if defined(FIPS_MODULE)
+    OSSL_PARAM *ind;
+# else
+    int dummy; /* unused */
+# endif
+};
+#endif
+
+#ifndef ml_kem_get_ctx_params_decoder
+static ossl_unused int ml_kem_get_ctx_params_decoder
+    (const OSSL_PARAM *p, struct ml_kem_get_ctx_params_st *r)
+{
+    const char *s;
+
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+# if defined(FIPS_MODULE)
+            if (ossl_likely(strcmp("fips-indicator", s + 0) == 0)) {
+                /* OSSL_KEM_PARAM_FIPS_APPROVED_INDICATOR */
+                if (ossl_unlikely(r->ind != NULL)) {
+                    ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                   "param %s is repeated", s);
+                    return 0;
+                }
+                r->ind = (OSSL_PARAM *)p;
+            }
+# else
+            ;
+# endif
+    return 1;
+}
+#endif
+/* End of machine generated */

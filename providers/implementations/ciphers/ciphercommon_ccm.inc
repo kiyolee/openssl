@@ -125,6 +125,9 @@ static ossl_unused const OSSL_PARAM ossl_cipher_ccm_get_ctx_params_list[] = {
     OSSL_PARAM_octet_string(OSSL_CIPHER_PARAM_UPDATED_IV, NULL, 0),
     OSSL_PARAM_octet_string(OSSL_CIPHER_PARAM_AEAD_TAG, NULL, 0),
     OSSL_PARAM_size_t(OSSL_CIPHER_PARAM_AEAD_TLS1_AAD_PAD, NULL),
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_CIPHER_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
     OSSL_PARAM_END
 };
 #endif
@@ -152,6 +155,15 @@ static ossl_unused int ossl_cipher_ccm_get_ctx_params_decoder
         for (; (s = p->key) != NULL; p++)
             switch(s[0]) {
             default:
+                break;
+            case 'f':
+# if defined(FIPS_MODULE)
+                if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* OSSL_CIPHER_PARAM_FIPS_APPROVED_INDICATOR */
+                    if (!OSSL_PARAM_set_int((OSSL_PARAM *)p, 1))
+                        return 0;
+                }
+# endif
                 break;
             case 'i':
                 switch(s[1]) {

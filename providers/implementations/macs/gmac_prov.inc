@@ -57,6 +57,60 @@ static ossl_unused int gmac_get_params_decoder
 /* End of machine generated */
 
 /* Machine generated */
+#ifndef gmac_get_ctx_params_list
+static ossl_unused const OSSL_PARAM gmac_get_ctx_params_list[] = {
+    OSSL_PARAM_size_t(OSSL_MAC_PARAM_SIZE, NULL),
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_MAC_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
+    OSSL_PARAM_END
+};
+#endif
+
+#ifndef gmac_get_ctx_params_st
+struct gmac_get_ctx_params_st {
+    OSSL_PARAM *size;
+};
+#endif
+
+#ifndef gmac_get_ctx_params_decoder
+static ossl_unused int gmac_get_ctx_params_decoder
+    (const OSSL_PARAM *p, struct gmac_get_ctx_params_st *r)
+{
+    const char *s;
+
+    memset(r, 0, sizeof(*r));
+    if (p != NULL)
+        for (; (s = p->key) != NULL; p++)
+            switch(s[0]) {
+            default:
+                break;
+            case 'f':
+# if defined(FIPS_MODULE)
+                if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* OSSL_MAC_PARAM_FIPS_APPROVED_INDICATOR */
+                    if (!OSSL_PARAM_set_int((OSSL_PARAM *)p, 1))
+                        return 0;
+                }
+# endif
+                break;
+            case 's':
+                if (ossl_likely(strcmp("ize", s + 1) == 0)) {
+                    /* OSSL_MAC_PARAM_SIZE */
+                    if (ossl_unlikely(r->size != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->size = (OSSL_PARAM *)p;
+                }
+            }
+    return 1;
+}
+#endif
+/* End of machine generated */
+
+/* Machine generated */
 #ifndef gmac_set_ctx_params_list
 static ossl_unused const OSSL_PARAM gmac_set_ctx_params_list[] = {
     OSSL_PARAM_utf8_string(OSSL_MAC_PARAM_CIPHER, NULL, 0),

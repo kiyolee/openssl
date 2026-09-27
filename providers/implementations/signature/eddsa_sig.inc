@@ -23,6 +23,9 @@
 #ifndef eddsa_get_ctx_params_list
 static ossl_unused const OSSL_PARAM eddsa_get_ctx_params_list[] = {
     OSSL_PARAM_octet_string(OSSL_SIGNATURE_PARAM_ALGORITHM_ID, NULL, 0),
+# if defined(FIPS_MODULE)
+    OSSL_PARAM_int(OSSL_SIGNATURE_PARAM_FIPS_APPROVED_INDICATOR, NULL),
+# endif
     OSSL_PARAM_END
 };
 #endif
@@ -42,14 +45,29 @@ static ossl_unused int eddsa_get_ctx_params_decoder
     memset(r, 0, sizeof(*r));
     if (p != NULL)
         for (; (s = p->key) != NULL; p++)
-            if (ossl_likely(strcmp("algorithm-id", s + 0) == 0)) {
-                /* OSSL_SIGNATURE_PARAM_ALGORITHM_ID */
-                if (ossl_unlikely(r->id != NULL)) {
-                    ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
-                                   "param %s is repeated", s);
-                    return 0;
+            switch(s[0]) {
+            default:
+                break;
+            case 'a':
+                if (ossl_likely(strcmp("lgorithm-id", s + 1) == 0)) {
+                    /* OSSL_SIGNATURE_PARAM_ALGORITHM_ID */
+                    if (ossl_unlikely(r->id != NULL)) {
+                        ERR_raise_data(ERR_LIB_PROV, PROV_R_REPEATED_PARAMETER,
+                                       "param %s is repeated", s);
+                        return 0;
+                    }
+                    r->id = (OSSL_PARAM *)p;
                 }
-                r->id = (OSSL_PARAM *)p;
+                break;
+            case 'f':
+# if defined(FIPS_MODULE)
+                if (ossl_likely(strcmp("ips-indicator", s + 1) == 0)) {
+                    /* OSSL_SIGNATURE_PARAM_FIPS_APPROVED_INDICATOR */
+                    if (!OSSL_PARAM_set_int((OSSL_PARAM *)p, 1))
+                        return 0;
+                }
+# endif
+                break;
             }
     return 1;
 }
