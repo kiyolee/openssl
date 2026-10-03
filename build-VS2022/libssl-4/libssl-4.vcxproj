@@ -114,6 +114,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\crypto\asprintf.c" />
     <ClCompile Include="..\..\crypto\ctype.c" />
     <ClCompile Include="..\..\crypto\getenv.c" />
     <ClCompile Include="..\..\crypto\hashtable\hashfunc.c" />

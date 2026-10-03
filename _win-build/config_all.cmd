@@ -145,7 +145,9 @@ set _GEN_LIST_PARAMNAMES_CSRC=^
   providers\implementations\skeymgmt\generic.inc ^
   providers\implementations\storemgmt\file_store.inc ^
   providers\implementations\storemgmt\file_store_any2obj.inc ^
-  providers\implementations\storemgmt\winstore_store.inc
+  providers\implementations\storemgmt\winstore_store.inc ^
+  ssl\record\methods\tls_common.inc ^
+  ssl\t1_lib.inc
 
 set _GEN_LIST_PROV_INCL=^
   providers\common\include\prov\der_digests.h ^
