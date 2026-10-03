@@ -1104,6 +1104,9 @@ our %unified_info = (
             "test\\asn1_time_test" => {
                 "noinst" => "1"
             },
+            "test\\asprintf_test" => {
+                "noinst" => "1"
+            },
             "test\\asynciotest" => {
                 "noinst" => "1"
             },
@@ -1111,6 +1114,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\bad_dtls_test" => {
+                "noinst" => "1"
+            },
+            "test\\base64_dec_avx2_test" => {
                 "noinst" => "1"
             },
             "test\\base64_simdutf_test" => {
@@ -1576,6 +1582,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\errtest" => {
+                "noinst" => "1"
+            },
+            "test\\evp_aead_test" => {
                 "noinst" => "1"
             },
             "test\\evp_byname_test" => {
@@ -2429,6 +2438,8 @@ our %unified_info = (
             "providers\\implementations\\storemgmt\\file_store.inc",
             "providers\\implementations\\storemgmt\\file_store_any2obj.inc",
             "providers\\implementations\\storemgmt\\winstore_store.inc",
+            "ssl\\record\\methods\\tls_common.inc",
+            "ssl\\t1_lib.inc",
             "test\\nocache-and-default.cnf",
             "test\\pathed.cnf",
             "test\\provider_internal_test.cnf"
@@ -9560,6 +9571,12 @@ our %unified_info = (
         "providers\\liblegacy.a" => [
             "providers\\libcommon.a"
         ],
+        "ssl\\record\\methods\\tls_common.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
+        "ssl\\t1_lib.inc" => [
+            ".\\util\\perl|OpenSSL/paramnames.pm"
+        ],
         "test\\aborttest" => [
             "libcrypto"
         ],
@@ -9611,6 +9628,10 @@ our %unified_info = (
             "libcrypto.a",
             "test\\libtestutil.a"
         ],
+        "test\\asprintf_test" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
         "test\\asynciotest" => [
             "libcrypto",
             "libssl",
@@ -9622,6 +9643,10 @@ our %unified_info = (
         "test\\bad_dtls_test" => [
             "libcrypto",
             "libssl",
+            "test\\libtestutil.a"
+        ],
+        "test\\base64_dec_avx2_test" => [
+            "libcrypto.a",
             "test\\libtestutil.a"
         ],
         "test\\base64_simdutf_test" => [
@@ -10264,6 +10289,10 @@ our %unified_info = (
         ],
         "test\\errtest" => [
             "libcrypto",
+            "test\\libtestutil.a"
+        ],
+        "test\\evp_aead_test" => [
+            "libcrypto.a",
             "test\\libtestutil.a"
         ],
         "test\\evp_byname_test" => [
@@ -11094,6 +11123,7 @@ our %unified_info = (
                 "crypto\\libcrypto-lib-aligned_alloc.o",
                 "crypto\\libcrypto-lib-array_alloc.o",
                 "crypto\\libcrypto-lib-asn1_dsa.o",
+                "crypto\\libcrypto-lib-asprintf.o",
                 "crypto\\libcrypto-lib-bsearch.o",
                 "crypto\\libcrypto-lib-comp_methods.o",
                 "crypto\\libcrypto-lib-context.o",
@@ -11151,6 +11181,7 @@ our %unified_info = (
                 "crypto\\libcrypto-shlib-aligned_alloc.o",
                 "crypto\\libcrypto-shlib-array_alloc.o",
                 "crypto\\libcrypto-shlib-asn1_dsa.o",
+                "crypto\\libcrypto-shlib-asprintf.o",
                 "crypto\\libcrypto-shlib-bsearch.o",
                 "crypto\\libcrypto-shlib-comp_methods.o",
                 "crypto\\libcrypto-shlib-context.o",
@@ -11206,6 +11237,7 @@ our %unified_info = (
                 "crypto\\libcrypto-shlib-trace.o",
                 "crypto\\libcrypto-shlib-uid.o",
                 "crypto\\libcrypto-shlib-x86cpuid.o",
+                "crypto\\libssl-shlib-asprintf.o",
                 "crypto\\libssl-shlib-ctype.o",
                 "crypto\\libssl-shlib-getenv.o",
                 "crypto\\libssl-shlib-packet.o",
@@ -12189,6 +12221,7 @@ our %unified_info = (
                 "crypto\\evp\\libcrypto-lib-c_allc.o",
                 "crypto\\evp\\libcrypto-lib-c_alld.o",
                 "crypto\\evp\\libcrypto-lib-ctrl_params_translate.o",
+                "crypto\\evp\\libcrypto-lib-dec_b64_avx2.o",
                 "crypto\\evp\\libcrypto-lib-dh_ctrl.o",
                 "crypto\\evp\\libcrypto-lib-dh_support.o",
                 "crypto\\evp\\libcrypto-lib-digest.o",
@@ -12272,6 +12305,7 @@ our %unified_info = (
                 "crypto\\evp\\libcrypto-shlib-c_allc.o",
                 "crypto\\evp\\libcrypto-shlib-c_alld.o",
                 "crypto\\evp\\libcrypto-shlib-ctrl_params_translate.o",
+                "crypto\\evp\\libcrypto-shlib-dec_b64_avx2.o",
                 "crypto\\evp\\libcrypto-shlib-dh_ctrl.o",
                 "crypto\\evp\\libcrypto-shlib-dh_support.o",
                 "crypto\\evp\\libcrypto-shlib-digest.o",
@@ -22252,6 +22286,12 @@ our %unified_info = (
             ".\\util\\mkrc.pl",
             "legacy"
         ],
+        "ssl\\record\\methods\\tls_common.inc" => [
+            ".\\ssl\\record\\methods\\tls_common.inc.in"
+        ],
+        "ssl\\t1_lib.inc" => [
+            ".\\ssl\\t1_lib.inc.in"
+        ],
         "test\\buildtest_aes.c" => [
             ".\\test\\generate_buildtest.pl",
             "aes"
@@ -25647,6 +25687,12 @@ our %unified_info = (
             ".\\providers\\common\\include",
             ".\\providers\\fips\\include"
         ],
+        "ssl\\record\\methods\\tls_common.inc" => [
+            ".\\util\\perl"
+        ],
+        "ssl\\t1_lib.inc" => [
+            ".\\util\\perl"
+        ],
         "test\\aborttest" => [
             "include",
             "apps\\include",
@@ -25729,6 +25775,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\asprintf_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\asynciotest" => [
             "include",
             "apps\\include",
@@ -25746,6 +25798,16 @@ our %unified_info = (
             "apps\\include",
             ".\\include",
             ".\\apps\\include"
+        ],
+        "test\\base64_dec_avx2_test" => [
+            "include",
+            "apps\\include",
+            "crypto\\include",
+            "crypto\\evp",
+            ".\\include",
+            ".\\apps\\include",
+            ".\\crypto\\include",
+            ".\\crypto\\evp"
         ],
         "test\\base64_simdutf_test" => [
             "include",
@@ -26600,6 +26662,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\errtest" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\evp_aead_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -29095,9 +29163,11 @@ our %unified_info = (
         "test\\asn1_string_table_test",
         "test\\asn1_string_test",
         "test\\asn1_time_test",
+        "test\\asprintf_test",
         "test\\asynciotest",
         "test\\asynctest",
         "test\\bad_dtls_test",
+        "test\\base64_dec_avx2_test",
         "test\\base64_simdutf_test",
         "test\\bftest",
         "test\\bio_addr_test",
@@ -29253,6 +29323,7 @@ our %unified_info = (
         "test\\endecoder_legacy_test",
         "test\\engine_stubs_test",
         "test\\errtest",
+        "test\\evp_aead_test",
         "test\\evp_byname_test",
         "test\\evp_extra_test",
         "test\\evp_extra_test2",
@@ -29778,6 +29849,7 @@ our %unified_info = (
             "crypto\\evp\\libcrypto-shlib-c_allc.o",
             "crypto\\evp\\libcrypto-shlib-c_alld.o",
             "crypto\\evp\\libcrypto-shlib-ctrl_params_translate.o",
+            "crypto\\evp\\libcrypto-shlib-dec_b64_avx2.o",
             "crypto\\evp\\libcrypto-shlib-dh_ctrl.o",
             "crypto\\evp\\libcrypto-shlib-dh_support.o",
             "crypto\\evp\\libcrypto-shlib-digest.o",
@@ -29880,6 +29952,7 @@ our %unified_info = (
             "crypto\\libcrypto-shlib-aligned_alloc.o",
             "crypto\\libcrypto-shlib-array_alloc.o",
             "crypto\\libcrypto-shlib-asn1_dsa.o",
+            "crypto\\libcrypto-shlib-asprintf.o",
             "crypto\\libcrypto-shlib-bsearch.o",
             "crypto\\libcrypto-shlib-comp_methods.o",
             "crypto\\libcrypto-shlib-context.o",
@@ -30244,6 +30317,7 @@ our %unified_info = (
         ],
         "libssl" => [
             "crypto\\hashtable\\libssl-shlib-hashfunc.o",
+            "crypto\\libssl-shlib-asprintf.o",
             "crypto\\libssl-shlib-ctype.o",
             "crypto\\libssl-shlib-getenv.o",
             "crypto\\libssl-shlib-packet.o",
@@ -32757,6 +32831,9 @@ our %unified_info = (
         "crypto\\evp\\libcrypto-lib-ctrl_params_translate.o" => [
             ".\\crypto\\evp\\ctrl_params_translate.c"
         ],
+        "crypto\\evp\\libcrypto-lib-dec_b64_avx2.o" => [
+            ".\\crypto\\evp\\dec_b64_avx2.c"
+        ],
         "crypto\\evp\\libcrypto-lib-dh_ctrl.o" => [
             ".\\crypto\\evp\\dh_ctrl.c"
         ],
@@ -33005,6 +33082,9 @@ our %unified_info = (
         ],
         "crypto\\evp\\libcrypto-shlib-ctrl_params_translate.o" => [
             ".\\crypto\\evp\\ctrl_params_translate.c"
+        ],
+        "crypto\\evp\\libcrypto-shlib-dec_b64_avx2.o" => [
+            ".\\crypto\\evp\\dec_b64_avx2.c"
         ],
         "crypto\\evp\\libcrypto-shlib-dh_ctrl.o" => [
             ".\\crypto\\evp\\dh_ctrl.c"
@@ -33393,6 +33473,9 @@ our %unified_info = (
         "crypto\\libcrypto-lib-asn1_dsa.o" => [
             ".\\crypto\\asn1_dsa.c"
         ],
+        "crypto\\libcrypto-lib-asprintf.o" => [
+            ".\\crypto\\asprintf.c"
+        ],
         "crypto\\libcrypto-lib-bsearch.o" => [
             ".\\crypto\\bsearch.c"
         ],
@@ -33564,6 +33647,9 @@ our %unified_info = (
         "crypto\\libcrypto-shlib-asn1_dsa.o" => [
             ".\\crypto\\asn1_dsa.c"
         ],
+        "crypto\\libcrypto-shlib-asprintf.o" => [
+            ".\\crypto\\asprintf.c"
+        ],
         "crypto\\libcrypto-shlib-bsearch.o" => [
             ".\\crypto\\bsearch.c"
         ],
@@ -33728,6 +33814,9 @@ our %unified_info = (
         ],
         "crypto\\libcrypto-shlib-x86cpuid.o" => [
             "crypto\\x86cpuid.S"
+        ],
+        "crypto\\libssl-shlib-asprintf.o" => [
+            ".\\crypto\\asprintf.c"
         ],
         "crypto\\libssl-shlib-ctype.o" => [
             ".\\crypto\\ctype.c"
@@ -36363,6 +36452,7 @@ our %unified_info = (
             "crypto\\evp\\libcrypto-lib-c_allc.o",
             "crypto\\evp\\libcrypto-lib-c_alld.o",
             "crypto\\evp\\libcrypto-lib-ctrl_params_translate.o",
+            "crypto\\evp\\libcrypto-lib-dec_b64_avx2.o",
             "crypto\\evp\\libcrypto-lib-dh_ctrl.o",
             "crypto\\evp\\libcrypto-lib-dh_support.o",
             "crypto\\evp\\libcrypto-lib-digest.o",
@@ -36465,6 +36555,7 @@ our %unified_info = (
             "crypto\\libcrypto-lib-aligned_alloc.o",
             "crypto\\libcrypto-lib-array_alloc.o",
             "crypto\\libcrypto-lib-asn1_dsa.o",
+            "crypto\\libcrypto-lib-asprintf.o",
             "crypto\\libcrypto-lib-bsearch.o",
             "crypto\\libcrypto-lib-comp_methods.o",
             "crypto\\libcrypto-lib-context.o",
@@ -38625,6 +38716,12 @@ our %unified_info = (
         "test\\asn1_time_test-bin-asn1_time_test.o" => [
             ".\\test\\asn1_time_test.c"
         ],
+        "test\\asprintf_test" => [
+            "test\\asprintf_test-bin-asprintf_test.o"
+        ],
+        "test\\asprintf_test-bin-asprintf_test.o" => [
+            ".\\test\\asprintf_test.c"
+        ],
         "test\\asynciotest" => [
             "test\\asynciotest-bin-asynciotest.o",
             "test\\helpers\\asynciotest-bin-ssltestlib.o"
@@ -38643,6 +38740,12 @@ our %unified_info = (
         ],
         "test\\bad_dtls_test-bin-bad_dtls_test.o" => [
             ".\\test\\bad_dtls_test.c"
+        ],
+        "test\\base64_dec_avx2_test" => [
+            "test\\base64_dec_avx2_test-bin-base64_dec_avx2_test.o"
+        ],
+        "test\\base64_dec_avx2_test-bin-base64_dec_avx2_test.o" => [
+            ".\\test\\base64_dec_avx2_test.c"
         ],
         "test\\base64_simdutf_test" => [
             "test\\base64_simdutf_test-bin-base64_simdutf_test.o"
@@ -39608,6 +39711,12 @@ our %unified_info = (
         ],
         "test\\errtest-bin-errtest.o" => [
             ".\\test\\errtest.c"
+        ],
+        "test\\evp_aead_test" => [
+            "test\\evp_aead_test-bin-evp_aead_test.o"
+        ],
+        "test\\evp_aead_test-bin-evp_aead_test.o" => [
+            ".\\test\\evp_aead_test.c"
         ],
         "test\\evp_byname_test" => [
             "test\\evp_byname_test-bin-evp_byname_test.o"

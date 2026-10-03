@@ -2655,6 +2655,12 @@
     <ClCompile Include="..\..\crypto\ascon\ascon_aead128.c">
       <Filter>Source Files\crypto\ascon</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\evp\dec_b64_avx2.c">
+      <Filter>Source Files\crypto\evp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\crypto\asprintf.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\crypto\modes\asm\aesni-gcm-x86_64.pl">
