@@ -402,6 +402,9 @@
     <ClCompile Include="..\..\ssl\quic\quic_strm_reas.c">
       <Filter>Source Files\ssl\quic</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\crypto\asprintf.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\ms\openssl4.rc">
