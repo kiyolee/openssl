@@ -109,6 +109,8 @@ static const ERR_STRING_DATA X509V3_str_reasons[] = {
     { ERR_PACK(ERR_LIB_X509V3, 0, X509V3_R_OPERATION_NOT_DEFINED),
         "operation not defined" },
     { ERR_PACK(ERR_LIB_X509V3, 0, X509V3_R_OTHERNAME_ERROR), "othername error" },
+    { ERR_PACK(ERR_LIB_X509V3, 0, X509V3_R_PATHLEN_TOO_LARGE),
+        "pathlen too large" },
     { ERR_PACK(ERR_LIB_X509V3, 0, X509V3_R_POLICY_LANGUAGE_ALREADY_DEFINED),
         "policy language already defined" },
     { ERR_PACK(ERR_LIB_X509V3, 0, X509V3_R_POLICY_PATH_LENGTH),

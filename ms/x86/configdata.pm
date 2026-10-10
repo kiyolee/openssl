@@ -1470,6 +1470,9 @@ our %unified_info = (
             "test\\conf_include_test" => {
                 "noinst" => "1"
             },
+            "test\\conf_parse_list_test" => {
+                "noinst" => "1"
+            },
             "test\\confdump" => {
                 "noinst" => "1"
             },
@@ -10124,6 +10127,10 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\conf_include_test" => [
+            "libcrypto",
+            "test\\libtestutil.a"
+        ],
+        "test\\conf_parse_list_test" => [
             "libcrypto",
             "test\\libtestutil.a"
         ],
@@ -26407,6 +26414,12 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\conf_parse_list_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\confdump" => [
             "include",
             "apps\\include",
@@ -29285,6 +29298,7 @@ our %unified_info = (
         "test\\cmp_vfy_test",
         "test\\cmsapitest",
         "test\\conf_include_test",
+        "test\\conf_parse_list_test",
         "test\\confdump",
         "test\\constant_time_test",
         "test\\context_internal_test",
@@ -39468,6 +39482,12 @@ our %unified_info = (
         ],
         "test\\conf_include_test-bin-conf_include_test.o" => [
             ".\\test\\conf_include_test.c"
+        ],
+        "test\\conf_parse_list_test" => [
+            "test\\conf_parse_list_test-bin-conf_parse_list_test.o"
+        ],
+        "test\\conf_parse_list_test-bin-conf_parse_list_test.o" => [
+            ".\\test\\conf_parse_list_test.c"
         ],
         "test\\confdump" => [
             "test\\confdump-bin-confdump.o"
