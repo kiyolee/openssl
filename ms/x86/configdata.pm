@@ -1845,9 +1845,6 @@ our %unified_info = (
             "test\\quic_memfail_test" => {
                 "noinst" => "1"
             },
-            "test\\quic_multistream_test" => {
-                "noinst" => "1"
-            },
             "test\\quic_newcid_test" => {
                 "noinst" => "1"
             },
@@ -10671,11 +10668,6 @@ our %unified_info = (
             "libssl.a",
             "test\\libtestutil.a"
         ],
-        "test\\quic_multistream_test" => [
-            "libcrypto.a",
-            "libssl.a",
-            "test\\libtestutil.a"
-        ],
         "test\\quic_newcid_test" => [
             "libcrypto.a",
             "libssl.a",
@@ -14237,10 +14229,6 @@ our %unified_info = (
                 "test\\helpers\\json_test-bin-ssltestlib.o",
                 "test\\helpers\\pkcs12_api_test-bin-pkcs12.o",
                 "test\\helpers\\pkcs12_format_test-bin-pkcs12.o",
-                "test\\helpers\\quic_multistream_test-bin-noisydgrambio.o",
-                "test\\helpers\\quic_multistream_test-bin-pktsplitbio.o",
-                "test\\helpers\\quic_multistream_test-bin-quictestlib.o",
-                "test\\helpers\\quic_multistream_test-bin-ssltestlib.o",
                 "test\\helpers\\quic_newcid_test-bin-noisydgrambio.o",
                 "test\\helpers\\quic_newcid_test-bin-pktsplitbio.o",
                 "test\\helpers\\quic_newcid_test-bin-quictestlib.o",
@@ -14309,7 +14297,6 @@ our %unified_info = (
                     "test\\json_test",
                     "test\\pkcs12_api_test",
                     "test\\pkcs12_format_test",
-                    "test\\quic_multistream_test",
                     "test\\quic_newcid_test",
                     "test\\quic_radix_test",
                     "test\\quic_srt_gen_test",
@@ -27026,12 +27013,6 @@ our %unified_info = (
             ".",
             ".\\include"
         ],
-        "test\\helpers\\quic_multistream_test-bin-ssltestlib.o" => [
-            ".",
-            "include",
-            ".",
-            ".\\include"
-        ],
         "test\\helpers\\quic_newcid_test-bin-ssltestlib.o" => [
             ".",
             "include",
@@ -27585,12 +27566,6 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\quic_memfail_test" => [
-            "include",
-            "apps\\include",
-            ".\\include",
-            ".\\apps\\include"
-        ],
-        "test\\quic_multistream_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -29423,7 +29398,6 @@ our %unified_info = (
         "test\\quic_fifd_test",
         "test\\quic_lcidm_test",
         "test\\quic_memfail_test",
-        "test\\quic_multistream_test",
         "test\\quic_newcid_test",
         "test\\quic_qlog_test",
         "test\\quic_radix_test",
@@ -39995,18 +39969,6 @@ our %unified_info = (
         "test\\helpers\\pkcs12_format_test-bin-pkcs12.o" => [
             ".\\test\\helpers\\pkcs12.c"
         ],
-        "test\\helpers\\quic_multistream_test-bin-noisydgrambio.o" => [
-            ".\\test\\helpers\\noisydgrambio.c"
-        ],
-        "test\\helpers\\quic_multistream_test-bin-pktsplitbio.o" => [
-            ".\\test\\helpers\\pktsplitbio.c"
-        ],
-        "test\\helpers\\quic_multistream_test-bin-quictestlib.o" => [
-            ".\\test\\helpers\\quictestlib.c"
-        ],
-        "test\\helpers\\quic_multistream_test-bin-ssltestlib.o" => [
-            ".\\test\\helpers\\ssltestlib.c"
-        ],
         "test\\helpers\\quic_newcid_test-bin-noisydgrambio.o" => [
             ".\\test\\helpers\\noisydgrambio.c"
         ],
@@ -40687,16 +40649,6 @@ our %unified_info = (
         ],
         "test\\quic_memfail_test-bin-quic_memfail_test.o" => [
             ".\\test\\quic_memfail_test.c"
-        ],
-        "test\\quic_multistream_test" => [
-            "test\\helpers\\quic_multistream_test-bin-noisydgrambio.o",
-            "test\\helpers\\quic_multistream_test-bin-pktsplitbio.o",
-            "test\\helpers\\quic_multistream_test-bin-quictestlib.o",
-            "test\\helpers\\quic_multistream_test-bin-ssltestlib.o",
-            "test\\quic_multistream_test-bin-quic_multistream_test.o"
-        ],
-        "test\\quic_multistream_test-bin-quic_multistream_test.o" => [
-            ".\\test\\quic_multistream_test.c"
         ],
         "test\\quic_newcid_test" => [
             "test\\helpers\\quic_newcid_test-bin-noisydgrambio.o",
