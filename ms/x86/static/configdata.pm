@@ -2163,9 +2163,15 @@ our %unified_info = (
         ],
         "providers\\libdefault.a" => [
             "AES_ASM",
+            "CMLL_ASM",
+            "DES_ASM",
             "ECP_NISTZ256_ASM",
+            "GHASH_ASM",
+            "MD5_ASM",
             "OPENSSL_CPUID_OBJ",
             "OPENSSL_IA32_SSE2",
+            "POLY1305_ASM",
+            "RMD160_ASM",
             "SHA1_ASM",
             "SHA256_ASM",
             "SHA512_ASM",
@@ -13504,9 +13510,6 @@ our %unified_info = (
         "crypto\\aes\\aes-riscv64-zvkned.s" => [
             ".\\crypto\\aes\\asm\\aes-riscv64-zvkned.pl"
         ],
-        "crypto\\aes\\aes-riscv64.s" => [
-            ".\\crypto\\aes\\asm\\aes-riscv64.pl"
-        ],
         "crypto\\aes\\aes-s390x.S" => [
             ".\\crypto\\aes\\asm\\aes-s390x.pl"
         ],
@@ -14022,6 +14025,9 @@ our %unified_info = (
         ],
         "crypto\\ml_dsa\\ml_dsa_ntt-x86_64.s" => [
             ".\\crypto\\ml_dsa\\asm\\ml_dsa_ntt-x86_64.pl"
+        ],
+        "crypto\\ml_kem\\ml_kem_avx2.s" => [
+            ".\\crypto\\ml_kem\\asm\\ml_kem_avx2.pl"
         ],
         "crypto\\modes\\aes-gcm-armv8-unroll8_64.S" => [
             ".\\crypto\\modes\\asm\\aes-gcm-armv8-unroll8_64.pl"
