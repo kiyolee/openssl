@@ -2142,6 +2142,7 @@ our %unified_info = (
             "GHASH_ASM",
             "KECCAK1600_ASM",
             "MD5_ASM",
+            "MLKEM_AVX2_X86_64_ASM",
             "OPENSSL_BN_ASM_GF2m",
             "OPENSSL_BN_ASM_MONT",
             "OPENSSL_BN_ASM_MONT5",
@@ -2171,10 +2172,16 @@ our %unified_info = (
         "providers\\libdefault.a" => [
             "AES_ASM",
             "BSAES_ASM",
+            "CMLL_ASM",
             "ECP_NISTZ256_ASM",
+            "GHASH_ASM",
             "KECCAK1600_ASM",
+            "MD5_ASM",
+            "MLKEM_AVX2_X86_64_ASM",
             "OPENSSL_CPUID_OBJ",
             "OPENSSL_IA32_SSE2",
+            "OPENSSL_SM3_ASM",
+            "POLY1305_ASM",
             "SHA1_ASM",
             "SHA256_ASM",
             "SHA512_ASM",
@@ -2189,6 +2196,7 @@ our %unified_info = (
             "FIPS_MODULE",
             "GHASH_ASM",
             "KECCAK1600_ASM",
+            "MLKEM_AVX2_X86_64_ASM",
             "OPENSSL_BN_ASM_GF2m",
             "OPENSSL_BN_ASM_MONT",
             "OPENSSL_BN_ASM_MONT5",
@@ -2197,7 +2205,6 @@ our %unified_info = (
             "SHA1_ASM",
             "SHA256_ASM",
             "SHA512_ASM",
-            "SM4_ASM",
             "VPAES_ASM",
             "X25519_ASM"
         ],
@@ -12023,7 +12030,8 @@ our %unified_info = (
         },
         "crypto\\ml_kem" => {
             "deps" => [
-                "crypto\\ml_kem\\libcrypto-lib-ml_kem.o"
+                "crypto\\ml_kem\\libcrypto-lib-ml_kem.o",
+                "crypto\\ml_kem\\libcrypto-lib-ml_kem_avx2.o"
             ],
             "products" => {
                 "lib" => [
@@ -13548,9 +13556,6 @@ our %unified_info = (
         "crypto\\aes\\aes-riscv64-zvkned.s" => [
             ".\\crypto\\aes\\asm\\aes-riscv64-zvkned.pl"
         ],
-        "crypto\\aes\\aes-riscv64.s" => [
-            ".\\crypto\\aes\\asm\\aes-riscv64.pl"
-        ],
         "crypto\\aes\\aes-s390x.S" => [
             ".\\crypto\\aes\\asm\\aes-s390x.pl"
         ],
@@ -14066,6 +14071,9 @@ our %unified_info = (
         ],
         "crypto\\ml_dsa\\ml_dsa_ntt-x86_64.s" => [
             ".\\crypto\\ml_dsa\\asm\\ml_dsa_ntt-x86_64.pl"
+        ],
+        "crypto\\ml_kem\\ml_kem_avx2.s" => [
+            ".\\crypto\\ml_kem\\asm\\ml_kem_avx2.pl"
         ],
         "crypto\\modes\\aes-gcm-armv8-unroll8_64.S" => [
             ".\\crypto\\modes\\asm\\aes-gcm-armv8-unroll8_64.pl"
@@ -30358,6 +30366,9 @@ our %unified_info = (
         "crypto\\ml_kem\\libcrypto-lib-ml_kem.o" => [
             ".\\crypto\\ml_kem\\ml_kem.c"
         ],
+        "crypto\\ml_kem\\libcrypto-lib-ml_kem_avx2.o" => [
+            "crypto\\ml_kem\\ml_kem_avx2.s"
+        ],
         "crypto\\modes\\libcrypto-lib-aes-gcm-avx512.o" => [
             "crypto\\modes\\aes-gcm-avx512.s"
         ],
@@ -32209,6 +32220,7 @@ our %unified_info = (
             "crypto\\ml_dsa\\libcrypto-lib-ml_dsa_sample.o",
             "crypto\\ml_dsa\\libcrypto-lib-ml_dsa_sign.o",
             "crypto\\ml_kem\\libcrypto-lib-ml_kem.o",
+            "crypto\\ml_kem\\libcrypto-lib-ml_kem_avx2.o",
             "crypto\\modes\\libcrypto-lib-aes-gcm-avx512.o",
             "crypto\\modes\\libcrypto-lib-aesni-gcm-x86_64.o",
             "crypto\\modes\\libcrypto-lib-cbc128.o",
