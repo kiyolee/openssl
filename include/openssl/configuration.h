@@ -54,14 +54,14 @@ extern "C" {
 # ifndef OPENSSL_NO_ASAN
 #  define OPENSSL_NO_ASAN
 # endif
-# ifndef OPENSSL_NO_ATEXIT
-#  define OPENSSL_NO_ATEXIT
-# endif
 #if defined(_M_ARM) || defined(_M_ARM64)
 # ifndef OPENSSL_NO_ASM
 #  define OPENSSL_NO_ASM
 # endif
 #endif
+# ifndef OPENSSL_NO_ATEXIT
+#  define OPENSSL_NO_ATEXIT
+# endif
 # ifndef OPENSSL_NO_BROTLI
 #  define OPENSSL_NO_BROTLI
 # endif
