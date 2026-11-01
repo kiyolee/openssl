@@ -219,6 +219,7 @@ our %config = (
         "HQINTEROP",
         "JITTER",
         "MSAN",
+        "PCAP",
         "PIE",
         "SSLKEYLOG",
         "STATIC-VCRUNTIME",
@@ -266,6 +267,7 @@ our %config = (
         "OPENSSL_NO_LMS",
         "OPENSSL_NO_MD2",
         "OPENSSL_NO_MSAN",
+        "OPENSSL_NO_PCAP",
         "OPENSSL_NO_PIE",
         "OPENSSL_NO_RC5",
         "OPENSSL_NO_SCTP",
@@ -290,7 +292,7 @@ our %config = (
         "OPENSSL_SYS_WIN32"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-4 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-atexit no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-ct-validation no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-static-vcruntime no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-unit-tests no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-4 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-atexit no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-ct-validation no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pcap no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-static-vcruntime no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-unit-tests no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -461,6 +463,7 @@ our @disablables = (
     "blake2",
     "brotli",
     "brotli-dynamic",
+    "buildinfo-cflags",
     "buildtest-c++",
     "bulk",
     "cached-fetch",
@@ -532,6 +535,7 @@ our @disablables = (
     "nextprotoneg",
     "ocb",
     "ocsp",
+    "pcap",
     "pic",
     "pie",
     "pinshared",
@@ -634,6 +638,7 @@ our %disabled = (
     "lms" => "default",
     "md2" => "default",
     "msan" => "default",
+    "pcap" => "default",
     "pie" => "default",
     "rc5" => "default",
     "sctp" => "default",
@@ -1495,6 +1500,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\ctype_internal_test" => {
+                "noinst" => "1"
+            },
+            "test\\curve25519_internal_test" => {
                 "noinst" => "1"
             },
             "test\\curve448_internal_test" => {
@@ -3907,6 +3915,9 @@ our %unified_info = (
         "doc\\html\\man3\\NCONF_new_ex.html" => [
             ".\\doc\\man3\\NCONF_new_ex.pod"
         ],
+        "doc\\html\\man3\\OBJ_NAME_do_all.html" => [
+            ".\\doc\\man3\\OBJ_NAME_do_all.pod"
+        ],
         "doc\\html\\man3\\OBJ_nid2obj.html" => [
             ".\\doc\\man3\\OBJ_nid2obj.pod"
         ],
@@ -4242,6 +4253,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\PKCS12_add_safe.html" => [
             ".\\doc\\man3\\PKCS12_add_safe.pod"
+        ],
+        "doc\\html\\man3\\PKCS12_check_version.html" => [
+            ".\\doc\\man3\\PKCS12_check_version.pod"
         ],
         "doc\\html\\man3\\PKCS12_create.html" => [
             ".\\doc\\man3\\PKCS12_create.pod"
@@ -6840,6 +6854,9 @@ our %unified_info = (
         "doc\\man\\man3\\NCONF_new_ex.3" => [
             ".\\doc\\man3\\NCONF_new_ex.pod"
         ],
+        "doc\\man\\man3\\OBJ_NAME_do_all.3" => [
+            ".\\doc\\man3\\OBJ_NAME_do_all.pod"
+        ],
         "doc\\man\\man3\\OBJ_nid2obj.3" => [
             ".\\doc\\man3\\OBJ_nid2obj.pod"
         ],
@@ -7175,6 +7192,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\PKCS12_add_safe.3" => [
             ".\\doc\\man3\\PKCS12_add_safe.pod"
+        ],
+        "doc\\man\\man3\\PKCS12_check_version.3" => [
+            ".\\doc\\man3\\PKCS12_check_version.pod"
         ],
         "doc\\man\\man3\\PKCS12_create.3" => [
             ".\\doc\\man3\\PKCS12_create.pod"
@@ -10165,6 +10185,10 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\ctype_internal_test" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\curve25519_internal_test" => [
             "libcrypto.a",
             "test\\libtestutil.a"
         ],
@@ -16525,6 +16549,9 @@ our %unified_info = (
         "doc\\html\\man3\\NCONF_new_ex.html" => [
             ".\\doc\\man3\\NCONF_new_ex.pod"
         ],
+        "doc\\html\\man3\\OBJ_NAME_do_all.html" => [
+            ".\\doc\\man3\\OBJ_NAME_do_all.pod"
+        ],
         "doc\\html\\man3\\OBJ_nid2obj.html" => [
             ".\\doc\\man3\\OBJ_nid2obj.pod"
         ],
@@ -16860,6 +16887,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\PKCS12_add_safe.html" => [
             ".\\doc\\man3\\PKCS12_add_safe.pod"
+        ],
+        "doc\\html\\man3\\PKCS12_check_version.html" => [
+            ".\\doc\\man3\\PKCS12_check_version.pod"
         ],
         "doc\\html\\man3\\PKCS12_create.html" => [
             ".\\doc\\man3\\PKCS12_create.pod"
@@ -19411,6 +19441,9 @@ our %unified_info = (
         "doc\\man\\man3\\NCONF_new_ex.3" => [
             ".\\doc\\man3\\NCONF_new_ex.pod"
         ],
+        "doc\\man\\man3\\OBJ_NAME_do_all.3" => [
+            ".\\doc\\man3\\OBJ_NAME_do_all.pod"
+        ],
         "doc\\man\\man3\\OBJ_nid2obj.3" => [
             ".\\doc\\man3\\OBJ_nid2obj.pod"
         ],
@@ -19746,6 +19779,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\PKCS12_add_safe.3" => [
             ".\\doc\\man3\\PKCS12_add_safe.pod"
+        ],
+        "doc\\man\\man3\\PKCS12_check_version.3" => [
+            ".\\doc\\man3\\PKCS12_check_version.pod"
         ],
         "doc\\man\\man3\\PKCS12_create.3" => [
             ".\\doc\\man3\\PKCS12_create.pod"
@@ -22930,6 +22966,7 @@ our %unified_info = (
             "doc\\html\\man3\\MDC2_Init.html",
             "doc\\html\\man3\\NAME_CONSTRAINTS_check.html",
             "doc\\html\\man3\\NCONF_new_ex.html",
+            "doc\\html\\man3\\OBJ_NAME_do_all.html",
             "doc\\html\\man3\\OBJ_nid2obj.html",
             "doc\\html\\man3\\OCSP_REQUEST_new.html",
             "doc\\html\\man3\\OCSP_cert_to_id.html",
@@ -23042,6 +23079,7 @@ our %unified_info = (
             "doc\\html\\man3\\PKCS12_add_friendlyname_asc.html",
             "doc\\html\\man3\\PKCS12_add_localkeyid.html",
             "doc\\html\\man3\\PKCS12_add_safe.html",
+            "doc\\html\\man3\\PKCS12_check_version.html",
             "doc\\html\\man3\\PKCS12_create.html",
             "doc\\html\\man3\\PKCS12_decrypt_secretbag.html",
             "doc\\html\\man3\\PKCS12_decrypt_skey.html",
@@ -26465,6 +26503,14 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\curve25519_internal_test" => [
+            ".",
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
         "test\\curve448_internal_test" => [
             ".",
             "include",
@@ -28503,6 +28549,7 @@ our %unified_info = (
             "doc\\man\\man3\\MDC2_Init.3",
             "doc\\man\\man3\\NAME_CONSTRAINTS_check.3",
             "doc\\man\\man3\\NCONF_new_ex.3",
+            "doc\\man\\man3\\OBJ_NAME_do_all.3",
             "doc\\man\\man3\\OBJ_nid2obj.3",
             "doc\\man\\man3\\OCSP_REQUEST_new.3",
             "doc\\man\\man3\\OCSP_cert_to_id.3",
@@ -28615,6 +28662,7 @@ our %unified_info = (
             "doc\\man\\man3\\PKCS12_add_friendlyname_asc.3",
             "doc\\man\\man3\\PKCS12_add_localkeyid.3",
             "doc\\man\\man3\\PKCS12_add_safe.3",
+            "doc\\man\\man3\\PKCS12_check_version.3",
             "doc\\man\\man3\\PKCS12_create.3",
             "doc\\man\\man3\\PKCS12_decrypt_secretbag.3",
             "doc\\man\\man3\\PKCS12_decrypt_skey.3",
@@ -29288,6 +29336,7 @@ our %unified_info = (
         "test\\ct_test",
         "test\\ct_validation_helpers_test",
         "test\\ctype_internal_test",
+        "test\\curve25519_internal_test",
         "test\\curve448_internal_test",
         "test\\d2i_test",
         "test\\danetest",
@@ -39517,6 +39566,12 @@ our %unified_info = (
         "test\\ctype_internal_test-bin-ctype_internal_test.o" => [
             ".\\test\\ctype_internal_test.c"
         ],
+        "test\\curve25519_internal_test" => [
+            "test\\curve25519_internal_test-bin-curve25519_internal_test.o"
+        ],
+        "test\\curve25519_internal_test-bin-curve25519_internal_test.o" => [
+            ".\\test\\curve25519_internal_test.c"
+        ],
         "test\\curve448_internal_test" => [
             "test\\curve448_internal_test-bin-curve448_internal_test.o"
         ],
@@ -41436,6 +41491,9 @@ my %disabled_info = (
     "msan" => {
         "macro" => "OPENSSL_NO_MSAN"
     },
+    "pcap" => {
+        "macro" => "OPENSSL_NO_PCAP"
+    },
     "pie" => {
         "macro" => "OPENSSL_NO_PIE"
     },
@@ -41586,7 +41644,7 @@ _____
           my ($configuration_file, $configuration_file_in) = @_;
 
           open CONFIGURATION, ">${configuration_file}.new"
-              or die "Trying to create ${configuration_file_in}.new: $!";
+              or die "Trying to create ${configuration_file}.new: $!";
           $tmpl = OpenSSL::Template->new(TYPE => 'FILE',
                                         SOURCE => $configuration_file_in);
           $tmpl->fill_in(FILENAME => $_,
@@ -41649,8 +41707,14 @@ _____
         $create_configuration->($configuration_h, $configuration_h_in);
         $update_configuration->($configuration_h, $configuration_h_in);
 
-        $create_configuration->($apps_configuration_h, $apps_configuration_h_in);
-        $update_configuration->($apps_configuration_h, $apps_configuration_h_in);
+        # With no-apps, the apps directory is skipped when the build tree
+        # is populated, so out of source there is no directory to write
+        # this file in.  It isn't needed either, as nothing gets built
+        # in apps/ in that case.
+        unless ($disabled{apps}) {
+            $create_configuration->($apps_configuration_h, $apps_configuration_h_in);
+            $update_configuration->($apps_configuration_h, $apps_configuration_h_in);
+        }
 
         exit(0);
     }

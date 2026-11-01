@@ -52,6 +52,7 @@ static const char * const openssl_disabled_features[] = {
 	"HQINTEROP",
 	"JITTER",
 	"MSAN",
+	"PCAP",
 	"PIE",
 	"SSLKEYLOG",
 	"STATIC-VCRUNTIME",

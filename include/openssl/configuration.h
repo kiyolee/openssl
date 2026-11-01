@@ -131,6 +131,9 @@ extern "C" {
 # ifndef OPENSSL_NO_MSAN
 #  define OPENSSL_NO_MSAN
 # endif
+# ifndef OPENSSL_NO_PCAP
+#  define OPENSSL_NO_PCAP
+# endif
 # ifndef OPENSSL_NO_PIE
 #  define OPENSSL_NO_PIE
 # endif
