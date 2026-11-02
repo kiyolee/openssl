@@ -10,8 +10,9 @@ use strict;
 use warnings;
 
 use File::Compare qw/compare/;
-use OpenSSL::Test qw/:DEFAULT bldtop_dir with/;
+use OpenSSL::Test qw/:DEFAULT bldtop_dir with shlib_dir/;
 use OpenSSL::Test::Utils;
+use Cwd qw(abs_path);
 
 setup("test_enc_skey");
 
@@ -100,8 +101,11 @@ if ($fake_cipher) {
     subtest "enc with an opaque key from the fake-cipher provider" => sub {
         plan tests => 4;
 
-        $ENV{OPENSSL_MODULES} = bldtop_dir("test");
-        my @prov = ('-provider-path', bldtop_dir("test"),
+        #$ENV{OPENSSL_MODULES} = bldtop_dir("test");
+        $ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
+        #my @prov = ('-provider-path', bldtop_dir("test"),
+        #            '-provider', 'fake-cipher', '-provider', 'default');
+        my @prov = ('-provider-path', abs_path(shlib_dir()),
                     '-provider', 'fake-cipher', '-provider', 'default');
 
         ok(run(app(['openssl', 'enc', @prov, '-fake_cipher', '-e',
