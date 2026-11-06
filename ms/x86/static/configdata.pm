@@ -4671,6 +4671,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_connect.html" => [
             ".\\doc\\man3\\SSL_connect.pod"
         ],
+        "doc\\html\\man3\\SSL_copy_session_id.html" => [
+            ".\\doc\\man3\\SSL_copy_session_id.pod"
+        ],
         "doc\\html\\man3\\SSL_do_handshake.html" => [
             ".\\doc\\man3\\SSL_do_handshake.pod"
         ],
@@ -7612,6 +7615,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_connect.3" => [
             ".\\doc\\man3\\SSL_connect.pod"
+        ],
+        "doc\\man\\man3\\SSL_copy_session_id.3" => [
+            ".\\doc\\man3\\SSL_copy_session_id.pod"
         ],
         "doc\\man\\man3\\SSL_do_handshake.3" => [
             ".\\doc\\man3\\SSL_do_handshake.pod"
@@ -16330,6 +16336,9 @@ our %unified_info = (
         "doc\\html\\man3\\SSL_connect.html" => [
             ".\\doc\\man3\\SSL_connect.pod"
         ],
+        "doc\\html\\man3\\SSL_copy_session_id.html" => [
+            ".\\doc\\man3\\SSL_copy_session_id.pod"
+        ],
         "doc\\html\\man3\\SSL_do_handshake.html" => [
             ".\\doc\\man3\\SSL_do_handshake.pod"
         ],
@@ -19224,6 +19233,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_connect.3" => [
             ".\\doc\\man3\\SSL_connect.pod"
+        ],
+        "doc\\man\\man3\\SSL_copy_session_id.3" => [
+            ".\\doc\\man3\\SSL_copy_session_id.pod"
         ],
         "doc\\man\\man3\\SSL_do_handshake.3" => [
             ".\\doc\\man3\\SSL_do_handshake.pod"
@@ -22219,6 +22231,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_check_chain.html",
             "doc\\html\\man3\\SSL_clear.html",
             "doc\\html\\man3\\SSL_connect.html",
+            "doc\\html\\man3\\SSL_copy_session_id.html",
             "doc\\html\\man3\\SSL_do_handshake.html",
             "doc\\html\\man3\\SSL_export_keying_material.html",
             "doc\\html\\man3\\SSL_extension_supported.html",
@@ -27690,6 +27703,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_check_chain.3",
             "doc\\man\\man3\\SSL_clear.3",
             "doc\\man\\man3\\SSL_connect.3",
+            "doc\\man\\man3\\SSL_copy_session_id.3",
             "doc\\man\\man3\\SSL_do_handshake.3",
             "doc\\man\\man3\\SSL_export_keying_material.3",
             "doc\\man\\man3\\SSL_extension_supported.3",
