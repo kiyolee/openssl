@@ -678,6 +678,7 @@
     <ClCompile Include="..\..\crypto\rand\randfile.c" />
     <ClCompile Include="..\..\crypto\rand\rand_deprecated.c" />
     <ClCompile Include="..\..\crypto\rand\rand_err.c" />
+    <ClCompile Include="..\..\crypto\rand\rand_hash_salt.c" />
     <ClCompile Include="..\..\crypto\rand\rand_lib.c" />
     <ClCompile Include="..\..\crypto\rand\rand_meth.c" />
     <ClCompile Include="..\..\crypto\rand\rand_pool.c" />

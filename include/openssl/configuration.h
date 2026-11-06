@@ -77,6 +77,9 @@ extern "C" {
 # ifndef OPENSSL_NO_DEMOS
 #  define OPENSSL_NO_DEMOS
 # endif
+# ifndef OPENSSL_NO_DGRAM_PAIR_PCAP
+#  define OPENSSL_NO_DGRAM_PAIR_PCAP
+# endif
 # ifndef OPENSSL_NO_DYNAMIC_ENGINE
 #  define OPENSSL_NO_DYNAMIC_ENGINE
 # endif
@@ -130,9 +133,6 @@ extern "C" {
 # endif
 # ifndef OPENSSL_NO_MSAN
 #  define OPENSSL_NO_MSAN
-# endif
-# ifndef OPENSSL_NO_PCAP
-#  define OPENSSL_NO_PCAP
 # endif
 # ifndef OPENSSL_NO_PIE
 #  define OPENSSL_NO_PIE

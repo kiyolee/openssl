@@ -209,6 +209,7 @@ our %config = (
         "CRYPTO-MDEBUG",
         "CT-VALIDATION",
         "DEMOS",
+        "DGRAM-PAIR-PCAP",
         "EC_EXPLICIT_CURVES",
         "EC_NISTP_64_GCC_128",
         "EGD",
@@ -222,7 +223,6 @@ our %config = (
         "HQINTEROP",
         "JITTER",
         "MSAN",
-        "PCAP",
         "PIE",
         "SSLKEYLOG",
         "STATIC-VCRUNTIME",
@@ -252,6 +252,7 @@ our %config = (
         "OPENSSL_NO_CRYPTO_MDEBUG",
         "OPENSSL_NO_CT_VALIDATION",
         "OPENSSL_NO_DEMOS",
+        "OPENSSL_NO_DGRAM_PAIR_PCAP",
         "OPENSSL_NO_DYNAMIC_ENGINE",
         "OPENSSL_NO_EC_EXPLICIT_CURVES",
         "OPENSSL_NO_EC_NISTP_64_GCC_128",
@@ -270,7 +271,6 @@ our %config = (
         "OPENSSL_NO_LMS",
         "OPENSSL_NO_MD2",
         "OPENSSL_NO_MSAN",
-        "OPENSSL_NO_PCAP",
         "OPENSSL_NO_PIE",
         "OPENSSL_NO_RC5",
         "OPENSSL_NO_SCTP",
@@ -295,7 +295,7 @@ our %config = (
         "OPENSSL_SYS_WIN64A"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files\\OpenSSL-4 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-atexit no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-ct-validation no-demos no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pcap no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-static-vcruntime no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-unit-tests no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files\\OpenSSL-4 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\x64\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-atexit no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-ct-validation no-demos no-dgram-pair-pcap no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-static-vcruntime no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-unit-tests no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -486,6 +486,7 @@ our @disablables = (
     "deprecated",
     "des",
     "dgram",
+    "dgram-pair-pcap",
     "dh",
     "docs",
     "dsa",
@@ -539,7 +540,6 @@ our @disablables = (
     "nextprotoneg",
     "ocb",
     "ocsp",
-    "pcap",
     "pic",
     "pie",
     "pinshared",
@@ -623,6 +623,7 @@ our %disabled = (
     "crypto-mdebug" => "default",
     "ct-validation" => "default",
     "demos" => "default",
+    "dgram-pair-pcap" => "default",
     "dynamic-engine" => "cascade",
     "ec_explicit_curves" => "default",
     "ec_nistp_64_gcc_128" => "default",
@@ -642,7 +643,6 @@ our %disabled = (
     "lms" => "default",
     "md2" => "default",
     "msan" => "default",
-    "pcap" => "default",
     "pie" => "default",
     "rc5" => "default",
     "sctp" => "default",
@@ -5169,6 +5169,9 @@ our %unified_info = (
         "doc\\html\\man3\\X509_verify_cert.html" => [
             ".\\doc\\man3\\X509_verify_cert.pod"
         ],
+        "doc\\html\\man3\\X509v3_addr_get_safi.html" => [
+            ".\\doc\\man3\\X509v3_addr_get_safi.pod"
+        ],
         "doc\\html\\man3\\X509v3_get_ext_by_NID.html" => [
             ".\\doc\\man3\\X509v3_get_ext_by_NID.pod"
         ],
@@ -8108,6 +8111,9 @@ our %unified_info = (
         "doc\\man\\man3\\X509_verify_cert.3" => [
             ".\\doc\\man3\\X509_verify_cert.pod"
         ],
+        "doc\\man\\man3\\X509v3_addr_get_safi.3" => [
+            ".\\doc\\man3\\X509v3_addr_get_safi.pod"
+        ],
         "doc\\man\\man3\\X509v3_get_ext_by_NID.3" => [
             ".\\doc\\man3\\X509v3_get_ext_by_NID.pod"
         ],
@@ -11018,8 +11024,8 @@ our %unified_info = (
             "test\\libtestutil.a"
         ],
         "test\\tls13ticket_test" => [
-            "libcrypto",
-            "libssl",
+            "libcrypto.a",
+            "libssl.a",
             "test\\libtestutil.a"
         ],
         "test\\tls_groups_list_test" => [
@@ -12910,6 +12916,7 @@ our %unified_info = (
                 "crypto\\rand\\libcrypto-lib-prov_seed.o",
                 "crypto\\rand\\libcrypto-lib-rand_deprecated.o",
                 "crypto\\rand\\libcrypto-lib-rand_err.o",
+                "crypto\\rand\\libcrypto-lib-rand_hash_salt.o",
                 "crypto\\rand\\libcrypto-lib-rand_lib.o",
                 "crypto\\rand\\libcrypto-lib-rand_meth.o",
                 "crypto\\rand\\libcrypto-lib-rand_pool.o",
@@ -12918,6 +12925,7 @@ our %unified_info = (
                 "crypto\\rand\\libcrypto-shlib-prov_seed.o",
                 "crypto\\rand\\libcrypto-shlib-rand_deprecated.o",
                 "crypto\\rand\\libcrypto-shlib-rand_err.o",
+                "crypto\\rand\\libcrypto-shlib-rand_hash_salt.o",
                 "crypto\\rand\\libcrypto-shlib-rand_lib.o",
                 "crypto\\rand\\libcrypto-shlib-rand_meth.o",
                 "crypto\\rand\\libcrypto-shlib-rand_pool.o",
@@ -17862,6 +17870,9 @@ our %unified_info = (
         "doc\\html\\man3\\X509_verify_cert.html" => [
             ".\\doc\\man3\\X509_verify_cert.pod"
         ],
+        "doc\\html\\man3\\X509v3_addr_get_safi.html" => [
+            ".\\doc\\man3\\X509v3_addr_get_safi.pod"
+        ],
         "doc\\html\\man3\\X509v3_get_ext_by_NID.html" => [
             ".\\doc\\man3\\X509v3_get_ext_by_NID.pod"
         ],
@@ -20754,6 +20765,9 @@ our %unified_info = (
         "doc\\man\\man3\\X509_verify_cert.3" => [
             ".\\doc\\man3\\X509_verify_cert.pod"
         ],
+        "doc\\man\\man3\\X509v3_addr_get_safi.3" => [
+            ".\\doc\\man3\\X509v3_addr_get_safi.pod"
+        ],
         "doc\\man\\man3\\X509v3_get_ext_by_NID.3" => [
             ".\\doc\\man3\\X509v3_get_ext_by_NID.pod"
         ],
@@ -23457,6 +23471,7 @@ our %unified_info = (
             "doc\\html\\man3\\X509_sign.html",
             "doc\\html\\man3\\X509_verify.html",
             "doc\\html\\man3\\X509_verify_cert.html",
+            "doc\\html\\man3\\X509v3_addr_get_safi.html",
             "doc\\html\\man3\\X509v3_get_ext_by_NID.html",
             "doc\\html\\man3\\b2i_PVK_bio_ex.html",
             "doc\\html\\man3\\d2i_PKCS8PrivateKey_bio.html",
@@ -29040,6 +29055,7 @@ our %unified_info = (
             "doc\\man\\man3\\X509_sign.3",
             "doc\\man\\man3\\X509_verify.3",
             "doc\\man\\man3\\X509_verify_cert.3",
+            "doc\\man\\man3\\X509v3_addr_get_safi.3",
             "doc\\man\\man3\\X509v3_get_ext_by_NID.3",
             "doc\\man\\man3\\b2i_PVK_bio_ex.3",
             "doc\\man\\man3\\d2i_PKCS8PrivateKey_bio.3",
@@ -30246,6 +30262,7 @@ our %unified_info = (
             "crypto\\rand\\libcrypto-shlib-prov_seed.o",
             "crypto\\rand\\libcrypto-shlib-rand_deprecated.o",
             "crypto\\rand\\libcrypto-shlib-rand_err.o",
+            "crypto\\rand\\libcrypto-shlib-rand_hash_salt.o",
             "crypto\\rand\\libcrypto-shlib-rand_lib.o",
             "crypto\\rand\\libcrypto-shlib-rand_meth.o",
             "crypto\\rand\\libcrypto-shlib-rand_pool.o",
@@ -34681,6 +34698,9 @@ our %unified_info = (
         "crypto\\rand\\libcrypto-lib-rand_err.o" => [
             "crypto\\rand\\rand_err.c"
         ],
+        "crypto\\rand\\libcrypto-lib-rand_hash_salt.o" => [
+            ".\\crypto\\rand\\rand_hash_salt.c"
+        ],
         "crypto\\rand\\libcrypto-lib-rand_lib.o" => [
             ".\\crypto\\rand\\rand_lib.c"
         ],
@@ -34704,6 +34724,9 @@ our %unified_info = (
         ],
         "crypto\\rand\\libcrypto-shlib-rand_err.o" => [
             "crypto\\rand\\rand_err.c"
+        ],
+        "crypto\\rand\\libcrypto-shlib-rand_hash_salt.o" => [
+            ".\\crypto\\rand\\rand_hash_salt.c"
         ],
         "crypto\\rand\\libcrypto-shlib-rand_lib.o" => [
             ".\\crypto\\rand\\rand_lib.c"
@@ -37054,6 +37077,7 @@ our %unified_info = (
             "crypto\\rand\\libcrypto-lib-prov_seed.o",
             "crypto\\rand\\libcrypto-lib-rand_deprecated.o",
             "crypto\\rand\\libcrypto-lib-rand_err.o",
+            "crypto\\rand\\libcrypto-lib-rand_hash_salt.o",
             "crypto\\rand\\libcrypto-lib-rand_lib.o",
             "crypto\\rand\\libcrypto-lib-rand_meth.o",
             "crypto\\rand\\libcrypto-lib-rand_pool.o",
@@ -41747,6 +41771,9 @@ my %disabled_info = (
     "demos" => {
         "macro" => "OPENSSL_NO_DEMOS"
     },
+    "dgram-pair-pcap" => {
+        "macro" => "OPENSSL_NO_DGRAM_PAIR_PCAP"
+    },
     "dynamic-engine" => {
         "macro" => "OPENSSL_NO_DYNAMIC_ENGINE"
     },
@@ -41806,9 +41833,6 @@ my %disabled_info = (
     },
     "msan" => {
         "macro" => "OPENSSL_NO_MSAN"
-    },
-    "pcap" => {
-        "macro" => "OPENSSL_NO_PCAP"
     },
     "pie" => {
         "macro" => "OPENSSL_NO_PIE"
