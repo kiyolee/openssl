@@ -9,7 +9,7 @@
 use strict;
 use feature 'state';
 
-use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use TLSProxy::Proxy;
 use TLSProxy::Message;
@@ -33,7 +33,8 @@ plan skip_all => "$test_name needs DTLSv1.3 enabled"
 plan skip_all => "DTLSProxy does not support partial messages"
     if disabled("ec");
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 my $proxy = TLSProxy::Proxy->new_dtls(
     undef,

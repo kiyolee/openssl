@@ -7,7 +7,7 @@
 # https://www.openssl.org/source/license.html
 
 use strict;
-use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir/;
+use OpenSSL::Test qw/:DEFAULT cmdstr srctop_file bldtop_dir shlib_dir/;
 use OpenSSL::Test::Utils;
 use TLSProxy::Proxy;
 use TLSProxy::Message;
@@ -27,7 +27,8 @@ plan skip_all => "$test_name needs the module feature enabled"
 plan skip_all => "$test_name needs the psk feature enabled"
     if disabled("psk");
 
-$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+#$ENV{OPENSSL_MODULES} = abs_path(bldtop_dir("test"));
+$ENV{OPENSSL_MODULES} = abs_path(shlib_dir());
 
 my $psk = "0102030405060708090a0b0c0d0e0f10";
 
