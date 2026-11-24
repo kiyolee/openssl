@@ -18,6 +18,9 @@ use OpenSSL::Test qw/:DEFAULT bldtop_dir bldtop_file data_dir result_dir/;
 
 setup("test_cmake_config");
 
+plan skip_all => "This test is not applicable for openssl-win-build"
+    unless 0;
+
 plan skip_all => "cmake is not available"
     unless IPC::Cmd::can_run("cmake");
 
