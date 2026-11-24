@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\fuzz\fuzz_rand.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\fuzz\hashtable.c">
       <Filter>Source Files</Filter>
     </ClCompile>

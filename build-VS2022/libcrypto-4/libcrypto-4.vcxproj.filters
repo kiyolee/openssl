@@ -2484,9 +2484,6 @@
     <ClCompile Include="..\..\crypto\rand\rand_uniform.c">
       <Filter>Source Files\crypto\rand</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\crypto\hashtable\hashtable.c">
-      <Filter>Source Files\crypto\hashtable</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\crypto\x509\t_acert.c">
       <Filter>Source Files\crypto\x509</Filter>
     </ClCompile>

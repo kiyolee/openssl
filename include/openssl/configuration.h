@@ -175,6 +175,9 @@ extern "C" {
 #  define OPENSSL_NO_UPLINK
 # endif
 #endif
+# ifndef OPENSSL_NO_USDT
+#  define OPENSSL_NO_USDT
+# endif
 # ifndef OPENSSL_NO_WEAK_SSL_CIPHERS
 #  define OPENSSL_NO_WEAK_SSL_CIPHERS
 # endif

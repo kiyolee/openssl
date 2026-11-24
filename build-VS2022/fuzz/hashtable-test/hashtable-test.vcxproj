@@ -94,7 +94,6 @@
     <Link />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\fuzz\fuzz_rand.c" />
     <ClCompile Include="..\..\..\fuzz\hashtable.c" />
     <ClCompile Include="..\..\..\fuzz\test-corpus.c" />
     <ClCompile Include="..\..\..\test\mfail\mfail.c" />

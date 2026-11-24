@@ -301,7 +301,7 @@ set _GEN_LIST=^
   crypto\objects\obj_dat.h ^
   crypto\objects\obj_xref.h ^
   apps\progs.c apps\progs.h ^
-  apps\include\configuration.h ^
+  apps\include\app_conf.h ^
   apps\CA.pl apps\tsget.pl util\wrap.pl
 
 set _GEN_LIST_2=^

@@ -228,6 +228,7 @@ our %config = (
         "UBSAN",
         "UNIT-TEST",
         "UNIT-TESTS",
+        "USDT",
         "WEAK-SSL-CIPHERS",
         "ZLIB-DYNAMIC",
         "ZSTD-DYNAMIC"
@@ -280,19 +281,21 @@ our %config = (
         "OPENSSL_NO_UBSAN",
         "OPENSSL_NO_UNIT_TEST",
         "OPENSSL_NO_UNIT_TESTS",
+        "OPENSSL_NO_USDT",
         "OPENSSL_NO_WEAK_SSL_CIPHERS",
         "OPENSSL_NO_ZLIB_DYNAMIC",
         "OPENSSL_NO_ZSTD",
         "OPENSSL_NO_ZSTD_DYNAMIC"
     ],
     "openssl_other_defines" => [
-        "OPENSSL_NO_KTLS"
+        "OPENSSL_NO_KTLS",
+        "OPENSSL_NO_USDT"
     ],
     "openssl_sys_defines" => [
         "OPENSSL_SYS_WIN32"
     ],
     "openssldir" => "",
-    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-4 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-atexit no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-ct-validation no-demos no-dgram-pair-pcap no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-static-vcruntime no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-unit-tests no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
+    "options" => "--prefix=C:\\Program Files (x86)\\OpenSSL-4 --with-zlib-include=..\\zlib --with-zlib-lib=..\\zlib\\build\\Release\\libz-static.lib enable-zlib no-acvp-tests no-allocfail-tests no-asan no-atexit no-brotli no-brotli-dynamic no-buildtest-c++ no-crypto-mdebug no-ct-validation no-demos no-dgram-pair-pcap no-dynamic-engine no-ec_explicit_curves no-ec_nistp_64_gcc_128 no-egd no-engine no-external-tests no-fips no-fips-jitter no-fips-post no-fips-securitychecks no-fuzz-afl no-fuzz-libfuzzer no-h3demo no-hqinterop no-jitter no-ktls no-lms no-md2 no-msan no-pie no-rc5 no-sctp no-sslkeylog no-static-engine no-static-vcruntime no-tfo no-tls-deprecated-ec no-trace no-ubsan no-unit-test no-unit-tests no-usdt no-weak-ssl-ciphers no-zlib-dynamic no-zstd no-zstd-dynamic",
     "patch" => "0",
     "perl_archname" => "MSWin32-x64-multi-thread",
     "perl_cmd" => "C:\\Strawberry\\perl\\bin\\perl.exe",
@@ -597,6 +600,7 @@ our @disablables = (
     "unit-tests",
     "unstable-qlog",
     "uplink",
+    "usdt",
     "weak-ssl-ciphers",
     "whirlpool",
     "winstore",
@@ -653,6 +657,7 @@ our %disabled = (
     "ubsan" => "default",
     "unit-test" => "default",
     "unit-tests" => "default",
+    "usdt" => "not-linux",
     "weak-ssl-ciphers" => "default",
     "zlib-dynamic" => "default",
     "zstd" => "default",
@@ -1675,6 +1680,9 @@ our %unified_info = (
             "test\\hpke_test" => {
                 "noinst" => "1"
             },
+            "test\\htable_test" => {
+                "noinst" => "1"
+            },
             "test\\http_test" => {
                 "noinst" => "1"
             },
@@ -1832,6 +1840,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\punycode_test" => {
+                "noinst" => "1"
+            },
+            "test\\queue_test" => {
                 "noinst" => "1"
             },
             "test\\quic_ackm_test" => {
@@ -2045,6 +2056,9 @@ our %unified_info = (
                 "noinst" => "1"
             },
             "test\\timing_load_creds" => {
+                "noinst" => "1"
+            },
+            "test\\timing_namemap_x509store" => {
                 "noinst" => "1"
             },
             "test\\tls12psk_test" => {
@@ -4006,6 +4020,9 @@ our %unified_info = (
         "doc\\html\\man3\\OPENSSL_load_u16_le.html" => [
             ".\\doc\\man3\\OPENSSL_load_u16_le.pod"
         ],
+        "doc\\html\\man3\\OPENSSL_loongarchcap.html" => [
+            ".\\doc\\man3\\OPENSSL_loongarchcap.pod"
+        ],
         "doc\\html\\man3\\OPENSSL_malloc.html" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
         ],
@@ -4899,6 +4916,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_rstate_string.html" => [
             ".\\doc\\man3\\SSL_rstate_string.pod"
+        ],
+        "doc\\html\\man3\\SSL_send_fatal_alert.html" => [
+            ".\\doc\\man3\\SSL_send_fatal_alert.pod"
         ],
         "doc\\html\\man3\\SSL_session_reused.html" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
@@ -6951,6 +6971,9 @@ our %unified_info = (
         "doc\\man\\man3\\OPENSSL_load_u16_le.3" => [
             ".\\doc\\man3\\OPENSSL_load_u16_le.pod"
         ],
+        "doc\\man\\man3\\OPENSSL_loongarchcap.3" => [
+            ".\\doc\\man3\\OPENSSL_loongarchcap.pod"
+        ],
         "doc\\man\\man3\\OPENSSL_malloc.3" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
         ],
@@ -7844,6 +7867,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_rstate_string.3" => [
             ".\\doc\\man3\\SSL_rstate_string.pod"
+        ],
+        "doc\\man\\man3\\SSL_send_fatal_alert.3" => [
+            ".\\doc\\man3\\SSL_send_fatal_alert.pod"
         ],
         "doc\\man\\man3\\SSL_session_reused.3" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
@@ -10479,6 +10505,13 @@ our %unified_info = (
             "libcrypto",
             "test\\libtestutil.a"
         ],
+        "test\\htable_test" => [
+            "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\htable_test-bin-htable_test.o" => [
+            "crypto\\objects\\obj_dat.h"
+        ],
         "test\\http_test" => [
             "libcrypto",
             "test\\libtestutil.a"
@@ -10699,6 +10732,10 @@ our %unified_info = (
         ],
         "test\\punycode_test" => [
             "libcrypto.a",
+            "test\\libtestutil.a"
+        ],
+        "test\\queue_test" => [
+            "libcrypto",
             "test\\libtestutil.a"
         ],
         "test\\quic_ackm_test" => [
@@ -11013,6 +11050,9 @@ our %unified_info = (
         ],
         "test\\timing_load_creds" => [
             "libcrypto"
+        ],
+        "test\\timing_namemap_x509store" => [
+            "libcrypto.a"
         ],
         "test\\tls12psk_test" => [
             "libcrypto.a",
@@ -12487,9 +12527,7 @@ our %unified_info = (
         "crypto\\hashtable" => {
             "deps" => [
                 "crypto\\hashtable\\libcrypto-lib-hashfunc.o",
-                "crypto\\hashtable\\libcrypto-lib-hashtable.o",
                 "crypto\\hashtable\\libcrypto-shlib-hashfunc.o",
-                "crypto\\hashtable\\libcrypto-shlib-hashtable.o",
                 "crypto\\hashtable\\libssl-shlib-hashfunc.o"
             ],
             "products" => {
@@ -15121,6 +15159,9 @@ our %unified_info = (
         "crypto\\md5\\md5-x86_64.s" => [
             ".\\crypto\\md5\\asm\\md5-x86_64.pl"
         ],
+        "crypto\\ml_dsa\\ml_dsa_ntt-armv8.S" => [
+            ".\\crypto\\ml_dsa\\asm\\ml_dsa_ntt-armv8.pl"
+        ],
         "crypto\\ml_dsa\\ml_dsa_ntt-x86_64.s" => [
             ".\\crypto\\ml_dsa\\asm\\ml_dsa_ntt-x86_64.pl"
         ],
@@ -16668,6 +16709,9 @@ our %unified_info = (
         "doc\\html\\man3\\OPENSSL_load_u16_le.html" => [
             ".\\doc\\man3\\OPENSSL_load_u16_le.pod"
         ],
+        "doc\\html\\man3\\OPENSSL_loongarchcap.html" => [
+            ".\\doc\\man3\\OPENSSL_loongarchcap.pod"
+        ],
         "doc\\html\\man3\\OPENSSL_malloc.html" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
         ],
@@ -17561,6 +17605,9 @@ our %unified_info = (
         ],
         "doc\\html\\man3\\SSL_rstate_string.html" => [
             ".\\doc\\man3\\SSL_rstate_string.pod"
+        ],
+        "doc\\html\\man3\\SSL_send_fatal_alert.html" => [
+            ".\\doc\\man3\\SSL_send_fatal_alert.pod"
         ],
         "doc\\html\\man3\\SSL_session_reused.html" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
@@ -19566,6 +19613,9 @@ our %unified_info = (
         "doc\\man\\man3\\OPENSSL_load_u16_le.3" => [
             ".\\doc\\man3\\OPENSSL_load_u16_le.pod"
         ],
+        "doc\\man\\man3\\OPENSSL_loongarchcap.3" => [
+            ".\\doc\\man3\\OPENSSL_loongarchcap.pod"
+        ],
         "doc\\man\\man3\\OPENSSL_malloc.3" => [
             ".\\doc\\man3\\OPENSSL_malloc.pod"
         ],
@@ -20459,6 +20509,9 @@ our %unified_info = (
         ],
         "doc\\man\\man3\\SSL_rstate_string.3" => [
             ".\\doc\\man3\\SSL_rstate_string.pod"
+        ],
+        "doc\\man\\man3\\SSL_send_fatal_alert.3" => [
+            ".\\doc\\man3\\SSL_send_fatal_alert.pod"
         ],
         "doc\\man\\man3\\SSL_session_reused.3" => [
             ".\\doc\\man3\\SSL_session_reused.pod"
@@ -23057,6 +23110,7 @@ our %unified_info = (
             "doc\\html\\man3\\OPENSSL_instrument_bus.html",
             "doc\\html\\man3\\OPENSSL_load_builtin_modules.html",
             "doc\\html\\man3\\OPENSSL_load_u16_le.html",
+            "doc\\html\\man3\\OPENSSL_loongarchcap.html",
             "doc\\html\\man3\\OPENSSL_malloc.html",
             "doc\\html\\man3\\OPENSSL_ppccap.html",
             "doc\\html\\man3\\OPENSSL_riscvcap.html",
@@ -23355,6 +23409,7 @@ our %unified_info = (
             "doc\\html\\man3\\SSL_read.html",
             "doc\\html\\man3\\SSL_read_early_data.html",
             "doc\\html\\man3\\SSL_rstate_string.html",
+            "doc\\html\\man3\\SSL_send_fatal_alert.html",
             "doc\\html\\man3\\SSL_session_reused.html",
             "doc\\html\\man3\\SSL_set1_echstore.html",
             "doc\\html\\man3\\SSL_set1_host.html",
@@ -27287,6 +27342,20 @@ our %unified_info = (
             ".\\include",
             ".\\apps\\include"
         ],
+        "test\\htable_test" => [
+            ".",
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\htable_test-bin-htable_test.o" => [
+            "crypto\\objects"
+        ],
+        "test\\htable_test.o" => [
+            "crypto\\objects"
+        ],
         "test\\http_test" => [
             "include",
             "apps\\include",
@@ -27652,6 +27721,12 @@ our %unified_info = (
             ".\\apps\\include"
         ],
         "test\\punycode_test" => [
+            "include",
+            "apps\\include",
+            ".\\include",
+            ".\\apps\\include"
+        ],
+        "test\\queue_test" => [
             "include",
             "apps\\include",
             ".\\include",
@@ -28122,6 +28197,14 @@ our %unified_info = (
         "test\\timing_load_creds" => [
             "include",
             ".\\include"
+        ],
+        "test\\timing_namemap_x509store" => [
+            ".",
+            "include",
+            "apps\\include",
+            ".",
+            ".\\include",
+            ".\\apps\\include"
         ],
         "test\\tls12psk_test" => [
             ".",
@@ -28654,6 +28737,7 @@ our %unified_info = (
             "doc\\man\\man3\\OPENSSL_instrument_bus.3",
             "doc\\man\\man3\\OPENSSL_load_builtin_modules.3",
             "doc\\man\\man3\\OPENSSL_load_u16_le.3",
+            "doc\\man\\man3\\OPENSSL_loongarchcap.3",
             "doc\\man\\man3\\OPENSSL_malloc.3",
             "doc\\man\\man3\\OPENSSL_ppccap.3",
             "doc\\man\\man3\\OPENSSL_riscvcap.3",
@@ -28952,6 +29036,7 @@ our %unified_info = (
             "doc\\man\\man3\\SSL_read.3",
             "doc\\man\\man3\\SSL_read_early_data.3",
             "doc\\man\\man3\\SSL_rstate_string.3",
+            "doc\\man\\man3\\SSL_send_fatal_alert.3",
             "doc\\man\\man3\\SSL_session_reused.3",
             "doc\\man\\man3\\SSL_set1_echstore.3",
             "doc\\man\\man3\\SSL_set1_host.3",
@@ -29477,6 +29562,7 @@ our %unified_info = (
         "test\\hexstr_test",
         "test\\hmactest",
         "test\\hpke_test",
+        "test\\htable_test",
         "test\\http_test",
         "test\\ideatest",
         "test\\igetest",
@@ -29530,6 +29616,7 @@ our %unified_info = (
         "test\\provider_status_test",
         "test\\provider_test",
         "test\\punycode_test",
+        "test\\queue_test",
         "test\\quic_ackm_test",
         "test\\quic_cc_test",
         "test\\quic_cfq_test",
@@ -29601,6 +29688,7 @@ our %unified_info = (
         "test\\time_offset_test",
         "test\\time_test",
         "test\\timing_load_creds",
+        "test\\timing_namemap_x509store",
         "test\\tls12psk_test",
         "test\\tls13ccstest",
         "test\\tls13encryptiontest",
@@ -30062,7 +30150,6 @@ our %unified_info = (
             "crypto\\ffc\\libcrypto-shlib-ffc_params_generate.o",
             "crypto\\ffc\\libcrypto-shlib-ffc_params_validate.o",
             "crypto\\hashtable\\libcrypto-shlib-hashfunc.o",
-            "crypto\\hashtable\\libcrypto-shlib-hashtable.o",
             "crypto\\hmac\\libcrypto-shlib-hmac.o",
             "crypto\\hpke\\libcrypto-shlib-hpke.o",
             "crypto\\hpke\\libcrypto-shlib-hpke_util.o",
@@ -33487,14 +33574,8 @@ our %unified_info = (
         "crypto\\hashtable\\libcrypto-lib-hashfunc.o" => [
             ".\\crypto\\hashtable\\hashfunc.c"
         ],
-        "crypto\\hashtable\\libcrypto-lib-hashtable.o" => [
-            ".\\crypto\\hashtable\\hashtable.c"
-        ],
         "crypto\\hashtable\\libcrypto-shlib-hashfunc.o" => [
             ".\\crypto\\hashtable\\hashfunc.c"
-        ],
-        "crypto\\hashtable\\libcrypto-shlib-hashtable.o" => [
-            ".\\crypto\\hashtable\\hashtable.c"
         ],
         "crypto\\hashtable\\libssl-shlib-hashfunc.o" => [
             ".\\crypto\\hashtable\\hashfunc.c"
@@ -35998,13 +36079,9 @@ our %unified_info = (
             ".\\fuzz\\test-corpus.c"
         ],
         "fuzz\\hashtable-test" => [
-            "fuzz\\hashtable-test-bin-fuzz_rand.o",
             "fuzz\\hashtable-test-bin-hashtable.o",
             "fuzz\\hashtable-test-bin-test-corpus.o",
             "test\\mfail\\hashtable-test-bin-mfail.o"
-        ],
-        "fuzz\\hashtable-test-bin-fuzz_rand.o" => [
-            ".\\fuzz\\fuzz_rand.c"
         ],
         "fuzz\\hashtable-test-bin-hashtable.o" => [
             ".\\fuzz\\hashtable.c"
@@ -36686,7 +36763,6 @@ our %unified_info = (
             "crypto\\ffc\\libcrypto-lib-ffc_params_generate.o",
             "crypto\\ffc\\libcrypto-lib-ffc_params_validate.o",
             "crypto\\hashtable\\libcrypto-lib-hashfunc.o",
-            "crypto\\hashtable\\libcrypto-lib-hashtable.o",
             "crypto\\hmac\\libcrypto-lib-hmac.o",
             "crypto\\hpke\\libcrypto-lib-hpke.o",
             "crypto\\hpke\\libcrypto-lib-hpke_util.o",
@@ -40264,6 +40340,12 @@ our %unified_info = (
         "test\\hpke_test-bin-hpke_test.o" => [
             ".\\test\\hpke_test.c"
         ],
+        "test\\htable_test" => [
+            "test\\htable_test-bin-htable_test.o"
+        ],
+        "test\\htable_test-bin-htable_test.o" => [
+            ".\\test\\htable_test.c"
+        ],
         "test\\http_test" => [
             "test\\http_test-bin-http_test.o"
         ],
@@ -40765,6 +40847,12 @@ our %unified_info = (
         ],
         "test\\punycode_test-bin-punycode_test.o" => [
             ".\\test\\punycode_test.c"
+        ],
+        "test\\queue_test" => [
+            "test\\queue_test-bin-queue_test.o"
+        ],
+        "test\\queue_test-bin-queue_test.o" => [
+            ".\\test\\queue_test.c"
         ],
         "test\\quic_ackm_test" => [
             "test\\quic_ackm_test-bin-cc_dummy.o",
@@ -41305,6 +41393,12 @@ our %unified_info = (
         "test\\timing_load_creds-bin-timing_load_creds.o" => [
             ".\\test\\timing_load_creds.c"
         ],
+        "test\\timing_namemap_x509store" => [
+            "test\\timing_namemap_x509store-bin-timing_namemap_x509store.o"
+        ],
+        "test\\timing_namemap_x509store-bin-timing_namemap_x509store.o" => [
+            ".\\test\\timing_namemap_x509store.c"
+        ],
         "test\\tls12psk_test" => [
             "test\\helpers\\tls12psk_test-bin-ssltestlib.o",
             "test\\tls12psk_test-bin-tls12psk.o"
@@ -41644,6 +41738,9 @@ my %disabled_info = (
     "unit-tests" => {
         "macro" => "OPENSSL_NO_UNIT_TESTS"
     },
+    "usdt" => {
+        "macro" => "OPENSSL_NO_USDT"
+    },
     "weak-ssl-ciphers" => {
         "macro" => "OPENSSL_NO_WEAK_SSL_CIPHERS"
     },
@@ -41811,9 +41908,9 @@ _____
             catfile($config{sourcedir}, 'include', 'openssl', 'configuration.h.in');
 
         my $apps_configuration_h =
-            catfile('apps', 'include', 'configuration.h');
+            catfile('apps', 'include', 'app_conf.h');
         my $apps_configuration_h_in =
-            catfile($config{sourcedir}, 'apps', 'include', 'configuration.h.in');
+            catfile($config{sourcedir}, 'apps', 'include', 'app_conf.h.in');
 
         $create_configuration->($configuration_h, $configuration_h_in);
         $update_configuration->($configuration_h, $configuration_h_in);
